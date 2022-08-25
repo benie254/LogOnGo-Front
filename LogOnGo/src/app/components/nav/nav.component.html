@@ -1,0 +1,28 @@
+<nav class="fixed-top border">
+    <div class="topnav" id="myTopnav">
+      <a class="navbar-brand" href="/" *ngFor='let gas of gas_details'>
+        <img src="https://res.cloudinary.com/benie/image/upload/v1659013117/fuel-1596622_1920_u9uhku.jpg" alt="" width="30" height="30">
+        Station name PP: {{gas.price__per_litre}}
+      </a>
+      <a href="/" class="active">Home</a>
+      <a class="nav-link" href="">Diesel</a>
+      <a class="nav-link" href="">Gas</a>
+      <a class="nav-link" href="">All Logs</a>
+      <a class="nav-link" href="">Add Log</a>
+            <a class="nav-link" href="">Add Mpesa</a>
+            <a class="nav-link" href="">Report Incident</a>
+            <a class="nav-link" href="">Profile</a>
+            <a class="nav-link" href="">Logout</a>
+            <a class="nav-link" href="">Admin</a>
+            <form class="d-flex" action="" role="search">
+              <input class="form-control me-2" type="date" placeholder="Search logs by date" name="date" aria-label="Search">
+              <button class="btn btn-sm btn-light margin btn-outline-success" type="submit">Search</button>
+            </form>
+      <!-- <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a> -->
+      <a class="nav-link" href="">Login</a>
+      <a class="nav-link" href="">Register</a>
+    </div>
+    
+  </nav>
