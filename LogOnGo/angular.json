@@ -25,7 +25,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/root.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -92,13 +94,12 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/root.js"
+            ]
           }
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }

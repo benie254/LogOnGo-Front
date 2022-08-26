@@ -1,0 +1,34 @@
+<button onclick="toggleLogForm()">Add log</button>
+<div id="logForm" class="rounded hide"><br>
+    <h2 class="text-center margin-top">Add Petrol Log details</h2> 
+    <form #logForm="ngForm" class="form" (ngSubmit)="addLog(logForm.value)">
+        <div class="row">
+            <div class="col">
+                <label for="fuel" class="">Fuel type</label>
+                <input type="number" value="2" class="Aj" id="fuel" name="fuel" placeholder="Fuel type">
+            </div>
+            <div class="col">
+                <label for="eod_reading_lts" class="">Eod reading yesterday</label>
+                <input type="number" class="Aj form-control" id="eod_reading_yesterday" name="eod_reading_yesterday" placeholder="End of day reading yesterday(lts)">
+            </div>
+            <div class="col">
+                <input type="number" class="" name="user" placeholder="Your user id">
+                <input type="text" class="" name="logged_by" placeholder="Your name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="date" class="">Log date</label>
+                <input type="date" class="Aj form-control" id="date" name="date" placeholder="Date">
+            </div>
+            <div class="col">
+                <label for="eod_reading_lts">End of day reading</label>
+                <input type="number" class="Aj form-control form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" onclick="toggleLogForm()">Log</button>
+        </div> 
+    </form>  
+</div>
