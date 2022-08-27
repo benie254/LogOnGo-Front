@@ -64,6 +64,10 @@ import { IncidentFormComponent } from './components/forms/incident-form/incident
 import { IncidentReportingInstructionsComponent } from './components/sections/incident-reporting-instructions/incident-reporting-instructions.component';
 import { PriceperlitreUpdateFormComponent } from './components/forms/priceperlitre-update-form/priceperlitre-update-form.component';
 import { BalFormComponent } from './components/forms/bal-form/bal-form.component';
+import { LogService } from './services/log/log.service';
+import { FuelService } from './services/fuel/fuel.service';
+import { ProfileService } from './services/profile/profile.service';
+import { NotificationService } from './services/notification/notification.service';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -174,7 +178,7 @@ const notifierDefaultOptions: NotifierOptions = {
       notifierDefaultOptions,
     ),
   ],
-  providers: [],
+  providers: [LogService,FuelService,ProfileService,NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

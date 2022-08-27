@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LogService } from 'src/app/services/log/log.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-log-card',
@@ -6,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./log-card.component.css']
 })
 export class LogCardComponent implements OnInit {
+  logs: any;
 
-  constructor() { }
+  constructor(private logService:LogService, private notifService:NotificationService) { 
+    
+  }
 
   ngOnInit(): void {
   }

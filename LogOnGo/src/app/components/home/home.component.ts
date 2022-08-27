@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
+import { LogService } from 'src/app/services/log/log.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
@@ -17,14 +19,41 @@ declare function myTester(): any;
 export class HomeComponent implements OnInit {
 
   fuels: any;
-  petrol_details: any;
+  info: any;
   myAlert: any; 
+  logs: any;
+  logs_two: any;
+  logs_three: any;
+  logs_four: any;
+  mpesa: any;
+  id: number;
 
   pp = new FormControl('1');
 
-  constructor(private fuelService:FuelService, private http:HttpClient,private notifService:NotificationService) { 
+  constructor(private fuelService:FuelService, private http:HttpClient,private notifService:NotificationService, private logService:LogService, private route:ActivatedRoute) { 
     this.fuelService.getPetrolInfo().subscribe((data) => {
-      this.petrol_details = data
+      this.info = data
+      console.warn("data",data)
+    });
+
+    this.logService.getPetrolLogs().subscribe((data) => {
+      this.logs = data
+      console.warn("data",data)
+    });
+    this.logService.getPetrolLogs2().subscribe((data) => {
+      this.logs_two = data
+      console.warn("data",data)
+    });
+    this.logService.getPetrolLogs3().subscribe((data) => {
+      this.logs_three = data
+      console.warn("data",data)
+    });
+    this.logService.getPetrolLogs4().subscribe((data) => {
+      this.logs_four = data
+      console.warn("data",data)
+    });
+    this.logService.getMpesaLogs().subscribe((data) => {
+      this.mpesa = data
       console.warn("data",data)
     });
   }
@@ -77,5 +106,6 @@ export class HomeComponent implements OnInit {
     myAlert();
     myTester();
   }
+
 
 }

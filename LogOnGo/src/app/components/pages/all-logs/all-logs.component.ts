@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LogService } from 'src/app/services/log/log.service';
 
 @Component({
   selector: 'app-all-logs',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-logs.component.css']
 })
 export class AllLogsComponent implements OnInit {
+  logs: any;
 
-  constructor() { }
+  constructor(private logService:LogService) { 
+    this.logService.getAllLogs().subscribe((data) => {
+      this.logs = data
+      console.warn("data",data)
+    });
+  }
 
   ngOnInit(): void {
   }
