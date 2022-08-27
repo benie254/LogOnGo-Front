@@ -12,7 +12,7 @@ export class AddDieselLogformComponent implements OnInit {
 
   constructor(private fuelService:FuelService, private notifService:NotificationService, private logService:LogService) { }
 
-  addLog(log_info: any) {
+  addDieselLog(log_info: any) {
     console.warn(log_info);
     this.logService.addLog(log_info).subscribe((result) => {
       console.warn('result', result);
