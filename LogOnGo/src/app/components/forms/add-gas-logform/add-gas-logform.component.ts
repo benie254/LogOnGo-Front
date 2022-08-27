@@ -16,7 +16,7 @@ export class AddGasLogformComponent implements OnInit {
     console.warn(log_info);
     this.logService.addLog(log_info).subscribe((result) => {
       console.warn('result', result);
-      this.notifService.submitSuccess('success','Diesel log added successfully!')
+      this.notifService.submitSuccess('success','Gas log added successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
     });
   }
