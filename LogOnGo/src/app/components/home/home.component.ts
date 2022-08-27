@@ -10,6 +10,11 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 
 declare function myAlert(): any; 
 declare function myTester(): any;
+declare function myTotal(): any;
+declare function amountToday(): any;
+declare function getBal(): any;
+declare function getBalHome(): any;
+declare function myPumps(): any;
 
 @Component({
   selector: 'app-home',
@@ -105,6 +110,11 @@ export class HomeComponent implements OnInit {
   ngOnInit():void {
     myAlert();
     myTester();
+    myTotal();
+    amountToday();
+    getBal();
+    getBalHome();
+    myPumps();
   }
 
 
