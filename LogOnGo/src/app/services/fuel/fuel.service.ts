@@ -33,8 +33,8 @@ export class FuelService {
   addFuel(fuel_info: any) {
     return this.http.post(this.apiURLfuels, fuel_info);
   }
-  addDieselReceived(fuel_received: any) {
-    return this.http.post(this.apiURLfuels, fuel_received);
+  addDieselReceived(diesel_received: any) {
+    return this.http.post(this.apiURLfuels, diesel_received);
   }
 
   getPetrolInfo(): Observable<Fuel>{
