@@ -62,6 +62,8 @@ import { GasReceivedComponent } from './components/sections/gas-received/gas-rec
 import { EmailMpesareportFormComponent } from './components/forms/email-mpesareport-form/email-mpesareport-form.component';
 import { IncidentFormComponent } from './components/forms/incident-form/incident-form.component';
 import { IncidentReportingInstructionsComponent } from './components/sections/incident-reporting-instructions/incident-reporting-instructions.component';
+import { PriceperlitreUpdateFormComponent } from './components/forms/priceperlitre-update-form/priceperlitre-update-form.component';
+import { BalFormComponent } from './components/forms/bal-form/bal-form.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -158,6 +160,8 @@ const notifierDefaultOptions: NotifierOptions = {
     EmailMpesareportFormComponent,
     IncidentFormComponent,
     IncidentReportingInstructionsComponent,
+    PriceperlitreUpdateFormComponent,
+    BalFormComponent,
   ],
   imports: [
     BrowserModule,

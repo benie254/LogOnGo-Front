@@ -1,4 +1,4 @@
-<div class="card margin-top color-two" style="margin:1%;border-bottom: 5%;border-color:white;">
+<div class="card margin-top color-two" style="margin:1%;border-bottom: 5%;border-color:white;" *ngFor="let mpesa of mpesa_logs">
                      
     <h5 class="card-header">{{mpesa.date}}</h5>
     <div class="card-body" >
@@ -10,9 +10,7 @@
                     <th scope="col">Customer name</th>
                     <th scope="col">Customer phone number</th>
                     <th scope="col">Amount</th>
-                    {%if mpesa.amount_transferred_to_bank %}
-                    <th scope="col">Bank amount</th>
-                    {%endif%}
+                    <th scope="col" *ngIf="mpesa.amount_transferred_to_bank">Bank amount</th>
                     <th scope="col">Cumulative amount</th>
                   </tr>
                 </thead>
@@ -22,9 +20,7 @@
                     <td>{{mpesa.customer_name}}</td>
                     <td>{{mpesa.customer_phone_number}}</td>
                     <td>{{mpesa.amount}}</td>
-                    {% if mpesa.amount_transferred_to_bank %}
-                    <td>{{mpesa.amount_transferred_to_bank}}</td>
-                    {% endif %}
+                    <td *ngIf="mpesa.amount_transferred_to_bank">{{mpesa.amount_transferred_to_bank}}</td>
                     <td>{{mpesa_cumulative}}</td>
                     <td></td>
                   </tr>
@@ -33,7 +29,7 @@
         </div>
       
     <div class="card-footer">
-        <small>Logged by {{mpesa.user.username}} | <a type="button" class="btn btn-dark btn-outline-primary btn-sm" href="{% url 'mpesa_log_details' mpesa.id %}">Details</a> | <a href="#mpesaForm"><button class="margin btn btn-sm btn-outline-primary btn-dark" type="button" onclick="toggleMPesa()">Add new?</button></a></small>
+        <small>Logged by {{mpesa.user.username}} | <a type="button" class="btn btn-dark btn-outline-primary btn-sm" href="">Details</a> | <a href="#mpesaForm"><button class="margin btn btn-sm btn-outline-primary btn-dark" type="button" onclick="toggleMPesa()">Add new?</button></a></small>
     </div>
     
 </div>
