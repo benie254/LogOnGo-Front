@@ -11,6 +11,7 @@ export class FuelService {
   apiURLdiesel = 'https://logongo-api.herokuapp.com/diesel-info/'
   apiURLgas = 'https://logongo-api.herokuapp.com/gas-info/'
   apiURLfuels = 'https://logongo-api.herokuapp.com/our-fuels/'
+  apiURLdieselReceived = 'https://logongo-api.herokuapp.com/diesel-received-today/info/'
 
   constructor(private http:HttpClient) { }
 
@@ -31,6 +32,9 @@ export class FuelService {
 
   addFuel(fuel_info: any) {
     return this.http.post(this.apiURLfuels, fuel_info);
+  }
+  addDieselReceived(fuel_received: any) {
+    return this.http.post(this.apiURLfuels, fuel_received);
   }
 
   getPetrolInfo(): Observable<Fuel>{
