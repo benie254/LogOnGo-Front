@@ -1,12 +1,19 @@
-<form class="formAjax" action="{% url 'logs' %}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-    <label for="fuel" class="hide">Fuel type received</label>
-    <input type="number" class="Aj hide" id="fuel" name="fuel" placeholder="Petrol Diesel or Gas?" value="2">
+<form #petrolReceivedForm="ngForm" (ngSubmit)="petrolReceived(petrolReceivedForm.value)">
+    <input type="number" id="fuel" ngModel #fuel="ngModel" name="fuel" [(ngModel)]="1" placeholder="fuel type">
     <label for="litres_received">Litres received</label><br>
-    <input type="number" class="Aj" id="litres_received" name="litres_received" placeholder="How many litres?"><br>
+    <input type="number" id="litres_received" ngModel #litres_received="ngModel" name="litres_received" placeholder="Litres received" required>
+    <div [hidden]="litres_received.valid || litres_received.pristine" class="alert alert-danger">
+        <p>Litres received required</p>
+    </div>
     <label for="received_from">Received from</label><br>
-   <input type="text" class="Aj" id="received_from" name="received_from" placeholder="Enter vehicle no. plate"><br>
+    <input type="number" ngModel id="received_from" #received_from="ngModel" name="received_from" placeholder="Received from..." required>
+    <div [hidden]="received_from.valid || received_from.pristine" class="alert alert-danger">
+        <p>Received from input required</p>
+    </div>
     <label for="date_received">Date received</label><br>
-    <input type="date" class="Aj" id="date_received" name="date_received" placeholder="Date received"><br>
-    <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Add petrol"><br>
+    <input type="number" ngModel id="#date_received" #date_received="ngModel" name="date_received" placeholder="date_received" required>
+    <div [hidden]="date_received.valid || date_received.pristine" class="alert alert-danger">
+        <p>Date required</p>
+    </div>
+    <button type="submit" onclick="toggleInfo()" class="btn btn-sm">Submit</button>
 </form>
