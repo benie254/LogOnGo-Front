@@ -1,15 +1,36 @@
-<form class="formAjax" action="{% url 'diesel' %}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-    <label for="date">Log date</label><br>
-    <input type="date" class="Aj" id="date" name="date" placeholder="Date"><br>
-    <label for="fuel" class="hide">Fuel type</label>
-    <input type="number" value="1" class="Aj hide" id="fuel" name="fuel" placeholder="Fuel type">
-    <label for="eod_reading_lts">Eod reading</label><br>
-    <input type="number" class="Aj" id="eod_reading_lts" name="eod_reading_lts" placeholder="End of day reading (lts)"><br>
-    <input type="number" class="Aj hide" id="eod_reading_yesterday" name="eod_reading_yesterday" value="{{yesterday_diesel_logs.eod_reading_lts}}" placeholder="End of day reading yesterday(lts)">
-    <!-- <label for="{{user_id}}">User id</label> <br> -->
-    <input type="number" class="hide" name="user" placeholder="Your user id" value="{{user.id}}">
-    <!-- <label for="{{username}}"> Logged by</label> <br> -->
-    <input type="text" class="hide" name="logged_by" placeholder="Your name" value="{{user.username}}">
-    <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Log diesel">
-</form>
+<form #dieselLogForm="ngForm" class="form" (ngSubmit)="addDieselLog(dieselLogForm.value)">
+    <div class="row">
+        <div class="col">
+            <label for="fuel" class="">Fuel type</label>
+            <input type="number" class="Aj" ngModel #fuel="ngModel" [(ngModel)]="1" id="fuel" name="fuel" placeholder="Fuel type">
+        </div>
+        <div class="col">
+            <label for="eod_reading_yesterday" class="">Eod reading yesterday</label>
+            <input *ngIf="yesterday_logs" ngModel #eod_reading_yesterday="ngModel" [(ngModel)]="yesterday_logs.eod_reading_lts" type="number" class="Aj form-control" id="eod_reading_yesterday" name="eod_reading_yesterday" placeholder="End of day reading yesterday(lts)">
+        </div>
+        <div class="col">
+            <input type="number" class="" ngModel id="user" #user="ngModel" [(ngModel)]="1" name="user" placeholder="Your user id">
+            <input type="text" class="" name="logged_by" ngModel id="logged_by" #logged_by="ngModel" [(ngModel)]="janja" placeholder="Your name">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="date" class="">Log date</label>
+            <input type="date" ngModel #date="ngModel" class="Aj form-control" id="date" name="date" placeholder="Date" required>
+            <div [hidden]="date.valid || date.pristine" class="alert margin-top2p5 alert-danger">
+                <p>Date required</p>
+            </div>
+        </div>
+        <div class="col">
+            <label for="eod_reading_lts">End of day reading</label>
+            <input type="number" ngModel #eod_reading_lts="ngModel" class="Aj form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)" required>
+            <div [hidden]="eod_reading_lts.valid || eod_reading_lts.pristine" class="alert margin-top2p5 alert-danger">
+                <p>EOD reading required</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" onclick="toggleLogForm()">Log</button>
+    </div> 
+</form>  
