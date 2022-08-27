@@ -1,9 +1,34 @@
-<form class="padding margin-top" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}
-    <input type="number" class="hide" id="bal" name="balance" class="">{%if yesterday_logs%}
-    <input type="number" name="balance_yesterday" class="hide" value="{{yesterday_logs.balance}}">{%endif%}
-    {%if received%}
-    <input type="submit" class="btn btn-sm btn-outline-info btn-dark" value="Update bal" onclick="">
-    {%else%}
-    <input type="submit" class="btn margin btn-sm btn-outline-primary btn-dark" value="Calculate" onclick="">
-    {%endif%}
-</form> 
+<form #balForm="ngForm" class="form" (ngSubmit)="updateBal(balForm.value)">
+    <div class="row">
+        <div class="col">
+            <label for="fuel" class="">Fuel type</label>
+            <input type="number" ngModel value="1" class="Aj" id="fuel" name="fuel" ngModel placeholder="Fuel type">
+        </div>
+        <div class="col">
+            <label for="eod_reading_yesterday" class="">Eod reading yesterday</label>
+            <input type="number"  ngModel class="Aj form-control" id="eod_reading_yesterday" name="eod_reading_yesterday" placeholder="End of day reading yesterday(lts)">
+        </div>
+        <label for="bal"></label>
+        <input type="number" ngModel class="" id="bal" name="balance" class="">
+        <label for="balance_yesterday"></label>
+        <input *ngIf="yesterday_logs" type="number" name="balance_yesterday" class="" ngModel id="balance_yesterday" [(ngModel)]="yesterday_logs.balance">
+        <div class="col">
+            <input type="number" ngModel class="" name="user" placeholder="Your user id">
+            <input type="text" ngModel class="" name="logged_by" placeholder="Your name">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="date" class="">Log date</label>
+            <input type="date" ngModel class="Aj form-control" id="date" name="date" placeholder="Date">
+        </div>
+        <div class="col">
+            <label for="eod_reading_lts">End of day reading</label>
+            <input type="number" ngModel #eod_reading_lts="ngModel" class="Aj form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" onclick="toggleLogForm()">Log</button>
+    </div> 
+</form>  
