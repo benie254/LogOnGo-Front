@@ -108,4 +108,385 @@
 
 
 
+<body onload="myTotal();amountToday();getBal();getBalHome();myPumps();">
+    
+    <div class="container-fluid color-two">
+        <br><br><br>
+        <div class="row">
+            <h1 class="text-center">All Petrol Logs for {{date}}</h1>
+            
+            <div class="border full-height col-md-6 color-four rounded black padding-2">
+                <h2 class="text-center">General</h2>
+                <div class="card color-two">
+                    <h5 class="card-header">Initial tank amount: <span id="initial">{{petrol_info.initial_litres_in_tank}}</span> Lts <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolAmount()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="20" width="20" alt=""></button> <span id="updatePetrolAmountForm"><form class="" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}{{update_amount_form}} <input type="submit" class="btn btn-sm btn-dark btn-outline-info" value="Update"></form></span></span> <span class="float-right margin-top">Pumps: <span id="pumpNo">{{petrol_info.pumps}}</span> <span><button class="btn margin-bottom-three btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPumps()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="20" width="20" alt=""></button> <span id="updatePetrolPumpsForm"><form class="" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}{{update_pumps_form}} <input type="submit" class="btn btn-sm btn-dark btn-outline-info" value="Update"></form></span> </span> </span></h3>
+                </div>
+                <div class="card color-two">
+                    <h5 class="card-header hide">New tank balance: <span id="bal0">{{yesterday_petrol_logs.balance}}</span> Lts </h5>
+                </div>
+                <div id="petrol-two">
+                    {%if petrol_logs_2%}
+                    {%for petrol_logs in petrol_logs_2%}
+                    <div class="card color-two">
+                        <h4 class="card-header">{{petrol_logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price-p2">{{petrol_info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm2"><form class="" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}{{update_price_form}} <input type="submit" class="btn btn-sm btn-dark btn-outline-info" value="Update"></form></span> </span> </h6></span></h4>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">EOD Reading Today</th>
+                                        <th scope="col">EOD Reading Yesterday</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                          <td id="tester-today-p2">{{petrol_logs.eod_reading_lts}}</td>
+                                          <td id="tester-yesterday-p2">{{petrol_logs.eod_reading_yesterday}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <small class="">Logged by {{petrol_logs.user.username}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="{% url 'log_details' petrol_logs.id %}">Details</a> </small>
+                        </div>
+                    </div>
+                   {%endfor%}
+                   {% else %} 
+                <div class="card color-two">
+                    <div class="card-body">
+                        <p class="card-text">Your Petrol logs will appear here.</p>
+                        <p class="card-text"><a href="#logForm" onclick="toggleLog()">Record logs now?</a></p>
+                    </div>
+                </div>
+                {%endif%}
+                </div>
+                <div id="petrol-three">
+                    {%if petrol_logs_3%}
+                    {%for petrol_logs in petrol_logs_3%}
+                    <div class="card color-two">
+                        <h4 class="card-header">{{petrol_logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price-p3">{{petrol_info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolAmount()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm3"><form class="" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}{{update_price_form}} <input type="submit" class="btn btn-sm btn-dark btn-outline-info" value="Update"></form></span> </span></h6></span></h4>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">EOD Reading Today</th>
+                                        <th scope="col">EOD Reading Yesterday</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                          <td id="tester-today-p3">{{petrol_logs.eod_reading_lts}}</td>
+                                          <td id="tester-yesterday-p3">{{petrol_logs.eod_reading_yesterday}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <small class="">Logged by {{petrol_logs.user.username}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="{% url 'log_details' petrol_logs.id %}">Details</a> </small>
+                        </div>
+                    </div>
+                   {%endfor%}
+                   {% else %} 
+                <div class="card color-two">
+                    <div class="card-body">
+                        <p class="card-text">Your Petrol logs will appear here.</p>
+                        <p class="card-text"><a href="#logForm" onclick="toggleLog()">Record logs now?</a></p>
+                    </div>
+                </div>
+                {%endif%}
+                </div>
+                <div id="petrol-four">
+                    {%if petrol_logs_4%}
+                    {%for petrol_logs in petrol_logs_4%}
+                    <div class="card color-two">
+                        <h4 class="card-header">{{petrol_logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price-p4">{{petrol_info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm4"><form class="" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}{{update_price_form}} <input type="submit" class="btn btn-sm btn-dark btn-outline-info" value="Update"></form></span> </span></h6></span></h4>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">EOD Reading Today</th>
+                                        <th scope="col">EOD Reading Yesterday</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                          <td id="tester-today-p4">{{petrol_logs.eod_reading_lts}}</td>
+                                          <td id="tester-yesterday-p4">{{petrol_logs.eod_reading_yesterday}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <small class="">Logged by {{petrol_logs.user.username}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="{% url 'log_details' petrol_logs.id %}">Details</a> </small>
+                        </div>
+                    </div>
+                   {%endfor%}
+                   {% else %} 
+                <div class="card color-two">
+                    <div class="card-body">
+                        <p class="card-text">Your Petrol logs will appear here.</p>
+                        <p class="card-text"><a href="#logForm" onclick="toggleLog()">Record logs now?</a></p>
+                    </div>
+                </div>
+                {%endif%}
+                </div>
+                <div id="petrol-one">
+                    {%if petrol_logs%}
+                    <div class="card color-two">
+                        <h4 class="card-header">{{petrol_logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price">{{petrol_info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm"><form class="" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}{{update_price_form}} <input type="submit" class="btn btn-sm btn-dark btn-outline-info" value="Update"></form></span> </span></h6></span></h4>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">EOD Reading Today</th>
+                                        <th scope="col">EOD Reading Yesterday</th>
+                                        <th scope="col">Total litres sold today</th>
+                                        <th scope="col">Amount earned today</th>
+                                        <th scope="col">Get balance</th>
+                                        <th scope="col">Balance (lts)</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                          <td id="tester-today">{{petrol_logs.eod_reading_lts}}</td>
+                                          <td id="tester-yesterday">{{petrol_logs.eod_reading_yesterday}}</td>
+                                        <td id="total-today"></td>
+                                        <td id="amount-today"></td>
+                                        <td id="" name=""><span><form class="padding margin-top" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}<input type="number" class="hide" id="bal" name="balance" class="">{%if yesterday_petrol_logs%}<input type="number" name="balance_yesterday" class="hide" value="{{yesterday_petrol_logs.balance}}" >{%endif%}{%if petrol_received%}<input type="submit" class="btn btn-sm btn-outline-info btn-dark" value="Update bal" onclick="">{%else%}<input type="submit" class="btn margin btn-sm btn-outline-primary btn-dark" value="Calculate" onclick="">{%endif%}</form> </span> <span></span></td>
+                                        <td id="">{{petrol_logs.balance}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <small class="">Logged by {{petrol_logs.user.username}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="{% url 'log_details' petrol_logs.id %}">Details</a> </small>
+                        </div>
+                    </div>
+                    {% else %} 
+                <div class="card color-two">
+                    <div class="card-body">
+                        <p class="card-text">Your Petrol logs will appear here.</p>
+                        <p class="card-text"><a href="#logForm" onclick="toggleLog()">Record logs now?</a></p>
+                    </div>
+                </div>
+                {%endif%}
+                </div>
+                <div class="card color-two">
+                    <h5 class="card-header text-center">Petrol Received This Day: {%if petrol_received%}<span id="new-order">{{petrol_received}}</span> Lts.  <span><h5 class="margin-top"> Record <a href="#fuelRecvdForm" onclick="toggleFuelRecvdForm()">new order</a></h5></span>{%else%} <span id="new-order">0</span> Lts. <form class="margin-top hide" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}<input type="text" class="hide" id="bal-home" placeholder="balance" name="balance">{%if yesterday_petrol_logs%}<input type="text" placeholder="balance yesterday" name="balance_yesterday" class="hide" value="{{yesterday_petrol_logs.balance}}" >{%endif%}<input type="submit" class="btn btn-sm btn-outline-info btn-dark" value="Update balance" onclick=""></form><span><h5> Record <a href="#fuelRecvdForm" onclick="toggleFuelRecvdForm()">new order</a></h5></span>{%endif%}</h3>
+                </div>
+                <div id="fuelRecvdForm" class="rounded color-two padding margin"><br>
+                    <h2 class="text-center margin-top">Add Petrol Received information</h2> 
+                    <form class="formAjax" action="{% url 'home' %}" method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        <div class="row">
+                            <div class="col">
+                                <label for="fuel" class="hide">Fuel type received</label>
+                    <input type="number" class="Aj hide" id="fuel" name="fuel" placeholder="Petrol Diesel or Gas?" value="2">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="litres_received">Litres received</label>
+                    <input type="number" class="Aj form-control" id="litres_received" name="litres_received" placeholder="How many litres?">
+                            </div>
 
+                            <div class="col">
+                                <label for="received_from">Received from</label>
+                   <input type="text" class="Aj form-control" id="received_from" name="received_from" placeholder="Enter vehicle no. plate">
+                            </div>
+                            
+                            <div class="col">
+                                <label for="date_received">Date received</label>
+                    <input type="date" class="Aj form-control" id="date_received" name="date_received" placeholder="Date received" value="{{date}}">
+                            </div>
+                        </div>
+                        
+                    
+                    
+                    <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Add petrol"><br>
+                    </form>
+                </div>
+                
+                <div id="logForm" class="rounded color-two padding margin"><br>
+                    <h2 class="text-center margin-top">Add Petrol Log details</h2> 
+                    <form class="formAjax form-inline" action="{% url 'home' %}" method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        <div class="row hide">
+                            <div class="col">
+                                <label for="fuel" class="">Fuel type</label>
+                <input type="number" value="2" class="Aj" id="fuel" name="fuel" placeholder="Fuel type">
+                            </div>
+                            <div class="col">
+                                <label for="eod_reading_lts" class="">Eod reading yesterday</label>
+                                <input type="number" class="Aj form-control" id="eod_reading_yesterday" name="eod_reading_yesterday" value="{{yesterday_petrol_logs.eod_reading_lts}}" placeholder="End of day reading yesterday(lts)">
+                            </div>
+                            <div class="col">
+                                <input type="number" class="hide" name="user" placeholder="Your user id" value="{{user.id}}">
+                                <input type="text" class="hide" name="logged_by" placeholder="Your name" value="{{user.username}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="date" class="">Log date</label>
+                <input type="date" class="Aj form-control" id="date" name="date" placeholder="Date">
+                            </div>
+
+                            <div class="col">
+                                <label for="eod_reading_lts">End of day reading</label>
+                <input type="number" class="Aj form-control form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Log petrol">
+                        </div>
+                        
+                            
+                       
+                    </form>
+                
+                    
+                    </div>
+
+                    
+
+                    
+                    
+               
+            </div>
+            
+            
+
+            <div class="col-md-6 full-height color-four rounded black padding-2 border">
+                <h2 class="text-center">Mpesa</h2>
+                {% if mpesa_logs %}
+                {% for mpesa in mpesa_logs %}
+                <div class="card margin-top color-two" style="margin:1%;border-bottom: 5%;border-color:white;">
+                     
+                    <h5 class="card-header">{{mpesa.date}}</h5>
+                    <div class="card-body" >
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Transaction no.</th>
+                                    <th scope="col">Customer name</th>
+                                    <th scope="col">Customer phone number</th>
+                                    <th scope="col">Amount</th>
+                                    {%if mpesa.amount_transferred_to_bank %}
+                                    <th scope="col">Bank amount</th>
+                                    {%endif%}
+                                    <th scope="col">Cumulative amount</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                      <td>{{mpesa.transaction_number}}</td>
+                                    <td>{{mpesa.customer_name}}</td>
+                                    <td>{{mpesa.customer_phone_number}}</td>
+                                    <td>{{mpesa.amount}}</td>
+                                    {% if mpesa.amount_transferred_to_bank %}
+                                    <td>{{mpesa.amount_transferred_to_bank}}</td>
+                                    {% endif %}
+                                    <td>{{mpesa_cumulative}}</td>
+                                    <td></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                      
+                    <div class="card-footer">
+                        <small>Logged by {{mpesa.user.username}} | <a type="button" class="btn btn-dark btn-outline-primary btn-sm" href="{% url 'mpesa_log_details' mpesa.id %}">Details</a> | <a href="#mpesaForm"><button class="margin btn btn-sm btn-outline-primary btn-dark" type="button" onclick="toggleMPesa()">Add new?</button></a></small>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+                {% else %} 
+                <div class="card color-two">
+                    <div class="card-body">
+                        <p class="card-text">Your mpesa logs will appear here.</p>
+                        <p class="card-text"><a href="#mpesaForm" onclick="toggleMPesa()">Record mpesa logs now?</a></p>
+                    </div>
+                </div>
+                {%endif%}
+                <div id="mpesaForm" class="border color-two margin padding"><br>
+                    <h2 class="text-center">Add Mpesa logs</h2>
+                    <h6 class="text-center"><span class="bg-danger padding-2 rounded">Remember to update your daily total!</span></p>
+                <form class="formAjaxM" action="{% url 'home' %}" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <div class="row">
+                        <div class="col">
+                            <label for="date">Date</label>
+                    <input type="date" class="Aj-M form-control" value="{{date}}" name="date" placeholder="Date">
+                        </div>
+                        <div class="col">
+                            <label for="transaction_number">Transaction number</label>
+                            <input type="number" id="transaction_number" class="Aj-M form-control" name="transaction_number" placeholder="Transaction number">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="customer_name">Customer name</label>
+                            <input type="text" id="customer_name" class="Aj-M form-control" name="customer_name" placeholder="Customer name">
+                        </div>
+
+                        <div class="col">
+                            <label for="customer_phone_number">Customer phone number</label>
+                            <input type="number" id="customer_phone_number" class="Aj-M form-control" name="customer_phone_number" placeholder="Customer phone number">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="amount">Amount</label>
+                            <input type="number" class="Aj-M form-control" id="amount" name="amount" placeholder="Amount">
+                        </div>
+
+                        <div class="col">
+                            <label for="amount_transferred_to_bank">Transferred to bank</label>
+                            <input type="number" id="amount_transferred_to_bank" class="Aj-M form-control" name="amount_transferred_to_bank" placeholder="Amount transferred to bank">
+                        </div>
+
+                        <div class="col hide">
+                            <input type="number" class="hide" name="user" placeholder="Your user id" value="{{user.id}}">
+                    <input type="text" class="hide" name="logged_by" placeholder="Your name" value="{{user.username}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Log mpesa">
+                    </div>
+                    
+                    
+                    
+                </form>
+                
+                </div>
+                
+            </div>
+           
+            
+            
+        </div>
+        <br><br><br><br><br>
+        
+        
+
+        
+        
+
+        
+    </div>
+    
+        
+   
+</body>

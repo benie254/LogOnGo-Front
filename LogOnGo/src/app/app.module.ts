@@ -16,6 +16,13 @@ import { NavComponent } from './components/nav/nav.component';
 import { FuelComponent } from './forms/fuel/fuel.component';
 import { InitialUpdateComponent } from './forms/initial-update/initial-update/initial-update.component';
 import { AddLogComponent } from './components/forms/add-log/add-log.component';
+import { PagesComponent } from './components/pages/pages.component';
+import { InitialAmountComponent } from './components/sections/initial-amount/initial-amount.component';
+import { PumpsComponent } from './components/sections/pumps/pumps.component';
+import { NewBalComponent } from './components/sections/new-bal/new-bal.component';
+import { LogCardComponent } from './components/sections/log-card/log-card.component';
+import { PricePerlitreComponent } from './components/sections/price-perlitre/price-perlitre.component';
+import { NoLogsComponent } from './components/sections/no-logs/no-logs.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -65,7 +72,14 @@ const notifierDefaultOptions: NotifierOptions = {
     NavComponent,
     FuelComponent,
     InitialUpdateComponent,
-    AddLogComponent
+    AddLogComponent,
+    PagesComponent,
+    InitialAmountComponent,
+    PumpsComponent,
+    NewBalComponent,
+    LogCardComponent,
+    PricePerlitreComponent,
+    NoLogsComponent
   ],
   imports: [
     BrowserModule,
