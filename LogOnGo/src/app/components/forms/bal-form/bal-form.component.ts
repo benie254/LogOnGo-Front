@@ -11,7 +11,7 @@ export class BalFormComponent implements OnInit {
 
   constructor(private logService:LogService, private notifService:NotificationService) { }
 
-  updatePetrolInfo(log_info:any){
+  updateBal(log_info:any){
     console.warn(log_info);
     this.logService.updateLogInfo(log_info).subscribe((result) => {
       console.warn('updated result',result);
