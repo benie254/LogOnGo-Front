@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col">
                 <label for="date">Date</label>
-                <input type="date" class="Aj-M form-control" ngModel #date="ngModel" [(ngModel)]="{{date}}" name="date" placeholder="Date">
+                <input type="date" class="Aj-M form-control" ngModel #date="ngModel" name="date" placeholder="Date">
                 <div [hidden]="transaction_number.valid || transaction_number.pristine" class="alert margin-top2p5 alert-danger">
                     <p>Date required</p>
                 </div>
