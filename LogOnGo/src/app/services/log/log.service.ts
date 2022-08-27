@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LogService {
-  apiURLlogs = 'https://logongo-api.herokuapp.com/all-logs/'
+  apiURLlogs = 'https://logongo-api.herokuapp.com/add-log-today/'
 
   constructor(private http:HttpClient) { }
 

@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col">
                 <label for="fuel" class="">Fuel type</label>
-                <input type="number" value="2" class="Aj" id="fuel" name="fuel" placeholder="Fuel type">
+                <input type="number" value="1" class="Aj" id="fuel" name="fuel" placeholder="Fuel type">
             </div>
             <div class="col">
-                <label for="eod_reading_lts" class="">Eod reading yesterday</label>
+                <label for="eod_reading_yesterday" class="">Eod reading yesterday</label>
                 <input type="number" class="Aj form-control" id="eod_reading_yesterday" name="eod_reading_yesterday" placeholder="End of day reading yesterday(lts)">
             </div>
             <div class="col">
@@ -23,7 +23,7 @@
             </div>
             <div class="col">
                 <label for="eod_reading_lts">End of day reading</label>
-                <input type="number" class="Aj form-control form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)">
+                <input type="number" ngModel #eod_reading_lts="ngModel" class="Aj form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)">
             </div>
         </div>
         
