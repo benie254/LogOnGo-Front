@@ -16,13 +16,52 @@ import { NavComponent } from './components/nav/nav.component';
 import { FuelComponent } from './forms/fuel/fuel.component';
 import { InitialUpdateComponent } from './forms/initial-update/initial-update/initial-update.component';
 import { AddLogComponent } from './components/forms/add-log/add-log.component';
-import { PagesComponent } from './components/pages/pages.component';
 import { InitialAmountComponent } from './components/sections/initial-amount/initial-amount.component';
 import { PumpsComponent } from './components/sections/pumps/pumps.component';
 import { NewBalComponent } from './components/sections/new-bal/new-bal.component';
 import { LogCardComponent } from './components/sections/log-card/log-card.component';
 import { PricePerlitreComponent } from './components/sections/price-perlitre/price-perlitre.component';
 import { NoLogsComponent } from './components/sections/no-logs/no-logs.component';
+import { PetrolReceivedComponent } from './components/sections/petrol-received/petrol-received.component';
+import { MpesaLogsComponent } from './components/sections/mpesa-logs/mpesa-logs.component';
+import { NoMpesalogsComponent } from './components/sections/no-mpesalogs/no-mpesalogs.component';
+import { AddMpesalogComponent } from './components/forms/add-mpesalog/add-mpesalog.component';
+import { ProfileComponent } from './components/pages/profile/profile.component';
+import { AllLogsComponent } from './components/pages/all-logs/all-logs.component';
+import { DieselLogsComponent } from './components/pages/diesel-logs/diesel-logs.component';
+import { GasLogsComponent } from './components/pages/gas-logs/gas-logs.component';
+import { DieselDetailsComponent } from './components/pages/diesel-details/diesel-details.component';
+import { PetrolDetailsComponent } from './components/pages/petrol-details/petrol-details.component';
+import { GasDetailsComponent } from './components/pages/gas-details/gas-details.component';
+import { EmailReportComponent } from './components/pages/email-report/email-report.component';
+import { EmailMpesareportComponent } from './components/pages/email-mpesareport/email-mpesareport.component';
+import { IncidentComponent } from './components/pages/incident/incident.component';
+import { AddLogpageComponent } from './components/pages/add-logpage/add-logpage.component';
+import { MpesaLogdetailsComponent } from './components/pages/mpesa-logdetails/mpesa-logdetails.component';
+import { PrintMpesaComponent } from './components/pages/print-mpesa/print-mpesa.component';
+import { PrintLogsComponent } from './components/pages/print-logs/print-logs.component';
+import { SearchResultsComponent } from './components/pages/search-results/search-results.component';
+import { ProfileSidebarComponent } from './components/sections/profile-sidebar/profile-sidebar.component';
+import { ProfileAnnouncementsComponent } from './components/sections/profile-announcements/profile-announcements.component';
+import { ProfileNoannouncementsComponent } from './components/sections/profile-noannouncements/profile-noannouncements.component';
+import { ProfileLogcardComponent } from './components/sections/profile-logcard/profile-logcard.component';
+import { ProfileMpesalogsComponent } from './components/sections/profile-mpesalogs/profile-mpesalogs.component';
+import { ProfileNompesalogsComponent } from './components/sections/profile-nompesalogs/profile-nompesalogs.component';
+import { LoggingInstructionsComponent } from './components/sections/logging-instructions/logging-instructions.component';
+import { RegisterFuelComponent } from './components/forms/register-fuel/register-fuel.component';
+import { PetrolReceivedFormComponent } from './components/forms/petrol-received-form/petrol-received-form.component';
+import { DieselReceivedFormComponent } from './components/forms/diesel-received-form/diesel-received-form.component';
+import { GasReceivedFormComponent } from './components/forms/gas-received-form/gas-received-form.component';
+import { AddDieselLogformComponent } from './components/forms/add-diesel-logform/add-diesel-logform.component';
+import { AddGasLogformComponent } from './components/forms/add-gas-logform/add-gas-logform.component';
+import { LogdetailsLogcardComponent } from './components/sections/logdetails-logcard/logdetails-logcard.component';
+import { DieselReceivedComponent } from './components/sections/diesel-received/diesel-received.component';
+import { FuelReceivedInfoComponent } from './components/sections/fuel-received-info/fuel-received-info.component';
+import { UpdateLogDetailsComponent } from './components/forms/update-log-details/update-log-details.component';
+import { GasReceivedComponent } from './components/sections/gas-received/gas-received.component';
+import { EmailMpesareportFormComponent } from './components/forms/email-mpesareport-form/email-mpesareport-form.component';
+import { IncidentFormComponent } from './components/forms/incident-form/incident-form.component';
+import { IncidentReportingInstructionsComponent } from './components/sections/incident-reporting-instructions/incident-reporting-instructions.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -73,13 +112,52 @@ const notifierDefaultOptions: NotifierOptions = {
     FuelComponent,
     InitialUpdateComponent,
     AddLogComponent,
-    PagesComponent,
     InitialAmountComponent,
     PumpsComponent,
     NewBalComponent,
     LogCardComponent,
     PricePerlitreComponent,
-    NoLogsComponent
+    NoLogsComponent,
+    PetrolReceivedComponent,
+    MpesaLogsComponent,
+    NoMpesalogsComponent,
+    AddMpesalogComponent,
+    ProfileComponent,
+    AllLogsComponent,
+    DieselLogsComponent,
+    GasLogsComponent,
+    DieselDetailsComponent,
+    PetrolDetailsComponent,
+    GasDetailsComponent,
+    EmailReportComponent,
+    EmailMpesareportComponent,
+    IncidentComponent,
+    AddLogpageComponent,
+    MpesaLogdetailsComponent,
+    PrintMpesaComponent,
+    PrintLogsComponent,
+    SearchResultsComponent,
+    ProfileSidebarComponent,
+    ProfileAnnouncementsComponent,
+    ProfileNoannouncementsComponent,
+    ProfileLogcardComponent,
+    ProfileMpesalogsComponent,
+    ProfileNompesalogsComponent,
+    LoggingInstructionsComponent,
+    RegisterFuelComponent,
+    PetrolReceivedFormComponent,
+    DieselReceivedFormComponent,
+    GasReceivedFormComponent,
+    AddDieselLogformComponent,
+    AddGasLogformComponent,
+    LogdetailsLogcardComponent,
+    DieselReceivedComponent,
+    FuelReceivedInfoComponent,
+    UpdateLogDetailsComponent,
+    GasReceivedComponent,
+    EmailMpesareportFormComponent,
+    IncidentFormComponent,
+    IncidentReportingInstructionsComponent,
   ],
   imports: [
     BrowserModule,

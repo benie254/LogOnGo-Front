@@ -1,0 +1,43 @@
+<div class="container-fluid" onload="myTotalReport();amountTodayReport();getBalDetails()">
+    <div class="card color-two hide">
+        <h5 class="card-header">Initial tank amount: <span id="initial-report">{{petrol_info.initial_litres_in_tank}}</span> Lts <span class="float-right">Pumps: <span>{{petrol_info.pumps}}</span></span></h3>
+            <h5 class="card-header">Yesterday's tank balance: <span id="bal0-report">{{yesterday_petrol_logs.balance}}</span> Lts </h5>
+            <h5 class="card-header text-center">Petrol Received This Day: <span id="new-order-report">{{petrol_received}}</span> Lts.</h5>
+            <h6>Price per litre: Ksh. <span id="price-report">{{petrol_info.price_per_litre}}</span></h6>
+    </div>
+    <div class="text-center color-two container rounded">
+    </div>
+    <div class="container color-two padding rounded">
+        <h3 class="text-center">Please confirm your details</h3> 
+        <p class="text-center">We will send an email report to...</p>
+        <form class="margin-top" action="{% url 'email_report' log_details.id %}" method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+            <div class="row hide">
+                <div class="col">
+                    <input type="number" placeholder="eod_reading_lts" name="eod_reading_lts" value="{{log_details.eod_reading_lts}}" id="tester-today-report">
+            <input type="number" placeholder="eod_reading_yesterday" name="eod_reading_yesterday" value="{{log_details.eod_reading_yesterday}}" id="tester-yesterday-report">
+            <input type="number" placeholder="litres_sold_today" name="litres_sold_today" id="total-today-report">
+            <input type="number" placeholder="amount_earned_today" name="amount_earned_today" id="amount-today-report">
+            <input type="number" placeholder="balance" name="balance" value="{{log_details.balance}}">
+            <input type="text" placeholder="logged_by" name="logged_by" value="{{log_details.logged_by}}">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <label for="your_email">Your email:</label>
+                    <input id="your_email" type="email" placeholder="your_email" name="admin_email" value="{{user.email}}">
+                </div>
+
+                <div class="col">
+                    <label for="your_name">Your name:</label>
+                    <input id="your_name" type="text" placeholder="your name" name="admin_name" value="{{user.username}}">
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" class="btn margin-top2 btn-sm btn-outline-info btn-dark" value="Request email report" onclick="">
+            </div>
+        </form>
+    </div>
+</div>
+    

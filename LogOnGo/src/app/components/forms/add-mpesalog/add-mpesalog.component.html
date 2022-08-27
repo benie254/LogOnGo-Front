@@ -1,0 +1,52 @@
+<div id="mpesaForm" class="border color-two margin padding"><br>
+    <h2 class="text-center">Add Mpesa logs</h2>
+    <h6 class="text-center"><span class="bg-danger padding-2 rounded">Remember to update your daily total!</span></p>
+<form class="formAjaxM" action="{% url 'home' %}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <div class="row">
+        <div class="col">
+            <label for="date">Date</label>
+    <input type="date" class="Aj-M form-control" value="{{date}}" name="date" placeholder="Date">
+        </div>
+        <div class="col">
+            <label for="transaction_number">Transaction number</label>
+            <input type="number" id="transaction_number" class="Aj-M form-control" name="transaction_number" placeholder="Transaction number">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="customer_name">Customer name</label>
+            <input type="text" id="customer_name" class="Aj-M form-control" name="customer_name" placeholder="Customer name">
+        </div>
+
+        <div class="col">
+            <label for="customer_phone_number">Customer phone number</label>
+            <input type="number" id="customer_phone_number" class="Aj-M form-control" name="customer_phone_number" placeholder="Customer phone number">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="amount">Amount</label>
+            <input type="number" class="Aj-M form-control" id="amount" name="amount" placeholder="Amount">
+        </div>
+
+        <div class="col">
+            <label for="amount_transferred_to_bank">Transferred to bank</label>
+            <input type="number" id="amount_transferred_to_bank" class="Aj-M form-control" name="amount_transferred_to_bank" placeholder="Amount transferred to bank">
+        </div>
+
+        <div class="col hide">
+            <input type="number" class="hide" name="user" placeholder="Your user id" value="{{user.id}}">
+    <input type="text" class="hide" name="logged_by" placeholder="Your name" value="{{user.username}}">
+        </div>
+    </div>
+    <div class="form-group">
+        <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Log mpesa">
+    </div>
+    
+    
+    
+</form>
+
+</div>

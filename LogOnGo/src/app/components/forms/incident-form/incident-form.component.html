@@ -1,0 +1,33 @@
+<form class="padding margin formAjaxInc" action="{% url 'incident' %}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <div class="form-group hide">
+        <input type="text" class="hide" name="your_name" placeholder="Your name" value="{{username}}">
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="nature">Nature</label>
+            <select class="form-select" name="nature" required="" id="nature">
+                <option value="" selected="">Choose...</option>
+              
+                <option value="Equipment Failure">Equipment Failure</option>
+              
+                <option value="Physical Injury">Physical Injury</option>
+              
+                <option value="EMERGENCY">EMERGENCY</option>
+              
+              </select>                </div>
+        <div class="col">
+            <label for="date">Date</label>
+    <input type="date" class="Aj-Inc form-control" name="incident_date" placeholder="Incident date" value="date">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="Aj-Inc form-control" id="description" type="text" name="description" placeholder="Describe the incident"></textarea>
+    </div>
+    
+    <div class="form-group">
+        <input class="btn margin-top btn-sm btn-outline-primary btn-dark" type="submit" value="Report">
+    </div>
+    
+            </form>

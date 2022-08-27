@@ -1,0 +1,12 @@
+<form class="formAjax" action="{% url 'logs' %}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <label for="fuel" class="hide">Fuel type received</label>
+    <input type="number" class="Aj hide" id="fuel" name="fuel" placeholder="Petrol Diesel or Gas?" value="1">
+    <label for="litres_received">Litres received</label><br>
+    <input type="number" class="Aj" id="litres_received" name="litres_received" placeholder="How many litres?"><br>
+    <label for="received_from">Received from</label><br>
+   <input type="text" class="Aj" id="received_from" name="received_from" placeholder="Enter vehicle no. plate"><br>
+    <label for="date_received">Date received</label><br>
+    <input type="date" class="Aj" id="date_received" name="date_received" placeholder="Date received"><br>
+    <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Add diesel"><br>
+</form>

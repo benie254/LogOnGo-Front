@@ -1,0 +1,21 @@
+<form class="formAjax" action="{% url 'logs' %}" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <label class="required" for="id_fuel_type">Fuel type:</label><br>
+            <select name="fuel_type" required="" id="id_fuel_type">
+                <option value="">---------</option>
+              
+                <option value="Petrol" selected="">Petrol</option>
+              
+                <option value="Diesel">Diesel</option>
+              
+                <option value="Gas">Gas</option>
+              
+              </select><br>
+              <label class="required" for="initial_litres_in_tank">Initial fuel</label><br>
+                    <input type="number" class="Aj" id="initial_litres_in_tank" name="initial_litres_in_tank" placeholder="Initial litres in tank"><br>
+                    <label class="required" for="price_per_litre">Price per litre</label><br>
+                    <input type="number" class="Aj" id="price_per_litre" name="price_per_litre" placeholder="in Ksh."><br>
+                    <label class="required" for="pumps">Pumps</label><br>
+                    <input type="number" class="Aj" id="pumps" name="pumps" placeholder="how many?"><br>
+                    <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Register"><br>
+                </form>

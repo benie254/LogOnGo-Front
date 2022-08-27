@@ -1,1 +1,25 @@
-<p>log-card works!</p>
+<div class="card color-two">
+    <h4 class="card-header">{{petrol_logs.date}} <span class="float-right smaller margin-top"><app-price-perlitre></app-price-perlitre></span></h4>
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">EOD Reading Today</th>
+                    <th scope="col">EOD Reading Yesterday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td id="tester-today-p2">{{petrol_logs.eod_reading_lts}}</td>
+                      <td id="tester-yesterday-p2">{{petrol_logs.eod_reading_yesterday}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="card-footer">
+        <small class="">Logged by {{petrol_logs.user.username}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="{% url 'log_details' petrol_logs.id %}">Details</a> </small>
+    </div>
+</div>

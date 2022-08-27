@@ -1,0 +1,15 @@
+<form class="formAjax" action="{% url 'gas' %}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <label for="date">Log date</label><br>
+    <input type="date" class="Aj" id="date" name="date" placeholder="Date"><br>
+    <label for="fuel" class="hide">Fuel type</label>
+    <input type="number" value="3" class="Aj hide" id="fuel" name="fuel" placeholder="Fuel type">
+    <label for="eod_reading_lts">Eod reading</label><br>
+    <input type="number" class="Aj" id="eod_reading_lts" name="eod_reading_lts" placeholder="End of day reading (lts)"><br>
+    <input type="number" class="Aj hide" id="eod_reading_yesterday" name="eod_reading_yesterday" value="{{yesterday_gas_logs.eod_reading_lts}}" placeholder="End of day reading yesterday(lts)">
+    <!-- <label for="{{user_id}}">User id</label> <br> -->
+    <input type="number" class="hide" name="user" placeholder="Your user id" value="{{user.id}}">
+    <!-- <label for="{{username}}"> Logged by</label> <br> -->
+    <input type="text" class="hide" name="logged_by" placeholder="Your name" value="{{user.username}}">
+    <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Log gas">
+</form>

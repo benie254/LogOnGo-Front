@@ -1,0 +1,30 @@
+<form class="margin-top" action="{% url 'mpesa_report' mpesa_log_details.id %}" method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+    <div class="row hide">
+        <div class="col">
+            <input type="number" placeholder="transaction_number" name="transaction_number" value="{{mpesa_log_details.transaction_number}}" id="tester-today-report">
+    <input type="text" placeholder="customer_name" name="customer_name" value="{{mpesa_log_details.customer_name}}" id="tester-yesterday-report">
+    <input type="number" placeholder="customer_phone_number" name="customer_phone_number" value="{{mpesa_log_details.customer_phone_number}}">
+    <input type="number" placeholder="amount" name="amount" value="{{mpesa_log_details.amount}}">
+    <input type="number" placeholder="amount_transferred_to_bank" name="amount_transferred_to_bank" value="{{mpesa_log_details.amount_transferred_to_bank}}">
+    <input type="number" placeholder="daily_total" value="{{mpesa_total}}">
+    <input type="number" placeholder="cumulative_amount" value="{{mpesa_cumulative}}">
+    <input type="text" placeholder="logged_by" name="logged_by" value="{{mpesa_log_details.logged_by}}">
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col">
+            <label for="your_email">Your email:</label>
+            <input id="your_email" type="email" placeholder="your_email" name="admin_email" value="{{user.email}}">
+        </div>
+
+        <div class="col">
+            <label for="your_name">Your name:</label>
+            <input id="your_name" type="text" placeholder="your name" name="admin_name" value="{{user.username}}">
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <input type="submit" class="btn margin-top2 btn-sm btn-outline-info btn-dark" value="Request email report" onclick="">
+    </div>
+</form>

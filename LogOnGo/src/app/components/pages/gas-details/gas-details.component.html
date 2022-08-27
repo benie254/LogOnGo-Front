@@ -1,0 +1,44 @@
+<div class="container color-two padding rounded">
+    <div class="row color-four">
+      <div class="border full-height col center color-four rounded black padding-2">
+        <h2>Log Details               <br><span class=""><a href="{% url 'print' log_details.id %}"><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> 
+        </h2>
+        <h6><a href="{% url 'email_report' log_details.id %}" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6>
+       
+        <app-initial-amount></app-initial-amount>
+        <app-new-bal></app-new-bal>
+          
+          <div class="card color-two">
+              <app-logdetails-logcard></app-logdetails-logcard>
+          </div>
+          <div class="card color-two">
+            <app-gas-received></app-gas-received>
+            <app-fuel-received-info></app-fuel-received-info>
+          </div>
+        <span class="color-two"><a href="{% url 'print' log_details.id %}"><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> <br><br>
+        <h6><a href="{% url 'email_report' log_details.id %}" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6>
+    
+
+        <div id="updateLogDetailsForm" class="rounded container center color-two border col-md-5"><br>
+          <h2 class="text-center">Update Log details</h2>
+          <h6 class="text-center"><span class="bg-danger padding-2 rounded">Remember to update your balance too!</span></p>
+          <app-update-log-details></app-update-log-details>
+        </div>
+        <div id="fuelReceivedForm" class="rounded container center color-two border"><br>
+          <h2 class="text-center margin-top">Add Gas Received information</h2> 
+          <h6 class="text-center"><span class="bg-danger padding-2 rounded">Remember to update your balance!</span></p>
+          <app-gas-received-form></app-gas-received-form>
+      </div>
+     
+          
+          
+        
+          
+          
+              
+         
+      </div>
+
+
+      </div>
+  </div>

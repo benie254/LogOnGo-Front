@@ -1,0 +1,32 @@
+<div class="card margin-top color-two" style="margin:1%;border-bottom: 5%;border-color:white;">
+                     
+    <h5 class="card-header">{{mpesa.date}}</h5>
+    <div class="card-body" >
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Transaction no.</th>
+                    <th scope="col">Amount</th>
+                    {% if mpesa.amount_transferred_to_bank %}
+                    <th scope="col">Bank amount</th>
+                    {%endif%}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td>{{mpesa.transaction_number}}</td>
+                    <td>{{mpesa.amount}}</td>
+                    {% if mpesa.amount_transferred_to_bank %}
+                    <td>{{mpesa.amount_transferred_to_bank}}</td>
+                    {%endif%}
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      
+    <div class="card-footer">
+        <small>Logged by {{mpesa.user.username}} | <a type="button" class="btn btn-dark btn-outline-primary btn-sm" href="{% url 'mpesa_log_details' mpesa.id %}">Details</a> | <a href="#mpesaForm"><button class="margin btn btn-sm btn-outline-primary btn-dark" type="button" onclick="toggleMPesa()">Add new?</button></a></small>
+    </div>
+    
+</div>

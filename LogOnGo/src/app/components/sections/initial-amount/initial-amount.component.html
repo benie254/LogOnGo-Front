@@ -1,1 +1,26 @@
-<p>initial-amount works!</p>
+<div class="card color-two">
+    <h5 class="card-header">Initial tank amount: <span id="initial">{{petrol_info.initial_litres_in_tank}}</span> Lts <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolAmount()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="20" width="20" alt=""></button> <span id="updatePetrolAmountForm"><div id="initUpdateForm">
+        <form #initUpdateForm="ngForm" class="form" (ngSubmit)="updatePetrolInfo(initUpdateForm.value)">
+            <div class="form-group hide">
+                <input type="text" id="fuel_type" ngModel #fuel_type="ngModel" name="fuel_type" placeholder="fuel type" class="hide form-control" [(ngModel)]="petrol_details.fuel_type"> 
+                <input type="number" id="price_per_litre" ngModel #price_per_litre="ngModel" name="price_per_litre" placeholder="PP" class="hide form-control" [(ngModel)]="petrol_details.price_per_litre">
+                <input type="number" ngModel id="#pumps" #pumps="ngModel" name="pumps" placeholder="pumps" class="hide form-control" [(ngModel)]="petrol_details.pumps">
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                    <label for="initial_litres_in_tank">Initial tank amount:</label> <br>
+                    <input type="number" ngModel id="initial_litres_in_tank" #initial_litres_in_tank="ngModel" class="form-control" name="initial_litres_in_tank" placeholder="initial tank amount" required [(ngModel)]="petrol_details.initial_litres_in_tank">
+                    <div [hidden]="initial_litres_in_tank.valid || initial_litres_in_tank.pristine" class="alert margin-top2p5 alert-danger">
+                        <p>Initial litres required</p>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" onclick="toggleInitUpdateForm()" class="btn btn-sm btn-dark btn-outline-info margin-top2p5">Update</button>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>  
+        </form>
+    </div></span></span> <app-pumps></app-pumps> </h5>
+</div>
