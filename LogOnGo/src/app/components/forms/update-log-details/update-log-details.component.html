@@ -1,5 +1,36 @@
-<form class="margin-top formAjax" action="" method="post" >
-    {%csrf_token%}
-    {{update_details_form.as_p}}
-    <input type="submit" class="btn margin btn-sm btn-outline-primary btn-dark" value="Update log">
+<form #updateLogForm="ngForm" class="form" (ngSubmit)="updateLog(updateLogForm.value)">
+    <div class="row">
+        <div class="col">
+            <label for="fuel" class="">Fuel type</label>
+            <input type="number" class="Aj" ngModel #fuel="ngModel" [(ngModel)]="1" id="fuel" name="fuel" placeholder="Fuel type">
+        </div>
+        <div class="col">
+            <label for="eod_reading_yesterday" class="">Eod reading yesterday</label>
+            <input *ngIf="yesterday_logs" ngModel #eod_reading_yesterday="ngModel" [(ngModel)]="yesterday_logs.eod_reading_lts" type="number" class="Aj form-control" id="eod_reading_yesterday" name="eod_reading_yesterday" placeholder="End of day reading yesterday(lts)">
+        </div>
+        <div class="col">
+            <input type="number" class="" ngModel id="user" #user="ngModel" [(ngModel)]="1" name="user" placeholder="Your user id">
+            <input type="text" class="" name="logged_by" ngModel id="logged_by" #logged_by="ngModel" [(ngModel)]="janja" placeholder="Your name">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="date" class="">Log date</label>
+            <input type="date" ngModel #date="ngModel" class="Aj form-control" id="date" name="date" placeholder="Date" [(ngModel)]="log.date" required>
+            <div [hidden]="date.valid || date.pristine" class="alert margin-top2p5 alert-danger">
+                <p>Date required</p>
+            </div>
+        </div>
+        <div class="col">
+            <label for="eod_reading_lts">End of day reading</label>
+            <input type="number" ngModel #eod_reading_lts="ngModel" class="Aj form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)" [(ngModel)]="log.eod_reading_lts" required>
+            <div [hidden]="eod_reading_lts.valid || eod_reading_lts.pristine" class="alert margin-top2p5 alert-danger">
+                <p>EOD reading required</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" onclick="toggleLogForm()">Update log</button>
+    </div> 
 </form> 
