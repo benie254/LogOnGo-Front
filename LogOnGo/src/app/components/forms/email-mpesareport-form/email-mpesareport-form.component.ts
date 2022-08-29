@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailService } from 'src/app/services/email/email.service';
+import { LogService } from 'src/app/services/log/log.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
@@ -8,8 +9,14 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./email-mpesareport-form.component.css']
 })
 export class EmailMpesareportFormComponent implements OnInit {
+  mpesa_log_details: any;
 
-  constructor(private emailService:EmailService, private notifService:NotificationService) { }
+  constructor(private emailService:EmailService, private notifService:NotificationService,private logService:LogService) { 
+    this.logService.getMpesaLogs().subscribe((data) => {
+      this.mpesa_log_details = data
+      console.warn("data",data)
+    });
+  }
 
   emailMpesaReport(mpesa_report: any) {
     console.warn(mpesa_report);
