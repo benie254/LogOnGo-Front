@@ -54,6 +54,9 @@ export class LogService {
   getPetrolLogDetails(id: number): Observable<Log>{
     return this.http.get<Log>(this.apiURLpetrolLogDetails + id);
   }
+  getYesterdayLogs(): Observable<Log>{
+    return this.http.get<Log>(this.apiURLpetrolLogs4);
+  }
 
   addLog(log_info: any) {
     return this.http.post(this.apiURLtodayLogs, log_info);
