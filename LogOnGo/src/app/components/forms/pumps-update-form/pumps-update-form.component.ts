@@ -9,8 +9,14 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./pumps-update-form.component.css']
 })
 export class PumpsUpdateFormComponent implements OnInit {
+  petrol_details: any;
 
-  constructor(private fuelService:FuelService, private notifService:NotificationService) { }
+  constructor(private fuelService:FuelService, private notifService:NotificationService) {
+    this.fuelService.getPetrolInfo().subscribe((data) => {
+      this.petrol_details = data
+      console.warn("data",data)
+    });
+   }
 
   updatePetrolPumps(petrol_info:any){
     console.warn(petrol_info);
