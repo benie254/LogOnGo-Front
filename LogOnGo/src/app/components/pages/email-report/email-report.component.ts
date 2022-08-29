@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./email-report.component.css']
 })
 export class EmailReportComponent implements OnInit {
+  petrol_info: any; 
+  yesterday_petrol_logs: any; 
+  petrol_received: any; 
+  log_details: any;
 
   constructor() { }
 
