@@ -68,6 +68,7 @@ import { LogService } from './services/log/log.service';
 import { FuelService } from './services/fuel/fuel.service';
 import { ProfileService } from './services/profile/profile.service';
 import { NotificationService } from './services/notification/notification.service';
+import { PumpsUpdateFormComponent } from './components/forms/pumps-update-form/pumps-update-form.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -166,6 +167,7 @@ const notifierDefaultOptions: NotifierOptions = {
     IncidentReportingInstructionsComponent,
     PriceperlitreUpdateFormComponent,
     BalFormComponent,
+    PumpsUpdateFormComponent,
   ],
   imports: [
     BrowserModule,
