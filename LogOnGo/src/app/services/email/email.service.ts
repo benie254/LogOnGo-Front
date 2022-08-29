@@ -12,4 +12,7 @@ export class EmailService {
   emailMpesaReport(mpesa_report: any) {
     return this.http.post(this.apiURLfuels, mpesa_report);
   }
+  emailIncidentReport(incident_report: any){
+    return this.http.post(this.apiURLfuels, incident_report);
+  }
 }
