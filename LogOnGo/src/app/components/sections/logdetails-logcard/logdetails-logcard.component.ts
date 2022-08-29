@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logdetails-logcard.component.css']
 })
 export class LogdetailsLogcardComponent implements OnInit {
+  log_details: any; 
+  info: any;
 
   constructor() { }
 

@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mpesa-logs.component.css']
 })
 export class MpesaLogsComponent implements OnInit {
-
+  mpesa: any;
+  
   constructor() { }
 
   ngOnInit(): void {

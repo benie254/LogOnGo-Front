@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-bal.component.css']
 })
 export class NewBalComponent implements OnInit {
+  yesterday_logs: any;
 
   constructor() { }
 
