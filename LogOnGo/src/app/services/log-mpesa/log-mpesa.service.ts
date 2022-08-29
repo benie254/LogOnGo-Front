@@ -12,7 +12,7 @@ export class LogMpesaService {
 
   constructor(private http:HttpClient) { }
 
-  getAllLogs(): Observable<LogMpesa>{
+  getAllMpesaLogs(): Observable<LogMpesa>{
     return this.http.get<LogMpesa>(this.apiURLaddMpesaLogs);
   }
 
