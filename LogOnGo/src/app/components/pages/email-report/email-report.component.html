@@ -1,6 +1,6 @@
 <div class="container-fluid" onload="myTotalReport();amountTodayReport();getBalDetails()">
     <div class="card color-two hide">
-        <h5 class="card-header">Initial tank amount: <span id="initial-report">{{petrol_info.initial_litres_in_tank}}</span> Lts <span class="float-right">Pumps: <span>{{petrol_info.pumps}}</span></span></h3>
+        <h5 class="card-header">Initial tank amount: <span id="initial-report">{{petrol_info.initial_litres_in_tank}}</span> Lts <span class="float-right">Pumps: <span>{{petrol_info.pumps}}</span></span></h5>
             <h5 class="card-header">Yesterday's tank balance: <span id="bal0-report">{{yesterday_petrol_logs.balance}}</span> Lts </h5>
             <h5 class="card-header text-center">Petrol Received This Day: <span id="new-order-report">{{petrol_received}}</span> Lts.</h5>
             <h6>Price per litre: Ksh. <span id="price-report">{{petrol_info.price_per_litre}}</span></h6>
@@ -11,22 +11,21 @@
         <h3 class="text-center">Please confirm your details</h3> 
         <p class="text-center">We will send an email report to...</p>
         <form class="margin-top" #emailReportForm="ngForm" (ngSubmit)="emailReport(emailReportForm.value)">
-            {%csrf_token%}
             <div class="row hide">
                 <div class="col">
-                    <input type="number" ngModel placeholder="eod_reading_lts" name="eod_reading_lts" [(ngModel)]="{{log_details.eod_reading_lts}}" id="tester-today-report">
-            <input type="number" placeholder="eod_reading_yesterday" name="eod_reading_yesterday" ngModel [(ngModel)]="{{log_details.eod_reading_yesterday}}" id="tester-yesterday-report">
+                    <input type="number" ngModel placeholder="eod_reading_lts" name="eod_reading_lts" value="log_details.eod_reading_lts" id="tester-today-report">
+            <input type="number" placeholder="eod_reading_yesterday" name="eod_reading_yesterday" ngModel value="log_details.eod_reading_yesterday" id="tester-yesterday-report">
             <input type="number" placeholder="litres_sold_today" name="litres_sold_today" ngModel id="total-today-report">
             <input type="number" placeholder="amount_earned_today" name="amount_earned_today" ngModel id="amount-today-report">
-            <input type="number" placeholder="balance" name="balance" ngModel [(ngModel)]="{{log_details.balance}}">
-            <input type="text" placeholder="logged_by" name="logged_by" ngModel [(ngModel)]="{{log_details.logged_by}}">
+            <input type="number" placeholder="balance" name="balance" ngModel value="log_details.balance">
+            <input type="text" placeholder="logged_by" name="logged_by" ngModel value="log_details.logged_by">
                 </div>
             </div>
             
             <div class="row">
                 <div class="col">
                     <label for="your_email">Your email:</label>
-                    <input id="your_email" type="email" #your_email="ngModel" placeholder="your_email" name="admin_email" ngModel [(ngModel)]="{{user.email}}">
+                    <input id="your_email" type="email" #your_email="ngModel" placeholder="your_email" name="admin_email" ngModel value="user.email">
                     <div [hidden]="your_email.valid || your_email.pristine" class="alert alert-danger">
                         <p>Email required</p>
                     </div>
@@ -34,7 +33,7 @@
 
                 <div class="col">
                     <label for="your_name">Your name:</label>
-                    <input id="your_name" type="text" placeholder="your name" #your_name="ngModel" name="admin_name" value="{{user.username}}">
+                    <input id="your_name" type="text" placeholder="your name" ngModel #your_name="ngModel" name="admin_name" value="user.username">
                     <div [hidden]="your_name.valid || your_name.pristine" class="alert alert-danger">
                         <p>Subject required</p>
                     </div>

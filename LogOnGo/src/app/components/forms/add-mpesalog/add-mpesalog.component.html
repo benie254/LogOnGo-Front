@@ -1,6 +1,6 @@
 <div id="mpesaForm" class="border color-two margin padding"><br>
     <h2 class="text-center">Add Mpesa logs</h2>
-    <h6 class="text-center"><span class="bg-danger padding-2 rounded">Remember to update your daily total!</span></p>
+    <h6 class="text-center"><span class="bg-danger padding-2 rounded">Remember to update your daily total!</span></h6>
     <form #mpesaForm="ngForm" (ngSubmit)="addMpesaLog(mpesaForm.value)">
         <div class="row">
             <div class="col">
@@ -46,8 +46,8 @@
                 <input type="number" ngModel #amount_transferred_to_bank="ngModel" id="amount_transferred_to_bank" class="Aj-M form-control" name="amount_transferred_to_bank" placeholder="Amount transferred to bank">
             </div>
             <div class="col hide">
-                <input type="number" ngModel id="user" #user="ngModel" [(ngModel)]="1" class="hide" name="user" placeholder="Your user id">
-                <input type="text" ngModel id="logged_by" #logged_by="ngModel" [(ngModel)]="janja" class="hide" name="logged_by" placeholder="Your name">
+                <input type="number" ngModel id="user" #user="ngModel" value="1" class="hide" name="user" placeholder="Your user id">
+                <input  type="text" ngModel id="logged_by" #logged_by="ngModel" value="user" class="hide" name="logged_by" placeholder="Your name">
             </div>
         </div>
         <div class="form-group">

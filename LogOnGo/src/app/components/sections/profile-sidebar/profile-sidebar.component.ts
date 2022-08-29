@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-sidebar.component.css']
 })
 export class ProfileSidebarComponent implements OnInit {
+  profile_details: any;
 
   constructor() { }
 

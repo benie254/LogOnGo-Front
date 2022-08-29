@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactFormComponent implements OnInit {
   profile_details: any;
+  contactManagement: any;
 
   constructor() { }
 

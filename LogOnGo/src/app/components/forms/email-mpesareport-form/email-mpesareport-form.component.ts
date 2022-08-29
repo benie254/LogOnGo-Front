@@ -10,6 +10,8 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class EmailMpesareportFormComponent implements OnInit {
   mpesa_log_details: any;
+  user: any;
+  mpesa_cumulative: any;
 
   constructor(private emailService:EmailService, private notifService:NotificationService,private logService:LogService) { 
     this.logService.getMpesaLogs().subscribe((data) => {

@@ -10,6 +10,8 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class UpdateLogDetailsComponent implements OnInit {
   log: any; 
   yesterday_logs: any;
+  date: any; 
+  username: any;
 
   constructor(private logService:LogService, private notifService:NotificationService) {
     this.logService.getPetrolLogs().subscribe((data) => {

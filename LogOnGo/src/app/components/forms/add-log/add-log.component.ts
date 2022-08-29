@@ -10,6 +10,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class AddLogComponent implements OnInit {
   yesterday_logs: any;
+  user: any;
 
   constructor(private fuelService:FuelService, private notifService:NotificationService, private logService:LogService) { 
     this.logService.getYesterdayLogs().subscribe((data) => {

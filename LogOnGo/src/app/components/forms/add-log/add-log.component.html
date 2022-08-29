@@ -4,15 +4,15 @@
         <div class="row">
             <div class="col">
                 <label for="fuel" class="">Fuel type</label>
-                <input type="number" class="Aj" ngModel #fuel="ngModel" [(ngModel)]="1" id="fuel" name="fuel" placeholder="Fuel type">
+                <input type="number" class="Aj" ngModel #fuel="ngModel" value="1" id="fuel" name="fuel" placeholder="Fuel type">
             </div>
             <div class="col">
                 <label for="eod_reading_yesterday" class="">Eod reading yesterday</label>
-                <input *ngIf="yesterday_logs" ngModel #eod_reading_yesterday="ngModel" [(ngModel)]="yesterday_logs.eod_reading_lts" type="number" class="Aj form-control" id="eod_reading_yesterday" name="eod_reading_yesterday" placeholder="End of day reading yesterday(lts)">
+                <input *ngIf="yesterday_logs" ngModel #eod_reading_yesterday="ngModel" value="yesterday_logs.eod_reading_lts" type="number" class="Aj form-control" id="eod_reading_yesterday" name="eod_reading_yesterday" placeholder="End of day reading yesterday(lts)">
             </div>
             <div class="col">
-                <input type="number" class="" ngModel id="user" #user="ngModel" [(ngModel)]="1" name="user" placeholder="Your user id">
-                <input type="text" class="" name="logged_by" ngModel id="logged_by" #logged_by="ngModel" [(ngModel)]="janja" placeholder="Your name">
+                <input type="number" class="" ngModel id="user" #user="ngModel" value="1" name="user" placeholder="Your user id">
+                <input type="text" class="" name="logged_by" ngModel id="logged_by" #logged_by="ngModel" value="user" placeholder="Your name">
             </div>
         </div>
         <div class="row">

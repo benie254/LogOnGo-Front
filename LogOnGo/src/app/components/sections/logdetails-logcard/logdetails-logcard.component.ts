@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class LogdetailsLogcardComponent implements OnInit {
   log_details: any; 
   info: any;
+  petrol_info: any;
 
   constructor() { }
 

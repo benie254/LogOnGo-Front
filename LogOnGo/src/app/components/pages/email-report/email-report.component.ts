@@ -10,6 +10,8 @@ export class EmailReportComponent implements OnInit {
   yesterday_petrol_logs: any; 
   petrol_received: any; 
   log_details: any;
+  user: any; 
+  emailReport: any;
 
   constructor() { }
 

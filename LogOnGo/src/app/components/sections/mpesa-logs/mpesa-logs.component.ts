@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MpesaLogsComponent implements OnInit {
   mpesa: any;
-  
+  mpesa_cumulative: any;
+  mpesa_logs: any;
   constructor() { }
 
   ngOnInit(): void {

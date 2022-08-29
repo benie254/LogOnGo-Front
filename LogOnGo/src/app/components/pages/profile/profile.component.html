@@ -20,12 +20,11 @@
                         <div *ngFor="let announce of announcements">
                             <app-profile-announcements></app-profile-announcements>
                         </div>
-
-                        <div>
-                            <ng-template #elseBlockAnnounce>
-                                <app-profile-noannouncements></app-profile-noannouncements>
-                            </ng-template>
-                        </div>
+                    </div>
+                    <div>
+                        <ng-template #elseBlockAnnounce>
+                            <app-profile-noannouncements></app-profile-noannouncements>
+                        </ng-template>
                     </div>
                 </div>
             </div>
@@ -38,12 +37,11 @@
                         <div *ngFor="let log of user_logs">
                             <app-profile-logcard></app-profile-logcard>
                         </div>
-
-                        <div>
-                            <ng-template #elseBlockUserlogs>
-                                <app-no-logs></app-no-logs>
-                            </ng-template>
-                        </div>
+                    </div>
+                    <div>
+                        <ng-template #elseBlockUserlogs>
+                            <app-no-logs></app-no-logs>
+                        </ng-template>
                     </div>
                 </div>
                 <div class="col-lg-6 color-four rounded black padding-2">

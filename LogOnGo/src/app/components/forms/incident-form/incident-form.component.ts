@@ -8,6 +8,10 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./incident-form.component.css']
 })
 export class IncidentFormComponent implements OnInit {
+  EMERGENCY: any; 
+  Equipment_Failure: any;
+  Physical_Injury: any;
+  username: any;
 
   constructor(private emailService:EmailService, private notifService:NotificationService) { }
 

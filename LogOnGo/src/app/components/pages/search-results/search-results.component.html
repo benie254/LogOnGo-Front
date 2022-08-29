@@ -2,7 +2,7 @@
     <div class="container-fluid color-two">
         <br><br><br>
         <div class="row">
-            <h2 class="text-center" *ngIf="searched_logs; else elseBlockSearch">We found {{searched_logs|length}} results for the date '{{searched_date}}'</h2>
+            <h2 class="text-center" *ngIf="searched_logs; else elseBlockSearch">We found {{searched_logs}} results for the date '{{searched_date}}'</h2>
             <ng-template #elseBlockSearch>
                 <h4 class="text-center" >We found 0 results for this... </h4><br>
             </ng-template>
@@ -26,4 +26,3 @@
         
 
         
-    </div>

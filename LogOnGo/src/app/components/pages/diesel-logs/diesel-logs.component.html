@@ -48,7 +48,7 @@
                 </div>
             <div id="diesel-one">
                 <div class="card color-two" *ngIf="logs; else elseBlock">
-                    <h4 class="card-header">{{logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdateDieselPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updateDieselPriceForm"><form class="" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}{{update_price_form}} <input type="submit" class="btn btn-sm btn-dark btn-outline-info" value="Update"></form></span> </span></h6></span></h4>
+                    <h4 class="card-header">{{logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdateDieselPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updateDieselPriceForm"><app-priceperlitre-update-form></app-priceperlitre-update-form></span> </span></h6></span></h4>
                     <div class="card-body">
                         <h5 class="card-title"></h5>
                         <div class="table-responsive">

@@ -15,8 +15,8 @@
     </div>
     <div class="form-group hide">
         <div *ngFor="let profile of profile_details">
-            <input class="black hide" id="your_name" ngModel type="text" name="your_name" placeholder="Your name" [(ngModel)]="profile.username">
-            <input class="black hide" id="your_email"  type="email" name="your_email" placeholder="Your email" [(ngModel)]="profile.email">
+            <input class="black hide" id="your_name" ngModel type="text" name="your_name" placeholder="Your name" value="profile.username">
+            <input class="black hide" id="your_email"  type="email" name="your_email" placeholder="Your email" value="profile.email">
         </div>
     </div>
     <div class="form-group">

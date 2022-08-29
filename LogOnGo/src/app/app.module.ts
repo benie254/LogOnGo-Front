@@ -178,7 +178,7 @@ const notifierDefaultOptions: NotifierOptions = {
       notifierDefaultOptions,
     ),
   ],
-  providers: [LogService,FuelService,ProfileService,NotificationService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

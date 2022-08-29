@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-announcements.component.css']
 })
 export class ProfileAnnouncementsComponent implements OnInit {
-
+  date: any; 
+  announce: any;
+  
   constructor() { }
 
   ngOnInit(): void {

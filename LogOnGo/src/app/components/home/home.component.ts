@@ -32,6 +32,8 @@ export class HomeComponent implements OnInit {
   logs_four: any;
   mpesa: any;
   id: number;
+  mpesa_logs: any;
+  date: any;
 
   pp = new FormControl('1');
 

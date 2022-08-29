@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-logcard.component.css']
 })
 export class ProfileLogcardComponent implements OnInit {
+  log: any;
 
   constructor() { }
 

@@ -8,6 +8,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./add-mpesalog.component.css']
 })
 export class AddMpesalogComponent implements OnInit {
+  user: any;
 
   constructor(private logMpesaService:LogMpesaService, private notifService:NotificationService) { }
 

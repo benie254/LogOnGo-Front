@@ -1,71 +1,52 @@
+<div class="container print" onload="myTotalP();amountTodayP();getBalP()">
+  <a type="button" class="btn btn-sm btn-dark btn-outline-primary" onclick="printData();togglePrint();" id="print"><img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" alt="" height="60" width="60"> <span><h1 class="print margin-top">Report</h1></span></a>
+  <div id="printData">
+    <h3 class="print"><a href="">Go back</a> or <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="refreshPrint()">reload page</a></h3>
+  </div>
+</div>
 
-        <div class="container print" onload="myTotalP();amountTodayP();getBalP()">
-          <a type="button" class="btn btn-sm btn-dark btn-outline-primary" onclick="printData();togglePrint();" id="print"><img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" alt="" height="60" width="60"> <span><h1 class="print margin-top">Report</h1></span></a>
-          <div id="printData">
-            <h3 class="print"><a href="">Go back</a> or <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="refreshPrint()">reload page</a></h3>
+<div class="container padding rounded">
+    <div class="border full-height center rounded black padding-2">
+      <div class="card print">
+        <h5 class="card-header">Initial tank amount: <span id="initial-p" class="print">{{petrol_info.initial_litres_in_tank}}</span> Lts <span class="float-right print">Pumps: <span class="print">{{petrol_info.pumps}}</span></span></h5>
+      </div>
+
+      <div class="card print hide">
+        <h5 class="card-header">Yesterday's tank balance: <span id="bal0-p" class="print">{{yesterday_petrol_logs.balance}}</span> Lts </h5>
+      </div>
+      
+      <div class="card print">
+        <h5 class="card-header print">{{log_details.date}} <span class="float-right margin-top print smaller"> <h6>Price per litre: Ksh. <span id="price-p" class="print">{{petrol_info.price_per_litre}}</span></h6></span></h5>
+        <div class="card-body print">
+          <div class="table-responsive print" id="table" name="table">
+            <table class="table print">
+              <thead class="table print">
+                <tr>
+                  <th scope="col" class="print">EOD Reading Today</th>
+                  <th scope="col" class="print">EOD Reading Yesterday</th>
+                  <th scope="col" class="print">Total litres sold today</th>
+                  <th scope="col" class="print">Amount earned today</th>
+                  <th scope="col" class="print hide">Balance (lts)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="tester-today-p"  class="print">{{log_details.eod_reading_lts}}</td>
+                  <td id="tester-yesterday-p" class="print">{{log_details.eod_reading_yesterday}}</td>
+                  <td id="total-today-p" class="print"></td>
+                  <td id="amount-today-p" class="print"></td>
+                  <td class="print">{{log_details.balance}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-      <div class="container padding rounded">
-          <div class="row">
-            
-            
-              <div class="border full-height col center rounded black padding-2">
-                <div class="card print">
-                  <h5 class="card-header">Initial tank amount: <span id="initial-p" class="print">{{petrol_info.initial_litres_in_tank}}</span> Lts <span class="float-right print">Pumps: <span class="print">{{petrol_info.pumps}}</span></span></h3>
-              </div>
-                  <div class="card print hide">
-                      <h5 class="card-header">Yesterday's tank balance: <span id="bal0-p" class="print">{{yesterday_petrol_logs.balance}}</span> Lts </h5>
-                  </div>
-                  <!-- <h2 class="text-center">General</h2> -->
-                  <div class="card print">
-                    
-                      <h5 class="card-header print">{{log_details.date}} <span class="float-right margin-top print smaller"> <h6>Price per litre: Ksh. <span id="price-p" class="print">{{petrol_info.price_per_litre}}</span></h6></span></h5>
-                      
-                      <div class="card-body print">
-                          <div class="table-responsive print" id="table" name="table">
-                              <table class="table print">
-                                <thead class="table print">
-                                  <tr>
-                                    <th scope="col" class="print">EOD Reading Today</th>
-                                    <th scope="col" class="print">EOD Reading Yesterday</th>
-                                    <th scope="col" class="print">Total litres sold today</th>
-                                    <th scope="col" class="print">Amount earned today</th>
-                                    <th scope="col" class="print hide">Balance (lts)</th>
-                                    <th scope="col" class="print">Updated Balance (lts)</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                      <td id="tester-today-p"  class="print">{{log_details.eod_reading_lts}}</td>
-                                      
-                                      <td id="tester-yesterday-p" class="print">{{log_details.eod_reading_yesterday}}</td>
-                                    <td id="total-today-p" class="print"></td>
-                                    <td id="amount-today-p" class="print"></td>
-                                    <td id="" name="" class="print hide"><span><form class="padding margin-top" action="" method="POST" enctype="multipart/form-data">{%csrf_token%}<input type="number" class="" id="bal-p" name="balance" class=""><input type="number" name="balance_yesterday" value="{{yesterday_petrol_logs.balance}}" placeholder="balance yesterday"><input type="submit" class="btn margin btn-sm btn-outline-primary btn-dark" value="Calculate"></form> </span> <span></span></td>
-                                    <td class="print">{{log_details.balance}}</td>
-                                  </tr>
-                                </tbody>
-                                </table>
-                          </div>
-                      </div>
-                      <div class="card-footer">
-                          <small  class="print">Logged by {{log_details.user.username}} | First logged on {{log_details.first_logged}}</small>
-                      </div>
-                  </div>
-                  <div class="card color-two">
-                    <h5 class="card-header text-center print">Petrol Received This Day: <span id="new-order2" class="print">{{petrol_received}}</span> Lts. </h3>
-                </div>
-                
-             
-                  
-                  
-                
-                  
-                  
-                      
-                 
-              </div>
-  
-  
-              </div>
+        <div class="card-footer">
+          <small  class="print">Logged by {{log_details.user.username}} | First logged on {{log_details.first_logged}}</small>
+        </div>
+        <div class="card color-two">
+          <h5 class="card-header text-center print">Petrol Received This Day: <span id="new-order2" class="print">{{petrol_received}}</span> Lts. </h5>
+        </div>
       </div>
+    </div>
+</div>

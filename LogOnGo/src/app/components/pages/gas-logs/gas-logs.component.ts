@@ -16,6 +16,7 @@ export class GasLogsComponent implements OnInit {
   logs_four: any;
   mpesa: any;
   id: number;
+  mpesa_logs: any;
 
   constructor() { }
 

@@ -9,6 +9,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class LogCardComponent implements OnInit {
   logs: any;
+  info: any;
 
   constructor(private logService:LogService, private notifService:NotificationService) { 
     
