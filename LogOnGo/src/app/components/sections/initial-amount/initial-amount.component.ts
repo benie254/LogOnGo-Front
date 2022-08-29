@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./initial-amount.component.css']
 })
 export class InitialAmountComponent implements OnInit {
+  petrol_info: any;
+  petrol_details: any;
 
   constructor() { }
 

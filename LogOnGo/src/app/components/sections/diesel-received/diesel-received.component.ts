@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./diesel-received.component.css']
 })
 export class DieselReceivedComponent implements OnInit {
+  diesel_received: any;
 
   constructor() { }
 

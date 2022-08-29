@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fuel-received-info.component.css']
 })
 export class FuelReceivedInfoComponent implements OnInit {
+  fuel_received_info: any;
 
   constructor() { }
 

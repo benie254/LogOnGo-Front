@@ -1,2 +1,2 @@
-<h5 class="card-header text-center">Gas Received This Day: {%if petrol_received%}<span id="new-order2">{{petrol_received}}</span> Lts. <span><h6><a href="#orderInfo" onclick="toggleOrderInfo()">View order(s) info</a></h6></span> <h5> Record <a href="#fuelReceivedForm" onclick="toggleFuelReceivedForm()">new order</a></h5></span>{%endif%}</h3>
+<h5 class="card-header text-center">Gas Received This Day: <span id="new-order2" *ngIf="gas_received">{{gas_received}}</span> Lts. <span><h6><a href="#orderInfo" onclick="toggleOrderInfo()">View order(s) info</a></h6></span> <h5> Record <a href="#fuelReceivedForm" onclick="toggleFuelReceivedForm()">new order</a></h5></span></h3>
             

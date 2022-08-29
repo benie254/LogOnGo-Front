@@ -1,59 +1,31 @@
 <nav id="sidebar" class="sidebar color-four">
     <div class="position-sticky"><br>
         <div class="list-group list-group-flush mx-3 mt-4">
-            {% if profile_details %}
     <br><br>
-            <div class="list-group-item rounded white py-2 ripple color-two">
+            <div class="list-group-item rounded white py-2 ripple color-two" *ngFor="let profile of profile_details">
                 <img class="radius" src="https://res.cloudinary.com/benie/image/upload/v1659091140/avatar-3814049_640_lxxhz9.png" height="70" width="70" alt="">
-                {% for profile in profile_details %}
                 <h3 class="">{{profile.username}}</h3>
                 <h6 class="">{{profile.email}}</h6>
                 <h5 class="">{{profile.petrol_station}}</h5>
-                <p><a class="" href="{%url 'change_password' %}">Change password</a> <br> <a href="{%url 'password_reset' %}">Reset password</a></p>
-                {%endfor%}
+                <p><a class="" href="">Change password</a> <br> <a href="">Reset password</a></p>
                 
                 
             </div>
-            {% endif %}
             <hr>
         
             <div class="list-group-item py-2 rounded ripple color-two">
-                        <p class="text-c">Add <a href="{% url 'logs' %}">logs?</a> | or <a href="{% url 'mpesa' %}">Mpesa</a> logs?</p>
+                        <p class="text-c">Add <a href="">logs?</a> | or <a href="">Mpesa</a> logs?</p>
                 
             </div>
         
         
             <div class="list-group-item py-2 rounded ripple color-two margin-top">
-                <h6 class="white text-c">Report Incident <a href="{% url 'profile_incident' %}">now?</a></h6>
+                <h6 class="white text-c">Report Incident <a href="">now?</a></h6>
             </div>
             <hr>
             <div class="list-group-item py-2 ripple center color-two rounded padding-2">
                 <button class="white margin text-c btn btn-outline-info btn-dark" onclick="toggleContact()">Contact Management</button>
-    <form id="contForm" data-empty="" class="text-c show margin" action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
-        {%csrf_token%}
-        <div class="form-group">
-            <label for="subject">Email Subject</label>
-        <input class="black form-control" id="subject" type="text" name="subject" placeholder="Subject" required>
-        </div>
-        <div class="form-group">
-            <label for="message">Message</label>
-            <textarea class="black form-control" id="message" type="text" name="message" placeholder="Your message" required></textarea><br>
-        </div>
-        <div class="form-group hide">
-            <input class="black hide" id="your_name" type="text" name="your_name" placeholder="Your name" value="{{username}}">
-            {% if profile_details %}
-        {% for profile in profile_details %}
-        <input class="black hide" id="your_email"  type="email" name="your_email" placeholder="Your email" value="{{profile.email}}">
-        {%endfor%}
-        {%endif%}
-        </div>
-        <div class="form-group">
-            <input type="submit" onclick="toggleContact()" class="btn btn-sm btn-dark btn-outline-primary" value="Send" id="contBtn">
-        </div>
-        
-    </form>
-    
-    
+                <app-contact-form></app-contact-form>
             </div><br>
         </div>
     </div><br><br><br>
