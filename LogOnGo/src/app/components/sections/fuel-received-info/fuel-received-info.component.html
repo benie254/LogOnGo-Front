@@ -1,8 +1,4 @@
-{%for petrol_received_info in petrol_received_info%}
-            <div class="card-body" id="orderInfo">
-              <ol>
-                <h4>Receipt info <span><a type="button" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleOrderInfo()">X</a></span></h4>
-                <li class="card-text">{{petrol_received_info.litres_received}} Lts. from {{petrol_received_info.received_from}}</li>
-              </ol>
-            </div>
-            {%endfor%}
+<ol>
+  <h4>Receipt info <span><a type="button" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleOrderInfo()">X</a></span></h4>
+  <li class="card-text">{{fuel_received_info.litres_received}} Lts. from {{fuel_received_info.received_from}}</li>
+</ol>
