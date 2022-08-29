@@ -8,8 +8,20 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./update-log-details.component.css']
 })
 export class UpdateLogDetailsComponent implements OnInit {
+  log: any; 
+  yesterday_logs: any;
 
-  constructor(private logService:LogService, private notifService:NotificationService) { }
+  constructor(private logService:LogService, private notifService:NotificationService) {
+    this.logService.getPetrolLogs().subscribe((data) => {
+      this.log = data
+      console.warn("data",data)
+    });
+
+    this.logService.getYesterdayLogs().subscribe((data) => {
+      this.yesterday_logs = data
+      console.warn("data",data)
+    });
+   }
 
   updateLog(log_info:any){
     console.warn(log_info);
