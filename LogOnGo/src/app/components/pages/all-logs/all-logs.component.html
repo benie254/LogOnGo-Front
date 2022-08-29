@@ -6,25 +6,30 @@
         
         <div class="border full-height col-md-6 color-four rounded black padding-2">
             <h2 class="text-center">General</h2>
-            {% if all_logs %}
-            {% for log in all_logs %} 
-            <app-profile-logcard></app-profile-logcard>
-            {% endfor %}
-            {% else %} 
-            <app-no-logs></app-no-logs>
-            {%endif%}
-            <app-add-log></app-add-log>
+            <div *ngIf="all_logs; else elseBlock">
+                <div *ngFor="let log of all_logs">
+                    <app-profile-logcard></app-profile-logcard>
+                </div>  
+            </div>
+            <div>
+                <ng-template #elseBlock>
+                    <app-no-logs></app-no-logs>
+                </ng-template>
+            </div>
         </div>
 
         <div class="col-md-6 full-height color-four rounded black padding-2 border">
             <h2 class="text-center">Mpesa</h2>
-            {% if all_mpesa_logs %}
-            {% for mpesa in all_mpesa_logs %}
-            <app-profile-mpeslogs></app-profile-mpeslogs>
-            {% endfor %}
-            {% else %} 
-            <app-profile-nompeslogs></app-profile-nompeslogs>
-            {%endif%}
+            <div *ngIf="all_mpesa_logs else elseBlockMpesa">
+                <div *ngFor="let mpesa of all_mpesa_logs">
+                    <app-profile-mpeslogs></app-profile-mpeslogs>
+                </div>
+            </div>
+            <div>
+                <ng-template #elseBlockMpesa>
+                    <app-no-mpesalogs></app-no-mpesalogs>
+                </ng-template>
+            </div>
         </div>
         
         
