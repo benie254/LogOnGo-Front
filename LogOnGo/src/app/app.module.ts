@@ -17,7 +17,6 @@ import { FuelComponent } from './forms/fuel/fuel.component';
 import { InitialUpdateComponent } from './forms/initial-update/initial-update/initial-update.component';
 import { AddLogComponent } from './components/forms/add-log/add-log.component';
 import { InitialAmountComponent } from './components/sections/initial-amount/initial-amount.component';
-import { PumpsComponent } from './components/sections/pumps/pumps.component';
 import { NewBalComponent } from './components/sections/new-bal/new-bal.component';
 import { LogCardComponent } from './components/sections/log-card/log-card.component';
 import { PricePerlitreComponent } from './components/sections/price-perlitre/price-perlitre.component';
@@ -48,7 +47,6 @@ import { ProfileLogcardComponent } from './components/sections/profile-logcard/p
 import { ProfileMpesalogsComponent } from './components/sections/profile-mpesalogs/profile-mpesalogs.component';
 import { ProfileNompesalogsComponent } from './components/sections/profile-nompesalogs/profile-nompesalogs.component';
 import { LoggingInstructionsComponent } from './components/sections/logging-instructions/logging-instructions.component';
-import { RegisterFuelComponent } from './components/forms/register-fuel/register-fuel.component';
 import { PetrolReceivedFormComponent } from './components/forms/petrol-received-form/petrol-received-form.component';
 import { DieselReceivedFormComponent } from './components/forms/diesel-received-form/diesel-received-form.component';
 import { GasReceivedFormComponent } from './components/forms/gas-received-form/gas-received-form.component';
@@ -120,7 +118,6 @@ const notifierDefaultOptions: NotifierOptions = {
     InitialUpdateComponent,
     AddLogComponent,
     InitialAmountComponent,
-    PumpsComponent,
     NewBalComponent,
     LogCardComponent,
     PricePerlitreComponent,
@@ -151,7 +148,6 @@ const notifierDefaultOptions: NotifierOptions = {
     ProfileMpesalogsComponent,
     ProfileNompesalogsComponent,
     LoggingInstructionsComponent,
-    RegisterFuelComponent,
     PetrolReceivedFormComponent,
     DieselReceivedFormComponent,
     GasReceivedFormComponent,
