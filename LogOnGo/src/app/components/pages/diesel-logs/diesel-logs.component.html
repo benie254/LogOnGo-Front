@@ -7,42 +7,48 @@
             <h2 class="text-center">General</h2>
             <app-initial-amount></app-initial-amount>
             <app-new-bal></app-new-bal>
-            <div id="diesel-two">
-                {%if diesel_logs_2%}
-                {%for diesel_logs in diesel_logs_2%}
-                <app-log-card></app-log-card>
-               {%endfor%}
-               {% else %} 
-            <app-no-logs></app-no-logs>
-            {%endif%}
+
+            <div id="diesel-two" *ngIf="logs_two; else elseBlock2">
+                <div>
+                    <app-log-card></app-log-card>
+                </div>  
             </div>
-            <div id="diesel-three">
-                {%if diesel_logs_3%}
-                {%for diesel_logs in diesel_logs_3%}
-                <app-log-card></app-log-card>
-               {%endfor%}
-               {% else %} 
-               <app-no-logs></app-no-logs>
-            {%endif%}
+            <div>
+                <ng-template #elseBlock2>
+                    <app-no-logs></app-no-logs>
+                </ng-template>
             </div>
-            <div id="diesel-four">
-                {%if diesel_logs_4%}
-                {%for diesel_logs in diesel_logs_4%}
-                <app-log-card></app-log-card>
-               {%endfor%}
+
+            <div id="diesel-three" *ngIf="logs_three; else elseBlock3">
+                <div>
+                    <app-log-card></app-log-card>
+                </div>  
+            </div>
+            <div>
+                <ng-template #elseBlock3>
+                    <app-no-logs></app-no-logs>
+                </ng-template>
+            </div>
+
+            <div id="diesel-four" *ngIf="logs_four; else elseBlock4">
+                <div>
+                    <app-log-card></app-log-card>
+                </div>  
+            </div>
+            <div>
+                <ng-template #elseBlock4>
+                    <app-no-logs></app-no-logs>
+                </ng-template>
+            </div>
+
                <app-diesel-received></app-diesel-received>
                <div id="fuelRecvdForm" class="rounded color-two padding margin"><br>
                 <h2 class="text-center margin-top">Add Diesel Received information</h2> 
                 <app-diesel-received-form></app-diesel-received-form>
                 </div>
-               {% else %} 
-               <app-no-logs></app-no-logs>
-            {%endif%}
-            </div>
             <div id="diesel-one">
-                {%if diesel_logs%}
-                <div class="card color-two">
-                    <h4 class="card-header">{{diesel_logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price">{{diesel_info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdateDieselPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updateDieselPriceForm"><form class="" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}{{update_price_form}} <input type="submit" class="btn btn-sm btn-dark btn-outline-info" value="Update"></form></span> </span></h6></span></h4>
+                <div class="card color-two" *ngIf="logs; else elseBlock">
+                    <h4 class="card-header">{{logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdateDieselPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updateDieselPriceForm"><form class="" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}{{update_price_form}} <input type="submit" class="btn btn-sm btn-dark btn-outline-info" value="Update"></form></span> </span></h6></span></h4>
                     <div class="card-body">
                         <h5 class="card-title"></h5>
                         <div class="table-responsive">
@@ -59,28 +65,29 @@
                                 </thead>
                                 <tbody>
                                   <tr>
-                                      <td id="tester-today">{{diesel_logs.eod_reading_lts}}</td>
-                                      <td id="tester-yesterday">{{diesel_logs.eod_reading_yesterday}}</td>
+                                      <td id="tester-today">{{logs.eod_reading_lts}}</td>
+                                      <td id="tester-yesterday">{{logs.eod_reading_yesterday}}</td>
                                     <td id="total-today"></td>
                                     <td id="amount-today"></td>
-                                    <td id="" name=""><span><form class="padding margin-top" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{%csrf_token%}<input type="number" class="hide" id="bal" name="balance" class="">{%if yesterday_diesel_logs%}<input type="number" name="balance_yesterday" class="hide" value="{{yesterday_diesel_logs.balance}}" >{%endif%}{%if diesel_received%}<input type="submit" class="btn btn-sm btn-outline-info btn-dark" value="Update bal" onclick="">{%else%}<input type="submit" class="btn margin btn-sm btn-outline-primary btn-dark" value="Calculate" onclick="">{%endif%}</form> </span> <span></span></td>
-                                    <td id="">{{diesel_logs.balance}}</td>
+                                    <td id="" name=""><span> <app-bal-form></app-bal-form> </span> <span></span></td>
+                                    <td id="">{{logs.balance}}</td>
                                   </tr>
                                 </tbody>
                               </table>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <small class="">Logged by {{diesel_logs.user.username}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="{% url 'log_details' diesel_logs.id %}">Details</a> </small>
+                        <small class="">Logged by {{logs.user.username}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="">Details</a> </small>
                     </div>
                 </div>
-                {% else %} 
-                <app-no-logs></app-no-logs>
-            {%endif%}
+                <div>
+                    <ng-template #elseBlock>
+                        <app-no-logs></app-no-logs>
+                    </ng-template>
+                </div>
             </div>
             
             
-            <app-add-log></app-add-log>
 
                 
 
@@ -93,15 +100,14 @@
 
         <div class="col-md-6 full-height color-four rounded black padding-2 border">
             <h2 class="text-center">Mpesa</h2>
-            {% if mpesa_logs %}
-            {% for mpesa in mpesa_logs %}
-            <app-mpesa-logs></app-mpesa-logs>
-            {% endfor %}
-            {% else %} 
-            <app-no-mpesalogs></app-no-mpesalogs>
-            {%endif%}
-            <app-add-mpesalog></app-add-mpesalog>
-            
+            <div *ngIf="mpesa_logs else elseBlockMpesa">
+                <app-mpesa-logs></app-mpesa-logs>
+            </div>
+            <div>
+                <ng-template #elseBlockMpesa>
+                    <app-no-mpesalogs></app-no-mpesalogs>
+                </ng-template>
+            </div>
         </div>
        
         
