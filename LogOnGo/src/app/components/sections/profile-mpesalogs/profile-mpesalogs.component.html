@@ -8,25 +8,21 @@
                   <tr>
                     <th scope="col">Transaction no.</th>
                     <th scope="col">Amount</th>
-                    {% if mpesa.amount_transferred_to_bank %}
-                    <th scope="col">Bank amount</th>
-                    {%endif%}
+                    <th scope="col" *ngIf="mpesa.amount_transferred_to_bank">Bank amount</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                       <td>{{mpesa.transaction_number}}</td>
                     <td>{{mpesa.amount}}</td>
-                    {% if mpesa.amount_transferred_to_bank %}
-                    <td>{{mpesa.amount_transferred_to_bank}}</td>
-                    {%endif%}
+                    <td *ngIf="mpesa.amount_transferred_to_bank">{{mpesa.amount_transferred_to_bank}}</td>
                   </tr>
                 </tbody>
               </table>
         </div>
       
     <div class="card-footer">
-        <small>Logged by {{mpesa.user.username}} | <a type="button" class="btn btn-dark btn-outline-primary btn-sm" href="{% url 'mpesa_log_details' mpesa.id %}">Details</a> | <a href="#mpesaForm"><button class="margin btn btn-sm btn-outline-primary btn-dark" type="button" onclick="toggleMPesa()">Add new?</button></a></small>
+        <small>Logged by {{mpesa.user.username}} | <a type="button" class="btn btn-dark btn-outline-primary btn-sm" href="">Details</a> | <a href="#mpesaForm"><button class="margin btn btn-sm btn-outline-primary btn-dark" type="button" onclick="toggleMPesa()">Add new?</button></a></small>
     </div>
     
 </div>
