@@ -1,27 +1,32 @@
-<form class="margin-top" action="{% url 'mpesa_report' mpesa_log_details.id %}" method="POST" enctype="multipart/form-data">
-    {%csrf_token%}
+<form #mpesaReportForm="ngForm" (ngSubmit)="emailMpesaReport(mpesaReportForm.value)">
     <div class="row hide">
         <div class="col">
-            <input type="number" placeholder="transaction_number" name="transaction_number" value="{{mpesa_log_details.transaction_number}}" id="tester-today-report">
-    <input type="text" placeholder="customer_name" name="customer_name" value="{{mpesa_log_details.customer_name}}" id="tester-yesterday-report">
-    <input type="number" placeholder="customer_phone_number" name="customer_phone_number" value="{{mpesa_log_details.customer_phone_number}}">
-    <input type="number" placeholder="amount" name="amount" value="{{mpesa_log_details.amount}}">
-    <input type="number" placeholder="amount_transferred_to_bank" name="amount_transferred_to_bank" value="{{mpesa_log_details.amount_transferred_to_bank}}">
-    <input type="number" placeholder="daily_total" value="{{mpesa_total}}">
-    <input type="number" placeholder="cumulative_amount" value="{{mpesa_cumulative}}">
-    <input type="text" placeholder="logged_by" name="logged_by" value="{{mpesa_log_details.logged_by}}">
+            <input type="number" ngModel placeholder="transaction_number" name="transaction_number" [(ngModel)]="mpesa_log_details.transaction_number" id="tester-today-report">
+    <input type="text" placeholder="customer_name" name="customer_name" ngModel [(ngModel)]="mpesa_log_details.customer_name" id="tester-yesterday-report">
+    <input type="number" placeholder="customer_phone_number" name="customer_phone_number" ngModel [(ngModel)]="mpesa_log_details.customer_phone_number">
+    <input type="number" placeholder="amount" name="amount" ngModel [(ngModel)]="mpesa_log_details.amount">
+    <input type="number" placeholder="amount_transferred_to_bank" name="amount_transferred_to_bank" ngModel [(ngModel)]="mpesa_log_details.amount_transferred_to_bank">
+    <input *ngIf="mpesa_log_details.daily_total" type="number" placeholder="daily_total" ngModel [(ngModel)]="mpesa_log_details.daily_total">
+    <input type="number" placeholder="cumulative_amount" ngModel [(ngModel)]="mpesa_cumulative">
+    <input type="text" placeholder="logged_by" name="logged_by" ngModel [(ngModel)]="mpesa_log_details.logged_by">
         </div>
     </div>
     
     <div class="row">
         <div class="col">
             <label for="your_email">Your email:</label>
-            <input id="your_email" type="email" placeholder="your_email" name="admin_email" value="{{user.email}}">
+            <input id="your_email" type="email" #your_email="ngModel" placeholder="your_email" name="admin_email" ngModel [(ngModel)]="user.email" required>
+            <div [hidden]="your_email.valid || your_email.pristine" class="alert alert-danger">
+                <p>Email required</p>
+            </div>
         </div>
 
         <div class="col">
             <label for="your_name">Your name:</label>
-            <input id="your_name" type="text" placeholder="your name" name="admin_name" value="{{user.username}}">
+            <input id="your_name" type="text" #your_name="ngModel" placeholder="your name" name="admin_name" ngModel [(ngModel)]="user.username" required>
+            <div [hidden]="your_name.valid || your_name.pristine" class="alert alert-danger">
+                <p>Name required</p>
+            </div>
         </div>
     </div>
     <div class="form-group text-center">
