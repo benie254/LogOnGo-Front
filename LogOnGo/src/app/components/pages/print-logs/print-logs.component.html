@@ -2,7 +2,7 @@
         <div class="container print" onload="myTotalP();amountTodayP();getBalP()">
           <a type="button" class="btn btn-sm btn-dark btn-outline-primary" onclick="printData();togglePrint();" id="print"><img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" alt="" height="60" width="60"> <span><h1 class="print margin-top">Report</h1></span></a>
           <div id="printData">
-            <h3 class="print"><a href="{% url 'log_details' log_details.id %}">Go back</a> or <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="refreshPrint()">reload page</a></h3>
+            <h3 class="print"><a href="">Go back</a> or <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="refreshPrint()">reload page</a></h3>
           </div>
         </div>
       <div class="container padding rounded">
@@ -19,7 +19,7 @@
                   <!-- <h2 class="text-center">General</h2> -->
                   <div class="card print">
                     
-                      <h5 class="card-header print">{{log_details.date}} <span class="float-right margin-top print smaller">{%if petrol_info%}<h6>Price per litre: Ksh. <span id="price-p" class="print">{{petrol_info.price_per_litre}}</span></h6>{%endif%}</span></h5>
+                      <h5 class="card-header print">{{log_details.date}} <span class="float-right margin-top print smaller"> <h6>Price per litre: Ksh. <span id="price-p" class="print">{{petrol_info.price_per_litre}}</span></h6></span></h5>
                       
                       <div class="card-body print">
                           <div class="table-responsive print" id="table" name="table">

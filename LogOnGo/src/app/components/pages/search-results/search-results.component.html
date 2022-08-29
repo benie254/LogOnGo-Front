@@ -1,43 +1,19 @@
-{%if searched_logs%}
+
     <div class="container-fluid color-two">
         <br><br><br>
         <div class="row">
-            <h2 class="text-center">We found {{searched_logs|length}} results for the date '{{searched_date}}'</h2>
-            {%else%}
-        {%if searched_mpesa_logs%}
-        <h2 class="text-center">We found {{searched_mpesa_logs|length}} results for the date '{{log_date}}'</h2>
-        {%else%}
-        <h4 class="text-center">We found 0 results for this... </h4><br>
-        {%endif%}
-        {%endif%}
+            <h2 class="text-center" *ngIf="searched_logs; else elseBlockSearch">We found {{searched_logs|length}} results for the date '{{searched_date}}'</h2>
+            <ng-template #elseBlockSearch>
+                <h4 class="text-center" >We found 0 results for this... </h4><br>
+            </ng-template>
             <!-- <col class="col-sm-2"> -->
-            {%if searched_logs%}
-        {% for log in searched_logs %}
-           
             <div class="col-md-3"></div>
-            <div class="col-md-6">
+            <div class="col-md-6" *ngFor="let log of searched_logs">
                 <app-profile-logcard></app-profile-logcard>
             </div>
             <div class="col-md-3">
             </div> 
            
-                {% endfor %}
-                
-                {%endif%}
-                
-                {%if searched_mpesa_logs%}
-                {% for mpesa in searched_mpesa_logs %}
-                    <div class="col-md-6 full-height color-four rounded black padding-2 border">
-                        <h2 class="text-center">Mpesa</h2>
-                        
-                        <app-profile-mpesalogs></app-profile-mpesalogs>
-                        {% endfor %}
-                        
-                        {%endif%}
-               
-            </div><br><br><br><br>
-            
-                
                 
             </div>
             

@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent implements OnInit {
+  searched_logs: any; 
+  searched_date: any;
 
   constructor() { }
 

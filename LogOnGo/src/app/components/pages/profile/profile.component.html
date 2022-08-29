@@ -16,13 +16,17 @@
                     <img src="https://res.cloudinary.com/benie/image/upload/v1659033436/fuel-gauge-148923_1280_bifykm.png" class="margin-top" height="370" width="100%" alt="">
                 </div>
                 <div class="col-lg-4">
-                    {% if announcements %} 
-                    {%for announce in announcements%}
-                    <app-profile-announcements></app-profile-announcements>
-                    {%endfor%}
-                    {% else %} 
-                    <app-profile-noannouncements></app-profile-noannouncements>
-                    {% endif %} 
+                    <div *ngIf="announcements; else elseBlockAnnounce">
+                        <div *ngFor="let announce of announcements">
+                            <app-profile-announcements></app-profile-announcements>
+                        </div>
+
+                        <div>
+                            <ng-template #elseBlockAnnounce>
+                                <app-profile-noannouncements></app-profile-noannouncements>
+                            </ng-template>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -30,24 +34,28 @@
                 <!-- <col class="col-sm-2"> -->
                 <div class="border col-lg-6 color-four rounded black padding-2">
                     <h2>Your Logs</h2>
-                    {% if user_logs %}
-                    {% for log in user_logs %} 
-                    <app-profile-logcard></app-profile-logcard>
-                    {% endfor %}
-                    {% else %} 
-                    <app-no-logs></app-no-logs>
-                    {%endif%}
-                    
+                    <div *ngIf="user_logs; else elseBlockUserlogs">
+                        <div *ngFor="let log of user_logs">
+                            <app-profile-logcard></app-profile-logcard>
+                        </div>
+
+                        <div>
+                            <ng-template #elseBlockUserlogs>
+                                <app-no-logs></app-no-logs>
+                            </ng-template>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6 color-four rounded black padding-2">
                     <h2>Your Mpesa Logs</h2>
-                    {% if mpesa_logs %}
-                    {% for mpesa in mpesa_logs %}
-                    <app-profile-mpesalogs></app-profile-mpesalogs>
-                    {% endfor %}
-                    {% else %} 
-                    <app-profile-nompesalogs></app-profile-nompesalogs>
-                    {%endif%}
+                    <div *ngIf="mpesa_logs else elseBlockMpesa">
+                        <app-profile-mpesalogs></app-profile-mpesalogs>
+                    </div>
+                    <div>
+                        <ng-template #elseBlockMpesa>
+                            <app-no-mpesalogs></app-no-mpesalogs>
+                        </ng-template>
+                    </div>
                 </div>
                 
             </div>

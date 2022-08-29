@@ -10,6 +10,8 @@ import { LogService } from 'src/app/services/log/log.service';
 export class PetrolDetailsComponent implements OnInit {
   logs: any;
   id: number;
+  yesterday_logs: any;
+  petrol_received_info: any;
 
   constructor(private route:ActivatedRoute, private logService:LogService) { }
 

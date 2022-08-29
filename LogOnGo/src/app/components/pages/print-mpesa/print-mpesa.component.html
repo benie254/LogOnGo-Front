@@ -1,7 +1,7 @@
 <div class="container print">
     <a type="button" class="btn btn-sm btn-dark btn-outline-primary" onclick="printMpesaData();togglePrintMpesaData();" id=""><img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" alt="" height="60" width="60"> <span><h1 class="print margin-top">Report</h1></span></a>
     <div id="printMpesaData">
-        <h3 class="print"><a href="{% url 'mpesa_log_details' mpesa_log_details.id %}">Go back</a> or <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="refreshPrintMpesa()">reload page</a></h3>
+        <h3 class="print"><a href="">Go back</a> or <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="refreshPrintMpesa()">reload page</a></h3>
       </div>
   </div>
 <div class="container padding rounded">
@@ -23,12 +23,8 @@
                               <th scope="col" class="print">Transaction no.</th>
                               <th scope="col" class="print">Customer name</th>
                               <th scope="col" class="print">Customer phone number</th>
-                              {%if mpesa_log_details.amount %}
-                              <th scope="col" class="print">Amount</th>
-                              {%endif%}
-                              {%if mpesa_log_details.amount_transferred_to_bank %}
-                              <th scope="col" class="print">Bank amount</th>
-                              {%endif%}
+                              <th *ngIf="mpesa_log_details.amount" scope="col" class="print">Amount</th>
+                              <th *ngIf="mpesa_log_details.amount_transferred_to_bank" scope="col" class="print">Bank amount</th>
                               <th scope="col" class="print">Daily total</th>
                               <th scope="col" class="print">Cumulative amount</th>
                             </tr>
@@ -38,12 +34,8 @@
                                 <td class="print">{{mpesa_log_details.transaction_number}}</td>
                                 <td class="print">{{mpesa_log_details.customer_name}}</td>
                                 <td class="print">{{mpesa_log_details.customer_phone_number}}</td>
-                                {%if mpesa_log_details.amount %}
-                                <td class="print">{{mpesa_log_details.amount}}</td>
-                                {%endif%}
-                                {%if mpesa_log_details.amount_transferred_to_bank %}
-                                <td class="print">{{mpesa_log_details.amount_transferred_to_bank}}</td>
-                                {%endif%}
+                                <td *ngIf="mpesa_log_details.amount" class="print">{{mpesa_log_details.amount}}</td>
+                                <td *ngIf="mpesa_log_details.amount_transferred_to_bank" class="print">{{mpesa_log_details.amount_transferred_to_bank}}</td>
                                 <td class="print">{{mpesa_total}}</td>
                                 <td class="print">{{mpesa_cumulative}}</td>
                             </tr>
@@ -54,7 +46,7 @@
                 <div class="card-footer">
                     <small class="print">First logged on {{mpesa_log_details.first_logged}} by {{mpesa_log_details.user.username}} </small>
                 </div>
-                <p><small class="print"> >>> {%if mpesa_log_details.first_logged != mpesa_log_details.last_edited%} Last edited on {{mpesa_log_details.last_edited}}{%endif%}</small></span></p>
+                <p><small class="print" *ngIf="mpesa_log_details.first_logged != mpesa_log_details.last_edited"> >>> Last edited on {{mpesa_log_details.last_edited}}</small></span></p>
             </div>
             
           

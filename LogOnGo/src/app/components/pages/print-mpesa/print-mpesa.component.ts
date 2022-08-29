@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./print-mpesa.component.css']
 })
 export class PrintMpesaComponent implements OnInit {
+  mpesa_log_details: any; 
+  mpesa_total: any; 
+  mpesa_cumulative: any;
 
   constructor() { }
 

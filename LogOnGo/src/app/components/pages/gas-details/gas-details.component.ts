@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gas-details.component.css']
 })
 export class GasDetailsComponent implements OnInit {
+  yesterday_logs: any;
+  gas_received_info: any;
 
   constructor() { }
 
