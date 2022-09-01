@@ -1,3 +1,42 @@
+
+
+
+// recently added
+
+// $(document).ready(function(){
+//     var contForm = document.getElementById("contForm")
+//     $(contForm).submit(function(event){
+//       event.preventDefault()
+//       form = $(contForm)
+  
+//       $.ajax({
+//         'url':'/ajax/contact/',
+//         'type':'POST',
+//         'data':form.serialize(),
+//         'dataType':'json',
+//         'success':function(data){
+//           alert(data['success'])
+//         },
+//       })
+//       $('#subject').val('')
+//       $('#message').val('')
+//     })
+//   })
+
+// function secondAlert(){
+//   return window.alert("Hello!");
+// }
+  
+function myTotal(){
+  var today = document.getElementById("tester-todayJS").textContent;
+  var yesterday = document.getElementById("tester-yesterdayJS").textContent;
+  // console.log(total)
+  // console.log('today:',today)
+  var init = document.getElementById("initial").textContent;
+  return alert(init);
+  // return document.getElementById("total-todayJS").innerHTML += '<h1>1</h1>';
+} 
+
 function toggleInitUpdateForm(){
     var hide = document.getElementById('initUpdateForm');
     if(hide.style.display === 'block'){
@@ -30,30 +69,6 @@ function toggleLogForm(){
         hide.style.display = 'block';
     }
 }
-
-
-// recently added
-
-$(document).ready(function(){
-    var contForm = document.getElementById("contForm")
-    $(contForm).submit(function(event){
-      event.preventDefault()
-      form = $(contForm)
-  
-      $.ajax({
-        'url':'/ajax/contact/',
-        'type':'POST',
-        'data':form.serialize(),
-        'dataType':'json',
-        'success':function(data){
-          alert(data['success'])
-        },
-      })
-      $('#subject').val('')
-      $('#message').val('')
-    })
-  })
-  
   function myTotalGas(){
     var today = document.getElementById("tester-today-gas").textContent;
     var yesterday = document.getElementById("tester-yesterday-gas").textContent;
@@ -146,13 +161,7 @@ $(document).ready(function(){
   }
   
   
-  function myTotal(){
-    var today = document.getElementById("tester-today").textContent;
-    var yesterday = document.getElementById("tester-yesterday").textContent;
-    // console.log(total)
-    var print = document.getElementById("total-today").innerHTML = today-yesterday;
-    return print
-  } 
+  
   function amountToday(){
     var litres = document.getElementById("total-today").textContent;
     var price = document.getElementById("price").textContent;
@@ -795,3 +804,5 @@ $(document).ready(function(){
      submitState('#contForm');
     //  submitState('#login_user');
    });
+
+   

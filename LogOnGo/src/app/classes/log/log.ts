@@ -5,4 +5,5 @@ export class Log {
     fuel: number;
     logged_by: string;
     user: number;
+    balance: number;
 }

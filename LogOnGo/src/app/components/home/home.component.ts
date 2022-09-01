@@ -1,20 +1,27 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, VERSION, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Fuel } from 'src/app/classes/fuel/fuel';
+import { LogMpesa } from 'src/app/classes/log-mpesa/log-mpesa';
+import { Log } from 'src/app/classes/log/log';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
+
+declare function secondAlert(): any;
+declare function myTotal(): any;
 declare function myAlert(): any; 
 declare function myTester(): any;
-declare function myTotal(): any;
 declare function amountToday(): any;
 declare function getBal(): any;
 declare function getBalHome(): any;
 declare function myPumps(): any;
+declare function toggleInitUpdateForm(): any;
+declare var angular: any;
+
 
 @Component({
   selector: 'app-home',
@@ -22,25 +29,39 @@ declare function myPumps(): any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  name = "Angular " + VERSION.major;
+  @ViewChild("myTesterId") myTesterId: ElementRef; 
+  myValue(){
+    alert(this.myTesterId);
+    this.myTesterId.nativeElement.innerHTML = 'This tester works!';   
+  } 
 
-  fuels: any;
-  info: any;
+  fuels: Fuel;
+  info: Fuel;
   myAlert: any; 
-  logs: any;
-  logs_two: any;
-  logs_three: any;
-  logs_four: any;
-  mpesa: any;
+  logs: Log;
+  logs_two: Log;
+  logs_three: Log;
+  logs_four: Log;
+  mpesa: LogMpesa;
   id: number;
-  mpesa_logs: any;
-  date: any;
+  mpesa_logs: LogMpesa;
+  yesterday_logs: Log;
+
+  today = new Date();
 
   pp = new FormControl('1');
+  
 
   constructor(private fuelService:FuelService, private http:HttpClient,private notifService:NotificationService, private logService:LogService, private route:ActivatedRoute) { 
     this.fuelService.getPetrolInfo().subscribe((data) => {
       this.info = data
       console.warn("data",data)
+    });
+
+    this.logService.getYesterdayLogs().subscribe((data) => {
+      this.yesterday_logs = data
+      console.warn("data",data);
     });
 
     this.logService.getPetrolLogs().subscribe((data) => {
@@ -77,6 +98,15 @@ export class HomeComponent implements OnInit {
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
     });
   }
+  
+  addLog(log_info: any) {
+    console.warn(log_info);
+    this.logService.addLog(log_info).subscribe((result) => {
+      console.warn('result', result);
+      this.notifService.submitSuccess('success','Log added successfully!')
+      // this.notifService.showSuccess("Data posted successfully !!", "Notification")
+    });
+  }
 
   updatePetrolInfo(petrol_info:any){
     console.warn(petrol_info);
@@ -100,16 +130,8 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  testerAlert (){
-    return alert('hello')
-  }
-
-
-
- 
-  
-
   ngOnInit():void {
+    secondAlert();
     myAlert();
     myTester();
     myTotal();
@@ -117,6 +139,8 @@ export class HomeComponent implements OnInit {
     getBal();
     getBalHome();
     myPumps();
+    toggleInitUpdateForm();
+    
   }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FuelService } from 'src/app/services/fuel/fuel.service';
 
 @Component({
   selector: 'app-initial-amount',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./initial-amount.component.css']
 })
 export class InitialAmountComponent implements OnInit {
-  petrol_info: any;
+  info: any;
   petrol_details: any;
 
-  constructor() { }
+  constructor(private fuelService:FuelService) {
+    this.fuelService.getPetrolInfo().subscribe((data) => {
+      this.info = data
+      console.warn("petrol info:",data)
+    });
+   }
 
   ngOnInit(): void {
   }

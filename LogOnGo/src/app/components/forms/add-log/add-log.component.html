@@ -1,10 +1,11 @@
-<div id="logForm" class="rounded"><br>
-    <h2 class="text-center margin-top">Add Petrol Log details</h2> 
+<div id="" class="rounded"><br>
+    <h2 class="text-center margin-top">Add Petrol Log details</h2>
     <form #logForm="ngForm" class="form" (ngSubmit)="addLog(logForm.value)">
         <div class="row">
             <div class="col">
                 <label for="fuel" class="">Fuel type</label>
-                <input type="number" class="Aj" ngModel #fuel="ngModel" value="1" id="fuel" name="fuel" placeholder="Fuel type">
+                
+                <input type="number" class="Aj" ngModel #fuel="ngModel" [(ngModel)]="fuel_data" id="fuel" name="fuel" placeholder="Fuel type">
             </div>
             <div class="col">
                 <label for="eod_reading_yesterday" class="">Eod reading yesterday</label>
