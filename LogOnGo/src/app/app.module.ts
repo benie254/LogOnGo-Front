@@ -69,6 +69,8 @@ import { NotificationService } from './services/notification/notification.servic
 import { PumpsUpdateFormComponent } from './components/forms/pumps-update-form/pumps-update-form.component';
 import { ContactFormComponent } from './components/forms/contact-form/contact-form.component';
 import { AddComponent } from './add/add.component';
+import { UserComponent } from './components/auth/user/user.component';
+
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -168,6 +170,7 @@ const notifierDefaultOptions: NotifierOptions = {
     PumpsUpdateFormComponent,
     ContactFormComponent,
     AddComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
