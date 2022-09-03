@@ -70,8 +70,12 @@ import { PumpsUpdateFormComponent } from './components/forms/pumps-update-form/p
 import { ContactFormComponent } from './components/forms/contact-form/contact-form.component';
 import { AddComponent } from './add/add.component';
 import { UserComponent } from './components/auth/user/user.component';
-
-
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { AdminComponent } from './components/auth/admin/admin.component';
+import { ModeratorComponent } from './components/auth/moderator/moderator.component';
+import { UsersComponent } from './components/auth/users/users.component';
+import { authInterceptorProviders } from './helpers/auth/auth.interceptor';
 const notifierDefaultOptions: NotifierOptions = {
   position: {
     horizontal: {
@@ -171,6 +175,11 @@ const notifierDefaultOptions: NotifierOptions = {
     ContactFormComponent,
     AddComponent,
     UserComponent,
+    LoginComponent,
+    RegisterComponent,
+    AdminComponent,
+    ModeratorComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
