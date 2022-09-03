@@ -21,19 +21,19 @@ export class UserComponent implements OnInit {
       password: ''
     };
   }
-  login(){
-    this.userService.login({
-      'username':this.user.username,'password':this.user.password
-    });
-  }
+  // login(){
+  //   this.userService.login({
+  //     'username':this.user.username,'password':this.user.password
+  //   });
+  // }
 
-  refreshToken(){
-    this.userService.refreshToken();
-  }
+  // refreshToken(){
+  //   this.userService.refreshToken();
+  // }
 
-  logout(){
-    this.userService.logout();
-  }
+  // logout(){
+  //   this.userService.logout();
+  // }
   
   
 
