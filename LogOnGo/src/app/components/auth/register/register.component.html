@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-12 black">
     <div class="card card-container">
       <img
         id="profile-img"
@@ -13,7 +13,7 @@
         novalidate
       >
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username" style="color:black;">Username</label>
           <input
             type="text"
             class="form-control"
@@ -25,17 +25,11 @@
             #username="ngModel"
           />
           <div class="alert-danger" *ngIf="username.errors && f.submitted">
-            <div *ngIf="username.errors.[required]">Username is required</div>
-            <div *ngIf="username.errors.[minlength]">
-              Username must be at least 3 characters
-            </div>
-            <div *ngIf="username.errors.[maxlength]">
-              Username must be at most 20 characters
-            </div>
+            <p></p>
           </div>
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email" style="color:black;">Email</label>
           <input
             type="email"
             class="form-control"
@@ -46,15 +40,12 @@
             #email="ngModel"
           />
           <div class="alert-danger" *ngIf="email.errors && f.submitted">
-            <div *ngIf="email.errors.[required]">Email is required</div>
-            <div *ngIf="email.errors.[email]">
-              Email must be a valid email address
-            </div>
+            <p></p>
           </div>
         </div>
 
-        <div class="form-group">
-            <label for="username">First name</label>
+        <div class="form-group" style="color:black;">
+            <label for="first_name" style="color:black;">First name</label>
             <input
               type="text"
               class="form-control"
@@ -64,12 +55,12 @@
               #first_name="ngModel"
             />
             <div class="alert-danger" *ngIf="first_name.errors && f.submitted">
-              <div *ngIf="first_name.errors.[required]">First name is required</div>
+                <p></p>
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="last_name">Last name</label>
+          <div class="form-group" style="color:black;">
+            <label for="last_name" style="color:black;">Last name</label>
             <input
               type="text"
               class="form-control"
@@ -79,12 +70,12 @@
               #last_name="ngModel"
             />
             <div class="alert-danger" *ngIf="last_name.errors && f.submitted">
-              <div *ngIf="last_name.errors.[required]">Last name is required</div>
+              <p></p>
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="petrol_station">Petrol station</label>
+          <div class="form-group" style="color:black;">
+            <label for="petrol_station" style="color:black;">Petrol station</label>
             <input
               type="text"
               class="form-control"
@@ -94,13 +85,13 @@
               #petrol_station="ngModel"
             />
             <div class="alert-danger" *ngIf="petrol_station.errors && f.submitted">
-              <div *ngIf="petrol_station.errors.[required]">Petrol station is required</div>
+              <p></p>
             </div>
           </div>
 
 
-        <div class="form-group">
-          <label for="password">Password</label>
+        <div class="form-group" style="color:black;">
+          <label for="password" style="color:black;">Password</label>
           <input
             type="password"
             class="form-control"
@@ -110,11 +101,18 @@
             minlength="6"
             #password="ngModel"
           />
-          <div class="alert-danger" *ngIf="password.errors && f.submitted">
-            <div *ngIf="password.errors.[required]">Password is required</div>
-            <div *ngIf="password.errors.[minlength]">
-              Password must be at least 6 characters
-            </div>
+          <label for="password2" style="color:black;">Repeat password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password2"
+            [(ngModel)]="form.password2"
+            required
+            minlength="6"
+            #password2="ngModel"
+          />
+          <div class="alert-danger" *ngIf="password2.errors && f.submitted">
+            <p></p>
           </div>
         </div>
         <div class="form-group">
@@ -129,3 +127,41 @@
       </div>
     </div>
   </div>
+
+  <!-- <form #register="ngForm" name="form" *ngIf="!isSuccessful" class="form margin-top" (ngSubmit)="register.form.valid && onSubmit()">
+    <div class="form-group">
+        <input type="text" id="first_name" ngModel #first_name="ngModel" name="first_name" placeholder="first_name" class="form-control" required [(ngModel)]="form.first_name"> 
+        <input type="text" id="last_name" ngModel #last_name="ngModel" name="last_name" placeholder="last_name" class="form-control" required [(ngModel)]="form.last_name">
+        <input type="text" ngModel id="username" #username="ngModel" class="form-control" name="username" placeholder="username" required [(ngModel)]="form.username">
+        <input type="text" ngModel id="petrol_station" #petrol_station="ngModel" class="form-control" name="petrol_station" placeholder="petrol_station" required [(ngModel)]="form.petrol_station">
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="email" ngModel id="#email" #email="ngModel" name="email" placeholder="email" class="form-control" required [(ngModel)]="form.email">
+            <div [hidden]="email.valid || email.pristine" class="alert margin-top2p5 alert-danger">
+                <p>Email required</p>
+            </div>
+
+            <input type="password" ngModel id="#password" #password="ngModel" name="password" placeholder="password" class="form-control" required [(ngModel)]="form.password">
+            <div [hidden]="password.valid || password.pristine" class="alert margin-top2p5 alert-danger">
+                <p>Password required</p>
+            </div>
+
+            <input type="password" ngModel id="#password2" #password2="ngModel" name="password2" placeholder="password2" class="form-control" required>
+            <div [hidden]="password2.valid || password2.pristine" class="alert margin-top2p5 alert-danger">
+                <p>Password 2 required</p>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-sm btn-dark btn-outline-info margin-top2p5">Update</button>
+            </div>
+            <div class="alert alert-success" *ngIf="isSuccessful">
+                Your registration is successful!
+              </div>
+              <div class="alert alert-warning" *ngIf="register.submitted && isSignUpFailed">
+                Signup failed!<br />{{ errorMessage }}
+              </div>
+        </div>
+        <div class="col"></div>
+    </div>  
+</form> -->

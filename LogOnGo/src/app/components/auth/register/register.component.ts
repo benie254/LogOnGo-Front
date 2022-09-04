@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   };
   isSuccessful = false; 
   isSignUpFailed = false;
-  errorMessage = 'Something went wrong.';
+  errorMessage = '';
 
   constructor(private authService:AuthService) { }
 
@@ -25,9 +25,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { username, email, first_name, last_name, petrol_station, password } = this.form;
-    this.authService.register(username, email, first_name, last_name, petrol_station, password).subscribe(
-      data => {
+    const { username, email, password, first_name, last_name, petrol_station } = this.form;
+    this.authService.register(username, email, password, first_name, last_name, petrol_station).subscribe(
+      (data) => {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
@@ -35,8 +35,7 @@ export class RegisterComponent implements OnInit {
       err => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
-      }
-    )
+      });
   }
 
 }
