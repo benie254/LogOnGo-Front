@@ -13,11 +13,10 @@ export class RegisterComponent implements OnInit {
     first_name: null,
     last_name: null,
     petrol_station: null,
-    password: null,
   };
   isSuccessful = false; 
   isSignUpFailed = false;
-  errorMessage = '';
+  errorMessage = 'Something went wrong';
 
   constructor(private authService:AuthService) { }
 
@@ -25,15 +24,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { username, email, password, first_name, last_name, petrol_station } = this.form;
-    this.authService.register(username, email, password, first_name, last_name, petrol_station).subscribe(
+    const { username, email, first_name, last_name, petrol_station } = this.form;
+    this.authService.register(username, email, first_name, last_name, petrol_station).subscribe(
       (data) => {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },
       err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.error;
         this.isSignUpFailed = true;
       });
   }
