@@ -76,6 +76,10 @@ import { AdminComponent } from './components/auth/admin/admin.component';
 import { ModeratorComponent } from './components/auth/moderator/moderator.component';
 import { UsersComponent } from './components/auth/users/users.component';
 import { authInterceptorProviders } from './helpers/auth/auth.interceptor';
+
+import * as Notiflix from 'notiflix';
+
+
 const notifierDefaultOptions: NotifierOptions = {
   position: {
     horizontal: {
