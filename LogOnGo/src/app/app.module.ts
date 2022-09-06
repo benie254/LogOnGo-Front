@@ -78,7 +78,7 @@ import { UsersComponent } from './components/auth/users/users.component';
 import { authInterceptorProviders } from './helpers/auth/auth.interceptor';
 
 import * as Notiflix from 'notiflix';
-
+import { NgPasswordValidatorModule, NgPasswordValidatorOptions } from 'ng-password-validator';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -119,6 +119,21 @@ const notifierDefaultOptions: NotifierOptions = {
     },
     overlap: 150,
   },
+};
+
+export const MyDefaultOptions: NgPasswordValidatorOptions = {
+  placement: "right",
+  rules: {
+      'password': {
+          'type': "number",
+          'min': 6,
+          'max': 15,
+      },
+      "include-symbol": true,
+      "include-number": true,
+      "include-lowercase-characters": true,
+      "include-uppercase-characters": true,
+  }
 };
 
 @NgModule({
@@ -195,6 +210,7 @@ const notifierDefaultOptions: NotifierOptions = {
     NotifierModule.withConfig(
       notifierDefaultOptions,
     ),
+    NgPasswordValidatorModule.forRoot(MyDefaultOptions as NgPasswordValidatorOptions),
   ],
   providers: [],
   bootstrap: [AppComponent]
