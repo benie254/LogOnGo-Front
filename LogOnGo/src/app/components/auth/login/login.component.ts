@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { TokenStorageService } from 'src/app/services/token/token-storage.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,44 +9,32 @@ import { TokenStorageService } from 'src/app/services/token/token-storage.servic
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: any = {
-    username: null,
-    password: null,
-  }
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
-  roles: string[] = [];
 
-  constructor(private authService:AuthService, private tokenStorage:TokenStorageService) { }
+  form: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()){
-      this.isLoggedIn = true; 
-      this.roles = this.tokenStorage.getUser().roles;
-    }
+    this.form = this.formBuilder.group({
+      email: '',
+      username: '',
+      password: ''
+    });
   }
 
-  onSubmit(): void {
-    const { username, password } = this.form; 
-    this.authService.login(username, password).subscribe(
-      data => {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
-        this.isLoginFailed = false; 
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      }
-    );
+  submit(): void {
+    this.http.post('http://localhost:8000/api/login', this.form.getRawValue(), {
+      withCredentials: true
+    }).subscribe(() => this.router.navigate(['home']));
   }
 
-  reloadPage(): void {
-    window.location.reload();
-  }
+  // reloadPage(): void {
+  //   window.location.reload();
+  // }
 
 }
