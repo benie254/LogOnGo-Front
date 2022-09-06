@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,34 +9,26 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  form: any = {
-    username: null,
-    email: null,
-    first_name: null,
-    last_name: null,
-    petrol_station: null,
-  };
-  isSuccessful = false; 
-  isSignUpFailed = false;
-  errorMessage = 'Something went wrong';
+  form: FormGroup;
 
-  constructor(private authService:AuthService) { }
+  constructor(
+    private formBuilder:FormBuilder, private http:HttpClient, private router:Router
+    ) { }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      username: '',
+      email: '',
+      first_name: '',
+      last_name: '',
+      petrol_station: '',
+      password: ''
+    });
+  }
+  submit(): void {
+    this.http.post('http://127.0.0.1:8000/api/register', this.form.getRawValue())
+      .subscribe(() => this.router.navigate(['/login']));
   }
 
-  onSubmit(): void {
-    const { username, email, first_name, last_name, petrol_station } = this.form;
-    this.authService.register(username, email, first_name, last_name, petrol_station).subscribe(
-      (data) => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-      },
-      err => {
-        this.errorMessage = err.error;
-        this.isSignUpFailed = true;
-      });
-  }
 
 }

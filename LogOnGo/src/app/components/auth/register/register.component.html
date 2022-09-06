@@ -1,167 +1,17 @@
-<div class="col-md-12 black">
-    <div class="card card-container">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
-      <form
-        *ngIf="!isSuccessful"
-        name="form"
-        (ngSubmit)="f.form.valid && onSubmit()"
-        #f="ngForm"
-        novalidate
-      >
-        <div class="form-group">
-          <label for="username" style="color:black;">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            name="username"
-            [(ngModel)]="form.username"
-            required
-            minlength="3"
-            maxlength="20"
-            #username="ngModel"
-          />
-          <div class="alert-danger" *ngIf="username.errors && f.submitted">
-            <p></p>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="email" style="color:black;">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            name="email"
-            [(ngModel)]="form.email"
-            required
-            email
-            #email="ngModel"
-          />
-          <div class="alert-danger" *ngIf="email.errors && f.submitted">
-            <p></p>
-          </div>
-        </div>
+<form [formGroup]="form" (submit)="submit()">
+  <h1 class="h3 mb-3 fw-normal">Please register</h1>
 
-        <div class="form-group" style="color:black;">
-            <label for="first_name" style="color:black;">First name</label>
-            <input
-              type="text"
-              class="form-control"
-              name="first_name"
-              [(ngModel)]="form.first_name"
-              required
-              #first_name="ngModel"
-            />
-            <div class="alert-danger" *ngIf="first_name.errors && f.submitted">
-                <p></p>
-            </div>
-          </div>
+  <input formControlName="username" class="form-control" placeholder="username" required>
 
-          <div class="form-group" style="color:black;">
-            <label for="last_name" style="color:black;">Last name</label>
-            <input
-              type="text"
-              class="form-control"
-              name="last_name"
-              [(ngModel)]="form.last_name"
-              required
-              #last_name="ngModel"
-            />
-            <div class="alert-danger" *ngIf="last_name.errors && f.submitted">
-              <p></p>
-            </div>
-          </div>
+  <input formControlName="email" type="email" class="form-control" placeholder="Email" required>
 
-          <div class="form-group" style="color:black;">
-            <label for="petrol_station" style="color:black;">Petrol station</label>
-            <input
-              type="text"
-              class="form-control"
-              name="petrol_station"
-              [(ngModel)]="form.petrol_station"
-              required
-              #petrol_station="ngModel"
-            />
-            <div class="alert-danger" *ngIf="petrol_station.errors && f.submitted">
-              <p></p>
-            </div>
-          </div>
+  <input formControlName="first_name" class="form-control" placeholder="First Name" required>
 
+  <input formControlName="last_name" class="form-control" placeholder="Last name" required>
 
-        <div class="form-group" style="color:black;">
-          <label for="password1" style="color:black;">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            name="password1"
-            [(ngModel)]="form.password"
-            required
-            minlength="6"
-            #password1="ngModel"
-          />
-          <label for="password2" style="color:black;">Repeat password</label>
-          <input
-            type="password"
-            class="form-control"
-            name="password2"
-            [(ngModel)]="form.password2"
-            required
-            minlength="6"
-            #password2="ngModel"
-          />
-          <div class="alert-danger" *ngIf="password2.errors && f.submitted">
-            <p></p>
-          </div>
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">Sign Up</button>
-        </div>
-        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-          Signup failed!<br />{{ errorMessage }}
-        </div>
-      </form>
-      <div class="alert alert-success" *ngIf="isSuccessful">
-        Your registration is successful!
-      </div>
-    </div>
-  </div>
+  <input formControlName="petrol_station" class="form-control" placeholder="Petrol station" required>
 
-  <!-- <form #register="ngForm" name="form" *ngIf="!isSuccessful" class="form margin-top" (ngSubmit)="register.form.valid && onSubmit()">
-    <div class="form-group">
-        <input type="text" id="first_name" ngModel #first_name="ngModel" name="first_name" placeholder="first_name" class="form-control" required [(ngModel)]="form.first_name"> 
-        <input type="text" id="last_name" ngModel #last_name="ngModel" name="last_name" placeholder="last_name" class="form-control" required [(ngModel)]="form.last_name">
-        <input type="text" ngModel id="username" #username="ngModel" class="form-control" name="username" placeholder="username" required [(ngModel)]="form.username">
-        <input type="text" ngModel id="petrol_station" #petrol_station="ngModel" class="form-control" name="petrol_station" placeholder="petrol_station" required [(ngModel)]="form.petrol_station">
-    </div>
-    <div class="row">
-        <div class="col">
-            <input type="email" ngModel id="#email" #email="ngModel" name="email" placeholder="email" class="form-control" required [(ngModel)]="form.email">
-            <div [hidden]="email.valid || email.pristine" class="alert margin-top2p5 alert-danger">
-                <p>Email required</p>
-            </div>
+  <input formControlName="password" type="password" class="form-control" placeholder="Password" required>
 
-            <input type="password" ngModel id="#password" #password="ngModel" name="password" placeholder="password" class="form-control" required [(ngModel)]="form.password">
-            <div [hidden]="password.valid || password.pristine" class="alert margin-top2p5 alert-danger">
-                <p>Password required</p>
-            </div>
-
-            <input type="password" ngModel id="#password2" #password2="ngModel" name="password2" placeholder="password2" class="form-control" required>
-            <div [hidden]="password2.valid || password2.pristine" class="alert margin-top2p5 alert-danger">
-                <p>Password 2 required</p>
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-sm btn-dark btn-outline-info margin-top2p5">Update</button>
-            </div>
-            <div class="alert alert-success" *ngIf="isSuccessful">
-                Your registration is successful!
-              </div>
-              <div class="alert alert-warning" *ngIf="register.submitted && isSignUpFailed">
-                Signup failed!<br />{{ errorMessage }}
-              </div>
-        </div>
-        <div class="col"></div>
-    </div>  
-</form> -->
+  <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+</form>
