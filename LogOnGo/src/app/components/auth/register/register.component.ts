@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
     });
   }
   submit(): void {
-    this.http.post('http://127.0.0.1:8000/api/register', this.form.getRawValue())
+    this.http.post('http://127.0.0.1:8000/api/register/', this.form.getRawValue())
       .subscribe(() => {
         Notiflix.Notify.success('Registration successful!');
         this.router.navigate(['/login']);

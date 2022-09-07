@@ -2,9 +2,9 @@
     <div class="topnav" id="myTopnav">
       <a class="navbar-brand" href="/" *ngFor='let gas of gas_details'>
         <img src="https://res.cloudinary.com/benie/image/upload/v1659013117/fuel-1596622_1920_u9uhku.jpg" alt="" width="30" height="30">
-        Station name PP: {{gas.price__per_litre}}
+        Pebo Kenya Ltd
       </a>
-      <a href="/" class="active">Home</a>
+      <a href="/home" class="active" routerLink="home">Home</a>
       <a class="nav-link" href="">Diesel</a>
       <a class="nav-link" href="">Gas</a>
       <a class="nav-link" href="">All Logs</a>
@@ -21,8 +21,39 @@
       <!-- <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a> -->
-      <a class="nav-link" href="">Login</a>
-      <a class="nav-link" href="">Register</a>
+      <a class="nav-link" href="/login" routerLink="login">Login</a>
+      <a class="nav-link" href="/register" routerLink="register">Register</a>
     </div>
     
-  </nav>
+    <!-- <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <a href="#" class="navbar-brand">LogOnGo</a>
+      <ul class="navbar-nav mr-auto" routerLinkActive="active">
+        <li class="nav-item">
+          <a href="/home" class="nav-link" routerLink="home">Home </a>
+        </li>
+        <li class="nav-item" *ngIf="showAdmin">
+          <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        </li>
+        <li class="nav-item">
+          <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <li class="nav-item">
+          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a href="/login" class="nav-link" routerLink="login">Login</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        </li>
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">LogOut</a>
+        </li>
+      </ul>
+    </nav> -->
+
+  </nav><br><br><br>

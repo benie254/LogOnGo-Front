@@ -74,19 +74,25 @@ body{
 }
 
 *,.white{
-    color:white;
+    color:#2B2D42;
+}
+.bg-white{
+  background-color: #F5FFFF;
 }
 /* body,.color-one {
     background-color: #98B9AB;
 } */
 body,.color-one {
-    background-color: #9BC995;
+    background-color: #E6EDFF;
 }
 .color-red,.red{
     color:rgba(255, 0, 0, 0.226);
 }
 .color-two{
-    background-color: #3F3047;
+    background-color: #E0FDFF;
+}
+.f-two{
+  color: #2B2D42;
 }
 .height{
     height: 92.6vh;
@@ -307,4 +313,10 @@ body,.color-one {
 }
 .margin-top2{
   margin-top:2.5%;
+}
+.padding-bottom{
+  padding-bottom: 2.5%;
+}
+.padding-four{
+  padding: 2.5%;
 }

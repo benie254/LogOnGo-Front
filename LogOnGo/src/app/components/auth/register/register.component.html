@@ -1,102 +1,107 @@
-<form [formGroup]="form" (submit)="submit()" novalidate>
-  <h1 class="h3 mb-3 fw-normal">Please register</h1>
-
-  <div class="row">
-    <div class="col">
-      <label for="username">Username</label>
-      <input id="username" formControlName="username" type="text" class="form-control" placeholder="your username..." required minlength="4" maxlength="15">
-      <div *ngIf="form.controls['username'].invalid && form.controls['username'].touched" class="alert alert-danger">
-        <div *ngIf="form.controls['username'].errors['required']">
-          Username is required.
+<div class="padding container">
+  <form [formGroup]="form" (submit)="submit()" novalidate class="color-two f-two padding-four rounded shadow">
+    <div class="text-align">
+      <img src="https://res.cloudinary.com/benie/image/upload/v1662528617/icons8-user-64_1_aqgcf9.png" height="70" width="70" alt="">
+    </div>
+    <h1 class="text-center">Sign up for an account</h1>
+  
+    <div class="row rounded">
+      <div class="col color-one margin rounded shadow padding-2">
+        <label for="username">Username</label>
+        <input id="username" formControlName="username" type="text" class="form-control" placeholder="your username..." required minlength="4" maxlength="15">
+        <div *ngIf="form.controls['username'].invalid && form.controls['username'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['username'].errors['required']">
+            Username is required.
+          </div>
+          <div *ngIf="form.controls['username'].errors['minlength']">
+            Username must be at least 4 characters.
+          </div>
         </div>
-        <div *ngIf="form.controls['username'].errors['minlength']">
-          Username must be at least 4 characters.
+      </div>
+      <div class="col color-one margin rounded shadow padding-2">
+        <label for="email">Email</label>
+        <input formControlName="email" id="email" type="email" class="form-control" placeholder="your email..." required>
+        <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['email'].errors['required']">
+            Email is required.
+          </div>
+          <div *ngIf="form.controls['email'].errors['email']">
+            Please provide a valid email address.
+          </div>
         </div>
       </div>
     </div>
-    <div class="col">
-      <label for="email">Email</label>
-      <input formControlName="email" id="email" type="email" class="form-control" placeholder="your email..." required>
-      <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="alert alert-danger">
-        <div *ngIf="form.controls['email'].errors['required']">
-          Email is required.
+  
+    <div class="row">
+      <div class="col color-one margin rounded shadow padding-2">
+        <label for="first_name">First name</label>
+        <input formControlName="first_name" id="first_name" type="text" class="form-control" placeholder="your first name..." required minlength="3" maxlength="25">
+        <div *ngIf="form.controls['first_name'].invalid && form.controls['first_name'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['first_name'].errors['required']">
+            First name is required.
+          </div>
+          <div *ngIf="form.controls['first_name'].errors['minlength']">
+            First name must be at least 3 characters.
+          </div>
         </div>
-        <div *ngIf="form.controls['email'].errors['email']">
-          Please provide a valid email address.
+      </div>
+      <div class="col color-one margin rounded shadow padding-2">
+        <label for="last_name">Last name</label>
+        <input formControlName="last_name" id="last_name" type="text" class="form-control" placeholder="your last name..." required minlength="3" maxlength="20">
+        <div *ngIf="form.controls['last_name'].invalid && form.controls['last_name'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['last_name'].errors['required']">
+            Last name is required.
+          </div>
+          <div *ngIf="form.controls['last_name'].errors['minlength']">
+            Last name must be at least 3 characters.
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <label for="first_name">First name</label>
-      <input formControlName="first_name" id="first_name" type="text" class="form-control" placeholder="your first name..." required minlength="3" maxlength="25">
-      <div *ngIf="form.controls['first_name'].invalid && form.controls['first_name'].touched" class="alert alert-danger">
-        <div *ngIf="form.controls['first_name'].errors['required']">
-          First name is required.
+  
+    <div class="row">
+      <div class="col color-one margin rounded shadow padding-2">
+        <label for="petrol_station">Petrol station</label>
+        <input formControlName="petrol_station" id="petrol_station" type="text" class="form-control" placeholder="site name..." required minlength="7">
+        <div *ngIf="form.controls['petrol_station'].invalid && form.controls['petrol_station'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['petrol_station'].errors['required']">
+            Petrol station name is required.
+          </div>
+          <div *ngIf="form.controls['petrol_station'].errors['minlength']">
+            Petrol station name must be at least 7 characters.
+          </div>
         </div>
-        <div *ngIf="form.controls['first_name'].errors['minlength']">
-          First name must be at least 3 characters.
+      </div>
+      <div class="col color-one margin rounded shadow padding-2">
+        <label for="employee_id">Employee ID</label>
+        <input formControlName="employee_id" id="employee_id" type="number" class="form-control" placeholder="employee ID no..." required>
+        <div *ngIf="form.controls['employee_id'].invalid && form.controls['employee_id'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['employee_id'].errors['required']">
+            Employee ID is required.
+          </div>
         </div>
       </div>
     </div>
-    <div class="col">
-      <label for="last_name">Last name</label>
-      <input formControlName="last_name" id="last_name" type="text" class="form-control" placeholder="your last name..." required minlength="3" maxlength="20">
-      <div *ngIf="form.controls['last_name'].invalid && form.controls['last_name'].touched" class="alert alert-danger">
-        <div *ngIf="form.controls['last_name'].errors['required']">
-          Last name is required.
-        </div>
-        <div *ngIf="form.controls['last_name'].errors['minlength']">
-          Last name must be at least 3 characters.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <label for="petrol_station">Petrol station</label>
-      <input formControlName="petrol_station" id="petrol_station" type="text" class="form-control" placeholder="site name..." required minlength="7">
-      <div *ngIf="form.controls['petrol_station'].invalid && form.controls['petrol_station'].touched" class="alert alert-danger">
-        <div *ngIf="form.controls['petrol_station'].errors['required']">
-          Petrol station name is required.
-        </div>
-        <div *ngIf="form.controls['petrol_station'].errors['minlength']">
-          Petrol station name must be at least 7 characters.
+  
+    <div class="row">
+      <div class="col"></div>
+      <div class="col margin rounded color-one margin-top margin-bottom shadow padding-2">
+        <input formControlName="password" [NgPasswordValidator]="options" type="password" class="form-control center" placeholder="Create password" required>
+        <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['password'].errors['required']">
+            Password is required.
+          </div>
         </div>
       </div>
+      <div class="col"></div>
     </div>
-    <div class="col">
-      <label for="employee_id">Employee ID</label>
-      <input formControlName="employee_id" id="employee_id" type="number" class="form-control" placeholder="employee ID no..." required>
-      <div *ngIf="form.controls['employee_id'].invalid && form.controls['employee_id'].touched" class="alert alert-danger">
-        <div *ngIf="form.controls['employee_id'].errors['required']">
-          Employee ID is required.
-        </div>
+  
+    <div class="row">
+      <div class="col"></div>
+      <div class="col padding-bottom">
+        <button class="w-100 margin-top btn btn-sm btn-dark btn-outline-primary" type="submit" [disabled]="form.invalid"><img src="https://res.cloudinary.com/benie/image/upload/v1662528363/icons8-sign-up-64_1_qas6tr.png" heigt="60" width="60" alt=""></button>
       </div>
+      <div class="col"></div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col"></div>
-    <div class="col margin-top margin-bottom">
-      <input formControlName="password" [NgPasswordValidator]="options" type="password" class="form-control center" placeholder="Create password" required>
-      <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">
-        <div *ngIf="form.controls['password'].errors['required']">
-          Password is required.
-        </div>
-      </div>
-    </div>
-    <div class="col"></div>
-  </div>
-
-  <div class="row">
-    <div class="col"></div>
-    <div class="col">
-      <button class="w-100 margin-top btn btn-lg btn-dark" type="submit" [disabled]="form.invalid">Submit</button>
-    </div>
-    <div class="col"></div>
-  </div>
-</form>
+  </form>
+</div>
