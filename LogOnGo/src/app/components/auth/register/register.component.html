@@ -1,7 +1,7 @@
 <form [formGroup]="form" (submit)="submit()" novalidate>
   <h1 class="h3 mb-3 fw-normal">Please register</h1>
   <div class="form-group">
-    <input formControlName="username" type="text" class="form-control" placeholder="username" required minlength="4" maxlength="60">
+    <input formControlName="username" type="text" class="form-control" placeholder="username" required minlength="4" maxlength="15">
   </div>
   <div *ngIf="form.controls['username'].invalid && form.controls['username'].touched" class="alert alert-danger">
     <div *ngIf="form.controls['username'].errors['required']">
@@ -20,6 +20,13 @@
    <div *ngIf="form.controls['email'].errors['email']">
     Please provide a valid email address.
     </div>
+  </div>
+
+  <input formControlName="employee_id" type="number" class="form-control" placeholder="employee_id" required>
+  <div *ngIf="form.controls['employee_id'].invalid && form.controls['employee_id'].touched" class="alert alert-danger">
+    <div *ngIf="form.controls['employee_id'].errors['required']">
+   Employee ID is required.
+   </div>
   </div>
 
   <input formControlName="first_name" type="text" class="form-control" placeholder="First Name" required minlength="3">
@@ -53,42 +60,10 @@
   </div>
 
   <input formControlName="password" [NgPasswordValidator]="options" type="password" class="form-control" placeholder="Password" required>
-
-  <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+  <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">
+    <div *ngIf="form.controls['password'].errors['required']">
+   Password is required.
+   </div>
+   </div>
+  <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="form.invalid">Submit</button>
 </form>
-
-<!-- <form #regForm="ngForm" name="regForm" (submit)="submit(regForm.value)">
-  <h1 class="h3 mb-3 fw-normal">Please register</h1>
-
-  <input class="form-control" name="username" id="username" #username="ngModel" ngModel minlength="4" maxlength="60" class="form-control" placeholder="username" required>
-  <div [hidden]="username.valid || username.pristine" class="alert margin-top2p5 alert-danger">
-    <p>Username required</p>
-    <ul>
-      <li>Min. length: 4 characters</li>
-      <li>Max. length: 60 characters</li>
-    </ul>
-</div>
-
-  <input name="email" type="email" id="email" ngModel #email="ngModel" class="form-control" placeholder="Email" [email]="true" required>
-  <div [hidden]="email.valid || email.pristine" class="alert margin-top2p5 alert-danger">
-    <p>Email required</p>
-    <ul>
-      <li>Enter a valid email address</li>
-    </ul>
-</div>
-
-  <input name="first_name" id="first_name" ngModel #first_name="ngModel" class="form-control" minlength="3" placeholder="First Name" required>
-  <div [hidden]="first_name.valid || first_name.pristine" class="alert margin-top2p5 alert-danger">
-    <p>First name required</p>
-    <ul>
-      <li>Min. length: 3 characters</li>
-    </ul>
-</div>
-  <input name="last_name" id="last_name" ngModel #last_name="ngModel" class="form-control" placeholder="Last name" minlength="3" required>
-
-  <input name="petrol_station" ngModel #petrol_station="ngModel" class="form-control" placeholder="Petrol station" required>
-
-  <input name="password" [NgPasswordValidator]="options" type="password" class="form-control" placeholder="Password" required>
-
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
-</form> -->

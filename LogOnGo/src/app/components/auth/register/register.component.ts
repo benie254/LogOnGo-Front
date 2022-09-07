@@ -47,6 +47,7 @@ export class RegisterComponent implements OnInit {
     this.form = this.formBuilder.group({
       username: ['',Validators['required'], Validators['min'](4), Validators['maxLength'](60)],
       email: ['',Validators['email']],
+      employee_id: ['',Validators['required']],
       first_name: ['',Validators.required, Validators.minLength(3),],
       last_name: ['',Validators.required, Validators.minLength(3),],
       petrol_station: ['',Validators.required, Validators.minLength(7),],
@@ -61,6 +62,10 @@ export class RegisterComponent implements OnInit {
       },
       err => {
         Notiflix.Notify.failure('Registration failed!');
+        Notiflix.Notify.warning('Some of your details may be incorrect.');
+        if (this.form.invalid) {
+          Notiflix.Notify.warning('Some of your details may be null or incorrect.');
+        }
       });  
   }
 
