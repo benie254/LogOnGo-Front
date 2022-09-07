@@ -21,8 +21,8 @@ export class RegisterComponent implements OnInit {
     ) { }
 
     options: NgPasswordValidatorOptions = {
-      placement: 'bottom',
-      type: 'inline',
+      placement: 'right',
+      type: 'popup',
       'custom-class': 'custom-class',
       rules: {
         'password': {
