@@ -51,11 +51,12 @@ export class RegisterComponent implements OnInit {
       first_name: ['',Validators.required, Validators.minLength(3),],
       last_name: ['',Validators.required, Validators.minLength(3),],
       petrol_station: ['',Validators.required, Validators.minLength(7),],
-      password: ['',Validators.required]
+      password: ['',Validators.required],
+      password2:['',Validators.required]
     });
   }
   submit(): void {
-    this.http.post('http://127.0.0.1:8000/api/register/', this.form.getRawValue())
+    this.http.post('https://logongo.herokuapp.com/api/register/', this.form.getRawValue())
       .subscribe(() => {
         Notiflix.Notify.success('Registration successful!');
         this.router.navigate(['/login']);
