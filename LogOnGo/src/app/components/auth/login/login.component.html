@@ -1,11 +1,52 @@
-<form [formGroup]="form" (submit)="submit()">
-  <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+<div class="container padding">
+  <form [formGroup]="form" (submit)="submit()" class="color-two f-two padding-four rounded shadow">
+    <div class="text-align">
+      <img src="https://res.cloudinary.com/benie/image/upload/v1662828646/icons8-user-rights-50_sgvyxm.png" height="55" width="55" alt="">
+    </div>
+    <h1 class="text-center">Login to continue</h1>
+    <div class="row">
+      <div class="col color-one margin rounded shadow padding-2">
+        <label for="email">Email:</label>
+        <input formControlName="email" type="email" class="form-control" placeholder="your email address..." required>
+        <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['email'].errors['required']">
+            Email is required.
+          </div>
+          <div *ngIf="form.controls['email'].errors['email']">
+            Please provide a valid email address.
+          </div>
+        </div>
+      </div>
+      <div class="col color-one margin rounded shadow padding-2">
+        <label for="employee_id">Employee ID:</label>
+        <input formControlName="employee_id" id="employee_id" type="number" class="form-control" placeholder="your employee ID..." required>
+        <div *ngIf="form.controls['employee_id'].invalid && form.controls['employee_id'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['employee_id'].errors['required']">
+            Employee ID is required.
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <input formControlName="email" type="email" class="form-control" placeholder="Email" required>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col margin rounded color-one margin-top margin-bottom shadow padding-2">
+        <input formControlName="password" type="password" class="form-control" placeholder="Enter your password" required>
+        <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['password'].errors['required']">
+            Password is required.
+          </div>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
 
-  <input formControlName="username" type="text" class="form-control" placeholder="Username" required>
-
-  <input formControlName="password" type="password" class="form-control" placeholder="Password" required>
-
-  <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-</form>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col padding-bottom">
+        <button class="w-100 margin-top btn btn-sm btn-light btn-outline-dark" type="submit" [disabled]="form.invalid"><img src="https://res.cloudinary.com/benie/image/upload/v1662830129/icons8-login-64_glcxs4.png" height="60" width="60" alt=""></button>
+      </div>
+      <div class="col"></div>
+    </div>
+  </form>
+</div>

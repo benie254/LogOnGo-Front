@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import * as Notiflix from 'notiflix';
 
 @Component({
   selector: 'app-login',
@@ -21,16 +22,27 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email: '',
-      username: '',
-      password: ''
+      email: ['',Validators['email']],
+      employee_id: ['',Validators['required']],
+      password: ['',Validators['required']],
     });
   }
 
   submit(): void {
-    this.http.post('http://localhost:8000/api/login', this.form.getRawValue(), {
+    this.http.post('https://logongo.herokuapp.com/api/login', this.form.getRawValue(), {
       withCredentials: true
-    }).subscribe(() => this.router.navigate(['home']));
+    }).subscribe(() => {
+      Notiflix.Notify.success('Login successful! Welcome.');
+      this.router.navigate(['home'])
+    },
+    err => {
+      Notiflix.Notify.failure('Login failed!');
+      Notiflix.Notify.warning('Some of your details may be incorrect.');
+      if (this.form.invalid) {
+        Notiflix.Notify.failure('Login failed!');
+        Notiflix.Notify.warning('Some of your details may be null, incomplete or incorrect.');
+      }
+    });
   }
 
   // reloadPage(): void {

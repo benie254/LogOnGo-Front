@@ -51,11 +51,11 @@ export class RegisterComponent implements OnInit {
       username: ['',Validators['required'], Validators['min'](4), Validators['maxLength'](60)],
       email: ['',Validators['email']],
       employee_id: ['',Validators['required']],
-      first_name: ['',Validators.required, Validators.minLength(3),],
-      last_name: ['',Validators.required, Validators.minLength(3),],
-      petrol_station: ['',Validators.required, Validators.minLength(7),],
-      password: ['',Validators.required],
-      password2:['',Validators.required]
+      first_name: ['',Validators['required'], Validators['minLength(3)']],
+      last_name: ['',Validators['required'], Validators['minLength(3)']],
+      petrol_station: ['',Validators['required'], Validators['minLength(7)']],
+      password: ['',Validators['required']],
+      password2:['',Validators['required']]
     }, 
     { 
       validator: ConfirmedValidator('password', 'password2')
