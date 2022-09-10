@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgPasswordValidatorOptions } from 'ng-password-validator';
 import * as Notiflix from 'notiflix';
+import { ConfirmedValidator } from 'src/app/validators/confirmed.validator';
+
 
 @Component({
   selector: 'app-register',
@@ -42,6 +44,7 @@ export class RegisterComponent implements OnInit {
     isValid(event: boolean): void {
       console.log(event);
     }
+    
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -53,6 +56,9 @@ export class RegisterComponent implements OnInit {
       petrol_station: ['',Validators.required, Validators.minLength(7),],
       password: ['',Validators.required],
       password2:['',Validators.required]
+    }, 
+    { 
+      validator: ConfirmedValidator('password', 'password2')
     });
   }
   submit(): void {

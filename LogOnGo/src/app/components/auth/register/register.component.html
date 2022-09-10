@@ -1,5 +1,5 @@
 <div class="padding container">
-  <form [formGroup]="form" (submit)="submit()" novalidate class="color-two f-two padding-four rounded shadow">
+  <form [formGroup]="form" #regForm="ngForm" (submit)="submit()" novalidate class="color-two f-two padding-four rounded shadow">
     <div class="text-align">
       <img src="https://res.cloudinary.com/benie/image/upload/v1662528617/icons8-user-64_1_aqgcf9.png" height="70" width="70" alt="">
     </div>
@@ -86,21 +86,31 @@
     <div class="row">
       <div class="col"></div>
       <div class="col margin rounded color-one margin-top margin-bottom shadow padding-2">
-        <input formControlName="password" [NgPasswordValidator]="options" type="password" class="form-control center" placeholder="Create password" required>
+        <input formControlName="password" [NgPasswordValidator]="options" type="password" class="form-control center" placeholder="Create password" required (valid)="isValid($event)">
         <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['password'].errors['required']">
             Password is required.
           </div>
         </div>
       </div>
-      <input formControlName="password2" [NgPasswordValidator]="options" type="password" class="form-control center" placeholder="Repeat password" required>
+      <div class="col margin rounded color-one margin-top margin-bottom shadow padding-2">
+        <input formControlName="password2" type="password" class="form-control center" placeholder="Confirm password" required>
+        <div *ngIf="form.controls['password2'].invalid && form.controls['password'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['password2'].errors['required']">
+            Password confirmation is required.
+          </div>
+          <div *ngIf="form.controls['password2'].errors['confirmedValidator']">
+            Passwords must match.
+          </div>
+        </div>
+      </div>
       <div class="col"></div>
     </div>
   
     <div class="row">
       <div class="col"></div>
       <div class="col padding-bottom">
-        <button class="w-100 margin-top btn btn-sm btn-dark btn-outline-primary" type="submit" [disabled]="form.invalid"><img src="https://res.cloudinary.com/benie/image/upload/v1662528363/icons8-sign-up-64_1_qas6tr.png" heigt="60" width="60" alt=""></button>
+        <button class="w-100 margin-top btn btn-sm btn-dark btn-outline-primary" type="submit" [attr.disabled]="regForm.invalid ? true : null"><img src="https://res.cloudinary.com/benie/image/upload/v1662528363/icons8-sign-up-64_1_qas6tr.png" heigt="60" width="60" alt=""></button>
       </div>
       <div class="col"></div>
     </div>
