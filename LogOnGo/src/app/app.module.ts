@@ -80,6 +80,7 @@ import { authInterceptorProviders } from './helpers/auth/auth.interceptor';
 import * as Notiflix from 'notiflix';
 import { NgPasswordValidatorModule, NgPasswordValidatorOptions } from 'ng-password-validator';
 import { AuthBgComponent } from './components/auth/auth-bg/auth-bg.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -201,6 +202,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     ModeratorComponent,
     UsersComponent,
     AuthBgComponent,
+    LandingComponent,
   ],
   imports: [
     BrowserModule,
