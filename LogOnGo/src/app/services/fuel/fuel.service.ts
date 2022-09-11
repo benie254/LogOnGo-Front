@@ -7,7 +7,7 @@ import { Fuel } from 'src/app/classes/fuel/fuel';
   providedIn: 'root'
 })
 export class FuelService {
-  apiURLpetrol = 'https://logongo-api.herokuapp.com/petrol-info/'
+  apiURLpetrol = 'https://logongo.herokuapp.com/api/petrol-info/'
   apiURLdiesel = 'https://logongo-api.herokuapp.com/diesel-info/'
   apiURLgas = 'https://logongo-api.herokuapp.com/gas-info/'
   apiURLfuels = 'https://logongo-api.herokuapp.com/our-fuels/'

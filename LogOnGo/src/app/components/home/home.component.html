@@ -1,14 +1,9 @@
-<div class="container-fluid color-two" onload="myValue()">
+<div class="container-fluid color-two">
     <div class="row">
         <h1 class="text-center">All Petrol Logs for {{today|date}}</h1>
         
         <div class="border full-height col-md-6 color-four rounded black padding-2">
             <h2 class="text-center">General</h2>
-            <h1>Tester</h1>
-            <p #myTesterId ng-app="home" ng-controller="myCtrl" data-ng-init="init()">
-
-            </p>
-            <button (click)="myValue()">Get val</button>
             <div class="card color-two">
                 <h5 class="card-header">Initial tank amount: <span id="initial" >{{info.initial_litres_in_tank}}</span> Lts <span><button class="btn btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolAmount()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="20" width="20" alt=""></button> <span id="updatePetrolAmountForm">
                     <form  id="initUpdateForm" #initUpdateForm="ngForm" class="form margin-top" (ngSubmit)="updatePetrolInfo(initUpdateForm.value)">
@@ -53,38 +48,25 @@
                         </form>
                 </span> </span> </span> </h5>
             </div>
-            <div class="card color-two">
+            <div class="card color-two" *ngIf="yesterday_logs">
                 <h5 class="card-header">New tank balance: <span id="bal0">{{yesterday_logs.balance}}</span> Lts </h5>
             </div>
-            <div id="petrol-two" *ngIf="logs_two; else elseBlock2">
+            <div id="petrol-two" *ngIf="logs_two">
                 <div>
                     <app-log-card></app-log-card>
                 </div>  
             </div>
-            <div>
-                <ng-template #elseBlock2>
-                    <app-no-logs></app-no-logs>
-                </ng-template>
-            </div>
-            <div id="petrol-three" *ngIf="logs_three; else elseBlock3">
+            
+            <div id="petrol-three" *ngIf="logs_three">
                 <div>
                     <app-log-card></app-log-card>
                 </div>  
             </div>
-            <div>
-                <ng-template #elseBlock3>
-                    <app-no-logs></app-no-logs>
-                </ng-template>
-            </div>
-            <div id="petrol-four" *ngIf="logs_four; else elseBlock4">
+            
+            <div id="petrol-four" *ngIf="logs_four">
                 <div>
                     <app-log-card></app-log-card>
                 </div>  
-            </div>
-            <div>
-                <ng-template #elseBlock4>
-                    <app-no-logs></app-no-logs>
-                </ng-template>
             </div>
 
             <div>

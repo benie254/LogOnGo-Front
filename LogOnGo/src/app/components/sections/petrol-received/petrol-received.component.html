@@ -1,1 +1,8 @@
-<h5 class="card-header text-center">Petrol Received This Day: <span id="new-order2" *ngIf="petrol_received">{{petrol_received}}</span> Lts. <span><h6><a href="#orderInfo" onclick="toggleOrderInfo()">View order(s) info</a></h6></span> <h5> Record <a href="#fuelReceivedForm" onclick="toggleFuelReceivedForm()">new order</a></h5>
+<div *ngIf="petrol_received else elseBlockPetrolReceived">
+    <h5 class="card-header text-center">Petrol Received This Day: <span id="new-order2">{{petrol_received}}</span> Lts. <span><h6><a href="#orderInfo" onclick="toggleOrderInfo()">View order(s) info</a></h6></span>  Record <a href="#fuelReceivedForm" onclick="toggleFuelReceivedForm()">new order</a></h5>
+</div>
+<div>
+    <ng-template #elseBlockPetrolReceived>
+        <h5 class="card-header text-center">No petrol received this day.</h5>
+    </ng-template>
+</div>
