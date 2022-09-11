@@ -51,6 +51,13 @@
             <div class="card color-two" *ngIf="yesterday_logs">
                 <h5 class="card-header">New tank balance: <span id="bal0">{{yesterday_logs.balance}}</span> Lts </h5>
             </div>
+            <div>
+                <app-petrol-received></app-petrol-received>
+                <div id="fuelRecvdForm" class="rounded color-two padding margin"><br>
+                    <h2 class="text-center margin-top">Add Petrol Received information</h2> 
+                    <app-petrol-received-form></app-petrol-received-form>
+                </div>
+            </div>
             <div id="petrol-two" *ngIf="logs_two">
                 <div>
                     <app-log-card></app-log-card>
@@ -69,13 +76,6 @@
                 </div>  
             </div>
 
-            <div>
-                <app-petrol-received></app-petrol-received>
-                <div id="fuelRecvdForm" class="rounded color-two padding margin"><br>
-                    <h2 class="text-center margin-top">Add Petrol Received information</h2> 
-                    <app-petrol-received-form></app-petrol-received-form>
-                </div>
-            </div>
             <div id="petrol-one" *ngIf="logs else elseBlock">
                 <div class="card color-two">
                     <h4 class="card-header">{{logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm"><app-priceperlitre-update-form></app-priceperlitre-update-form></span> </span></h6></span></h4>
