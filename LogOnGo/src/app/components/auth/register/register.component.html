@@ -7,7 +7,8 @@
   
     <div class="row rounded">
       <div class="col color-one margin rounded shadow padding-2">
-        <label for="username">Username</label>
+        <img src="https://res.cloudinary.com/benie/image/upload/v1662907662/icons8-username-32_ijbhdr.png" height="35" width="35" alt="">
+        <label for="username">Username:</label>
         <input id="username" formControlName="username" type="text" class="form-control" placeholder="your username..." required minlength="4" maxlength="15">
         <div *ngIf="form.controls['username'].invalid && form.controls['username'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['username'].errors['required']">
@@ -19,7 +20,8 @@
         </div>
       </div>
       <div class="col color-one margin rounded shadow padding-2">
-        <label for="email">Email</label>
+        <img src="https://res.cloudinary.com/benie/image/upload/v1662908137/icons8-mail-50_jcseod.png" height="35" width="35" alt="">
+        <label for="email">Email:</label>
         <input formControlName="email" id="email" type="email" class="form-control" placeholder="your email..." required>
         <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['email'].errors['required']">
@@ -34,7 +36,8 @@
   
     <div class="row">
       <div class="col color-one margin rounded shadow padding-2">
-        <label for="first_name">First name</label>
+        <img src="https://res.cloudinary.com/benie/image/upload/v1662908248/icons8-name-64_l2rpyx.png" height="35" width="35" alt="">
+        <label for="first_name">First name:</label>
         <input formControlName="first_name" id="first_name" type="text" class="form-control" placeholder="your first name..." required minlength="3" maxlength="25">
         <div *ngIf="form.controls['first_name'].invalid && form.controls['first_name'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['first_name'].errors['required']">
@@ -46,7 +49,8 @@
         </div>
       </div>
       <div class="col color-one margin rounded shadow padding-2">
-        <label for="last_name">Last name</label>
+        <img src="https://res.cloudinary.com/benie/image/upload/v1662908248/icons8-name-64_l2rpyx.png" height="35" width="35" alt="">
+        <label for="last_name">Last name:</label>
         <input formControlName="last_name" id="last_name" type="text" class="form-control" placeholder="your last name..." required minlength="3" maxlength="20">
         <div *ngIf="form.controls['last_name'].invalid && form.controls['last_name'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['last_name'].errors['required']">
@@ -61,7 +65,8 @@
   
     <div class="row">
       <div class="col color-one margin rounded shadow padding-2">
-        <label for="petrol_station">Petrol station</label>
+        <img src="https://res.cloudinary.com/benie/image/upload/v1662908433/icons8-petrol-station-67_bcboe0.png" height="35" width="35" alt="">
+        <label for="petrol_station">Petrol station:</label>
         <input formControlName="petrol_station" id="petrol_station" type="text" class="form-control" placeholder="site name..." required minlength="7">
         <div *ngIf="form.controls['petrol_station'].invalid && form.controls['petrol_station'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['petrol_station'].errors['required']">
@@ -73,7 +78,8 @@
         </div>
       </div>
       <div class="col color-one margin rounded shadow padding-2">
-        <label for="employee_id">Employee ID</label>
+        <img src="https://res.cloudinary.com/benie/image/upload/v1662908490/icons8-id-66_y50o5e.png" height="35" width="35" alt="">
+        <label for="employee_id">Employee ID:</label>
         <input formControlName="employee_id" id="employee_id" type="number" class="form-control" placeholder="employee ID no..." required>
         <div *ngIf="form.controls['employee_id'].invalid && form.controls['employee_id'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['employee_id'].errors['required']">
@@ -86,6 +92,9 @@
     <div class="row">
       <div class="col"></div>
       <div class="col margin rounded color-one margin-top margin-bottom shadow padding-2">
+        <div class="text-center margin-bottom-half">
+          <img src="https://res.cloudinary.com/benie/image/upload/v1662908548/icons8-security-shield-green-50_rdkwul.png" height="35" width="35" alt="">
+        </div>
         <input formControlName="password" [NgPasswordValidator]="options" type="password" class="form-control center" placeholder="Create password" required (valid)="isValid($event)">
         <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['password'].errors['required']">
@@ -94,6 +103,9 @@
         </div>
       </div>
       <div class="col margin rounded color-one margin-top margin-bottom shadow padding-2">
+        <div class="text-center margin-bottom-half">
+          <img src="https://res.cloudinary.com/benie/image/upload/v1662908548/icons8-security-shield-green-50_rdkwul.png" height="35" width="35" alt="">
+        </div>
         <input formControlName="password2" type="password" class="form-control center" placeholder="Confirm password" required>
         <div *ngIf="form.controls['password2'].invalid && form.controls['password'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['password2'].errors['required']">
