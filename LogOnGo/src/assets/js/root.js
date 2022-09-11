@@ -806,3 +806,23 @@ function toggleLogForm(){
    });
 
    
+   function toggleNext(){
+    var img = document.getElementById("img2");
+    var img1 = document.getElementById("img1");
+    var next = document.getElementById("next");
+    // img.style.opacity = '1';
+    img.style.display = 'block';
+    img1.style.display = 'none';
+
+   }
+
+   function toggleNext2(){
+    var img = document.getElementById("img3");
+    var img1 = document.getElementById("img1");
+    var img2 = document.getElementById("img2");
+    var next = document.getElementById("next2");
+    // img.style.opacity = '1';
+    img.style.display = 'block';
+    img1.style.display = 'none';
+    img2.style.display = 'none';
+   }
