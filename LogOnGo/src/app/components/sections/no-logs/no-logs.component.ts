@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare function toggleLog(): any;
+
 @Component({
   selector: 'app-no-logs',
   templateUrl: './no-logs.component.html',

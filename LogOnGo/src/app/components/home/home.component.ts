@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, VERSION, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { LogMpesa } from 'src/app/classes/log-mpesa/log-mpesa';
 import { Log } from 'src/app/classes/log/log';
@@ -29,13 +30,6 @@ declare var angular: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  name = "Angular " + VERSION.major;
-  @ViewChild("myTesterId") myTesterId: ElementRef; 
-  myValue(){
-    alert(this.myTesterId);
-    this.myTesterId.nativeElement.innerHTML = 'This tester works!';   
-  } 
-
   fuels: Fuel;
   info: Fuel;
   myAlert: any; 
@@ -94,8 +88,11 @@ export class HomeComponent implements OnInit {
     console.warn(fuel_info);
     this.fuelService.addFuel(fuel_info).subscribe((result) => {
       console.warn('result', result);
-      this.notifService.submitSuccess('success','Log added successfully!')
-      // this.notifService.showSuccess("Data posted successfully !!", "Notification")
+      Notiflix.Notify.success('Fuel info added successful!');
+    }, 
+    err => {
+      Notiflix.Notify.failure('Something went wrong!');
+      Notiflix.Notify.warning('Please try again.');
     });
   }
   
@@ -103,8 +100,11 @@ export class HomeComponent implements OnInit {
     console.warn(log_info);
     this.logService.addLog(log_info).subscribe((result) => {
       console.warn('result', result);
-      this.notifService.submitSuccess('success','Log added successfully!')
-      // this.notifService.showSuccess("Data posted successfully !!", "Notification")
+      Notiflix.Notify.success('Fuel info added successful!');
+    }, 
+    err => {
+      Notiflix.Notify.failure('Something went wrong!');
+      Notiflix.Notify.warning('Please try again.');
     });
   }
 
@@ -112,22 +112,34 @@ export class HomeComponent implements OnInit {
     console.warn(petrol_info);
     this.fuelService.updatePetrolInfo(petrol_info).subscribe((result) => {
       console.warn('updated result',result);
-      this.notifService.submitSuccess('success','Petrol info updated successfully!')
-    })
+      Notiflix.Notify.success('Petrol info updated successful!');
+    }, 
+    err => {
+      Notiflix.Notify.failure('Something went wrong!');
+      Notiflix.Notify.warning('Please try again.');
+    });
   }
   updateDieselInfo(diesel_info:any){
     console.warn(diesel_info);
     this.fuelService.updateDieselInfo(diesel_info).subscribe((result) => {
       console.warn('updated result',result);
-      this.notifService.submitSuccess('success','Diesel info updated successfully!')
-    })
+      Notiflix.Notify.success('Diesel info updated successful!');
+    }, 
+    err => {
+      Notiflix.Notify.failure('Something went wrong!');
+      Notiflix.Notify.warning('Please try again.');
+    });
   }
   updateGasInfo(gas_info:any){
     console.warn(gas_info);
     this.fuelService.updateGasInfo(gas_info).subscribe((result) => {
       console.warn('updated result',result);
-      this.notifService.submitSuccess('success','Gas info updated successfully!')
-    })
+      Notiflix.Notify.success('Gas info updated successful!');
+    }, 
+    err => {
+      Notiflix.Notify.failure('Something went wrong!');
+      Notiflix.Notify.warning('Please try again.');
+    });
   }
 
   ngOnInit():void {

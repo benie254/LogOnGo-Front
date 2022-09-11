@@ -62,11 +62,11 @@ function togglePPUpdateForm(){
     }
 }
 function toggleLogForm(){
-    var hide = document.getElementById('logForm');
-    if(hide.style.display === 'block'){
-        hide.style.display = 'none';
+    var form = document.getElementById('logForm');
+    if(form.style.display === 'block'){
+        form.style.display = 'none';
     } else {
-        hide.style.display = 'block';
+        form.style.display = 'block';
     }
 }
   function myTotalGas(){
