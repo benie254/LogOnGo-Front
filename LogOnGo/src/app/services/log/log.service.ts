@@ -8,15 +8,15 @@ import { Log } from 'src/app/classes/log/log';
   providedIn: 'root'
 })
 export class LogService {
-  apiURLtodayLogs = 'https://logongo-api.herokuapp.com/logs-today/'
-  apiURLallLogs = 'https://logongo-api.herokuapp.com/all-logs/'
-  apiURLpetrolLogDetails = 'https://logongo-api.herokuapp.com/petrol-log-details/'
-  apiURLpetrolLogsYesterday = 'https://logongo-api.herokuapp.com/fuel-logs-yesterday/2'
-  apiURLpetrolLogs = 'https://logongo-api.herokuapp.com/fuel-logs-today/2'
-  apiURLpetrolLogs2 = 'https://logongo-api.herokuapp.com/fuel-logs-ii-today/6'
-  apiURLpetrolLogs3 = 'https://logongo-api.herokuapp.com/fuel-logs-iii-today/6'
-  apiURLpetrolLogs4 = 'https://logongo-api.herokuapp.com/fuel-logs-iv-today/6'
-  apiURLmpesaLogs = 'https://logongo-api.herokuapp.com/mpesa-logs-today/'
+  apiURLtodayLogs = 'https://logongo.herokuapp.com/api/logs-today/'
+  apiURLallLogs = 'https://logongo.herokuapp.com/api/all-logs/'
+  apiURLpetrolLogDetails = 'https://logongo.herokuapp.com/api/log-details/1'
+  apiURLpetrolLogsYesterday = 'https://logongo.herokuapp.com/api/logs-today/'
+  apiURLpetrolLogs = 'https://logongo.herokuapp.com/api/fuel-logs-today/1'
+  apiURLpetrolLogs2 = 'https://logongo.herokuapp.com/api/fuel-logs-ii-today/1'
+  apiURLpetrolLogs3 = 'https://logongo.herokuapp.com/api/fuel-logs-iii-today/1'
+  apiURLpetrolLogs4 = 'https://logongo.herokuapp.com/api/fuel-logs-iv-today/1'
+  apiURLmpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/'
 
   constructor(private http:HttpClient) { }
 

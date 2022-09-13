@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   fuels: Fuel;
   info: Fuel;
   myAlert: any; 
-  logs: Log;
+  logs: any;
   logs_two: Log;
   logs_three: Log;
   logs_four: Log;
@@ -58,9 +58,9 @@ export class HomeComponent implements OnInit {
       console.warn("data",data);
     });
 
-    this.logService.getPetrolLogs().subscribe((data) => {
+    this.logService.getAllLogs().subscribe((data) => {
       this.logs = data
-      console.warn("data",data)
+      console.warn("today petrol logs",data)
     });
     this.logService.getPetrolLogs2().subscribe((data) => {
       this.logs_two = data
