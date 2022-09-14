@@ -1,4 +1,5 @@
 export class Log {
+    id: number;
     date: string;
     eod_reading_lts: number;
     eod_reading_yesterday: number;

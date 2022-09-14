@@ -12,7 +12,7 @@ export class LogService {
   apiURLallLogs = 'https://logongo.herokuapp.com/api/all-logs/'
   apiURLpetrolLogDetails = 'https://logongo.herokuapp.com/api/log-details/1'
   apiURLpetrolLogsYesterday = 'https://logongo.herokuapp.com/api/logs-today/'
-  apiURLpetrolLogs = 'https://logongo.herokuapp.com/api/fuel-logs-today/1'
+  apiURLpetrolLogs = 'https://logongo.herokuapp.com/api/fuel-logs-today/'
   apiURLpetrolLogs2 = 'https://logongo.herokuapp.com/api/fuel-logs-ii-today/1'
   apiURLpetrolLogs3 = 'https://logongo.herokuapp.com/api/fuel-logs-iii-today/1'
   apiURLpetrolLogs4 = 'https://logongo.herokuapp.com/api/fuel-logs-iv-today/1'
@@ -37,8 +37,8 @@ export class LogService {
   getAllLogs(): Observable<Log>{
     return this.http.get<Log>(this.apiURLallLogs);
   }
-  getPetrolLogs(): Observable<Log>{
-    return this.http.get<Log>(this.apiURLpetrolLogs);
+  getPetrolLogs(id:number): Observable<Log>{
+    return this.http.get<Log>(this.apiURLpetrolLogs + id);
   }
   getPetrolLogs2(): Observable<Log>{
     return this.http.get<Log>(this.apiURLpetrolLogs2);

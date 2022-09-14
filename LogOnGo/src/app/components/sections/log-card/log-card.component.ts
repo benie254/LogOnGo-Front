@@ -20,10 +20,10 @@ export class LogCardComponent implements OnInit {
       console.warn("data",data)
     });
 
-    this.logService.getPetrolLogs().subscribe((data) => {
-      this.logs = data
-      console.warn("data",data)
-    });
+    // this.logService.getPetrolLogs().subscribe((data) => {
+    //   this.logs = data
+    //   console.warn("data",data)
+    // });
   }
 
   ngOnInit(): void {

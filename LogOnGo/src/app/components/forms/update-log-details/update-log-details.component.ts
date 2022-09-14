@@ -14,10 +14,10 @@ export class UpdateLogDetailsComponent implements OnInit {
   username: any;
 
   constructor(private logService:LogService, private notifService:NotificationService) {
-    this.logService.getPetrolLogs().subscribe((data) => {
-      this.log = data
-      console.warn("data",data)
-    });
+    // this.logService.getPetrolLogs().subscribe((data) => {
+    //   this.log = data
+    //   console.warn("data",data)
+    // });
 
     this.logService.getYesterdayLogs().subscribe((data) => {
       this.yesterday_logs = data

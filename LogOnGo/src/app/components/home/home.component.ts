@@ -30,10 +30,10 @@ declare var angular: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  logs: any;
   fuels: Fuel;
   info: Fuel;
   myAlert: any; 
-  logs: any;
   logs_two: Log;
   logs_three: Log;
   logs_four: Log;
@@ -58,10 +58,10 @@ export class HomeComponent implements OnInit {
       console.warn("data",data);
     });
 
-    this.logService.getAllLogs().subscribe((data) => {
-      this.logs = data
-      console.warn("today petrol logs",data)
-    });
+    // this.logService.getPetrolLogs().subscribe((data) => {
+    //   this.logs = data
+    //   console.warn("today petrol logs",data)
+    // });
     this.logService.getPetrolLogs2().subscribe((data) => {
       this.logs_two = data
       console.warn("data",data)
@@ -78,6 +78,7 @@ export class HomeComponent implements OnInit {
       this.mpesa = data
       console.warn("data",data)
     });
+    
   }
 
   toggleInfo(event:any){
@@ -152,8 +153,21 @@ export class HomeComponent implements OnInit {
     getBalHome();
     myPumps();
     toggleInitUpdateForm();
+
+    this.route.params.subscribe(
+      params => this.getPetrolLogs(params['id'])
+    );
+    
+
     
   }
+  getPetrolLogs(id:number){
+    this.logService.getPetrolLogs(id).subscribe((data:Log) => {
+      this.logs = data
+      console.warn('petrol_info_today:',data)
+    });
+  }
+  
 
 
 }
