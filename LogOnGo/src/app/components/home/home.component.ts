@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, VERSION, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { LogMpesa } from 'src/app/classes/log-mpesa/log-mpesa';
@@ -12,6 +12,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
 
+declare function togglePLogs(): any;
 declare function secondAlert(): any;
 declare function myTotal(): any;
 declare function myAlert(): any; 
@@ -24,13 +25,29 @@ declare function toggleInitUpdateForm(): any;
 declare var angular: any;
 
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  logs: any;
+  logs: Log = {
+    id: 0,
+    date: '',
+    eod_reading_lts: 0.00,
+    eod_reading_yesterday: 0.00,
+    total_litres_sold: 0.00,
+    amount_earned_today: 0,
+    fuel: 0,
+    logged_by: '',
+    user_id: 0,
+    balance: 0.00,
+    balance_yesterday: 0.00,
+    updated_balance: 0.00,
+    first_logged: '',
+    last_edited: ''
+  };
   fuels: Fuel;
   info: Fuel;
   myAlert: any; 
@@ -41,13 +58,21 @@ export class HomeComponent implements OnInit {
   id: number;
   mpesa_logs: LogMpesa;
   yesterday_logs: Log;
+  currentRouter = this.router.url;
 
   today = new Date();
 
   pp = new FormControl('1');
   
 
-  constructor(private fuelService:FuelService, private http:HttpClient,private notifService:NotificationService, private logService:LogService, private route:ActivatedRoute) { 
+  constructor(
+    private fuelService:FuelService, 
+    private http:HttpClient,
+    private notifService:NotificationService, 
+    private logService:LogService, 
+    private route:ActivatedRoute,
+    private router:Router
+    ) { 
     this.fuelService.getPetrolInfo().subscribe((data) => {
       this.info = data
       console.warn("data",data)
@@ -101,13 +126,15 @@ export class HomeComponent implements OnInit {
     console.warn(log_info);
     this.logService.addLog(log_info).subscribe((result) => {
       console.warn('result', result);
-      Notiflix.Notify.success('Fuel info added successful!');
+      Notiflix.Notify.success('Petrol log added successful!');
+      this.ngOnInit();
     }, 
     err => {
       Notiflix.Notify.failure('Something went wrong!');
       Notiflix.Notify.warning('Please try again.');
     });
   }
+
 
   updatePetrolInfo(petrol_info:any){
     console.warn(petrol_info);
@@ -144,6 +171,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit():void {
+    this.route.params.subscribe(params => this.getPetrolLogs(params['id']))
     secondAlert();
     myAlert();
     myTester();
@@ -154,17 +182,25 @@ export class HomeComponent implements OnInit {
     myPumps();
     toggleInitUpdateForm();
 
-    this.route.params.subscribe(
-      params => this.getPetrolLogs(params['id'])
-    );
+    // this.getPetrolLogs(
+    //   this.route.snapshot.params['id']
+    // );
     
 
     
   }
-  getPetrolLogs(id:number){
-    this.logService.getPetrolLogs(id).subscribe((data:Log) => {
+  getPetrolLogs(id:number): void{
+    this.logService.getPetrolLogs(id).subscribe(
+      data => {
       this.logs = data
+      this.ngOnInit();
       console.warn('petrol_info_today:',data)
+      Notiflix.Notify.success('Get success!');
+      
+    },
+    error => {
+      console.log(error)
+      Notiflix.Notify.failure('Something went wrong!');
     });
   }
   

@@ -81,6 +81,7 @@ import * as Notiflix from 'notiflix';
 import { NgPasswordValidatorModule, NgPasswordValidatorOptions } from 'ng-password-validator';
 import { AuthBgComponent } from './components/auth/auth-bg/auth-bg.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { RouterModule } from '@angular/router';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -208,6 +209,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,

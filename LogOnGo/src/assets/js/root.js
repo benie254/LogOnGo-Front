@@ -26,6 +26,23 @@
 // function secondAlert(){
 //   return window.alert("Hello!");
 // }
+
+function togglePLogs(){
+  var btn = document.getElementById("pLogsBtn");
+  var overLay = document.getElementById("pLogs");
+  if(btn.style.display && overLay.style.display === 'none'){
+    btn.style.display = 'block';
+    overLay.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+    overLay.style.display = 'none';
+  }
+  // if(overLay.style.display === 'block'){
+  //   overLay.style.display = 'none';
+  // } else {
+  //   overLay.style.display = 'block';
+  // }
+}
   
 function myTotal(){
   var today = document.getElementById("tester-todayJS").textContent;

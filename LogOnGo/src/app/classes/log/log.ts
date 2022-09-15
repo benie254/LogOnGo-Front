@@ -9,7 +9,8 @@ export class Log {
     logged_by: string;
     user_id: number;
     balance: number;
+    balance_yesterday: number;
     updated_balance: number;
-    first_logged: Date;
-    last_edited: Date;
+    first_logged: string;
+    last_edited: string;
 }

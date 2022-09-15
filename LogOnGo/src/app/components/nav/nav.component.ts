@@ -16,11 +16,11 @@ export class NavComponent implements OnInit {
   constructor(private profileService:ProfileService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.profileDetails(params['id']))
+    
   }
 
-  profileDetails(id:number){
-    this.profileService.getProfileDetails(id).subscribe((data:Profile) => {
+  profileDetails(){
+    this.profileService.getProfileDetails().subscribe((data:Profile) => {
       console.log(data);
       this.profile_details = data ;
     })

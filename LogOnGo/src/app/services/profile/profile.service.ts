@@ -8,14 +8,14 @@ import { Profile } from 'src/app/classes/profile/profile';
 })
 export class ProfileService {
 
-  apiURL = 'https://logongo-api.herokuapp.com/profile-details/'
-  apiURL2 = 'https://logongo-api.herokuapp.com/gas-info/'
-  apiURL3 = 'https://logongo-api.herokuapp.com/our-fuels/'
+  apiURL = 'https://logongo.herokuapp.com/api/user-profile/'
+  apiURL2 = 'https://logongo.herokuapp.com/api/gas-info/'
+  apiURL3 = 'https://logongo.herokuapp.com/api/our-fuels/'
 
   constructor(private http:HttpClient) { }
 
-  getProfileDetails(id:number): Observable<Profile>{
-    return this.http.get<Profile>(this.apiURL + id)
+  getProfileDetails(): Observable<Profile>{
+    return this.http.get<Profile>(this.apiURL)
   }
   
 }

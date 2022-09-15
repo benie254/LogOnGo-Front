@@ -345,3 +345,10 @@ ul {
 .margin-bottom-half{
   margin-bottom: 0.5%;
 }
+
+.opacity-half{
+  opacity: 0.95;
+}
+#pLogsBtn,#pLogs{
+  display: block;
+}
