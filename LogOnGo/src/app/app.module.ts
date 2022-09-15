@@ -82,6 +82,7 @@ import { NgPasswordValidatorModule, NgPasswordValidatorOptions } from 'ng-passwo
 import { AuthBgComponent } from './components/auth/auth-bg/auth-bg.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { RouterModule } from '@angular/router';
+import { PetrolLogsComponent } from './components/pages/petrol-logs/petrol-logs.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -204,6 +205,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     UsersComponent,
     AuthBgComponent,
     LandingComponent,
+    PetrolLogsComponent,
   ],
   imports: [
     BrowserModule,

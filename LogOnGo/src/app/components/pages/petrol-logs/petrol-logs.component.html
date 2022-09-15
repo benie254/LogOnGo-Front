@@ -1,0 +1,172 @@
+<div class="container-fluid shadow rounded color-two">
+    <div class="row shadow rounded">
+        <h1 class="text-center">All Petrol Logs for {{today|date}}</h1>
+        
+        <div class="border full-height shadow col-md-6 color-one rounded black padding-2">
+            <h2 class="text-center">General</h2>
+            <div class="card color-two">
+                <h5 class="card-header">Initial tank amount: <span id="initial" >{{info.initial_litres_in_tank}}</span> Lts <span><button class="btn btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolAmount()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="20" width="20" alt=""></button> <span id="updatePetrolAmountForm">
+                    <form  id="initUpdateForm" #initUpdateForm="ngForm" class="form margin-top" (ngSubmit)="updatePetrolInfo(initUpdateForm.value)">
+                        <div class="form-group hide">
+                            <input type="text" id="fuel_type" ngModel #fuel_type="ngModel" name="fuel_type" placeholder="fuel type" class="form-control" [(ngModel)]="info.fuel_type"> 
+                            <input type="number" id="price_per_litre" ngModel #price_per_litre="ngModel" name="price_per_litre" placeholder="PP" class="form-control" [(ngModel)]="info.price_per_litre">
+                            <input type="number" ngModel id="#pumps" #pumps="ngModel" name="pumps" placeholder="pumps" class="form-control" [(ngModel)]="info.pumps">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="number" ngModel id="initial_litres_in_tank" #initial_litres_in_tank="ngModel" class="form-control" name="initial_litres_in_tank" placeholder="initial tank amount" required [(ngModel)]="info.initial_litres_in_tank">
+                                <div [hidden]="initial_litres_in_tank.valid || initial_litres_in_tank.pristine" class="alert margin-top2p5 alert-danger">
+                                    <p>Amount required</p>
+                                </div>
+            
+                                <div class="form-group">
+                                    <button type="submit" onclick="toggleUpdatePetrolAmount()" class="btn btn-sm btn-dark btn-outline-info margin-top2p5">Update</button>
+                                </div>
+                            </div>
+                            <div class="col"></div>
+                        </div>  
+                    </form></span></span> <span class="float-right margin-top">Pumps: <span id="pumpNo">{{info.pumps}}</span>  <span>&nbsp;<button class="btn btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPumps()"> <img class="" type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="20" width="20" alt=""></button> <span id="updatePetrolPumpsForm">
+                        <form #pumpsUpdateForm="ngForm" class="form margin-top" (ngSubmit)="updatePetrolInfo(pumpsUpdateForm.value)">
+                            <div class="form-group hide">
+                                <input type="text" id="fuel_type" ngModel #fuel_type="ngModel" name="fuel_type" placeholder="fuel type" class="hide form-control" [(ngModel)]="info.fuel_type"> 
+                                <input type="number" id="price_per_litre" ngModel #price_per_litre="ngModel" name="price_per_litre" placeholder="PP" class="hide form-control" [(ngModel)]="info.price_per_litre">
+                                <input type="number" ngModel id="initial_litres_in_tank" #initial_litres_in_tank="ngModel" class="form-control hide" name="initial_litres_in_tank" placeholder="initial tank amount" [(ngModel)]="info.initial_litres_in_tank">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="number" ngModel id="#pumps" #pumps="ngModel" name="pumps" placeholder="pumps" class="form-control" [(ngModel)]="info.pumps" required>
+                                    <div [hidden]="pumps.valid || pumps.pristine" class="alert margin-top2p5 alert-danger">
+                                        <p>Pumps required</p>
+                                    </div>
+                        
+                                    <div class="form-group">
+                                        <button type="submit" onclick="toggleUpdatePetrolPumps()" class="btn btn-sm btn-dark btn-outline-info margin-top2p5">Update</button>
+                                    </div>
+                                </div>
+                                <div class="col"></div>
+                            </div>  
+                        </form>
+                </span> </span> </span> </h5>
+            </div>
+            <div class="card color-two" *ngIf="logs.id">
+                <h5 class="card-header">Tank balance yesterday: <span id="bal0">{{logs.balance_yesterday}}</span> Lts <br> <span class="float">Latest balance today: <span *ngIf="logs.updated_balance else elseBlockTank">{{logs.updated_balance}} <span>Lts</span></span> <span><div><ng-template #elseBlockTank>{{logs.balance}}</ng-template></div> </span></span></h5>
+            </div>
+            <div>
+                <app-petrol-received></app-petrol-received>
+                <div id="fuelRecvdForm" class="rounded color-two padding margin"><br>
+                    <h2 class="text-center margin-top">Add Petrol Received information</h2> 
+                    <app-petrol-received-form></app-petrol-received-form>
+                </div>
+            </div>
+            <div id="" *ngIf="logs.id else elseBlock">
+                <div class="card color-two">
+                    <h4 class="card-header">{{logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm"><app-priceperlitre-update-form></app-priceperlitre-update-form></span> </span></h6></span></h4>
+                    <div class="card-body">
+                        <h5 class="card-title">Logs</h5>
+                        <div class="table-responsive">
+                            <table class="table table-stripped table-hover table-info">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">EOD Reading Today</th>
+                                    <th scope="col">EOD Reading Yesterday</th>
+                                    <th scope="col">Total litres sold today</th>
+                                    <th scope="col">Amount earned today</th>
+                                    <!-- <th scope="col">Get balance</th> -->
+                                    <th scope="col"><ng-template #elseBlockTaBal>Balance (lts)</ng-template></th>
+                                    <th scope="col" *ngIf="logs.updated_balance else elseBlockTaBal">Updated Balance (lts)</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>{{logs.eod_reading_lts}}</td>
+                                    <td>{{logs.eod_reading_yesterday}}</td>
+                                    <td>{{logs.total_litres_sold}}</td>
+                                    <td>{{logs.amount_earned_today}}</td>
+                                    <!-- <td id="" name=""><span> <app-bal-form></app-bal-form> </span> <span></span></td> -->
+                                    <td id=""><ng-template #elseBlockTaBal>{{logs.balance}}</ng-template></td>
+                                    <td>{{logs.updated_balance}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <small class="">Logged by {{logs.logged_by}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="">Details</a> </small>
+                    </div>
+                </div>
+            </div>
+            <div id="petrol-two" *ngIf="logs_two">
+                <div>
+                    <app-log-card></app-log-card>
+                </div>  
+            </div>
+            
+            <div id="petrol-three" *ngIf="logs_three">
+                <div>
+                    <app-log-card></app-log-card>
+                </div>  
+            </div>
+            
+            <div id="petrol-four" *ngIf="logs_four">
+                <div>
+                    <app-log-card></app-log-card>
+                </div>  
+            </div>
+
+            
+            <div>
+                <ng-template #elseBlock>
+                    <div class="card color-two">
+                        <div class="card-body">
+                            <p class="card-text">Your logs will appear here.</p>
+                            <p class="card-text"><a routerLink="#logForm" type="button" onclick="toggleLog()">Record logs now?</a></p>
+                        </div>
+                    </div>
+                </ng-template> 
+             </div>
+        </div>    
+
+        <div class="col-md-6 shadow full-height color-one rounded black padding-2 border">
+            <h2 class="text-center">Mpesa</h2>
+            <div *ngIf="mpesa_logs else elseBlockMpesa">
+                <app-mpesa-logs></app-mpesa-logs>
+            </div>
+            <div>
+                <ng-template #elseBlockMpesa>
+                    <app-no-mpesalogs></app-no-mpesalogs>
+                </ng-template>
+            </div>
+        </div>
+
+        <div id="logForm" class="rounded"><br>
+            <h2 class="text-center margin-top">Add Petrol Log details</h2>
+            <form #logForm="ngForm" class="form" (ngSubmit)="addLog(logForm.value)">
+                <div class="row">
+                    <div class="col">
+                        <label for="fuel" class="">Fuel type</label>
+                        <input type="number" class="Aj" ngModel #fuel="ngModel" [(ngModel)]="info.id" id="fuel" name="fuel" placeholder="Fuel type">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="date" class="">Log date</label>
+                        <input type="date" ngModel #date="ngModel" class="Aj form-control" id="date" name="date" placeholder="Date" required>
+                        <div [hidden]="date.valid || date.pristine" class="alert margin-top2p5 alert-danger">
+                            <p>Date required</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="eod_reading_lts">End of day reading</label>
+                        <input type="number" ngModel #eod_reading_lts="ngModel" class="Aj form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)" required>
+                        <div [hidden]="eod_reading_lts.valid || eod_reading_lts.pristine" class="alert margin-top2p5 alert-danger">
+                            <p>EOD reading required</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" onclick="toggleLogForm()">Log</button>
+                </div> 
+            </form>  
+        </div>
+    </div>   
+</div>

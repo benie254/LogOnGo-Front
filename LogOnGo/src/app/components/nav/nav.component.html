@@ -5,13 +5,14 @@
         LogOnGo
       </a>
       <a href="/home" class="active" routerLink="home">Home</a>
-      <a class="nav-link" href="">Diesel</a>
-      <a class="nav-link" href="">Gas</a>
-      <a class="nav-link" href="">All Logs</a>
-      <a class="nav-link" href="">Add Log</a>
-            <a class="nav-link" href="">Add Mpesa</a>
-            <a class="nav-link" href="">Report Incident</a>
-            <a class="nav-link" href="">Profile</a>
+      <a class="nav-link" type="button" (click)="goToPetrolLogs(petrol_info.id)">Petrol</a>
+      <a class="nav-link" type="button" (click)="goToDieselLogs(diesel_info.id)">Diesel</a>
+      <a class="nav-link" type="button" (click)="goToGasLogs(gas_info.id)">Gas</a>
+      <a class="nav-link" routerLink="logs">All Logs</a>
+      <a class="nav-link" routerLink="add-log">Add Log</a>
+            <a class="nav-link" routerLink="add-mpesa">Add Mpesa</a>
+            <a class="nav-link" routerLink="incident">Report Incident</a>
+            <a class="nav-link" routerLink="profile">Profile</a>
             <a class="nav-link" href="">Logout</a>
             <a class="nav-link" href="">Admin</a>
             <form class="d-flex" action="" role="search">

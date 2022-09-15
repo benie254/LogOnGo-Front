@@ -8,8 +8,8 @@ import { Fuel } from 'src/app/classes/fuel/fuel';
 })
 export class FuelService {
   apiURLpetrol = 'https://logongo.herokuapp.com/api/petrol-info/'
-  apiURLdiesel = 'https://logongo-api.herokuapp.com/diesel-info/'
-  apiURLgas = 'https://logongo-api.herokuapp.com/gas-info/'
+  apiURLdiesel = 'https://logongo.herokuapp.com/api/diesel-info/'
+  apiURLgas = 'https://logongo.herokuapp.com/api/gas-info/'
   apiURLfuels = 'https://logongo-api.herokuapp.com/our-fuels/'
   apiURLdieselReceived = 'https://logongo-api.herokuapp.com/diesel-received-today/info/'
   apiURLgasReceived = 'https://logongo-api.herokuapp.com/gas-received-today/info/'
