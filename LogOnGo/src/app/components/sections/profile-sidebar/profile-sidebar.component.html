@@ -1,32 +1,53 @@
-<nav id="sidebar" class="sidebar color-four">
-    <div class="position-sticky"><br>
+<!-- <nav id="sidebar" class="sidebar color-one">
+    <div class="position-sticky color-two"><br>
         <div class="list-group list-group-flush mx-3 mt-4">
     <br><br>
-            <div class="list-group-item rounded white py-2 ripple color-two" *ngFor="let profile of profile_details">
+            <div class="list-group-item rounded white py-2 ripple color-one">
                 <img class="radius" src="https://res.cloudinary.com/benie/image/upload/v1659091140/avatar-3814049_640_lxxhz9.png" height="70" width="70" alt="">
-                <h3 class="">{{profile.username}}</h3>
-                <h6 class="">{{profile.email}}</h6>
-                <h5 class="">{{profile.petrol_station}}</h5>
+                <div class="card padding shadow">
+                    <h3 class="">{{currentUser.username}}</h3>
+                <small class="x-small">{{currentUser.email}}</small>
+                <h5 class="">{{currentUser.petrol_station}}</h5>
                 <p><a class="" href="">Change password</a> <br> <a href="">Reset password</a></p>
-                
+                </div>
+            </div>
+            
+            <hr>
+        
+            <div class="list-group-item py-2 rounded ripple color-one">
+                        <p class="text-c">Add <a href="">logs?</a>  <br>
+                            or <br>
+                            Add <a href="">Mpesa logs</a> </p>
                 
             </div>
             <hr>
-        
-            <div class="list-group-item py-2 rounded ripple color-two">
-                        <p class="text-c">Add <a href="">logs?</a> | or <a href="">Mpesa</a> logs?</p>
-                
-            </div>
+
         
         
             <div class="list-group-item py-2 rounded ripple color-two margin-top">
-                <h6 class="white text-c">Report Incident <a href="">now?</a></h6>
+                <h6 class="text-c"><a routerLink="/incident" type="button" class="btn btn-info btn-outline-danger">Report Incident</a></h6>
             </div>
             <hr>
-            <div class="list-group-item py-2 ripple center color-two rounded padding-2">
-                <button class="white margin text-c btn btn-outline-info btn-dark" onclick="toggleContact()">Contact Management</button>
+             <hr> -->
+            <!-- <div class="list-group-item py-2 ripple center color-two rounded padding-2">
+                <button class="margin white text-c btn btn-dark btn-outline-info" onclick="toggleContact()">Contact Management</button>
                 <app-contact-form></app-contact-form>
             </div><br>
         </div>
     </div><br><br><br>
+</nav> --> 
+
+
+<nav class="menu" tabindex="0">
+	<div class="smartphone-menu-trigger"></div>
+  <header class="avatar">
+		<img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" />
+    <h2>John D.</h2>
+  </header>
+	<ul>
+    <li tabindex="0" class="icon-dashboard"><span>Dashboard</span></li>
+    <li tabindex="0" class="icon-customers"><span>Customers</span></li>
+    <li tabindex="0" class="icon-users"><span>Users</span></li>
+    <li tabindex="0" class="icon-settings"><span>Settings</span></li>
+  </ul>
 </nav>

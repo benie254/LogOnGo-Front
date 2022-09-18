@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-profile-sidebar',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileSidebarComponent implements OnInit {
   profile_details: any;
+  currentUser = this.authService.currentUserValue;
 
-  constructor() { }
+  constructor(
+    private authService:AuthService,
+  ) { }
 
   ngOnInit(): void {
   }

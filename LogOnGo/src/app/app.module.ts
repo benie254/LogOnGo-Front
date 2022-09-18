@@ -81,12 +81,8 @@ import { AuthBgComponent } from './components/auth/auth-bg/auth-bg.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { RouterModule } from '@angular/router';
 import { PetrolLogsComponent } from './components/pages/petrol-logs/petrol-logs.component';
-import { MatButtonModule } from '@angular/material/button'
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatDrawerMode, MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-// import {MatIconModule} from '@angular/material/icon';
-import { FlexLayoutModule } from '@angular/flex-layout';
+
+
 
 
 
@@ -183,6 +179,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     NgPasswordValidatorModule.forRoot(MyDefaultOptions as NgPasswordValidatorOptions),
     // MatIconModule,
     // MatListModule,
+  
     
   ],
   providers: [],
