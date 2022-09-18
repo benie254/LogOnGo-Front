@@ -10,10 +10,10 @@ export class FuelService {
   apiURLpetrol = 'https://logongo.herokuapp.com/api/petrol-info/'
   apiURLdiesel = 'https://logongo.herokuapp.com/api/diesel-info/'
   apiURLgas = 'https://logongo.herokuapp.com/api/gas-info/'
-  apiURLfuels = 'https://logongo-api.herokuapp.com/our-fuels/'
-  apiURLdieselReceived = 'https://logongo-api.herokuapp.com/diesel-received-today/info/'
-  apiURLgasReceived = 'https://logongo-api.herokuapp.com/gas-received-today/info/'
-  apiURLpetrolReceived = 'https://logongo-api.herokuapp.com/petrol-received-today/info/'
+  apiURLfuels = 'https://logongo.herokuapp.com/api/our-fuels/'
+  apiURLdieselReceived = 'https://logongo.herokuapp.com/api/diesel-received-today/info/'
+  apiURLgasReceived = 'https://logongo.herokuapp.com/api/gas-received-today/info/'
+  apiURLpetrolReceived = 'https://logongo.herokuapp.com/api/petrol-received-today/info/'
 
   constructor(private http:HttpClient) { }
 

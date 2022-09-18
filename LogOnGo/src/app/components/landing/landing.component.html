@@ -1,5 +1,14 @@
 <div class="container">
   <div>
+    Current user
+    <h1>
+      {{ currentUser.id }}
+      {{ currentUser.email }}
+      {{ currentUser.username }}
+      {{ currentUser.first_name }}
+      {{ currentUser.last_name }}
+      {{ currentUser.petrol_station }}
+    </h1>
     <h1>Petrol logs:</h1>
     <a (click)="goToPetrolLogs(info.id)" type="button">Go to Petrol logs</a>
   </div>
