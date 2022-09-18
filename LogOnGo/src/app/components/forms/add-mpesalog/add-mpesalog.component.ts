@@ -16,7 +16,7 @@ export class AddMpesalogComponent implements OnInit {
     console.warn(mpesa_info);
     this.logMpesaService.addMpesaLog(mpesa_info).subscribe((result) => {
       console.warn('result', result);
-      this.notifService.submitSuccess('success','Mpesa log added successfully!')
+      // this.notifService.submitSuccess('success','Mpesa log added successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
     });
   }

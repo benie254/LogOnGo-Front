@@ -16,7 +16,7 @@ export class DieselReceivedFormComponent implements OnInit {
     console.warn(diesel_received);
     this.fuelService.addDieselReceived(diesel_received).subscribe((result) => {
       console.warn('result', result);
-      this.notifService.submitSuccess('success','Diesel received added successfully!')
+      // this.notifService.submitSuccess('success','Diesel received added successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
     });
   }

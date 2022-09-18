@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '~angular-notifier/styles.css';
 
 .hide{
     display:none;
@@ -61,7 +60,7 @@ a,input{
 }
 
 body{
-  margin-top:5%;
+  /* margin-top:5%; */
   /* visibility:hidden; */
 }
 .print{

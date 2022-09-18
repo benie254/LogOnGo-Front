@@ -19,7 +19,7 @@ export class IncidentFormComponent implements OnInit {
     console.warn(incident_report);
     this.emailService.emailIncidentReport(incident_report).subscribe((result) => {
       console.warn('result', result);
-      this.notifService.submitSuccess('success','Incident report sent successfully!')
+      // this.notifService.submitSuccess('success','Incident report sent successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
     });
   }

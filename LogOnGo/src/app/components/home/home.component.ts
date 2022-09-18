@@ -6,6 +6,7 @@ import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { LogMpesa } from 'src/app/classes/log-mpesa/log-mpesa';
 import { Log } from 'src/app/classes/log/log';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -71,7 +72,8 @@ export class HomeComponent implements OnInit {
     private notifService:NotificationService, 
     private logService:LogService, 
     private route:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private authService:AuthService,
     ) { 
     this.fuelService.getPetrolInfo().subscribe((data) => {
       this.info = data
@@ -103,6 +105,10 @@ export class HomeComponent implements OnInit {
       this.mpesa = data
       console.warn("data",data)
     });
+
+    if (!this.authService.currentUserValue) {
+      this.router.navigate(['login']);
+  }
     
   }
 

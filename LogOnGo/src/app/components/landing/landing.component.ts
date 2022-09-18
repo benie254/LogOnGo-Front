@@ -45,6 +45,8 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
     
     // this.currentUser = this.token.getUser();
+    this.currentUser = this.authService.currentUserValue;
+    this.refreshUser()
   }
 
   // getDecodedToken(currentUser): any {
@@ -57,6 +59,18 @@ export class LandingComponent implements OnInit {
 
   goToPetrolLogs(id){
     this.router.navigate(['/petrol',id])
+  }
+  
+  refreshUser(){
+    if(this.currentUser){
+      // location.reload()
+        }
+    
+  }
+
+  refresh(){
+    location.reload()
+    this.ngOnInit()
   }
 
 

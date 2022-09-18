@@ -22,7 +22,7 @@ export class PriceperlitreUpdateFormComponent implements OnInit {
     console.warn(petrol_info);
     this.fuelService.updatePetrolInfo(petrol_info).subscribe((result) => {
       console.warn('updated result',result);
-      this.notifService.submitSuccess('success','Petrol info updated successfully!')
+      // this.notifService.submitSuccess('success','Petrol info updated successfully!')
     })
   }
 

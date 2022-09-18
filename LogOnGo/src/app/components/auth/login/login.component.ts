@@ -13,6 +13,9 @@ import { first } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 
+  authenticated: boolean;
+  
+
   form: FormGroup;
   loading = false;
 
@@ -22,9 +25,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService:AuthService,
   ) {
-    // if (this.authService.currentUserValue) {
-    //   this.router.navigate(['home']);
-  // }
+    if (this.authService.currentUserValue) {
+      this.authenticated = true;
+    }
   }
 
   ngOnInit(): void {
@@ -34,6 +37,23 @@ export class LoginComponent implements OnInit {
       password: ['',Validators['required']],
     });
   }
+  reloadComponent(self:boolean,urlToNavigateTo ?:string){
+    //skipLocationChange:true means dont update the url to / when navigating
+   console.log("Current route I am on:",this.router.url);
+   const url=self ? this.router.url :urlToNavigateTo;
+   this.router.navigateByUrl('/',{skipLocationChange:true}).then(()=>{
+     this.router.navigate([`/${url}`]).then(()=>{
+       console.log(`After navigation I am on:${this.router.url}`)
+     })
+   })
+ }
+
+ reloadCurrent(){
+  this.reloadComponent(true);
+ }
+ reloadChild(){
+  this.reloadComponent(false,"")
+}
 
   get f() { return this.form.controls; }
 
@@ -41,7 +61,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     if (this.form.invalid){
       Notiflix.Notify.failure('Login failed!');
-      Notiflix.Notify.warning('Some of your details may be null, incomplete or incorrect.');;
+      Notiflix.Notify.warning('Some of your details may be null, incomplete or incorrect.');
     }
     this.authService.login(this.f['email'].value,this.f['employee_id'].value,this.f['password'].value).pipe(
       first()
@@ -49,6 +69,7 @@ export class LoginComponent implements OnInit {
         data => {
                   this.router.navigate(['']);
                   Notiflix.Notify.success('Login successful! Welcome.');
+                  location.reload()
                 },
                 error => {
                   Notiflix.Notify.failure('Login failed!');

@@ -24,7 +24,7 @@ export class EmailMpesareportFormComponent implements OnInit {
     console.warn(mpesa_report);
     this.emailService.emailMpesaReport(mpesa_report).subscribe((result) => {
       console.warn('result', result);
-      this.notifService.submitSuccess('success','Mpesa report sent to your email!')
+      // this.notifService.submitSuccess('success','Mpesa report sent to your email!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
     });
   }

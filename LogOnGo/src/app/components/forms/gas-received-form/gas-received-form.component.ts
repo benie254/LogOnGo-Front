@@ -16,7 +16,7 @@ export class GasReceivedFormComponent implements OnInit {
     console.warn(gas_received);
     this.fuelService.addGasReceived(gas_received).subscribe((result) => {
       console.warn('result', result);
-      this.notifService.submitSuccess('success','Gas received added successfully!')
+      // this.notifService.submitSuccess('success','Gas received added successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
     });
   }

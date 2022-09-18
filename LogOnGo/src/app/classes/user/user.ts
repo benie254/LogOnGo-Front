@@ -1,6 +1,7 @@
 export class User {
     id: number;
-    token: string;
+    token?: string;
+    refreshToken?: string;
     first_name: string;
     last_name: string;
     username: string; 

@@ -34,7 +34,7 @@ export class AddComponent implements OnInit {
     console.warn(log_info);
     this.logService.addLog(log_info).subscribe((result) => {
       console.warn('result', result);
-      this.notifService.submitSuccess('success','Log added successfully!')
+      // this.notifService.submitSuccess('success','Log added successfully!')
       this.addLogEvent.emit(log_info);
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
     });

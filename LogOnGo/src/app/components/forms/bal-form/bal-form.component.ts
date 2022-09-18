@@ -21,7 +21,7 @@ export class BalFormComponent implements OnInit {
     console.warn(log_info);
     this.logService.updateLogInfo(log_info).subscribe((result) => {
       console.warn('updated result',result);
-      this.notifService.submitSuccess('success','Balance request successful!')
+      // this.notifService.submitSuccess('success','Balance request successful!')
     })
   }
 

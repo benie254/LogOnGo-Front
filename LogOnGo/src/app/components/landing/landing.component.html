@@ -10,7 +10,7 @@
       {{ currentUser.petrol_station }}
     </h1>
     <h1>Petrol logs:</h1>
-    <a (click)="goToPetrolLogs(info.id)" type="button">Go to Petrol logs</a>
+    <a (click)="refresh();goToPetrolLogs(info.id)" type="button">Go to Petrol logs</a>
   </div>
     <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="false">
         <div class="carousel-indicators">

@@ -29,7 +29,7 @@ export class UpdateLogDetailsComponent implements OnInit {
     console.warn(log_info);
     this.logService.updateLogInfo(log_info).subscribe((result) => {
       console.warn('updated result',result);
-      this.notifService.submitSuccess('success','Log details updated successfully!')
+      // this.notifService.submitSuccess('success','Log details updated successfully!')
     })
   }
 

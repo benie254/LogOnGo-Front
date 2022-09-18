@@ -5,9 +5,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NotifierModule } from 'angular-notifier';
 
-import { NotifierOptions } from 'angular-notifier';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -83,47 +81,14 @@ import { AuthBgComponent } from './components/auth/auth-bg/auth-bg.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { RouterModule } from '@angular/router';
 import { PetrolLogsComponent } from './components/pages/petrol-logs/petrol-logs.component';
+import { MatButtonModule } from '@angular/material/button'
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDrawerMode, MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+// import {MatIconModule} from '@angular/material/icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
-const notifierDefaultOptions: NotifierOptions = {
-  position: {
-    horizontal: {
-      position: 'left',
-      distance: 24,
-    },
-    vertical: {
-      position: 'top',
-      distance: 6,
-      gap: 5,
-    },
-  },
-  theme: 'material',
-  behaviour: {
-    autoHide: 5000,
-    onClick: false,
-    onMouseover: 'pauseAutoHide',
-    showDismissButton: true,
-    stacking: 4,
-  },
-  animations: {
-    enabled: true,
-    show: {
-      preset: 'slide',
-      speed: 50,
-      easing: 'ease',
-    },
-    hide: {
-      preset: 'fade',
-      speed: 300,
-      easing: 'ease',
-      offset: 50,
-    },
-    shift: {
-      speed: 300,
-      easing: 'ease',
-    },
-    overlap: 150,
-  },
-};
+
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -215,10 +180,10 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    NotifierModule.withConfig(
-      notifierDefaultOptions,
-    ),
     NgPasswordValidatorModule.forRoot(MyDefaultOptions as NgPasswordValidatorOptions),
+    // MatIconModule,
+    // MatListModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent,AuthBgComponent]
