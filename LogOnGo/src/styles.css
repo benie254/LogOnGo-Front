@@ -370,11 +370,12 @@ ul {
 	height:100vh;
 	width:220px;
 	position:fixed;
-	top:70px;
-	left:5px;
+	top:55px;
+	left:2px;
 	z-index:5;
 	outline:none;
   overflow: auto;
+  padding:0.5%;
 }
 
 @media screen and (max-width:1080px) and (min-width:900px) {
