@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 .hide{
     display:none;
@@ -416,4 +416,13 @@ ul {
 		transform:translate3d(-230px,0,0);
 		transition:all 0.3s ease-in-out;
   }
+}
+
+
+
+.full-width{
+  width:100%;
+}
+.half-width{
+  width:50%;
 }

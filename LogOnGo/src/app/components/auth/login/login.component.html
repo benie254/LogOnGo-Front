@@ -5,10 +5,14 @@
     </div>
     <h1 class="text-center">Login to continue</h1>
     <div class="row">
-      <div class="col color-one margin rounded shadow padding-2">
-        <img src="https://res.cloudinary.com/benie/image/upload/v1662908137/icons8-mail-50_jcseod.png" height="35" width="35" alt="">
-        <label for="email">Email:</label>
-        <input formControlName="email" type="email" class="form-control" placeholder="your email address..." required>
+      <div class="col"></div>
+      <div class="col margin">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Enter your email address" formControlName="email" type="email" required>
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-hint>e.g: your_name@provider.com</mat-hint>
+        </mat-form-field>        
         <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['email'].errors['required']">
             Email is required.
@@ -18,30 +22,36 @@
           </div>
         </div>
       </div>
-      <div class="col color-one margin rounded shadow padding-2">
-        <img src="https://res.cloudinary.com/benie/image/upload/v1662908490/icons8-id-66_y50o5e.png" height="35" width="35" alt="">
-        <label for="employee_id">Employee ID:</label>
-        <input formControlName="employee_id" id="employee_id" type="number" class="form-control" placeholder="your employee ID..." required>
+      <div class="col margin">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+          <mat-label>Employee ID</mat-label>
+          <input matInput placeholder="Enter your employee ID" formControlName="employee_id" type="number" required>
+          <mat-icon matSuffix>assignment_ind</mat-icon>
+          <mat-hint><span class="bg-danger white">Employees of Pebo Kenya Ltd.</span></mat-hint>
+        </mat-form-field>
         <div *ngIf="form.controls['employee_id'].invalid && form.controls['employee_id'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['employee_id'].errors['required']">
             Employee ID is required.
           </div>
         </div>
       </div>
+      <div class="col"></div>
     </div>
 
     <div class="row">
       <div class="col"></div>
-      <div class="col margin rounded color-one margin-top margin-bottom shadow padding-2">
-        <div class="text-center margin-bottom-half">
-          <img src="https://res.cloudinary.com/benie/image/upload/v1662908548/icons8-security-shield-green-50_rdkwul.png" height="35" width="35" alt="">
-        </div>
-        <input formControlName="password" type="password" class="form-control" placeholder="Enter your password" required>
-        <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">
-          <div *ngIf="form.controls['password'].errors['required']">
-            Password is required.
+      <div class="col margin rounded  margin-top margin-bottom">
+          <mat-form-field appearance="outline" class="color-one padding-2 rounded shadow full-width">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter your password" formControlName="password" type="password" required>
+            <mat-icon matSuffix>security</mat-icon>
+            <mat-hint>Forgot password?</mat-hint>
+          </mat-form-field>
+          <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">
+            <div *ngIf="form.controls['password'].errors['required']">
+              Password is required.
+            </div>
           </div>
-        </div>
       </div>
       <div class="col"></div>
     </div>
@@ -60,3 +70,13 @@
 <div *ngIf="authenticated">
   <app-landing></app-landing>
 </div>
+
+<p>
+  
+</p>
+<p>
+  
+</p>
+<p>
+  
+</p>

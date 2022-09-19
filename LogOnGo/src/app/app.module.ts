@@ -83,8 +83,28 @@ import { RouterModule } from '@angular/router';
 import { PetrolLogsComponent } from './components/pages/petrol-logs/petrol-logs.component';
 
 
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatHint} from '@angular/material/form-field';
 
+import 'hammerjs';
 
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -170,17 +190,32 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    NoopAnimationsModule,
     NgPasswordValidatorModule.forRoot(MyDefaultOptions as NgPasswordValidatorOptions),
-    // MatIconModule,
-    // MatListModule,
-  
-    
+    MatButtonModule,
+      MatToolbarModule,
+      MatIconModule,
+      MatSidenavModule,
+      MatBadgeModule,
+      MatListModule,
+      MatGridListModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatSelectModule,
+      MatRadioModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
+      MatChipsModule,
+      MatTooltipModule,
+      MatTableModule,
+      MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent,AuthBgComponent]
