@@ -1,68 +1,71 @@
-<header>
-    <app-profile-sidebar></app-profile-sidebar>
+
+<div id="profile-body" class="container-fluid">
+    <header>
+        <app-profile-sidebar></app-profile-sidebar>
+    </header>
+
+    <div class="container main">
+        <div class="container">
+            
+        <div class="row">
+            
+            <div class="col-md-2">
     
-</header>
-
-<div class="container main">
-    <div class="container">
-        
-    <div class="row">
-        
-        <div class="col-md-2">
-
-        </div>
-        
-        <div class="col-lg-10">
-            <br><br><br>
-            <div class="row">
-                <div class="col-lg-8">
-                    <img src="https://res.cloudinary.com/benie/image/upload/v1659033436/fuel-gauge-148923_1280_bifykm.png" class="margin-top" height="370" width="100%" alt="">
-                </div>
-                <div class="col-lg-4">
-                    <div *ngIf="announcements; else elseBlockAnnounce">
-                        <div *ngFor="let announce of announcements">
-                            <app-profile-announcements></app-profile-announcements>
+            </div>
+            
+            <div class="col-lg-10">
+                <br><br><br>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <img src="https://res.cloudinary.com/benie/image/upload/v1659033436/fuel-gauge-148923_1280_bifykm.png" class="margin-top" height="370" width="100%" alt="">
+                    </div>
+                    <div class="col-lg-4">
+                        <div *ngIf="announcements; else elseBlockAnnounce">
+                            <div *ngFor="let announce of announcements">
+                                <app-profile-announcements></app-profile-announcements>
+                            </div>
+                        </div>
+                        <div>
+                            <ng-template #elseBlockAnnounce>
+                                <app-profile-noannouncements></app-profile-noannouncements>
+                            </ng-template>
                         </div>
                     </div>
-                    <div>
-                        <ng-template #elseBlockAnnounce>
-                            <app-profile-noannouncements></app-profile-noannouncements>
-                        </ng-template>
-                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="row">
-                <!-- <col class="col-sm-2"> -->
-                <div class="border col-lg-6 color-four rounded black padding-2">
-                    <h2>Your Logs</h2>
-                    <div *ngIf="user_logs; else elseBlockUserlogs">
-                        <div *ngFor="let log of user_logs">
-                            <app-profile-logcard></app-profile-logcard>
+                <hr>
+                <div class="row">
+                    <!-- <col class="col-sm-2"> -->
+                    <div class="border col-lg-6 color-four rounded black padding-2">
+                        <h2>Your Logs</h2>
+                        <div *ngIf="user_logs; else elseBlockUserlogs">
+                            <div *ngFor="let log of user_logs">
+                                <app-profile-logcard></app-profile-logcard>
+                            </div>
+                        </div>
+                        <div>
+                            <ng-template #elseBlockUserlogs>
+                                <app-no-logs></app-no-logs>
+                            </ng-template>
                         </div>
                     </div>
-                    <div>
-                        <ng-template #elseBlockUserlogs>
-                            <app-no-logs></app-no-logs>
-                        </ng-template>
+                    <div class="col-lg-6 color-four rounded black padding-2">
+                        <h2>Your Mpesa Logs</h2>
+                        <div *ngIf="mpesa_logs else elseBlockMpesa">
+                            <app-profile-mpesalogs></app-profile-mpesalogs>
+                        </div>
+                        <div>
+                            <ng-template #elseBlockMpesa>
+                                <app-no-mpesalogs></app-no-mpesalogs>
+                            </ng-template>
+                        </div>
                     </div>
+                    
                 </div>
-                <div class="col-lg-6 color-four rounded black padding-2">
-                    <h2>Your Mpesa Logs</h2>
-                    <div *ngIf="mpesa_logs else elseBlockMpesa">
-                        <app-profile-mpesalogs></app-profile-mpesalogs>
-                    </div>
-                    <div>
-                        <ng-template #elseBlockMpesa>
-                            <app-no-mpesalogs></app-no-mpesalogs>
-                        </ng-template>
-                    </div>
-                </div>
-                
-            </div>
-    
-        </div>
         
+            </div>
+            
+        </div>
+    
     </div>
-
 </div>
+
