@@ -35,7 +35,7 @@
                 <hr>
                 <div class="row">
                     <!-- <col class="col-sm-2"> -->
-                    <div class="border col-lg-6 color-four rounded black padding-2">
+                    <div class="border col-lg-6 color-two shadow rounded black padding-2">
                         <h2>Your Logs</h2>
                         <div *ngIf="user_logs; else elseBlockUserlogs">
                             <div *ngFor="let log of user_logs">
@@ -48,7 +48,7 @@
                             </ng-template>
                         </div>
                     </div>
-                    <div class="col-lg-6 color-four rounded black padding-2">
+                    <div class="col-lg-6 color-two shadow rounded black padding-2">
                         <h2>Your Mpesa Logs</h2>
                         <div *ngIf="mpesa_logs else elseBlockMpesa">
                             <app-profile-mpesalogs></app-profile-mpesalogs>
