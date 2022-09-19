@@ -84,39 +84,38 @@
           <a class="nav-link" routerLink="logs">All Logs</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             LogsToday
           </a>
           <ul class="dropdown-menu">
-            <li><a class="drop-down-item" routerLink="add-log">General Logs</a></li>
-            <li><a class="drop-down-item" routerLink="add-mpesa">MPesa Logs</a></li>
-            <li><a class="dropdown-item" type="button" (click)="goToGasLogs(gas_info.id)">Gas</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" routerLink="add-log">Add Log</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            AddLogs
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="drop-down-item" type="button" (click)="goToPetrolLogs(petrol_info.id)">Petrol</a></li>
+            <li><a class="drop-down-item btn" type="button" (click)="goToPetrolLogs(petrol_info.id)">Petrol</a></li>
             <li><a class="dropdown-item" type="button" (click)="goToDieselLogs(diesel_info.id)">Diesel</a></li>
             <li><a class="dropdown-item" type="button" (click)="goToGasLogs(gas_info.id)">Gas</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" routerLink="add-log">Add Log</a></li>
+            <li><a class="dropdown-item" routerLink="add-mpesa">Log Mpesa</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link">Report Incident</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            AddLogs
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="drop-down-item btn" routerLink="add-log">General Logs</a></li>
+            <li><a class="drop-down-item btn" routerLink="add-mpesa">MPesa Logs</a></li>
+          </ul>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{currentUser.username}}
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="profile">Profile</a></li>
+            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
             <li><a class="dropdown-item" href="https://logongo.herokuapp.com/admin/">Admin</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" routerLink="/incident">Report Incident</a></li>
+            <li><a class="dropdown-item" routerLink="/contact">Contact Admin</a></li>
+            <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" type="button" (click)="logout();">Logout</a></li>
           </ul>
         </li>

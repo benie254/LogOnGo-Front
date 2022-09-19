@@ -36,27 +36,27 @@ export class NavComponent implements OnInit {
     this.fuelService.getPetrolInfo().subscribe((data) => {
       this.petrol_info = data
       console.warn("petrol info data:",data)
-      Notiflix.Notify.success("get petrol success!")
+      // Notiflix.Notify.success("get petrol success!")
     },
     err => {
-      Notiflix.Notify.failure("get petrol failure!")
+      // Notiflix.Notify.failure("get petrol failure!")
     }
     );
     this.fuelService.getGasInfo().subscribe((data) => {
       this.gas_info = data
       console.warn("gas info data:",data)
-      Notiflix.Notify.success("get gas success!")
+      // Notiflix.Notify.success("get gas success!")
     },
     err => {
-      Notiflix.Notify.failure("get diesel failure!")
+      // Notiflix.Notify.failure("get diesel failure!")
     });
     this.fuelService.getDieselInfo().subscribe((data) => {
       this.diesel_info = data
       console.warn("diesel info data:",data)
-      Notiflix.Notify.success("get diesel success!")
+      // Notiflix.Notify.success("get diesel success!")
     },
     err => {
-      Notiflix.Notify.failure("get diesel failure!")
+      // Notiflix.Notify.failure("get diesel failure!")
     });
     if (this.currentUser){
       this.authenticated = true
