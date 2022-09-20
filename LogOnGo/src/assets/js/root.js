@@ -45,10 +45,10 @@ function togglePLogs(){
 }
 function toggleProfileLogForm(){
   var form = document.getElementById("profileLogForm");
-  if(form.style.display === 'none'){
-    form.style.display = 'block';
-  } else {
+  if(form.style.display === 'block'){
     form.style.display = 'none';
+  } else {
+    form.style.display = 'block';
   }
 }
   

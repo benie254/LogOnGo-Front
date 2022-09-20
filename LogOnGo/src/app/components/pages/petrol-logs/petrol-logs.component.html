@@ -72,7 +72,7 @@
                                     <th scope="col">Total litres sold today</th>
                                     <th scope="col">Amount earned today</th>
                                     <!-- <th scope="col">Get balance</th> -->
-                                    <th scope="col"><ng-template #elseBlockTaBal>Balance (lts)</ng-template></th>
+                                    <th scope="col"><ng-template #elseBlockTaBal><th scope="col">Balance (lts)</th></ng-template></th>
                                     <th scope="col" *ngIf="logs.updated_balance else elseBlockTaBal">Updated Balance (lts)</th>
                                   </tr>
                                 </thead>
@@ -83,8 +83,8 @@
                                     <td>{{logs.total_litres_sold}}</td>
                                     <td>{{logs.amount_earned_today}}</td>
                                     <!-- <td id="" name=""><span> <app-bal-form></app-bal-form> </span> <span></span></td> -->
-                                    <td id=""><ng-template #elseBlockTaBal>{{logs.balance}}</ng-template></td>
-                                    <td>{{logs.updated_balance}}</td>
+                                    <td id=""><ng-template #elseBlockTaBal2><td>{{logs.balance}}</td></ng-template></td>
+                                    <td *ngIf="logs.updated_balance else elseBlockTaBal2">{{logs.updated_balance}}</td>
                                   </tr>
                                 </tbody>
                               </table>

@@ -8,6 +8,8 @@ import { LogService } from 'src/app/services/log/log.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { TokenStorageService } from 'src/app/services/token/token-storage.service';
 
+declare function toggleProfileLogForm(): any;
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
