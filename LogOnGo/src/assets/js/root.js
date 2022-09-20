@@ -43,6 +43,14 @@ function togglePLogs(){
   //   overLay.style.display = 'block';
   // }
 }
+function toggleProfileLogForm(){
+  var form = document.getElementById("profileLogForm");
+  if(form.style.display === 'none'){
+    form.style.display = 'block';
+  } else {
+    form.style.display = 'none';
+  }
+}
   
 function myTotal(){
   var today = document.getElementById("tester-todayJS").textContent;

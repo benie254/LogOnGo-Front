@@ -44,8 +44,13 @@
                         </div>
                         <div>
                             <ng-template #elseBlockUserlogs>
-                                <app-no-logs></app-no-logs>
-                                <div id="logForm" class="rounded"><br>
+                                <div class="card color-two">
+                                    <div class="card-body">
+                                        <p class="card-text">Your logs will appear here.</p>
+                                        <p class="card-text"><a class="btn btn-sm btn-dark" type="button" onclick="toggleProfileLogForm()" (click)="goToLogForm()">Record logs now?</a></p>
+                                    </div>
+                                </div>
+                                <div id="profileLogForm" class="rounded"><br>
                                     <h2 class="text-center margin-top">Add Petrol Log details</h2>
                                     <form #logForm="ngForm" class="form" (ngSubmit)="addLog(logForm.value)">
                                         <div class="row">

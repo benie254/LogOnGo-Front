@@ -71,4 +71,11 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  goToLogForm(){
+    let x = document.querySelector("#profileLogForm");
+    if (x){
+      x.scrollIntoView();
+    }
+  }
+
 }

@@ -281,7 +281,7 @@ body,.color-one {
   #orderInfo, #lForm{
     display:none;
   }
-  #mpesaForm{
+  #mpesaForm, #profileLogForm{
     display:none;
   }
   .radius{
