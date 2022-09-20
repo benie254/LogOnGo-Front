@@ -92,6 +92,9 @@ export class NavComponent implements OnInit {
   goToGasLogs(id){
     this.router.navigate(['/gas',id])
   }
+  goToProfile(id){
+    this.router.navigate(['/uprofile',id])
+  }
 
   logout() {
     // this.ngOnInit()
