@@ -204,4 +204,11 @@ export class PetrolLogsComponent implements OnInit {
     });
   }
 
+  goToDiv(){
+    let x = document.querySelector("#logForm");
+    if (x){
+      x.scrollIntoView();
+    }
+  }
+
 }
