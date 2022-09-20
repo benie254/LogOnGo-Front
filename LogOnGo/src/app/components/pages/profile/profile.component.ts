@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { Announcement } from 'src/app/classes/announcement/announcement';
 import { Log } from 'src/app/classes/log/log';
@@ -50,6 +51,7 @@ export class ProfileComponent implements OnInit {
     private fuelService:FuelService,
     private logMpesaService:LogMpesaService,
     private formBuilder:FormBuilder,
+    private route:ActivatedRoute,
     ) { 
       this.profileService.getAnnouncements().subscribe((data) => {
         this.announcements = data 
@@ -63,6 +65,7 @@ export class ProfileComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => this.getUserMpesaLogs(params['id']))
     this.mpesaForm = this.formBuilder.group({
       date: ['',Validators['date']],
       transaction_number: ['',Validators['required']],
@@ -91,9 +94,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  addMpesaLog(mpesa_info: any) {
-    console.warn(mpesa_info);
-    this.logMpesaService.addMpesaLog(mpesa_info).subscribe((result) => {
+  addMpesaLog() {
+    this.logMpesaService.addMpesaLog(this.f['date'].value,this.f['tramsaction_number'].value,this.f['customer_name'].value,this.f['customer_phone_number'].value,this.f['amount'].value,this.f['amount_transferred_to_bank'].value).subscribe((result) => {
       console.warn('result', result);
       Notiflix.Notify.success('Mpesa log added successful!');
       this.ngOnInit();
@@ -101,6 +103,19 @@ export class ProfileComponent implements OnInit {
     err => {
       Notiflix.Notify.failure('Something went wrong!');
       Notiflix.Notify.warning('Please try again.');
+    });
+  }
+
+  getUserMpesaLogs(id:number): void{
+    this.logMpesaService.getUserMpesaLogs(id).subscribe(
+      (data) => {
+      this.mpesa_logs = data
+      // this.ngOnInit();
+      console.warn('user_mpesa_logs:',data)
+    },
+    error => {
+      console.log(error)
+      Notiflix.Notify.failure('Something went wrong!');
     });
   }
 

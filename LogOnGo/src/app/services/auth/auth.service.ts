@@ -17,6 +17,8 @@ const httpOptions = {
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  // apiURLlogin = "https://logongo.herokuapp.com/api/login/"
+  apiURLlogin = "http://127.0.0.1:8000/api/login/"
   
   constructor(private http: HttpClient,) { 
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -29,7 +31,7 @@ export class AuthService {
   }
 
   login(email,employee_id, password) {
-    return this.http.post<any>("https://logongo.herokuapp.com/api/login/", { email, employee_id, password })
+    return this.http.post<any>(this.apiURLlogin, { email, employee_id, password })
     .pipe(
       map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes

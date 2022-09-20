@@ -16,6 +16,8 @@ import { ConfirmedValidator } from 'src/app/validators/confirmed.validator';
 export class RegisterComponent implements OnInit {
   form: FormGroup
   username: any;
+  // apiURLreg = "https://logongo.herokuapp.com/api/register/"
+  apiURLreg = "http://127.0.0.1:8000/api/register/"
   
 
   constructor(
@@ -62,7 +64,7 @@ export class RegisterComponent implements OnInit {
     });
   }
   submit(): void {
-    this.http.post('https://logongo.herokuapp.com/api/register/', this.form.getRawValue())
+    this.http.post(this.apiURLreg, this.form.getRawValue())
       .subscribe(() => {
         Notiflix.Notify.success('Registration successful!');
         this.router.navigate(['/login']);

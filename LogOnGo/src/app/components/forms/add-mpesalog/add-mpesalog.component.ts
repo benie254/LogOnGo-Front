@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LogMpesaService } from 'src/app/services/log-mpesa/log-mpesa.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
@@ -9,12 +10,16 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class AddMpesalogComponent implements OnInit {
   user: any;
+  mpesaForm: FormGroup
 
-  constructor(private logMpesaService:LogMpesaService, private notifService:NotificationService) { }
+  constructor(
+    private logMpesaService:LogMpesaService, 
+    private notifService:NotificationService,
+    private formBuilder:FormBuilder,
+    ) { }
 
-  addMpesaLog(mpesa_info: any) {
-    console.warn(mpesa_info);
-    this.logMpesaService.addMpesaLog(mpesa_info).subscribe((result) => {
+  addMpesaLog() {
+    this.logMpesaService.addMpesaLog(this.f['date'].value,this.f['tramsaction_number'].value,this.f['customer_name'].value,this.f['customer_phone_number'].value,this.f['amount'].value,this.f['amount_transferred_to_bank'].value).subscribe((result) => {
       console.warn('result', result);
       // this.notifService.submitSuccess('success','Mpesa log added successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
@@ -22,6 +27,18 @@ export class AddMpesalogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.mpesaForm = this.formBuilder.group({
+      date: ['',Validators['date']],
+      transaction_number: ['',Validators['required']],
+      customer_name: ['',Validators['required']],
+      customer_phone_number: [0,Validators['required']],
+      amount: [0,Validators['required']],
+      amount_transferred_to_bank: 0,
+      user: 0,
+      logged_by: ''
+    });
   }
+
+  get f() { return this.mpesaForm.controls; }
 
 }
