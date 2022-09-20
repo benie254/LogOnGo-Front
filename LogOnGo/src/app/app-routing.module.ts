@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'incident', component: IncidentComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   { path: 'admin', component: AdminComponent },
 ];
 
