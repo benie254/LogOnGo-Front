@@ -88,9 +88,9 @@
             LogsToday
           </a>
           <ul class="dropdown-menu">
-            <li><a class="drop-down-item btn" type="button" (click)="goToPetrolLogs(petrol_info.id)">Petrol</a></li>
-            <li><a class="dropdown-item" type="button" (click)="goToDieselLogs(diesel_info.id)">Diesel</a></li>
-            <li><a class="dropdown-item" type="button" (click)="goToGasLogs(gas_info.id)">Gas</a></li>
+            <li *ngIf="petrol_info"><a class="drop-down-item btn" routerLink="/petrol/{{petrol_info.id}}">Petrol</a></li>
+            <li *ngIf="diesel_info"><a class="dropdown-item" routerLink="/diesel/{{diesel_info.id}}">Diesel</a></li>
+            <li *ngIf="gas_info"><a class="dropdown-item" routerLink="/gas/{{gas_info.id}}">Gas</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" routerLink="add-log">Add Log</a></li>
             <li><a class="dropdown-item" routerLink="add-mpesa">Log Mpesa</a></li>
@@ -110,7 +110,7 @@
             {{currentUser.username}}
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+            <li><a class="dropdown-item" routerLink="/profile/{{currentUser.id}}">Profile</a></li>
             <li><a class="dropdown-item" href="https://logongo.herokuapp.com/admin/">Admin</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" routerLink="/incident">Report Incident</a></li>
