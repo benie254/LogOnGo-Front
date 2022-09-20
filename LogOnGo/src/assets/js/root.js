@@ -51,6 +51,14 @@ function toggleProfileLogForm(){
     form.style.display = 'block';
   }
 }
+function toggleProfileMpesaForm(){
+  var form = document.getElementById("profileMpesaForm");
+  if(form.style.display === 'block'){
+    form.style.display = 'none';
+  } else {
+    form.style.display = 'block';
+  }
+}
   
 function myTotal(){
   var today = document.getElementById("tester-todayJS").textContent;

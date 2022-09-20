@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as Notiflix from 'notiflix';
 import { Announcement } from 'src/app/classes/announcement/announcement';
 import { Log } from 'src/app/classes/log/log';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
+import { LogMpesaService } from 'src/app/services/log-mpesa/log-mpesa.service';
 import { LogService } from 'src/app/services/log/log.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { TokenStorageService } from 'src/app/services/token/token-storage.service';
 
 declare function toggleProfileLogForm(): any;
+declare function toggleProfileMpesaForm(): any;
 
 @Component({
   selector: 'app-profile',
@@ -37,6 +40,7 @@ export class ProfileComponent implements OnInit {
     last_edited: ''
   };
   info: any; 
+  mpesaForm: FormGroup;
 
   constructor(
     private tokenStorage:TokenStorageService,
@@ -44,6 +48,8 @@ export class ProfileComponent implements OnInit {
     private profileService:ProfileService,
     private logService:LogService,
     private fuelService:FuelService,
+    private logMpesaService:LogMpesaService,
+    private formBuilder:FormBuilder,
     ) { 
       this.profileService.getAnnouncements().subscribe((data) => {
         this.announcements = data 
@@ -57,8 +63,20 @@ export class ProfileComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.mpesaForm = this.formBuilder.group({
+      date: ['',Validators['date']],
+      transaction_number: ['',Validators['required']],
+      customer_name: ['',Validators['required']],
+      customer_phone_number: [0,Validators['required']],
+      amount: [0,Validators['required']],
+      amount_transferred_to_bank: 0,
+      user: 0,
+      logged_by: ''
+    });
     // this.currentUser = this.tokenStorage.getUser();
   }
+
+  get f() { return this.mpesaForm.controls; }
 
   addLog(log_info: any) {
     console.warn(log_info);
@@ -73,8 +91,27 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  addMpesaLog(mpesa_info: any) {
+    console.warn(mpesa_info);
+    this.logMpesaService.addMpesaLog(mpesa_info).subscribe((result) => {
+      console.warn('result', result);
+      Notiflix.Notify.success('Mpesa log added successful!');
+      this.ngOnInit();
+    }, 
+    err => {
+      Notiflix.Notify.failure('Something went wrong!');
+      Notiflix.Notify.warning('Please try again.');
+    });
+  }
+
   goToLogForm(){
     let x = document.querySelector("#profileLogForm");
+    if (x){
+      x.scrollIntoView();
+    }
+  }
+  goToMpesaLogForm(){
+    let x = document.querySelector("#profileMpesaForm");
     if (x){
       x.scrollIntoView();
     }

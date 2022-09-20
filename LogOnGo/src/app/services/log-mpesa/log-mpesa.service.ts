@@ -8,7 +8,8 @@ import { LogMpesa } from 'src/app/classes/log-mpesa/log-mpesa';
 })
 export class LogMpesaService {
 
-  apiURLaddMpesaLogs = 'https://logongo-api.herokuapp.com/add-mpesa-logs-today/'
+  // apiURLaddMpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/'
+  apiURLaddMpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
 
   constructor(private http:HttpClient) { }
 
@@ -16,7 +17,7 @@ export class LogMpesaService {
     return this.http.get<LogMpesa>(this.apiURLaddMpesaLogs);
   }
 
-  addMpesaLog(mpesa_info: any) {
+  addMpesaLog(mpesa_info: LogMpesa) {
     return this.http.post(this.apiURLaddMpesaLogs, mpesa_info);
   }
 }
