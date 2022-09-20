@@ -1,10 +1,10 @@
-<div class="card color-four color-black margin-top-one">
+<div class="card color-four color-black margin-top-one" *ngFor="let announcements of announcements">
     <h3 class="card-header text-center color-black"><span class="padding-2 black">Announcement!</span></h3>
     <div class="card-body">
-        <h5 class="color-black card-title">{{announce.subject}}</h5>
-        <p class="card-text color-black">{{announce.announcement}}</p>
+        <h5 class="color-black card-title">{{announcements.subject}}</h5>
+        <p class="card-text color-black">{{announcements.announcement}}</p>
     </div>
     <div class="card-footer">
-    <small class="color-black">By {{announce.your_name}} | {{date}}</small>
+    <small class="color-black">By {{announcements.announced_by}} | {{announcements.date}}</small>
     </div>
 </div>
