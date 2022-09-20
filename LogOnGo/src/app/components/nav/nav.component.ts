@@ -83,18 +83,6 @@ export class NavComponent implements OnInit {
     })
   }
 
-  goToPetrolLogs(id){
-    this.router.navigate(['/petrol',id])
-  }
-  goToDieselLogs(id){
-    this.router.navigate(['/diesel',id])
-  }
-  goToGasLogs(id){
-    this.router.navigate(['/gas',id])
-  }
-  goToProfile(id){
-    this.router.navigate(['/uprofile',id])
-  }
 
   logout() {
     // this.ngOnInit()
