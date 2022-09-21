@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
     total_litres_sold: 0.00,
     amount_earned_today: 0,
     fuel: 0,
+    fuel_name: '',
     logged_by: '',
     user_id: 0,
     balance: 0.00,

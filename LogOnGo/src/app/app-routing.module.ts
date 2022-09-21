@@ -8,9 +8,12 @@ import { AddMpesalogComponent } from './components/forms/add-mpesalog/add-mpesal
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { AllLogsComponent } from './components/pages/all-logs/all-logs.component';
+import { DieselDetailsComponent } from './components/pages/diesel-details/diesel-details.component';
 import { DieselLogsComponent } from './components/pages/diesel-logs/diesel-logs.component';
+import { GasDetailsComponent } from './components/pages/gas-details/gas-details.component';
 import { GasLogsComponent } from './components/pages/gas-logs/gas-logs.component';
 import { IncidentComponent } from './components/pages/incident/incident.component';
+import { PetrolDetailsComponent } from './components/pages/petrol-details/petrol-details.component';
 import { PetrolLogsComponent } from './components/pages/petrol-logs/petrol-logs.component';
 import { ProfileComponent } from './components/pages/profile/profile.component';
 
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'petrol/:id', component: PetrolLogsComponent },
   { path: 'diesel/:id', component: DieselLogsComponent },
   { path: 'gas/:id', component: GasLogsComponent },
+  { path: 'petrol-details', component: PetrolDetailsComponent },
+  { path: 'diesel-details', component: DieselDetailsComponent },
+  { path: 'gas-details', component: GasDetailsComponent },
   { path: 'logs', component: AllLogsComponent },
   { path: 'add-log', component: AddComponent },
   { path: 'add-mpesa', component: AddMpesalogComponent },
