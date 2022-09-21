@@ -1,5 +1,5 @@
-<div class="card color-two">
-    <h4 class="card-header">{{log.date}} </h4>
+<div class="card color-two" *ngFor="let user_logs of user_logs">
+    <h4 class="card-header">{{user_logs.date}} </h4>
     <div class="card-body">
         <h5 class="card-title"></h5>
         <div class="table-responsive">
@@ -13,15 +13,15 @@
                 </thead>
                 <tbody>
                   <tr>
-                      <td class="tester-today3">{{log.eod_reading_lts}}</td>
-                      <td class="tester-yesterday3">{{log.eod_reading_yesterday}}</td>
-                    <td id="">{{log.balance}}</td>
+                      <td class="tester-today3">{{user_logs.eod_reading_lts}}</td>
+                      <td class="tester-yesterday3">{{user_logs.eod_reading_yesterday}}</td>
+                    <td id="">{{user_logs.balance}}</td>
                   </tr>
                 </tbody>
               </table>
         </div>
     </div>
     <div class="card-footer">
-        <small class="">Logged by {{log.user.username}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="">Details</a> </small>
+        <small class="">Logged by {{user_logs.user.username}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="">Details</a> </small>
     </div>
 </div>

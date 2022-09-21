@@ -22,7 +22,7 @@ declare function toggleProfileMpesaForm(): any;
 export class ProfileComponent implements OnInit {
   mpesa_logs: any;
   user_logs: any; 
-  announcements: Announcement;
+  announcements: any;
   currentUser = this.authService.currentUserValue;
   logs: Log = {
     id: 0,
@@ -53,10 +53,6 @@ export class ProfileComponent implements OnInit {
     private formBuilder:FormBuilder,
     private route:ActivatedRoute,
     ) { 
-      this.profileService.getAnnouncements().subscribe((data) => {
-        this.announcements = data 
-        console.warn(this.announcements)
-      })
 
       this.fuelService.getPetrolInfo().subscribe((data) => {
         this.info = data
@@ -65,18 +61,27 @@ export class ProfileComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.getUserAnnouncements();
+    this.route.params.subscribe(params => this.getUserLogs(params['id']))
     this.route.params.subscribe(params => this.getUserMpesaLogs(params['id']))
     this.mpesaForm = this.formBuilder.group({
       date: ['',Validators['date']],
       transaction_number: ['',Validators['required']],
-      // customer_name: ['',Validators['required']],
-      // customer_phone_number: [0,Validators['required']],
-      // amount: [0,Validators['required']],
-      // amount_transferred_to_bank: 0,
-      // user: 0,
-      // logged_by: ''
+      customer_name: ['',Validators['required']],
+      customer_phone_number: [0,Validators['required']],
+      amount: [0,Validators['required']],
+      amount_transferred_to_bank: 0,
+      user: 0,
+      logged_by: ''
     });
     // this.currentUser = this.tokenStorage.getUser();
+  }
+
+  getUserAnnouncements(){
+    this.profileService.getAnnouncements().subscribe((data) => {
+      this.announcements = data 
+      console.warn(this.announcements)
+    })
   }
 
   get f() { return this.mpesaForm.controls; }
@@ -103,6 +108,19 @@ export class ProfileComponent implements OnInit {
     err => {
       Notiflix.Notify.failure('Something went wrong!');
       Notiflix.Notify.warning('Please try again.');
+    });
+  }
+
+  getUserLogs(id:number): void{
+    this.logService.getUserLogs(id).subscribe(
+      (data) => {
+      this.user_logs = data
+      // this.ngOnInit();
+      console.warn('user_logs:',data)
+    },
+    error => {
+      console.log(error)
+      Notiflix.Notify.failure('Something went wrong!');
     });
   }
 

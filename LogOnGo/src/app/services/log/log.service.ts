@@ -8,7 +8,10 @@ import { Log } from 'src/app/classes/log/log';
   providedIn: 'root'
 })
 export class LogService {
-  apiURLtodayLogs = 'https://logongo.herokuapp.com/api/logs-today/'
+  // apiURLtodayLogs = 'https://logongo.herokuapp.com/api/logs-today/'
+  apiURLtodayLogs = 'http://127.0.0.1:8000/api/logs-today/';
+  apiURLuserLogs = 'http://127.0.0.1:8000/api/user-logs/';
+  // apiURLuserLogs = 'https://logongo.herokuapp.com/api/user-logs/';
   apiURLallLogs = 'https://logongo.herokuapp.com/api/all-logs/'
   apiURLpetrolLogDetails = 'https://logongo.herokuapp.com/api/log-details/1'
   apiURLpetrolLogsYesterday = 'https://logongo.herokuapp.com/api/logs-today/'
@@ -36,6 +39,9 @@ export class LogService {
 
   getAllLogs(): Observable<Log>{
     return this.http.get<Log>(this.apiURLallLogs);
+  }
+  getUserLogs(id: any): Observable<Log>{
+    return this.http.get<Log>(this.apiURLuserLogs + id);
   }
   getPetrolLogs(id:any): Observable<Log>{
     return this.http.get<Log>(this.apiURLpetrolLogs + id);
