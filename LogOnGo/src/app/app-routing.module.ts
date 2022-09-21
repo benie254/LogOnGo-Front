@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'petrol/:id', component: PetrolLogsComponent },
   { path: 'diesel/:id', component: DieselLogsComponent },
   { path: 'gas/:id', component: GasLogsComponent },
-  { path: 'petrol-details', component: PetrolDetailsComponent },
+  { path: 'log-details/:id', component: PetrolDetailsComponent },
   { path: 'diesel-details', component: DieselDetailsComponent },
   { path: 'gas-details', component: GasDetailsComponent },
   { path: 'logs', component: AllLogsComponent },
