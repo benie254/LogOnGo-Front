@@ -86,7 +86,7 @@
                     <div class="col-lg-6 color-two shadow rounded black padding-2">
                         <h2>Your Mpesa Logs</h2>
                         <div >
-                            <div *ngIf="mpesa_logs else elseBlockMpesa" class="card margin-top color-two" style="margin:1%;border-bottom: 5%;border-color:white;">
+                            <div *ngIf="mpesa_logs" class="card margin-top color-two" style="margin:1%;border-bottom: 5%;border-color:white;">
                      
                                 <h5 class="card-header" *ngFor="let mpesa_logs of mpesa_logs">{{mpesa_logs.date}}</h5>
                                 <div class="card-body" *ngFor="let mpesa_logs of mpesa_logs">
@@ -117,7 +117,7 @@
                             </div>
                         </div>
                         <div>
-                            <ng-template #elseBlockMpesa>
+                            <!-- <ng-template #elseBlockMpesa> -->
                                 <div class="card color-two">
                                     <div class="card-body">
                                         <p class="card-text">Your MPesa logs will appear here.</p>
@@ -183,7 +183,7 @@
                                 </div>
                                 
 
-                            </ng-template>
+                            <!-- </ng-template> -->
                             
                         </div>
                     </div>
