@@ -13,6 +13,7 @@ import { DieselLogsComponent } from './components/pages/diesel-logs/diesel-logs.
 import { GasDetailsComponent } from './components/pages/gas-details/gas-details.component';
 import { GasLogsComponent } from './components/pages/gas-logs/gas-logs.component';
 import { IncidentComponent } from './components/pages/incident/incident.component';
+import { LogDetailsComponent } from './components/pages/log-details/log-details.component';
 import { PetrolDetailsComponent } from './components/pages/petrol-details/petrol-details.component';
 import { PetrolLogsComponent } from './components/pages/petrol-logs/petrol-logs.component';
 import { ProfileComponent } from './components/pages/profile/profile.component';
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'petrol/:id', component: PetrolLogsComponent },
   { path: 'diesel/:id', component: DieselLogsComponent },
   { path: 'gas/:id', component: GasLogsComponent },
-  { path: 'log-details/:id', component: PetrolDetailsComponent },
+  { path: 'log-details/:id', component: LogDetailsComponent },
   { path: 'diesel-details', component: DieselDetailsComponent },
   { path: 'gas-details', component: GasDetailsComponent },
   { path: 'logs', component: AllLogsComponent },

@@ -105,6 +105,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { LogDetailsComponent } from './components/pages/log-details/log-details.component';
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -187,6 +188,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     AuthBgComponent,
     LandingComponent,
     PetrolLogsComponent,
+    LogDetailsComponent,
   ],
   imports: [
     BrowserModule,

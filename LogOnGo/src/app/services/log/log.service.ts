@@ -12,14 +12,23 @@ export class LogService {
   apiURLtodayLogs = 'http://127.0.0.1:8000/api/logs-today/';
   apiURLuserLogs = 'http://127.0.0.1:8000/api/user-logs/';
   // apiURLuserLogs = 'https://logongo.herokuapp.com/api/user-logs/';
-  apiURLallLogs = 'https://logongo.herokuapp.com/api/all-logs/'
-  apiURLpetrolLogDetails = 'https://logongo.herokuapp.com/api/log-details/1'
-  apiURLpetrolLogsYesterday = 'https://logongo.herokuapp.com/api/logs-today/'
-  apiURLpetrolLogs = 'http://127.0.0.1:8000/api/fuel-logs-today/'
-  apiURLpetrolLogs2 = 'https://logongo.herokuapp.com/api/fuel-logs-ii-today/1'
-  apiURLpetrolLogs3 = 'https://logongo.herokuapp.com/api/fuel-logs-iii-today/1'
-  apiURLpetrolLogs4 = 'https://logongo.herokuapp.com/api/fuel-logs-iv-today/1'
-  apiURLmpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/'
+  // apiURLallLogs = 'https://logongo.herokuapp.com/api/all-logs/';
+  apiURLallLogs = 'http://127.0.0.1:8000/api/all-logs/';
+  // apiURLpetrolLogDetails = 'https://logongo.herokuapp.com/api/log-details/';
+  apiURLpetrolLogDetails = 'http://127.0.0.1:8000/api/log-details/';
+  apiURLlogDetails = 'http://127.0.0.1:8000/api/log-details/';
+  // apiURLlogDetails = 'https://logongo.herokuapp.com/api/log-details/';
+  // apiURLpetrolLogsYesterday = 'https://logongo.herokuapp.com/api/logs-yesterday/';
+  apiURLpetrolLogsYesterday = 'http://127.0.0.1:8000/api/logs-yesterday/';
+  apiURLpetrolLogs = 'http://127.0.0.1:8000/api/fuel-logs-today/';
+  // apiURLpetrolLogs2 = 'https://logongo.herokuapp.com/api/fuel-logs-ii-today/';
+  apiURLpetrolLogs2 = 'http://127.0.0.1:8000/api/fuel-logs-ii-today/';
+  // apiURLpetrolLogs3 = 'https://logongo.herokuapp.com/api/fuel-logs-iii-today/';
+  apiURLpetrolLogs3 = 'http://127.0.0.1:8000/api/fuel-logs-iii-today/';
+  // apiURLpetrolLogs4 = 'https://logongo.herokuapp.com/api/fuel-logs-iv-today/';
+  apiURLpetrolLogs4 = 'http://127.0.0.1:8000/api/fuel-logs-iv-today/';
+  // apiURLmpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/';
+  apiURLmpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
 
   constructor(private http:HttpClient) { }
 
@@ -57,6 +66,14 @@ export class LogService {
   }
   getMpesaLogs(): Observable<LogMpesa>{
     return this.http.get<LogMpesa>(this.apiURLmpesaLogs);
+  }
+  getLogDetails(id: number): Observable<Log>{
+    return this.http.get<Log>(this.apiURLlogDetails + id);
+  }
+  updateLogDetails(id,data): Observable<Log>{
+    return this.http.put<Log>(this.apiURLlogDetails + id, data).pipe(
+      catchError(this.handleError)
+    );
   }
   getPetrolLogDetails(id: number): Observable<Log>{
     return this.http.get<Log>(this.apiURLpetrolLogDetails + id);

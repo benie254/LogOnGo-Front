@@ -1,5 +1,5 @@
-<h5 class="card-header">{{log_details.date}} <span class="float-right margin-top smaller" *ngIf="petrol_info"><span id="price-p2">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm2"> <app-priceperlitre-update-form></app-priceperlitre-update-form> </span> </span>
-              
+<!-- <h5 class="card-header">{{logs.date}} <span class="float-right margin-top smaller" *ngIf="petrol_info"><span id="price-p2">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm2"> <app-priceperlitre-update-form></app-priceperlitre-update-form> </span> </span> -->
+              <h5 class="card-header">{{logs.date}}</h5>
               <div class="card-body">
                   <div class="table-responsive" id="table" name="table">
                       <table class="table">
@@ -10,24 +10,22 @@
                             <th scope="col">Total litres sold today</th>
                             <th scope="col">Amount earned today</th>
                             <th scope="col">Balance (lts)</th>
-                            <th scope="col">Updated Balance (lts)</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                              <td id="tester-today2">{{log_details.eod_reading_lts}}</td>
+                              <td id="tester-today2">{{logs.eod_reading_lts}}</td>
                               
-                              <td id="tester-yesterday2">{{log_details.eod_reading_yesterday}}</td>
+                              <td id="tester-yesterday2">{{logs.eod_reading_yesterday}}</td>
                             <td id="total-today2"></td>
                             <td id="amount-today2"></td>
-                            <td id="" name=""><span> <app-bal-form></app-bal-form> </span> <span></span></td>
-                            <td>{{log_details.balance}}</td>
+                            <td>{{logs.balance}}</td>
                           </tr>
                         </tbody>
                         </table>
                   </div>
               </div>
               <div class="card-footer">
-                  <small class="">Logged by {{log_details.user.username}} | First logged on {{log_details.first_logged}}</small>
+                  <small class="">Logged by  | First logged on {{logs.first_logged}}</small>
               </div>
-              <p><a type="button" class="btn btn-sm btn-dark btn-outline-info" href="#updateLogDetailsForm" onclick="toggleUpdateLogDetailsForm()">Update log? </a> <small *ngIf="log_details.first_logged != log_details.last_edited"> >>> Last edited on {{log_details.last_edited}}</small></p>
+              

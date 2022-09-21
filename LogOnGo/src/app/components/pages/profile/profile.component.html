@@ -36,6 +36,7 @@
                         <div *ngIf="user_logs; else elseBlockUserlogs">
                             <div *ngFor="let user_logs of user_logs">
                                 <app-profile-logcard></app-profile-logcard>
+                                <a type="button" class="btn btn-sm btn-dark btn-outline-primary" routerLink="/log-details/{{user_logs.id}}">Details</a>
                             </div>
                         </div>
                         <div>
