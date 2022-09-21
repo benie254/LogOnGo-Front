@@ -69,12 +69,12 @@ export class ProfileComponent implements OnInit {
     this.mpesaForm = this.formBuilder.group({
       date: ['',Validators['date']],
       transaction_number: ['',Validators['required']],
-      customer_name: ['',Validators['required']],
-      customer_phone_number: [0,Validators['required']],
-      amount: [0,Validators['required']],
-      amount_transferred_to_bank: 0,
-      user: 0,
-      logged_by: ''
+      // customer_name: ['',Validators['required']],
+      // customer_phone_number: [0,Validators['required']],
+      // amount: [0,Validators['required']],
+      // amount_transferred_to_bank: 0,
+      // user: 0,
+      // logged_by: ''
     });
     // this.currentUser = this.tokenStorage.getUser();
   }
@@ -94,8 +94,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  addMpesaLog() {
-    this.logMpesaService.addMpesaLog(this.f['date'].value,this.f['tramsaction_number'].value,this.f['customer_name'].value,this.f['customer_phone_number'].value,this.f['amount'].value,this.f['amount_transferred_to_bank'].value).subscribe((result) => {
+  addMpesaLog(mpesa_info: any) {
+    this.logMpesaService.addMpesaLog(mpesa_info).subscribe((result) => {
       console.warn('result', result);
       Notiflix.Notify.success('Mpesa log added successful!');
       this.ngOnInit();

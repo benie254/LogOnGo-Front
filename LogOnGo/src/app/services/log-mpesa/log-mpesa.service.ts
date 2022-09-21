@@ -23,7 +23,7 @@ export class LogMpesaService {
     return this.http.get<LogMpesa>(this.apiURLuserMpesaLogs + id);
   }
 
-  addMpesaLog(date,transaction_number,customer_name,customer_phone_number,amount,amount_transferred_to_bank: LogMpesa) {
-    return this.http.post(this.apiURLtodayMpesaLogs, {date,transaction_number,customer_name,customer_phone_number,amount,amount_transferred_to_bank});
+  addMpesaLog(mpesa_info: LogMpesa) {
+    return this.http.post(this.apiURLtodayMpesaLogs, mpesa_info);
   }
 }

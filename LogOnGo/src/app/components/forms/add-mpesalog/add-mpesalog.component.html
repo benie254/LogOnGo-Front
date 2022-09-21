@@ -1,7 +1,7 @@
 <div id="mpesaForm" class="border color-two margin padding"><br>
     <h2 class="text-center">Add Mpesa logs</h2>
     <h6 class="text-center"><span class="bg-danger padding-2 rounded">Remember to update your daily total!</span></h6>
-    <form #mpesaForm="ngForm" (ngSubmit)="addMpesaLog()">
+    <form #mpesaForm="ngForm" (ngSubmit)="addMpesaLog(mpesaForm.value)">
         <div class="row">
             <div class="col">
                 <label for="date">Date</label>

@@ -18,8 +18,8 @@ export class AddMpesalogComponent implements OnInit {
     private formBuilder:FormBuilder,
     ) { }
 
-  addMpesaLog() {
-    this.logMpesaService.addMpesaLog(this.f['date'].value,this.f['tramsaction_number'].value,this.f['customer_name'].value,this.f['customer_phone_number'].value,this.f['amount'].value,this.f['amount_transferred_to_bank'].value).subscribe((result) => {
+  addMpesaLog(mpesa_info) {
+    this.logMpesaService.addMpesaLog(mpesa_info).subscribe((result) => {
       console.warn('result', result);
       // this.notifService.submitSuccess('success','Mpesa log added successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
