@@ -153,52 +153,45 @@
                         
                     </div>
                     
-                    <div id="updateMpesaLogDetailsForm" class="rounded container center color-two border col-md-5"><br>
-                        <h2 class="text-center">Update Mpesa details</h2>
-                        <form class="margin-top formAjax">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="date">Date</label>
-                                    <input type="date" class="Aj-M form-control" name="date" placeholder="Date">
-                                </div>
-                                <div class="col">
-                                    <label for="transaction_number">Transaction number</label>
-                                    <input type="number" id="transaction_number" class="Aj-M form-control" name="transaction_number" placeholder="Transaction number">
-                                </div>
+                    <form [formGroup]="updateForm" (ngSubmit)="updateMpesaDetails()">
+                        <div class="row">
+                            <div class="col">
+                                <label for="date" class="">Mpesa date</label>
+                                <input type="date" #date class="Aj form-control" id="date" formControlName="date" placeholder="Date" [(ngModel)]="mpesaDetails.date" required>
+                                
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="customer_name">Customer name</label>
-                                    <input type="text" id="customer_name" class="Aj-M form-control" name="customer_name" placeholder="Customer name">
-                                </div>
-                    
-                                <div class="col">
-                                    <label for="customer_phone_number">Customer phone number</label>
-                                    <input type="number" id="customer_phone_number" class="Aj-M form-control" name="customer_phone_number" placeholder="Customer phone number">
-                                </div>
+                            <div class="col">
+                                <label for="transaction_number">Transaction number</label>
+                                <input type="text" class="Aj form-control" id="transaction_number" formControlName="transaction_number" placeholder="transaction_number" [(ngModel)]="mpesaDetails.transaction_number" required>
                             </div>
-                    
-                            <div class="row">
-                                <div class="col">
-                                    <label for="amount">Amount</label>
-                                    <input type="number" class="Aj-M form-control" id="amount" name="amount" placeholder="Amount">
-                                </div>
-                    
-                                <div class="col">
-                                    <label for="amount_transferred_to_bank">Transferred to bank</label>
-                                    <input type="number" id="amount_transferred_to_bank" class="Aj-M form-control" name="amount_transferred_to_bank" placeholder="Amount transferred to bank">
-                                </div>
-                    
-                                <div class="col hide">
-                                    <input type="number" class="hide" name="user" placeholder="Your user id">
-                                    <input type="text" class="hide" name="logged_by" placeholder="Your name">
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="customer_name" class="">customer_name</label>
+                                <input type="text" #date class="Aj form-control" id="customer_name" formControlName="customer_name" placeholder="customer_name" [(ngModel)]="mpesaDetails.customer_name" required>
+                                
                             </div>
-                            <div class="form-group">
-                                <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit">Submit</button>
-                            </div>                  
-                        </form> 
-                    </div>   
+                            <div class="col">
+                                <label for="customer_phone_number">customer_phone_number</label>
+                                <input type="number" class="Aj form-control" id="customer_phone_number" formControlName="customer_phone_number" placeholder="customer_phone_number" [(ngModel)]="mpesaDetails.customer_phone_number" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="amount" class="">amount</label>
+                                <input type="number" #date class="Aj form-control" id="amount" formControlName="amount" placeholder="amount" [(ngModel)]="mpesaDetails.amount" required>
+                                
+                            </div>
+                            <div class="col">
+                                <label for="amount_transferred_to_bank">amount_transferred_to_bank</label>
+                                <input type="number" class="Aj form-control" id="amount_transferred_to_bank" formControlName="amount_transferred_to_bank" placeholder="amount_transferred_to_bank" [(ngModel)]="mpesaDetails.amount_transferred_to_bank" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit">Update log</button>
+                        </div> 
+                    </form> 
                 </div>
             </div>
         </div>  

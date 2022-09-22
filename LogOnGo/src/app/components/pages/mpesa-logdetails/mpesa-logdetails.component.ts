@@ -14,6 +14,7 @@ export class MpesaLogdetailsComponent implements OnInit {
   mpesaDetails: any; 
   id: number;
   mpesaDetailsForm: FormGroup;
+  updateForm: FormGroup;
   formBuilder: FormBuilder;
   currentUser = this.authService.currentUserValue;
 
@@ -25,7 +26,7 @@ export class MpesaLogdetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['id'];
     this.route.params.subscribe(params => this.getMpesaLogDetails(params['id']))
     this.mpesaDetailsForm = new FormGroup({
       date: new FormControl('',Validators['date']),
@@ -36,6 +37,14 @@ export class MpesaLogdetailsComponent implements OnInit {
       amount_transferred_to_bank: new FormControl(0),
       user: new FormControl(0),
       logged_by: new FormControl('')
+    });
+    this.updateForm = new FormGroup({
+      date: new FormControl('',Validators['date']),
+      transaction_number: new FormControl('',Validators['required']),
+      customer_name: new FormControl('',Validators['required']),
+      customer_phone_number: new FormControl(0,Validators['required']),
+      amount: new FormControl(0,Validators['required']),
+      amount_transferred_to_bank: new FormControl(0),
     });
   }
 
@@ -66,6 +75,21 @@ export class MpesaLogdetailsComponent implements OnInit {
       Notiflix.Notify.failure('Something went wrong!');
       Notiflix.Notify.warning('Please try again.');
     });
+  }
+
+  updateMpesaDetails(){
+
+    this.mpesaService.updateMpesaDetails(this.id,this.updateForm.value).subscribe({
+        next: (res) => {
+          console.log(res);
+          Notiflix.Notify.success('updated!');
+          // this.message = res.message ? res.message : 'This tutorial was updated successfully!';
+        },
+        error: (e) => {
+          console.error(e)
+          Notiflix.Notify.failure('Update failed!')
+        } 
+      });
   }
 
 }
