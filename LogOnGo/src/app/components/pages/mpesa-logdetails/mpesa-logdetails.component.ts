@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as Notiflix from 'notiflix';
 import { LogMpesaService } from 'src/app/services/log-mpesa/log-mpesa.service';
 
 @Component({
@@ -7,7 +8,9 @@ import { LogMpesaService } from 'src/app/services/log-mpesa/log-mpesa.service';
   styleUrls: ['./mpesa-logdetails.component.css']
 })
 export class MpesaLogdetailsComponent implements OnInit {
+  mpesaDetails: any; 
 
+  
   constructor(
     private mpesaService:LogMpesaService
   ) { }
@@ -16,15 +19,16 @@ export class MpesaLogdetailsComponent implements OnInit {
   }
 
   getLogDetails(id:number){
-    this.mpesaService.getLogDetails(id).subscribe((data) => {
-      this.logs = data
-      console.warn("log details",data)
-      Notiflix.Notify.success('Get success')
-    },
-    err => {
-      console.warn(err)
-      Notiflix.Notify.failure('Something went wrong!')
-    }
+    this.mpesaService.getMpesaLogDetails(id).subscribe(
+      (data) => {
+        this.mpesaDetails = data
+        console.warn("mpesa log details",data)
+        Notiflix.Notify.success('Get mpesa details success')
+      },
+      err => {
+        console.warn(err)
+        Notiflix.Notify.failure('Something went wrong!')
+      }
     );
   }
 
