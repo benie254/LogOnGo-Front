@@ -41,8 +41,8 @@
                         </div>
                         <p><a type="button" class="btn btn-sm btn-dark btn-outline-info" href="" onclick="toggleUpdateMpesaLogDetailsForm()">Update log? </a> <small *ngIf="mpesaDetails.first_logged != mpesaDetails.last_edited"> >>> Last edited on {{mpesaDetails.last_edited}}</small></p>
                     </div>
-                    <span class="color-two"><a href=""><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> <br><br>
-                    <h6><a href="" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6>
+                    <span class="color-two"><a routerLink="/mpesa-report/{{mpesaDetails.id}}"><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> <br><br>
+                    <h6><a routerLink="/email-mpesa-report/{{mpesaDetails.id}}" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6>
                     <div id="mpesaDetailsForm" class="border color-two margin padding"><br>
                         <h2 class="text-center">Add Mpesa logs</h2>
                         <form [formGroup]="mpesaDetailsForm" (submit)="addMpesaLog(mpesaDetailsForm.value)" class="color-two f-two padding-four rounded shadow">
