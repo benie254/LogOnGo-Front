@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FuelReceivedInfoComponent implements OnInit {
   fuel_received_info: any;
+  fuels: any;
 
   constructor() { }
 

@@ -5,6 +5,7 @@ import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Log } from 'src/app/classes/log/log';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
 
 @Component({
@@ -37,12 +38,14 @@ export class LogDetailsComponent implements OnInit {
   yesterday_logs: any;
   petrol_received_info: any;
   form: FormGroup;
+  fuels:Fuel;
   currentUser = this.authService.currentUserValue;
 
   constructor(
     private route:ActivatedRoute, 
     private logService:LogService,
     private authService:AuthService,
+    private fuelService:FuelService,
     ) { }
 
   ngOnInit(): void {
@@ -50,6 +53,18 @@ export class LogDetailsComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     // this.route.params.subscribe(params => this.updateLogDetails(params['id']))
     this.message = '';
+
+    this.fuelService.getFuels().subscribe(
+      (fuels_data) => {
+        console.warn("fuels data:",fuels_data)
+        this.fuels = fuels_data;
+        Notiflix.Notify.success('Get fuel success')
+      },
+      err => {
+        console.warn(err)
+        Notiflix.Notify.failure('Fuel get failed')
+      }
+    )
 
     this.form = new FormGroup({
       date: new FormControl('', [Validators.required]),

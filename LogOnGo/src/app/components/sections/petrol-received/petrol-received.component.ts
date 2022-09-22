@@ -16,7 +16,7 @@ export class PetrolReceivedComponent implements OnInit {
 
   petrolReceived(petrol_received: any) {
     console.warn(petrol_received);
-    this.fuelService.addPetrolReceived(petrol_received).subscribe((result) => {
+    this.fuelService.addFuelReceived(petrol_received).subscribe((result) => {
       console.warn('result', result);
       Notiflix.Notify.success('Added successfully')
       // this.notifService.submitSuccess('success','Petrol received added successfully!')

@@ -106,6 +106,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LogDetailsComponent } from './components/pages/log-details/log-details.component';
+import { FuelReceivedComponent } from './components/sections/fuel-received/fuel-received.component';
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -189,6 +190,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     LandingComponent,
     PetrolLogsComponent,
     LogDetailsComponent,
+    FuelReceivedComponent,
   ],
   imports: [
     BrowserModule,

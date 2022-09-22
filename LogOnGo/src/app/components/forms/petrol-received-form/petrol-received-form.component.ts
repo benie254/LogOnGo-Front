@@ -14,7 +14,7 @@ export class PetrolReceivedFormComponent implements OnInit {
 
   petrolReceived(petrol_received: any) {
     console.warn(petrol_received);
-    this.fuelService.addPetrolReceived(petrol_received).subscribe((result) => {
+    this.fuelService.addFuelReceived(petrol_received).subscribe((result) => {
       console.warn('result', result);
       // this.notifService.submitSuccess('success','Petrol received added successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")

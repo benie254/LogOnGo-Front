@@ -20,7 +20,11 @@ export class FuelService {
   // apiURLgasReceived = 'https://logongo.herokuapp.com/api/gas-received-today/info/';
   apiURLgasReceived = 'http://127.0.0.1:8000/api/gas-received-today/info/';
   // apiURLpetrolReceived = 'https://logongo.herokuapp.com/api/petrol-received-today/info/';
-  apiURLpetrolReceived = 'http://127.0.0.1:8000/api/fuel-received-today/';
+  apiURLlastFuelReceived = 'http://127.0.0.1:8000/api/total-fuel-received-today/';
+  apiURLallFuelsReceived = 'http://127.0.0.1:8000/api/fuel-received-today/';
+  apiTotalPetrolReceived = 'http://127.0.0.1:8000/api/total-petrol-received-today/';
+  apiTotalDieselReceived = 'http://127.0.0.1:8000/api/total-diesel-received-today/';
+  apiTotalGasReceived = 'http://127.0.0.1:8000/api/total-gas-received-today/';
 
   constructor(private http:HttpClient) { }
 
@@ -38,6 +42,10 @@ export class FuelService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
+  getFuels(): Observable<Fuel>{
+    return this.http.get<Fuel>(this.apiURLfuels)
+  }
+
 
   addFuel(fuel_info: any) {
     return this.http.post(this.apiURLfuels, fuel_info);
@@ -48,8 +56,8 @@ export class FuelService {
   addGasReceived(gas_received: any) {
     return this.http.post(this.apiURLgasReceived, gas_received);
   }
-  addPetrolReceived(petrol_received: any) {
-    return this.http.post(this.apiURLpetrolReceived, petrol_received);
+  addFuelReceived(fuel_received: any) {
+    return this.http.post(this.apiURLallFuelsReceived, fuel_received);
   }
 
   getPetrolInfo(): Observable<Fuel>{
@@ -60,6 +68,10 @@ export class FuelService {
   }
   getGasInfo(): Observable<Fuel>{
     return this.http.get<Fuel>(this.apiURLgas)
+  }
+
+  getPetrolReceived(): Observable<any>{
+    return this.http.get<any>(this.apiTotalPetrolReceived)
   }
 
   updatePetrolInfo(petrol_info:Fuel): Observable<Fuel>{
