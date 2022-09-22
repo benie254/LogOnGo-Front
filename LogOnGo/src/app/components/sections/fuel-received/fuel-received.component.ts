@@ -3,6 +3,13 @@ import { FuelService } from 'src/app/services/fuel/fuel.service';
 import * as Notiflix from 'notiflix';
 import { ActivatedRoute } from '@angular/router';
 
+declare function toggleOrderInfo(): any;
+declare function toggleDieselOrderInfo(): any;
+declare function toggleGasOrderInfo(): any;
+declare function togglePetrolRcvd(): any;
+declare function toggleDieselRcvd(): any;
+declare function toggleGasRcvd(): any;
+
 @Component({
   selector: 'app-fuel-received',
   templateUrl: './fuel-received.component.html',
@@ -11,9 +18,16 @@ import { ActivatedRoute } from '@angular/router';
 export class FuelReceivedComponent implements OnInit {
 
   petrol_received: any;
+  diesel_received: any; 
+  diesel_received_info: any; 
+  gas_received: any;
+  gas_received_info: any;
   fuels: any;
   message: '';
   petrol_info: any; 
+  gasInfo: any; 
+  dieselInfo: any;
+  petrol_received_info: any;
 
   constructor(
     private fuelService:FuelService,
@@ -47,9 +61,74 @@ export class FuelReceivedComponent implements OnInit {
       }
     )
 
+    this.fuelService.getPetrolReceivedInfo().subscribe(
+      (petrol_rcvd_info) => {
+        this.petrol_received_info = petrol_rcvd_info
+      },
+      err => {
+        console.log(err)
+      }
+    )
+
+    this.fuelService.getDieselReceived().subscribe(
+      (diesel_received_data) => {
+        this.diesel_received = diesel_received_data;
+        console.warn("diesel recvd data:",diesel_received_data);
+        Notiflix.Notify.success('Get diesel rcv success!')
+      },
+      err => {
+        this.message = err 
+        alert(this.message)
+        console.warn(err)
+        Notiflix.Notify.failure('Get diesel rcv failed!')
+      }
+    )
+
+    this.fuelService.getDieselReceivedInfo().subscribe(
+      (diesel_rcvd_info) => {
+        this.diesel_received_info = diesel_rcvd_info
+      },
+      err => {
+        console.log(err)
+      }
+    )
+
+    this.fuelService.getGasReceived().subscribe(
+      (gas_received_data) => {
+        this.gas_received = gas_received_data;
+        console.warn("gas recvd data:",gas_received_data);
+        Notiflix.Notify.success('Get gas rcv success!')
+      },
+      err => {
+        this.message = err 
+        alert(this.message)
+        console.warn(err)
+        Notiflix.Notify.failure('Get fuel rcv failed!')
+      }
+    )
+
+    this.fuelService.getGasReceivedInfo().subscribe(
+      (gas_rcvd_info) => {
+        this.gas_received_info = gas_rcvd_info
+      },
+      err => {
+        console.log(err)
+      }
+    )
+
     this.fuelService.getPetrolInfo().subscribe(
       (petrol_info_data) => {
         this.petrol_info = petrol_info_data; 
+      }
+    )
+    this.fuelService.getDieselInfo().subscribe(
+      (diesel_info_data) => {
+        this.dieselInfo = diesel_info_data; 
+      }
+    )
+    this.fuelService.getGasInfo().subscribe(
+      (gas_info_data) => {
+        this.gasInfo = gas_info_data; 
       }
     )
 
@@ -63,6 +142,7 @@ export class FuelReceivedComponent implements OnInit {
     this.fuelService.addFuelReceived(fuel_received).subscribe((result) => {
       console.warn('result', result);
       Notiflix.Notify.success('Added successfully')
+      location.reload()
       // this.notifService.submitSuccess('success','Petrol received added successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
     },

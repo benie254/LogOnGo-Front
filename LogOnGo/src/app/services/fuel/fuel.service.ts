@@ -25,6 +25,9 @@ export class FuelService {
   apiTotalPetrolReceived = 'http://127.0.0.1:8000/api/total-petrol-received-today/';
   apiTotalDieselReceived = 'http://127.0.0.1:8000/api/total-diesel-received-today/';
   apiTotalGasReceived = 'http://127.0.0.1:8000/api/total-gas-received-today/';
+  apiPetrolReceivedInfo = 'http://127.0.0.1:8000/api/petrol-received-today/info/';
+  apiDieselReceivedInfo = 'http://127.0.0.1:8000/api/diesel-received-today/info/';
+  apiGasReceivedInfo = 'http://127.0.0.1:8000/api/gas-received-today/info/';
 
   constructor(private http:HttpClient) { }
 
@@ -73,6 +76,21 @@ export class FuelService {
   getPetrolReceived(): Observable<any>{
     return this.http.get<any>(this.apiTotalPetrolReceived)
   }
+  getPetrolReceivedInfo(): Observable<any>{
+    return this.http.get<any>(this.apiPetrolReceivedInfo)
+  }
+  getDieselReceived(): Observable<any>{
+    return this.http.get<any>(this.apiTotalDieselReceived)
+  }
+  getDieselReceivedInfo(): Observable<any>{
+    return this.http.get<any>(this.apiDieselReceivedInfo)
+  }
+  getGasReceived(): Observable<any>{
+    return this.http.get<any>(this.apiTotalGasReceived)
+  }
+  getGasReceivedInfo(): Observable<any>{
+    return this.http.get<any>(this.apiGasReceivedInfo)
+  }
 
   updatePetrolInfo(petrol_info:Fuel): Observable<Fuel>{
     return this.http.put<Fuel>(this.apiURLpetrol, petrol_info).pipe(
@@ -89,4 +107,6 @@ export class FuelService {
       catchError(this.handleError)
     );
   }
+
+  
 }

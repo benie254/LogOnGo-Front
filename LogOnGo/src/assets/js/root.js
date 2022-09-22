@@ -772,6 +772,46 @@ function toggleLogForm(){
         hide.style.display = "block";
     }
   }
+  function toggleDieselOrderInfo(){
+    var hide = document.getElementById("dieselOrderInfo");
+    if (hide.style.display === "block"){
+        hide.style.display = "none";
+    } else{
+        hide.style.display = "block";
+    }
+  }
+  function toggleGasOrderInfo(){
+    var hide = document.getElementById("gasOrderInfo");
+    if (hide.style.display === "block"){
+        hide.style.display = "none";
+    } else{
+        hide.style.display = "block";
+    }
+  }
+  function togglePetrolRcvd(){
+    var hide = document.getElementById("petrolReceived");
+    if (hide.style.display === "block"){
+        hide.style.display = "none";
+    } else{
+        hide.style.display = "block";
+    }
+  }
+  function toggleDieselRcvd(){
+    var hide = document.getElementById("dieselReceived");
+    if (hide.style.display === "block"){
+        hide.style.display = "none";
+    } else{
+        hide.style.display = "block";
+    }
+  }
+  function toggleGasRcvd(){
+    var hide = document.getElementById("gasReceived");
+    if (hide.style.display === "block"){
+        hide.style.display = "none";
+    } else{
+        hide.style.display = "block";
+    }
+  }
   
   var contForm = document.getElementById("contForm")
   // $(function(){

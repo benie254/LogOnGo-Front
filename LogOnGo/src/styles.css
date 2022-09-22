@@ -278,11 +278,14 @@ body,.color-one {
   #logForm,#petrolLog,#contForm,#dieselLog,#gasLog,#fuelReceived,#RegFuel,#dieselReceived,#gasReceived,#fuelReceivedForm,#fuelRecvdForm,#updateLogDetailsForm,#reportForm,#reportForm2,#updateMpesaLogDetailsForm,#dieselRecvdForm,#dieselForm,#gasRecvdForm,#gasForm,#printData,#printMpesaData,#petrol-two,#petrol-three,#petrol-four,#updatePetrolPumpsForm,#updatePetrolPriceForm,#updatePetrolAmountForm,#updatePetrolPriceForm2,#updatePetrolPriceForm3,#updatePetrolPriceForm4,#updateDieselPumpsForm,#updateDieselAmountForm,#updateDieselPriceForm,#updateDieselPriceForm2,#updateDieselPriceForm3,#updateDieselPriceForm4,#diesel-two,#diesel-three,#diesel-four,#updateGasPumpsForm,#updateGasAmountForm,#updateGasPriceForm,#updateGasPriceForm2,#updateGasPriceForm3,#updateGasPriceForm4,#gas-two,#gas-three,#gas-four{
     display:none;
   }
-  #orderInfo, #lForm{
+  #orderInfo, #lForm, #gasOrderInfo, #dieselOrderInfo{
     display:none;
   }
   #mpesaForm, #profileLogForm, #profileMpesaForm{
     display:none;
+  }
+  #petrolReceived, #dieselReceived, #gasReceived{
+    display: none;
   }
   .radius{
     border-radius:50%;
