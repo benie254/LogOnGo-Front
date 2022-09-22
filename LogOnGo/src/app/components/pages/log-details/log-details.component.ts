@@ -115,7 +115,6 @@ export class LogDetailsComponent implements OnInit {
         next: (res) => {
           console.log(res);
           Notiflix.Notify.success('updated!');
-          location.reload();
           // this.message = res.message ? res.message : 'This tutorial was updated successfully!';
         },
         error: (e) => {

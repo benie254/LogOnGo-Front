@@ -1,14 +1,44 @@
 <div class="container color-two padding rounded">
     <div class="row color-four">
       <div class="border full-height col center color-four rounded black padding-2">
-        <h2>Log Details {{logs.id}} <br> <span class=""><a href=""><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> </h2>
-        <h6><a href="" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6>
+        <h2>Log Details {{logs.id}} <br> <span class=""><a routerLink="/print-report/{{logs.id}}"><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> </h2>
+        <h6><a routerLink="/email-report/{{logs.id}}" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6>
         <app-initial-amount></app-initial-amount>
         <!-- <div class="card color-two">
           <h5 class="card-header hide">New tank balance: <span id="bal0">{{yesterday_logs.balance}}</span> Lts </h5>
         </div> -->
   
-        <app-logdetails-logcard></app-logdetails-logcard>
+        <!-- <h5 class="card-header">{{logs.date}} <span class="float-right margin-top smaller" *ngIf="petrol_info"><span id="price-p2">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm2"> <app-priceperlitre-update-form></app-priceperlitre-update-form> </span> </span> -->
+            <h5 class="card-header">{{logs.date}}</h5>
+            <div class="card-body">
+                <div class="table-responsive" id="table" name="table">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">EOD Reading Today</th>
+                          <th scope="col">EOD Reading Yesterday</th>
+                          <th scope="col">Total litres sold today</th>
+                          <th scope="col">Amount earned today</th>
+                          <th scope="col">Balance (lts)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td id="tester-today2">{{logs.eod_reading_lts}}</td>
+                            
+                            <td id="tester-yesterday2">{{logs.eod_reading_yesterday}}</td>
+                          <td id="total-today2"></td>
+                          <td id="amount-today2"></td>
+                          <td>{{logs.balance}}</td>
+                        </tr>
+                      </tbody>
+                      </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="">Logged by  | First logged on {{logs.first_logged}}</small>
+            </div>
+            
         
         
         <p><a type="button" class="btn btn-sm btn-dark btn-outline-info" href="#updateLogDetailsForm" onclick="toggleUpdateLogDetailsForm()">Update log? </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited on {{logs.last_edited}}</small></p>
