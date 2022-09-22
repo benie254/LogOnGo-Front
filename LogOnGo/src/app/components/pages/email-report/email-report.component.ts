@@ -42,7 +42,19 @@ export class EmailReportComponent implements OnInit {
   }
 
   emailReport(){
-    
+
+  }
+  addLog(log_info: any) {
+    console.warn(log_info);
+    this.logService.addLog(log_info).subscribe((result) => {
+      console.warn('result', result);
+      Notiflix.Notify.success('Petrol log added successful!');
+      this.ngOnInit();
+    }, 
+    err => {
+      Notiflix.Notify.failure('Something went wrong!');
+      Notiflix.Notify.warning('Please try again.');
+    });
   }
 
 }
