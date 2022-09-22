@@ -7,4 +7,8 @@ export class LogMpesa {
     amount_transferred_to_bank: number;
     user: number; 
     logged_by: string;
+    daily_total: number; 
+    cumulative_amount: number; 
+    first_logged: string; 
+    last_edited: string;
 }

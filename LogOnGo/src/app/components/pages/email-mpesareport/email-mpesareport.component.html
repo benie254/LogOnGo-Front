@@ -3,5 +3,37 @@
 <div class="container color-two padding rounded">
     <h3 class="text-center">Please confirm your details</h3> 
     <p class="text-center">We will send an email report to...</p>
-    <app-email-mpesareport-form></app-email-mpesareport-form>
+    <form #mpesaReportForm="ngForm" (ngSubmit)="emailMpesaReport(mpesaReportForm.value)">
+        <div class="row">
+            <div class="col">
+                <input type="date" ngModel name="date" [(ngModel)]="mpesaDetails.date">
+                <input type="text" ngModel placeholder="transaction_number" name="transaction_number" [(ngModel)]="mpesaDetails.transaction_number" id="tester-today-report">
+        <input type="text" placeholder="customer_name" name="customer_name" ngModel [(ngModel)]="mpesaDetails.customer_name" id="tester-yesterday-report">
+        <input type="number" placeholder="customer_phone_number" name="customer_phone_number" ngModel [(ngModel)]="mpesaDetails.customer_phone_number">
+        <input type="number" placeholder="amount" name="amount" ngModel [(ngModel)]="mpesaDetails.amount">
+        <input type="number" placeholder="amount_transferred_to_bank" name="amount_transferred_to_bank" ngModel [(ngModel)]="mpesaDetails.amount_transferred_to_bank">
+        <input type="number" placeholder="daily_total" ngModel [(ngModel)]="mpesaDetails.daily_total" name="daily_total">
+        <input type="number" placeholder="cumulative_amount" name="cumulative_amount" ngModel [(ngModel)]="mpesaDetails.cumulative_amount">
+        <input type="text" placeholder="logged_by" name="logged_by" ngModel [(ngModel)]="mpesaDetails.logged_by">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <label for="admin_email">Your email:</label>
+                <input id="admin_email" type="email" #admin_email="ngModel" placeholder="admin_email" name="admin_email" ngModel [(ngModel)]="currentUser.email" required>
+                
+            </div>
+    
+            <div class="col">
+                <label for="admin_name">Your name:</label>
+                <input id="admin_name" type="text" #admin_name="ngModel" placeholder="your name" name="admin_name" ngModel [(ngModel)]="currentUser.username" required>
+               
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" class="btn margin-top2 btn-sm btn-outline-info btn-dark" value="Request email report" onclick="">
+        </div>
+    </form>
+    
 </div>
