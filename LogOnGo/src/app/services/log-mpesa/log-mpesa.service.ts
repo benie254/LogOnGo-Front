@@ -13,6 +13,7 @@ export class LogMpesaService {
   apiURLtodayMpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
   // apiURLuserMpesaLogs = 'https://logongo.herokuapp.com/api/user-mpesa-logs/'
   apiURLuserMpesaLogs = 'http://127.0.0.1:8000/api/user-mpesa-logs/';
+  apiMpesaLogDetails = 'http://127.0.0.1:8000/api/mpesa-log-details/'
 
   constructor(private http:HttpClient) { }
 
@@ -21,6 +22,9 @@ export class LogMpesaService {
   }
   getUserMpesaLogs(id: any): Observable<LogMpesa>{
     return this.http.get<LogMpesa>(this.apiURLuserMpesaLogs + id);
+  }
+  getMpesaLogDetails(id: number): Observable<LogMpesa>{
+    return this.http.get<LogMpesa>(this.apiMpesaLogDetails + id)
   }
 
   addMpesaLog(mpesa_info: LogMpesa) {
