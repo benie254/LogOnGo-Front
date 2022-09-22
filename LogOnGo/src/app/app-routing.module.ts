@@ -10,6 +10,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { AllLogsComponent } from './components/pages/all-logs/all-logs.component';
 import { DieselDetailsComponent } from './components/pages/diesel-details/diesel-details.component';
 import { DieselLogsComponent } from './components/pages/diesel-logs/diesel-logs.component';
+import { EmailMpesareportComponent } from './components/pages/email-mpesareport/email-mpesareport.component';
 import { EmailReportComponent } from './components/pages/email-report/email-report.component';
 import { GasDetailsComponent } from './components/pages/gas-details/gas-details.component';
 import { GasLogsComponent } from './components/pages/gas-logs/gas-logs.component';
@@ -19,6 +20,7 @@ import { MpesaLogdetailsComponent } from './components/pages/mpesa-logdetails/mp
 import { PetrolDetailsComponent } from './components/pages/petrol-details/petrol-details.component';
 import { PetrolLogsComponent } from './components/pages/petrol-logs/petrol-logs.component';
 import { PrintLogsComponent } from './components/pages/print-logs/print-logs.component';
+import { PrintMpesaComponent } from './components/pages/print-mpesa/print-mpesa.component';
 import { ProfileComponent } from './components/pages/profile/profile.component';
 
 const routes: Routes = [
@@ -41,6 +43,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'print-report/:id', component: PrintLogsComponent },
   { path: 'email-report/:id', component: EmailReportComponent },
+  { path: 'mpesa-report/:id', component: PrintMpesaComponent },
+  { path: 'email-mpesa-report/:id', component: EmailMpesareportComponent },
 ];
 
 @NgModule({
