@@ -41,7 +41,7 @@
             
         
         
-        <p><a type="button" class="btn btn-sm btn-dark btn-outline-info" href="#updateLogDetailsForm" onclick="toggleUpdateLogDetailsForm()">Update log? </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited on {{logs.last_edited}}</small></p>
+        <p><a type="button" class="btn btn-sm btn-dark btn-outline-info" type="button" onclick="toggleUpdateLogDetailsForm()" (click)="reportWarn()">Update log? </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited on {{logs.last_edited}}</small></p>
         
         <form [formGroup]="form" (ngSubmit)="updateLogDetails()">
             <div class="row">

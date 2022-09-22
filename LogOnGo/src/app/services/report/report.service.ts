@@ -12,7 +12,7 @@ export class ReportService {
     private http:HttpClient,
   ) { }
 
-  addLog(report_info: any) {
+  emailLogReport(report_info: any) {
     return this.http.post(this.apiURLlogReport, report_info);
   }
 }

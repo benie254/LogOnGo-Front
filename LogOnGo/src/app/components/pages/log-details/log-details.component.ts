@@ -124,4 +124,27 @@ export class LogDetailsComponent implements OnInit {
       });
   }
 
+  reportWarn(){
+    Notiflix.Confirm.show(
+      'Confirm update',
+      "Are you sure you want to edit this log?",
+      "I'm sure",
+      "Take me back",
+      () => {
+        Notiflix.Report.info(
+          "Remember",
+          "We keep records of all updates.",
+          "Okay",
+        )
+      },
+      () => {
+        Notiflix.Report.success(
+          "Aborted!",
+          "Everything looks good.",
+          'Great',
+        )
+      }
+    )
+  }
+
 }

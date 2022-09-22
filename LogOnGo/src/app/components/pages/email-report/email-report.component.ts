@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LogService } from 'src/app/services/log/log.service';
+import { ReportService } from 'src/app/services/report/report.service';
 
 @Component({
   selector: 'app-email-report',
@@ -22,6 +23,7 @@ export class EmailReportComponent implements OnInit {
     private route:ActivatedRoute,
     private logService:LogService,
     private authService:AuthService,
+    private reportService:ReportService,
   ) { }
 
   ngOnInit(): void {
@@ -41,20 +43,26 @@ export class EmailReportComponent implements OnInit {
     );
   }
 
-  emailReport(){
-
+  emailReport(report_info: any){
+    Notiflix.Loading.hourglass('Sending...')
+    this.reportService.emailLogReport(report_info).subscribe(
+      (report_data) => {
+      Notiflix.Loading.remove()
+      Notiflix.Report.success(
+        'Report sent!',
+        '"The requested log report has been delivered to your email"',
+        'Okay',
+      );
+        console.warn("email report data:", report_data)
+        Notiflix.Notify.success('Email report sent to your email!');
+        // Notiflix.Report.success()
+      }, 
+      err => {
+        Notiflix.Notify.failure('Something went wrong!');
+        Notiflix.Notify.warning('Please try again.');
+      }
+    )
   }
-  addLog(log_info: any) {
-    console.warn(log_info);
-    this.logService.addLog(log_info).subscribe((result) => {
-      console.warn('result', result);
-      Notiflix.Notify.success('Petrol log added successful!');
-      this.ngOnInit();
-    }, 
-    err => {
-      Notiflix.Notify.failure('Something went wrong!');
-      Notiflix.Notify.warning('Please try again.');
-    });
-  }
+  
 
 }
