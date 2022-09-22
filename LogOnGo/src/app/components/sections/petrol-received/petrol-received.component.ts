@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as Notiflix from 'notiflix';
+import { FuelService } from 'src/app/services/fuel/fuel.service';
 
 @Component({
   selector: 'app-petrol-received',
@@ -8,7 +10,23 @@ import { Component, OnInit } from '@angular/core';
 export class PetrolReceivedComponent implements OnInit {
   petrol_received: any;
 
-  constructor() { }
+  constructor(
+    private fuelService:FuelService,
+  ) { }
+
+  petrolReceived(petrol_received: any) {
+    console.warn(petrol_received);
+    this.fuelService.addPetrolReceived(petrol_received).subscribe((result) => {
+      console.warn('result', result);
+      Notiflix.Notify.success('Added successfully')
+      // this.notifService.submitSuccess('success','Petrol received added successfully!')
+      // this.notifService.showSuccess("Data posted successfully !!", "Notification")
+    },
+    err => {
+      Notiflix.Notify.failure('Add failed!')
+    }
+    );
+  }
 
   ngOnInit(): void {
   }

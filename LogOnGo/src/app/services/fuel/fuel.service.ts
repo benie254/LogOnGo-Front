@@ -20,7 +20,7 @@ export class FuelService {
   // apiURLgasReceived = 'https://logongo.herokuapp.com/api/gas-received-today/info/';
   apiURLgasReceived = 'http://127.0.0.1:8000/api/gas-received-today/info/';
   // apiURLpetrolReceived = 'https://logongo.herokuapp.com/api/petrol-received-today/info/';
-  apiURLpetrolReceived = 'http://127.0.0.1:8000/api/petrol-received-today/info/';
+  apiURLpetrolReceived = 'http://127.0.0.1:8000/api/fuel-received-today/';
 
   constructor(private http:HttpClient) { }
 
