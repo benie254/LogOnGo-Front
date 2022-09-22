@@ -109,7 +109,7 @@ export class FuelReceivedComponent implements OnInit {
 
     this.fuelService.getGasReceivedInfo().subscribe(
       (gas_rcvd_info) => {
-        this.gas_received_info = gas_rcvd_info
+        this.gas_received_info = gas_rcvd_info;
       },
       err => {
         console.log(err)

@@ -15,6 +15,7 @@ import { GasDetailsComponent } from './components/pages/gas-details/gas-details.
 import { GasLogsComponent } from './components/pages/gas-logs/gas-logs.component';
 import { IncidentComponent } from './components/pages/incident/incident.component';
 import { LogDetailsComponent } from './components/pages/log-details/log-details.component';
+import { MpesaLogdetailsComponent } from './components/pages/mpesa-logdetails/mpesa-logdetails.component';
 import { PetrolDetailsComponent } from './components/pages/petrol-details/petrol-details.component';
 import { PetrolLogsComponent } from './components/pages/petrol-logs/petrol-logs.component';
 import { PrintLogsComponent } from './components/pages/print-logs/print-logs.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'diesel/:id', component: DieselLogsComponent },
   { path: 'gas/:id', component: GasLogsComponent },
   { path: 'log-details/:id', component: LogDetailsComponent },
+  { path: 'mpesa-details/:id', component: MpesaLogdetailsComponent },
   { path: 'diesel-details', component: DieselDetailsComponent },
   { path: 'gas-details', component: GasDetailsComponent },
   { path: 'logs', component: AllLogsComponent },
