@@ -15,7 +15,7 @@ export class LogService {
   // apiURLallLogs = 'https://logongo.herokuapp.com/api/all-logs/';
   apiURLallLogs = 'http://127.0.0.1:8000/api/all-logs/';
   // apiURLpetrolLogDetails = 'https://logongo.herokuapp.com/api/log-details/';
-  apiURLpetrolLogDetails = 'http://127.0.0.1:8000/api/log-details/';
+  apiURLpetrolLogDetails = 'http://127.0.0.1:8000/api/petrol-log-details/';
   apiURLlogDetails = 'http://127.0.0.1:8000/api/log-details/';
   // apiURLlogDetails = 'https://logongo.herokuapp.com/api/log-details/';
   // apiURLpetrolLogsYesterday = 'https://logongo.herokuapp.com/api/logs-yesterday/';

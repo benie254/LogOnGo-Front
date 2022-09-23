@@ -58,6 +58,12 @@ export class EmailReportComponent implements OnInit {
         // Notiflix.Report.success()
       }, 
       err => {
+        Notiflix.Loading.remove()
+        Notiflix.Report.failure(
+          'Sending failed!',
+          '"Something went wrong as we attempted to send your email report"',
+          'Okay',
+        );
         Notiflix.Notify.failure('Something went wrong!');
         Notiflix.Notify.warning('Please try again.');
       }

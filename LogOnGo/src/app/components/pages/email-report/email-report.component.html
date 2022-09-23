@@ -8,33 +8,30 @@
         <form class="margin-top" #emailReportForm="ngForm" (ngSubmit)="emailReport(emailReportForm.value)">
             <div class="row">
                 <div class="col">
+                    <input type="date" name="date" [(ngModel)]="log_details.date">
                     <input type="number" ngModel placeholder="eod_reading_lts" name="eod_reading_lts" [(ngModel)]="log_details.eod_reading_lts" id="tester-today-report">
             <input type="number" placeholder="eod_reading_yesterday" name="eod_reading_yesterday" ngModel [(ngModel)]="log_details.eod_reading_yesterday" id="tester-yesterday-report">
             <input type="number" placeholder="litres_sold_today" name="litres_sold_today" ngModel [(ngModel)]="log_details.total_litres_sold" id="total-today-report">
             <input type="number" placeholder="amount_earned_today" name="amount_earned_today" ngModel [(ngModel)]="log_details.amount_earned_today" id="amount-today-report">
             <input type="number" placeholder="balance" name="balance" ngModel  [(ngModel)]="log_details.balance">
+            <input type="text" name="logged_by" [(ngModel)]="log_details.logged_by">
                 </div>
             </div>
             
             <div class="row">
                 <div class="col">
-                    <label for="your_email">Your email:</label>
-                    <input id="your_email" type="email" #your_email="ngModel" placeholder="your_email" name="admin_email" ngModel [(ngModel)]="currentUser.email">
-                    <div [hidden]="your_email.valid || your_email.pristine" class="alert alert-danger">
-                        <p>Email required</p>
-                    </div>
+                    <label for="admin_email">Your email:</label>
+                    <input id="admin_email" type="email" #admin_email="ngModel" placeholder="your_email" name="admin_email" ngModel [(ngModel)]="currentUser.email">
                 </div>
 
                 <div class="col">
-                    <label for="your_name">Your name:</label>
-                    <input id="your_name" type="text" placeholder="your name" ngModel #your_name="ngModel" name="admin_name" [(ngModel)]="currentUser.username">
-                    <div [hidden]="your_name.valid || your_name.pristine" class="alert alert-danger">
-                        <p>Subject required</p>
-                    </div>
+                    <label for="admin_name">Your name:</label>
+                    <input id="admin_name" type="text" placeholder="your name" ngModel #admin_name="ngModel" name="admin_name" [(ngModel)]="currentUser.username">
+                   <input type="number" name="user">
                 </div>
             </div>
             <div class="form-group text-center">
-                <input type="submit" class="btn margin-top2 btn-sm btn-outline-info btn-dark" value="Request email report" onclick="">
+                <button type="submit" class="btn margin-top2 btn-sm btn-outline-info btn-dark">Request email report</button>
             </div>
         </form>
     </div>
