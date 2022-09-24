@@ -6,10 +6,12 @@ import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { LogMpesa } from 'src/app/classes/log-mpesa/log-mpesa';
 import { Log } from 'src/app/classes/log/log';
+import { Pump } from 'src/app/classes/pump/pump';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { PumpService } from 'src/app/services/pump/pump.service';
 
 
 declare function togglePLogs(): any;
@@ -61,6 +63,10 @@ export class PetrolLogsComponent implements OnInit {
   id: number;
   mpesa_logs: LogMpesa;
   yesterday_logs: Log;
+  pumpOne: Pump; 
+  pumpTwo: Pump;
+  pumpThree: Pump;
+  pumpFour: Pump;
   currentRouter = this.router.url;
 
   today = new Date();
@@ -74,7 +80,8 @@ export class PetrolLogsComponent implements OnInit {
     private notifService:NotificationService, 
     private logService:LogService, 
     private route:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private pumpService:PumpService,
     ) { 
     this.fuelService.getPetrolInfo().subscribe((data) => {
       this.info = data
@@ -106,6 +113,39 @@ export class PetrolLogsComponent implements OnInit {
       this.mpesa = data
       console.warn("data",data)
     });
+    this.pumpService.getPumpOneInfo().subscribe(
+      (pump_one_data) => {
+        this.pumpOne = pump_one_data;
+      }, 
+      err => {
+        console.warn("pump one get error:",err)
+      }
+    )
+    this.pumpService.getPumpTwoInfo().subscribe(
+      (pump_two_data) => {
+        this.pumpTwo = pump_two_data;
+      }, 
+      err => {
+        console.warn("pump two get error:",err)
+      }
+    )
+    this.pumpService.getPumpThreeInfo().subscribe(
+      (pump_three_data) => {
+        this.pumpThree = pump_three_data;
+      }, 
+      err => {
+        console.warn("pump three get error:",err)
+      }
+    )
+    this.pumpService.getPumpFourInfo().subscribe(
+      (pump_four_data) => {
+        this.pumpFour = pump_four_data;
+      }, 
+      err => {
+        console.warn("pump four get error:",err)
+      }
+    )
+
     
   }
 
