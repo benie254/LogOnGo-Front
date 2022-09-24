@@ -899,3 +899,37 @@ function toggleLogForm(){
     img1.style.display = 'none';
     img2.style.display = 'none';
    }
+
+   function togglePumpOne(){
+    var pumpOne = document.getElementById("petrolPumpOne")
+    if (pumpOne.style.display === 'block'){
+      pumpOne.style.display = 'none';
+    } else {
+      pumpOne.style.display = 'block';
+    }
+   }
+   function togglePumpTwo(){
+    var pump = document.getElementById("petrolPumpTwo")
+    if (pump.style.display === 'block'){
+      pump.style.display = 'none';
+    } else {
+      pump.style.display = 'block';
+    }
+   }
+   function togglePumpThree(){
+    var pump = document.getElementById("petrolPumpThree")
+    if (pump.style.display === 'block'){
+      pump.style.display = 'none';
+    } else {
+      pump.style.display = 'block';
+    }
+   }
+   function togglePumpFour(){
+    var pump = document.getElementById("petrolPumpFour")
+    if (pump.style.display === 'block'){
+      pump.style.display = 'none';
+    } else {
+      pump.style.display = 'block';
+    }
+   }
+   

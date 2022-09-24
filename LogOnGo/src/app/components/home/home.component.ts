@@ -92,18 +92,7 @@ export class HomeComponent implements OnInit {
     //   this.logs = data
     //   console.warn("today petrol logs",data)
     // });
-    this.logService.getPetrolLogs2().subscribe((data) => {
-      this.logs_two = data
-      console.warn("data",data)
-    });
-    this.logService.getPetrolLogs3().subscribe((data) => {
-      this.logs_three = data
-      console.warn("data",data)
-    });
-    this.logService.getPetrolLogs4().subscribe((data) => {
-      this.logs_four = data
-      console.warn("data",data)
-    });
+    
     this.logService.getMpesaLogs().subscribe((data) => {
       this.mpesa = data
       console.warn("data",data)
@@ -199,7 +188,7 @@ export class HomeComponent implements OnInit {
     
   }
   getPetrolLogs(id:number): void{
-    this.logService.getPetrolLogs(id).subscribe(
+    this.logService.getFuelLogs(id).subscribe(
       data => {
       this.logs = data
       this.ngOnInit();

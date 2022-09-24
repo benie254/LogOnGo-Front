@@ -107,6 +107,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LogDetailsComponent } from './components/pages/log-details/log-details.component';
 import { FuelReceivedComponent } from './components/sections/fuel-received/fuel-received.component';
+import { AddPetrolPumpOneComponent } from './components/sections/add-petrol-pump-one/add-petrol-pump-one.component';
+import { AddPetrolPumpTwoComponent } from './components/sections/add-petrol-pump-two/add-petrol-pump-two.component';
+import { AddPetrolPumpThreeComponent } from './components/sections/add-petrol-pump-three/add-petrol-pump-three.component';
+import { AddPetrolPumpFourComponent } from './components/sections/add-petrol-pump-four/add-petrol-pump-four.component';
+import { PetrolPumpOneComponent } from './components/sections/petrol-pump-one/petrol-pump-one.component';
+import { PetrolPumpTwoComponent } from './components/sections/petrol-pump-two/petrol-pump-two.component';
+import { PetrolPumpThreeComponent } from './components/sections/petrol-pump-three/petrol-pump-three.component';
+import { PetrolPumpFourComponent } from './components/sections/petrol-pump-four/petrol-pump-four.component';
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -191,6 +199,14 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     PetrolLogsComponent,
     LogDetailsComponent,
     FuelReceivedComponent,
+    AddPetrolPumpOneComponent,
+    AddPetrolPumpTwoComponent,
+    AddPetrolPumpThreeComponent,
+    AddPetrolPumpFourComponent,
+    PetrolPumpOneComponent,
+    PetrolPumpTwoComponent,
+    PetrolPumpThreeComponent,
+    PetrolPumpFourComponent,
   ],
   imports: [
     BrowserModule,

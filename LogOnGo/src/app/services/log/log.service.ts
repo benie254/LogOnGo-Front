@@ -20,13 +20,13 @@ export class LogService {
   // apiURLlogDetails = 'https://logongo.herokuapp.com/api/log-details/';
   // apiURLpetrolLogsYesterday = 'https://logongo.herokuapp.com/api/logs-yesterday/';
   apiURLpetrolLogsYesterday = 'http://127.0.0.1:8000/api/logs-yesterday/';
-  apiURLpetrolLogs = 'http://127.0.0.1:8000/api/fuel-logs-today/';
+  apiFuelLogs = 'http://127.0.0.1:8000/api/fuel-logs-today/';
   // apiURLpetrolLogs2 = 'https://logongo.herokuapp.com/api/fuel-logs-ii-today/';
-  apiURLpetrolLogs2 = 'http://127.0.0.1:8000/api/fuel-logs-ii-today/';
+  apiFuelLogs2 = 'http://127.0.0.1:8000/api/fuel-logs-ii-today/';
   // apiURLpetrolLogs3 = 'https://logongo.herokuapp.com/api/fuel-logs-iii-today/';
-  apiURLpetrolLogs3 = 'http://127.0.0.1:8000/api/fuel-logs-iii-today/';
+  apiFuelLogs3 = 'http://127.0.0.1:8000/api/fuel-logs-iii-today/';
   // apiURLpetrolLogs4 = 'https://logongo.herokuapp.com/api/fuel-logs-iv-today/';
-  apiURLpetrolLogs4 = 'http://127.0.0.1:8000/api/fuel-logs-iv-today/';
+  apiFuelLogs4 = 'http://127.0.0.1:8000/api/fuel-logs-iv-today/';
   // apiURLmpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/';
   apiURLmpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
 
@@ -52,17 +52,17 @@ export class LogService {
   getUserLogs(id: any): Observable<Log>{
     return this.http.get<Log>(this.apiURLuserLogs + id);
   }
-  getPetrolLogs(id:any): Observable<Log>{
-    return this.http.get<Log>(this.apiURLpetrolLogs + id);
+  getFuelLogs(id:any): Observable<Log>{
+    return this.http.get<Log>(this.apiFuelLogs + id);
   }
-  getPetrolLogs2(): Observable<Log>{
-    return this.http.get<Log>(this.apiURLpetrolLogs2);
+  getFuelLogs2(id:any): Observable<Log>{
+    return this.http.get<Log>(this.apiFuelLogs2 + id);
   }
-  getPetrolLogs3(): Observable<Log>{
-    return this.http.get<Log>(this.apiURLpetrolLogs3);
+  getFuelLogs3(id:any): Observable<Log>{
+    return this.http.get<Log>(this.apiFuelLogs3 + id);
   }
-  getPetrolLogs4(): Observable<Log>{
-    return this.http.get<Log>(this.apiURLpetrolLogs4);
+  getFuelLogs4(id:any): Observable<Log>{
+    return this.http.get<Log>(this.apiFuelLogs4 + id);
   }
   getMpesaLogs(): Observable<LogMpesa>{
     return this.http.get<LogMpesa>(this.apiURLmpesaLogs);

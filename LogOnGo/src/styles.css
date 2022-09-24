@@ -429,3 +429,7 @@ ul {
 .half-width{
   width:50%;
 }
+
+#petrolPumpOne, #petrolPumpTwo, #petrolPumpThree, #petrolPumpFour{
+  display: none;
+}

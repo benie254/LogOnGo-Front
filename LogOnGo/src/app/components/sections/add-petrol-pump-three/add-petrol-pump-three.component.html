@@ -1,0 +1,41 @@
+<div class="card color-two">
+    <div class="card-body">
+        <p class="card-text">Your logs will appear here.</p>
+        <p class="card-text"><a class="btn btn-sm btn-dark" type="button" onclick="toggleLog()">Record logs now?</a></p>
+    </div>
+</div>
+
+<div id="" class="rounded"><br>
+    <h2 class="text-center margin-top">{{pumpThree.pump_name}} <br> Add Petrol Log details</h2>
+    <form #logForm="ngForm" class="form" (ngSubmit)="addLog(logForm.value)">
+        <div class="row">
+            <div class="col">
+                <label for="fuel" class="">Fuel type</label>
+                <input type="number" class="Aj" ngModel #fuel="ngModel" [(ngModel)]="info.id" id="fuel" name="fuel" placeholder="Fuel type">
+            </div>
+            <div class="col">
+                <label for="pump" class="">Pump ID</label>
+                <input type="number" class="Aj" ngModel #pump="ngModel" [(ngModel)]="pumpThree.id" id="pump" name="pump" placeholder="Pump ID">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="date" class="">Log date</label>
+                <input type="date" ngModel #date="ngModel" class="Aj form-control" id="date" name="date" placeholder="Date" required>
+                <div [hidden]="date.valid || date.pristine" class="alert margin-top2p5 alert-danger">
+                    <p>Date required</p>
+                </div>
+            </div>
+            <div class="col">
+                <label for="eod_reading_lts">End of day reading</label>
+                <input type="number" ngModel #eod_reading_lts="ngModel" class="Aj form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)" required>
+                <div [hidden]="eod_reading_lts.valid || eod_reading_lts.pristine" class="alert margin-top2p5 alert-danger">
+                    <p>EOD reading required</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" onclick="toggleLogForm()">Log</button>
+        </div> 
+    </form>  
+</div>

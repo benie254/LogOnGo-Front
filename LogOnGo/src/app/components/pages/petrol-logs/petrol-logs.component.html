@@ -58,73 +58,29 @@
                     <app-petrol-received-form></app-petrol-received-form>
                 </div>
             </div>
-            <div id="" *ngIf="logs.id else elseBlock">
-                <div class="card color-two">
-                    <h4 class="card-header">{{logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm"><app-priceperlitre-update-form></app-priceperlitre-update-form></span> </span></h6></span></h4>
-                    <div class="card-body">
-                        <h5 class="card-title">Logs</h5>
-                        <div class="table-responsive">
-                            <table class="table table-stripped table-hover table-info">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">EOD Reading Today</th>
-                                    <th scope="col">EOD Reading Yesterday</th>
-                                    <th scope="col">Total litres sold today</th>
-                                    <th scope="col">Amount earned today</th>
-                                    <!-- <th scope="col">Get balance</th> -->
-                                    <th scope="col"><ng-template #elseBlockTaBal><th scope="col">Balance (lts)</th></ng-template></th>
-                                    <th scope="col" *ngIf="logs.updated_balance else elseBlockTaBal">Updated Balance (lts)</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>{{logs.eod_reading_lts}}</td>
-                                    <td>{{logs.eod_reading_yesterday}}</td>
-                                    <td>{{logs.total_litres_sold}}</td>
-                                    <td>{{logs.amount_earned_today}}</td>
-                                    <!-- <td id="" name=""><span> <app-bal-form></app-bal-form> </span> <span></span></td> -->
-                                    <td id=""><ng-template #elseBlockTaBal2><td>{{logs.balance}}</td></ng-template></td>
-                                    <td *ngIf="logs.updated_balance else elseBlockTaBal2">{{logs.updated_balance}}</td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <small class="">Logged by {{logs.logged_by}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" routerLink="/petrol-details/{{logs.id}}">Details</a> </small>
-                    </div>
+            <button onclick="togglePumpOne()">Pump One</button><button onclick="togglePumpTwo()">Pump Two</button> <br>
+            <button onclick="togglePumpThree()">Pump Three</button><button onclick="togglePumpFour()">Pump Four</button>
+            <div>
+                <div id="petrolPumpOne">
+                    <app-petrol-pump-one></app-petrol-pump-one>
+                </div>
+                <div id="petrolPumpTwo">
+                    <app-petrol-pump-two></app-petrol-pump-two>
+                </div>
+                <div id="petrolPumpThree">
+                    <app-petrol-pump-three></app-petrol-pump-three>
+                </div>
+                <div id="petrolPumpFour">
+                    <app-petrol-pump-four></app-petrol-pump-four>
                 </div>
             </div>
-            <div id="petrol-two" *ngIf="logs_two">
-                <div>
-                    <app-log-card></app-log-card>
-                </div>  
-            </div>
-            
-            <div id="petrol-three" *ngIf="logs_three">
-                <div>
-                    <app-log-card></app-log-card>
-                </div>  
-            </div>
-            
-            <div id="petrol-four" *ngIf="logs_four">
-                <div>
-                    <app-log-card></app-log-card>
-                </div>  
-            </div>
-
-            
             <div>
-                <ng-template #elseBlock>
-                    <div class="card color-two">
-                        <div class="card-body">
-                            <p class="card-text">Your logs will appear here.</p>
-                            <p class="card-text"><a class="btn btn-sm btn-dark" type="button" onclick="toggleLog()" (click)="goToDiv()">Record logs now?</a></p>
-                        </div>
-                    </div>
-                </ng-template> 
-             </div>
-        </div>    
+                <app-add-petrol-pump-one></app-add-petrol-pump-one>
+                <app-add-petrol-pump-two></app-add-petrol-pump-two>
+                <app-add-petrol-pump-three></app-add-petrol-pump-three>
+                <app-add-petrol-pump-four></app-add-petrol-pump-four>
+            </div>
+            
 
         <div class="col-md-6 shadow full-height color-one rounded black padding-2 border">
             <h2 class="text-center">Mpesa</h2>
@@ -138,39 +94,6 @@
             </div>
         </div>
 
-        <div id="logForm" class="rounded"><br>
-            <h2 class="text-center margin-top">Add Petrol Log details</h2>
-            <form #logForm="ngForm" class="form" (ngSubmit)="addLog(logForm.value)">
-                <div class="row">
-                    <div class="col">
-                        <label for="fuel" class="">Fuel type</label>
-                        <input type="number" class="Aj" ngModel #fuel="ngModel" [(ngModel)]="info.id" id="fuel" name="fuel" placeholder="Fuel type">
-                    </div>
-                    <div class="col">
-                        <label for="pump" class="">Pump ID</label>
-                        <input type="number" class="Aj" ngModel #pump="ngModel" [(ngModel)]="info.id" id="pump" name="pump" placeholder="Pump ID">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="date" class="">Log date</label>
-                        <input type="date" ngModel #date="ngModel" class="Aj form-control" id="date" name="date" placeholder="Date" required>
-                        <div [hidden]="date.valid || date.pristine" class="alert margin-top2p5 alert-danger">
-                            <p>Date required</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <label for="eod_reading_lts">End of day reading</label>
-                        <input type="number" ngModel #eod_reading_lts="ngModel" class="Aj form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)" required>
-                        <div [hidden]="eod_reading_lts.valid || eod_reading_lts.pristine" class="alert margin-top2p5 alert-danger">
-                            <p>EOD reading required</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" onclick="toggleLogForm()">Log</button>
-                </div> 
-            </form>  
-        </div>
+        
     </div>   
 </div>
