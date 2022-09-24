@@ -41,6 +41,8 @@ export class PetrolLogsComponent implements OnInit {
     amount_earned_today: 0,
     fuel: 0,
     fuel_name: '',
+    pump: 0,
+    pump_name: '',
     logged_by: '',
     user_id: 0,
     balance: 0.00,
@@ -173,14 +175,7 @@ export class PetrolLogsComponent implements OnInit {
 
   ngOnInit():void {
     this.route.params.subscribe(params => this.getPetrolLogs(params['id']))
-    secondAlert();
-    myAlert();
-    myTester();
-    myTotal();
-    amountToday();
-    getBal();
-    getBalHome();
-    myPumps();
+    
     toggleInitUpdateForm();
 
     // this.getPetrolLogs(
@@ -194,7 +189,7 @@ export class PetrolLogsComponent implements OnInit {
     this.logService.getPetrolLogs(id).subscribe(
       data => {
       this.logs = data
-      this.ngOnInit();
+      // this.ngOnInit();
       console.warn('petrol_info_today:',data)
       Notiflix.Notify.success('Get success!');
       

@@ -24,6 +24,8 @@ export class LogDetailsComponent implements OnInit {
     amount_earned_today: 0,
     fuel: 0,
     fuel_name: '',
+    pump: 0,
+    pump_name: '',
     logged_by: '',
     user_id: 0,
     balance: 0,

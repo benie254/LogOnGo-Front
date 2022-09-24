@@ -7,6 +7,8 @@ export class Log {
     amount_earned_today: number;
     fuel: number;
     fuel_name: string;
+    pump: number; 
+    pump_name: string;
     logged_by: string;
     user_id: number;
     balance: number;
