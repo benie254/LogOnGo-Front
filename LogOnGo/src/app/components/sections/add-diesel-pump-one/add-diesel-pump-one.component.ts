@@ -7,12 +7,12 @@ import { LogService } from 'src/app/services/log/log.service';
 import { PumpService } from 'src/app/services/pump/pump.service';
 
 @Component({
-  selector: 'app-add-petrol-pump-three',
-  templateUrl: './add-petrol-pump-three.component.html',
-  styleUrls: ['./add-petrol-pump-three.component.css']
+  selector: 'app-add-diesel-pump-one',
+  templateUrl: './add-diesel-pump-one.component.html',
+  styleUrls: ['./add-diesel-pump-one.component.css']
 })
-export class AddPetrolPumpThreeComponent implements OnInit {
-  pumpThree: Pump;
+export class AddDieselPumpOneComponent implements OnInit {
+  pumpOne: Pump;
   info: Fuel;
 
   constructor(
@@ -20,20 +20,20 @@ export class AddPetrolPumpThreeComponent implements OnInit {
     private fuelService:FuelService,
     private logService:LogService,
   ) { 
-    this.fuelService.getPetrolInfo().subscribe((data) => {
+    this.fuelService.getDieselInfo().subscribe((data) => {
       this.info = data
       console.warn("data",data)
     });
-    
-    this.pumpService.getPumpThreeInfo().subscribe(
+    this.pumpService.getPumpOneInfo().subscribe(
       (data) => {
-        this.pumpThree = data;
+        this.pumpOne = data;
       }, 
       err => {
-        console.warn("pump three get error:",err)
+        alert(err)
+        console.warn("pump one get error:",err)
       }
     )
-   }
+  }
 
   ngOnInit(): void {
   }

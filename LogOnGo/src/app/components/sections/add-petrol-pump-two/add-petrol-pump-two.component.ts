@@ -25,8 +25,8 @@ export class AddPetrolPumpTwoComponent implements OnInit {
       console.warn("data",data)
     });
     this.pumpService.getPumpTwoInfo().subscribe(
-      (pump_two_data) => {
-        this.pumpTwo = pump_two_data;
+      (data) => {
+        this.pumpTwo = data;
       }, 
       err => {
         console.warn("pump two get error:",err)

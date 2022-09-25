@@ -1,0 +1,46 @@
+<div id="" *ngIf="logs.id else elseBlock">
+    <div class="card color-two">
+        <h1 class="text-center">{{pumpOne.pump_name}}</h1>
+        <h4 class="card-header">{{logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm"><app-priceperlitre-update-form></app-priceperlitre-update-form></span> </span></h6></span></h4>
+        <div class="card-body">
+            <h5 class="card-title">Logs</h5>
+            <div class="table-responsive">
+                <table class="table table-stripped table-hover table-info">
+                    <thead>
+                      <tr>
+                        <th scope="col">EOD Reading Today</th>
+                        <th scope="col">EOD Reading Yesterday</th>
+                        <th scope="col">Total litres sold today</th>
+                        <th scope="col">Amount earned today</th>
+                        <!-- <th scope="col">Get balance</th> -->
+                        <th scope="col"><ng-template #elseBlockTaBal><th scope="col">Balance (lts)</th></ng-template></th>
+                        <th scope="col" *ngIf="logs.updated_balance else elseBlockTaBal">Updated Balance (lts)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{logs.eod_reading_lts}}</td>
+                        <td>{{logs.eod_reading_yesterday}}</td>
+                        <td>{{logs.total_litres_sold}}</td>
+                        <td>{{logs.amount_earned_today}}</td>
+                        <!-- <td id="" name=""><span> <app-bal-form></app-bal-form> </span> <span></span></td> -->
+                        <td id=""><ng-template #elseBlockTaBal2><td>{{logs.balance}}</td></ng-template></td>
+                        <td *ngIf="logs.updated_balance else elseBlockTaBal2">{{logs.updated_balance}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <div class="card-footer">
+            <small class="">Logged by {{logs.logged_by}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" routerLink="/petrol-details/{{logs.id}}">Details</a> </small>
+        </div>
+    </div>
+</div>
+
+<div>
+    <ng-template #elseBlock>
+        
+    </ng-template> 
+    
+ </div>
+  

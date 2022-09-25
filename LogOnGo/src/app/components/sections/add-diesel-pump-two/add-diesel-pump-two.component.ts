@@ -7,12 +7,12 @@ import { LogService } from 'src/app/services/log/log.service';
 import { PumpService } from 'src/app/services/pump/pump.service';
 
 @Component({
-  selector: 'app-add-petrol-pump-three',
-  templateUrl: './add-petrol-pump-three.component.html',
-  styleUrls: ['./add-petrol-pump-three.component.css']
+  selector: 'app-add-diesel-pump-two',
+  templateUrl: './add-diesel-pump-two.component.html',
+  styleUrls: ['./add-diesel-pump-two.component.css']
 })
-export class AddPetrolPumpThreeComponent implements OnInit {
-  pumpThree: Pump;
+export class AddDieselPumpTwoComponent implements OnInit {
+  pumpTwo: Pump;
   info: Fuel;
 
   constructor(
@@ -20,20 +20,19 @@ export class AddPetrolPumpThreeComponent implements OnInit {
     private fuelService:FuelService,
     private logService:LogService,
   ) { 
-    this.fuelService.getPetrolInfo().subscribe((data) => {
+    this.fuelService.getDieselInfo().subscribe((data) => {
       this.info = data
       console.warn("data",data)
     });
-    
-    this.pumpService.getPumpThreeInfo().subscribe(
+    this.pumpService.getPumpTwoInfo().subscribe(
       (data) => {
-        this.pumpThree = data;
+        this.pumpTwo = data;
       }, 
       err => {
-        console.warn("pump three get error:",err)
+        console.warn("pump two get error:",err)
       }
     )
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -50,5 +49,7 @@ export class AddPetrolPumpThreeComponent implements OnInit {
       Notiflix.Notify.warning('Please try again.');
     });
   }
+
+  
 
 }

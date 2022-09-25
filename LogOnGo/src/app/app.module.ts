@@ -115,6 +115,22 @@ import { PetrolPumpOneComponent } from './components/sections/petrol-pump-one/pe
 import { PetrolPumpTwoComponent } from './components/sections/petrol-pump-two/petrol-pump-two.component';
 import { PetrolPumpThreeComponent } from './components/sections/petrol-pump-three/petrol-pump-three.component';
 import { PetrolPumpFourComponent } from './components/sections/petrol-pump-four/petrol-pump-four.component';
+import { DieselPumpFourComponent } from './components/sections/diesel-pump-four/diesel-pump-four.component';
+import { DieselPumpThreeComponent } from './components/sections/diesel-pump-three/diesel-pump-three.component';
+import { DieselPumpTwoComponent } from './components/sections/diesel-pump-two/diesel-pump-two.component';
+import { DieselPumpOneComponent } from './components/sections/diesel-pump-one/diesel-pump-one.component';
+import { AddDieselPumpFourComponent } from './components/sections/add-diesel-pump-four/add-diesel-pump-four.component';
+import { AddDieselPumpThreeComponent } from './components/sections/add-diesel-pump-three/add-diesel-pump-three.component';
+import { AddDieselPumpTwoComponent } from './components/sections/add-diesel-pump-two/add-diesel-pump-two.component';
+import { AddDieselPumpOneComponent } from './components/sections/add-diesel-pump-one/add-diesel-pump-one.component';
+import { AddGasPumpOneComponent } from './components/sections/add-gas-pump-one/add-gas-pump-one.component';
+import { AddGasPumpTwoComponent } from './components/sections/add-gas-pump-two/add-gas-pump-two.component';
+import { AddGasPumpThreeComponent } from './components/sections/add-gas-pump-three/add-gas-pump-three.component';
+import { AddGasPumpFourComponent } from './components/sections/add-gas-pump-four/add-gas-pump-four.component';
+import { GasPumpOneComponent } from './components/sections/gas-pump-one/gas-pump-one.component';
+import { GasPumpTwoComponent } from './components/sections/gas-pump-two/gas-pump-two.component';
+import { GasPumpThreeComponent } from './components/sections/gas-pump-three/gas-pump-three.component';
+import { GasPumpFourComponent } from './components/sections/gas-pump-four/gas-pump-four.component';
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -207,6 +223,22 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     PetrolPumpTwoComponent,
     PetrolPumpThreeComponent,
     PetrolPumpFourComponent,
+    DieselPumpFourComponent,
+    DieselPumpThreeComponent,
+    DieselPumpTwoComponent,
+    DieselPumpOneComponent,
+    AddDieselPumpFourComponent,
+    AddDieselPumpThreeComponent,
+    AddDieselPumpTwoComponent,
+    AddDieselPumpOneComponent,
+    AddGasPumpOneComponent,
+    AddGasPumpTwoComponent,
+    AddGasPumpThreeComponent,
+    AddGasPumpFourComponent,
+    GasPumpOneComponent,
+    GasPumpTwoComponent,
+    GasPumpThreeComponent,
+    GasPumpFourComponent,
   ],
   imports: [
     BrowserModule,

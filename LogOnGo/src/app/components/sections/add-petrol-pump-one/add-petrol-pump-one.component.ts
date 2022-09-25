@@ -25,8 +25,8 @@ export class AddPetrolPumpOneComponent implements OnInit {
       console.warn("data",data)
     });
     this.pumpService.getPumpOneInfo().subscribe(
-      (pump_one_data) => {
-        this.pumpOne = pump_one_data;
+      (data) => {
+        this.pumpOne = data;
       }, 
       err => {
         console.warn("pump one get error:",err)

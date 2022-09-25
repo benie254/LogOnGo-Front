@@ -7,11 +7,11 @@ import { LogService } from 'src/app/services/log/log.service';
 import { PumpService } from 'src/app/services/pump/pump.service';
 
 @Component({
-  selector: 'app-add-petrol-pump-three',
-  templateUrl: './add-petrol-pump-three.component.html',
-  styleUrls: ['./add-petrol-pump-three.component.css']
+  selector: 'app-add-diesel-pump-three',
+  templateUrl: './add-diesel-pump-three.component.html',
+  styleUrls: ['./add-diesel-pump-three.component.css']
 })
-export class AddPetrolPumpThreeComponent implements OnInit {
+export class AddDieselPumpThreeComponent implements OnInit {
   pumpThree: Pump;
   info: Fuel;
 
@@ -20,11 +20,10 @@ export class AddPetrolPumpThreeComponent implements OnInit {
     private fuelService:FuelService,
     private logService:LogService,
   ) { 
-    this.fuelService.getPetrolInfo().subscribe((data) => {
+    this.fuelService.getDieselInfo().subscribe((data) => {
       this.info = data
       console.warn("data",data)
     });
-    
     this.pumpService.getPumpThreeInfo().subscribe(
       (data) => {
         this.pumpThree = data;
@@ -33,7 +32,7 @@ export class AddPetrolPumpThreeComponent implements OnInit {
         console.warn("pump three get error:",err)
       }
     )
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -50,5 +49,7 @@ export class AddPetrolPumpThreeComponent implements OnInit {
       Notiflix.Notify.warning('Please try again.');
     });
   }
+
+ 
 
 }

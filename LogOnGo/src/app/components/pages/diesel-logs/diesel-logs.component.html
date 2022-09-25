@@ -8,107 +8,40 @@
             <app-initial-amount></app-initial-amount>
             <app-new-bal></app-new-bal>
 
-            <div id="diesel-two" *ngIf="logs_two; else elseBlock2">
-                <div>
-                    <app-log-card></app-log-card>
-                </div>  
-            </div>
-            <div>
-                <ng-template #elseBlock2>
-                    <app-no-logs></app-no-logs>
-                </ng-template>
-            </div>
-
-            <div id="diesel-three" *ngIf="logs_three; else elseBlock3">
-                <div>
-                    <app-log-card></app-log-card>
-                </div>  
-            </div>
-            <div>
-                <ng-template #elseBlock3>
-                    <app-no-logs></app-no-logs>
-                </ng-template>
-            </div>
-
-            <div id="diesel-four" *ngIf="logs_four; else elseBlock4">
-                <div>
-                    <app-log-card></app-log-card>
-                </div>  
-            </div>
-            <div>
-                <ng-template #elseBlock4>
-                    <app-no-logs></app-no-logs>
-                </ng-template>
-            </div>
-
                <app-diesel-received></app-diesel-received>
                <div id="fuelRecvdForm" class="rounded color-two padding margin"><br>
                 <h2 class="text-center margin-top">Add Diesel Received information</h2> 
                 <app-diesel-received-form></app-diesel-received-form>
                 </div>
             <div id="diesel-one">
-                <div class="card color-two" *ngIf="logs; else elseBlock">
-                    <h4 class="card-header">{{logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdateDieselPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updateDieselPriceForm"><app-priceperlitre-update-form></app-priceperlitre-update-form></span> </span></h6></span></h4>
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">EOD Reading Today</th>
-                                    <th scope="col">EOD Reading Yesterday</th>
-                                    <th scope="col">Total litres sold today</th>
-                                    <th scope="col">Amount earned today</th>
-                                    <th scope="col">Get balance</th>
-                                    <th scope="col">Balance (lts)</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                      <td id="tester-today">{{logs.eod_reading_lts}}</td>
-                                      <td id="tester-yesterday">{{logs.eod_reading_yesterday}}</td>
-                                    <td id="total-today"></td>
-                                    <td id="amount-today"></td>
-                                    <td id="" name=""><span> <app-bal-form></app-bal-form> </span> <span></span></td>
-                                    <td id="">{{logs.balance}}</td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <small class="">Logged by {{logs.user.username}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="">Details</a> </small>
-                    </div>
-                </div>
-                <div>
-                    <ng-template #elseBlock>
-                        <app-no-logs></app-no-logs>
-                    </ng-template>
-                </div>
-            </div>
-            
-            
-
                 
-
-                
-                
-           
-        </div>
-        
-        
-
-        <div class="col-md-6 full-height color-four rounded black padding-2 border">
-            <h2 class="text-center">Mpesa</h2>
-            <div *ngIf="mpesa_logs else elseBlockMpesa">
-                <app-mpesa-logs></app-mpesa-logs>
-            </div>
             <div>
                 <ng-template #elseBlockMpesa>
                     <app-no-mpesalogs></app-no-mpesalogs>
                 </ng-template>
             </div>
         </div>
+        <button onclick="togglePumpOne()">Pump One</button><button onclick="togglePumpTwo()">Pump Two</button> <br>
+            <button onclick="togglePumpThree()">Pump Three</button><button onclick="togglePumpFour()">Pump Four</button>
+            <div>
+                <div id="petrolPumpOne">
+                    <app-diesel-pump-one></app-diesel-pump-one>
+                    <app-add-diesel-pump-one></app-add-diesel-pump-one>
+                </div>
+                <div id="petrolPumpTwo">
+                    <app-diesel-pump-two></app-diesel-pump-two>
+                    <app-add-diesel-pump-two></app-add-diesel-pump-two>
+                </div>
+                <div id="petrolPumpThree">
+                    <app-diesel-pump-three></app-diesel-pump-three>
+                    <app-add-diesel-pump-three></app-add-diesel-pump-three>
+                </div>
+                <div id="petrolPumpFour">
+                    <app-diesel-pump-four></app-diesel-pump-four>
+                    <app-add-diesel-pump-four></app-add-diesel-pump-four>
+                </div>
+            </div>
+           
        
         
         
