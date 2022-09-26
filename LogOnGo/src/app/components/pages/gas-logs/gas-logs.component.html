@@ -1,101 +1,19 @@
-<div class="container-fluid color-two" onload="myTotal();amountToday();getBal();getBalHome();myPumps();">
+<div class="container-fluid color-two">
     <br><br><br>
     <div class="row">
         <h1 class="text-center">All Gas Logs for {{date}}</h1>
+        <h2 id="pumpsNo">{{info.pumps}}</h2>
         
         <div class="border full-height col-md-6 color-four rounded black padding-2">
             <h2 class="text-center">General</h2>
             <app-initial-amount></app-initial-amount>
-            <app-new-bal></app-new-bal>
-
-            <div id="gas-two" *ngIf="logs_two; else elseBlock2">
-                <div>
-                    <app-log-card></app-log-card>
-                </div>  
-            </div>
-            <div>
-                <ng-template #elseBlock2>
-                    <app-no-logs></app-no-logs>
-                </ng-template>
-            </div>
-
-            <div id="gas-three" *ngIf="logs_three; else elseBlock3">
-                <div>
-                    <app-log-card></app-log-card>
-                </div>  
-            </div>
-            <div>
-                <ng-template #elseBlock3>
-                    <app-no-logs></app-no-logs>
-                </ng-template>
-            </div>
-
-            <div id="gas-four" *ngIf="logs_four; else elseBlock4">
-                <div>
-                    <app-log-card></app-log-card>
-                </div>  
-            </div>
-            <div>
-                <ng-template #elseBlock4>
-                    <app-no-logs></app-no-logs>
-                </ng-template>
-            </div>
 
                <app-gas-received></app-gas-received>
                <div id="fuelRecvdForm" class="rounded color-two padding margin"><br>
                 <h2 class="text-center margin-top">Add Gas Received information</h2> 
                 <app-gas-received-form></app-gas-received-form>
                 </div>
-            <div id="gas-one">
-                <div class="card color-two" *ngIf="logs; else elseBlock">
-                    <h4 class="card-header">{{logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdateGasPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updateGasPriceForm"><app-priceperlitre-update-form></app-priceperlitre-update-form></span> </span></h6></span></h4>
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">EOD Reading Today</th>
-                                    <th scope="col">EOD Reading Yesterday</th>
-                                    <th scope="col">Total litres sold today</th>
-                                    <th scope="col">Amount earned today</th>
-                                    <th scope="col">Get balance</th>
-                                    <th scope="col">Balance (lts)</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                      <td id="tester-today">{{logs.eod_reading_lts}}</td>
-                                      <td id="tester-yesterday">{{logs.eod_reading_yesterday}}</td>
-                                    <td id="total-today"></td>
-                                    <td id="amount-today"></td>
-                                    <td id="" name=""><span> <app-bal-form></app-bal-form> </span> <span></span></td>
-                                    <td id="">{{logs.balance}}</td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <small class="">Logged by {{logs.user.username}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="">Details</a> </small>
-                    </div>
-                </div>
-                <div>
-                    <ng-template #elseBlock>
-                        <app-no-logs></app-no-logs>
-                    </ng-template>
-                </div>
-            </div>
             
-            
-
-                
-
-                
-                
-           
-        </div>
-        
         
 
         <div class="col-md-6 full-height color-four rounded black padding-2 border">
@@ -109,7 +27,43 @@
                 </ng-template>
             </div>
         </div>
+
+        <div id="onePump">
+            <button onclick="togglePumpOne()">Pump One</button>
+        </div>
+        <div id="twoPumps">
+            <button onclick="togglePumpOne()">Pump One</button><button onclick="togglePumpTwo()">Pump Two</button>
+        </div>
+        <div id="threePumps">
+            <button onclick="togglePumpOne()">Pump One</button><button onclick="togglePumpTwo()">Pump Two</button><br>
+            <button onclick="togglePumpThree()">Pump Three</button>
+        </div>
+        <div id="fourPumps">
+            <button onclick="togglePumpOne()">Pump One</button><button onclick="togglePumpTwo()">Pump Two</button><br>
+            <button onclick="togglePumpThree()">Pump Three</button><button onclick="togglePumpFour()">Pump Four</button>
+        </div>
+
        
+        
+            
+            <div>
+                <div id="petrolPumpOne">
+                    <app-gas-pump-one></app-gas-pump-one>
+                    <app-add-gas-pump-one></app-add-gas-pump-one>
+                </div>
+                <div id="petrolPumpTwo">
+                    <app-gas-pump-two></app-gas-pump-two>
+                    <app-add-gas-pump-two></app-add-gas-pump-two>
+                </div>
+                <div id="petrolPumpThree">
+                    <app-gas-pump-three></app-gas-pump-three>
+                    <app-add-gas-pump-three></app-add-gas-pump-three>
+                </div>
+                <div id="petrolPumpFour">
+                    <app-gas-pump-four></app-gas-pump-four>
+                    <app-add-gas-pump-four></app-add-gas-pump-four>
+                </div>
+            </div>
         
         
     </div>
