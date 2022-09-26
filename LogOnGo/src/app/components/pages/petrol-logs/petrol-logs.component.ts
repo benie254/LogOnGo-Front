@@ -92,6 +92,7 @@ export class PetrolLogsComponent implements OnInit {
       this.info = data
       console.warn("data",data)
     });
+    
 
     this.logService.getYesterdayLogs().subscribe((data) => {
       this.yesterday_logs = data

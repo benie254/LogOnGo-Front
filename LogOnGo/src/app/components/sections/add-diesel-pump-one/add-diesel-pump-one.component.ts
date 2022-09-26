@@ -13,7 +13,8 @@ import { PumpService } from 'src/app/services/pump/pump.service';
 })
 export class AddDieselPumpOneComponent implements OnInit {
   pumpOne: Pump;
-  info: Fuel;
+  dieselInfo: Fuel;
+  message: '';
 
   constructor(
     private pumpService:PumpService,
@@ -21,8 +22,14 @@ export class AddDieselPumpOneComponent implements OnInit {
     private logService:LogService,
   ) { 
     this.fuelService.getDieselInfo().subscribe((data) => {
-      this.info = data
-      console.warn("data",data)
+      this.dieselInfo = data
+      console.warn("diesel_info",data)
+      Notiflix.Notify.success('get success-diesel info')
+    },
+    err => {
+      this.message = err 
+      Notiflix.Notify.failure('Get failed-diesel info')
+
     });
     this.pumpService.getPumpOneInfo().subscribe(
       (data) => {

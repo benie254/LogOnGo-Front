@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import * as Notiflix from 'notiflix';
+import { Fuel } from 'src/app/classes/fuel/fuel';
+import { Pump } from 'src/app/classes/pump/pump';
+import { FuelService } from 'src/app/services/fuel/fuel.service';
+import { PumpService } from 'src/app/services/pump/pump.service';
 
 @Component({
   selector: 'app-diesel-logs',
@@ -8,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class DieselLogsComponent implements OnInit {
   date: any;
   fuels: any;
-  info: any;
+  dieselInfo: any;
   myAlert: any; 
   logs: any;
   logs_two: any;
@@ -17,8 +22,12 @@ export class DieselLogsComponent implements OnInit {
   mpesa: any;
   id: number;
   mpesa_logs: any;
+  pumpOne: Pump;
 
-  constructor() { }
+  constructor(
+   
+  ) {}
+  
 
   ngOnInit(): void {
   }
