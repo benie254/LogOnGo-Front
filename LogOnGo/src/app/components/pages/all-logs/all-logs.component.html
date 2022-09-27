@@ -6,24 +6,13 @@
         
         <div class="border full-height col-md-6 color-four rounded black padding-2">
             <h2 class="text-center">General</h2>
-            <div *ngIf="all_logs; else elseBlock">
-                <div *ngFor="let log of all_logs">
-                    <app-profile-logcard></app-profile-logcard>
-                </div>  
-            </div>
-            <div>
-                <ng-template #elseBlock>
-                    <app-no-logs></app-no-logs>
-                </ng-template>
-            </div>
+            <app-all-logs-card></app-all-logs-card>
         </div>
 
         <div class="col-md-6 full-height color-four rounded black padding-2 border">
             <h2 class="text-center">Mpesa</h2>
-            <div *ngIf="all_mpesa_logs else elseBlockMpesa">
-                <div *ngFor="let mpesa of all_mpesa_logs">
-                    <app-profile-mpesalogs></app-profile-mpesalogs>
-                </div>
+            <div *ngIf="mpesa_logs else elseBlockMpesa">
+                <app-all-mpesa-card></app-all-mpesa-card>
             </div>
             <div>
                 <ng-template #elseBlockMpesa>
