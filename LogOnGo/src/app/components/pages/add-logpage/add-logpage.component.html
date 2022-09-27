@@ -12,32 +12,82 @@
             <div class="col-md-6">
                 <div id="fuelReceived" class="rounded text-center color-two border col-md-5"><br>
                     <h2 class="text-center margin-top">Add Petrol Received information</h2> 
-                    <app-petrol-received-form></app-petrol-received-form>
+                    <app-petrol-received></app-petrol-received>
                 </div>
     
                 <div id="dieselReceived" class="rounded text-center color-two border col-md-6"><br>
                     <h2 class="text-center margin-top">Add Diesel Received information</h2> 
-                    <app-diesel-received-form></app-diesel-received-form>
+                    <app-diesel-received></app-diesel-received>
                 </div>
     
                 <div id="gasReceived" class="rounded text-center color-two border col-md-6"><br>
                     <h2 class="text-center margin-top">Add Gas Received information</h2> 
-                    <app-gas-received-form></app-gas-received-form>
+                    <app-gas-received></app-gas-received>
                 </div>
     
                 <div id="petrolLog" class="rounded text-center color-two border col-md-6">
                     <h2 class="text-center margin-top">Add Petrol Log details</h2> 
                     <app-add-log></app-add-log>
+                    <button onclick="togglePumpOne()">Pump One</button><button onclick="togglePumpTwo()">Pump Two</button> <br>
+            <button onclick="togglePumpThree()">Pump Three</button><button onclick="togglePumpFour()">Pump Four</button>
+            <div>
+                <div id="petrolPumpOne">
+                    <app-add-petrol-pump-one></app-add-petrol-pump-one>
+                </div>
+                <div id="petrolPumpTwo">
+                    <app-add-petrol-pump-two></app-add-petrol-pump-two>
+                </div>
+                <div id="petrolPumpThree">
+                    <app-add-petrol-pump-three></app-add-petrol-pump-three>
+                </div>
+                <div id="petrolPumpFour">
+                    <app-add-petrol-pump-four></app-add-petrol-pump-four>
+                </div>
+            </div>
                 </div>
             
                 <div id="dieselLog" class="rounded text-center color-two border col-md-6">
                     <h2 class="text-center margin-top">Add Diesel Log details</h2> 
-                    <app-add-diesel-logform></app-add-diesel-logform>
+                    <button onclick="toggleDieselPumpOne()">Pump One</button><button onclick="toggleDieselPumpTwo()">Pump Two</button> <br>
+            <button onclick="toggleDieselPumpThree()">Pump Three</button><button onclick="toggleDieselPumpFour()">Pump Four</button>
+            <div>
+                <div id="dieselPumpOne">
+                    <app-add-diesel-pump-one></app-add-diesel-pump-one>
+                </div>
+                <div id="dieselPumpTwo">
+                    <app-add-diesel-pump-two></app-add-diesel-pump-two>
+                </div>
+                <div id="dieselPumpThree">
+                    <app-add-diesel-pump-three></app-add-diesel-pump-three>
+                </div>
+                <div id="dieselPumpFour">
+                    <app-add-diesel-pump-four></app-add-diesel-pump-four>
+                </div>
+            </div>
                 </div>
             
                 <div id="gasLog" class="rounded text-center color-two border col-md-6">
                     <h2 class="text-center margin-top">Add Gas Log details</h2> 
-                    <app-add-gas-logform></app-add-gas-logform>
+                    <button onclick="toggleGasPumpOne()">Pump One</button><button onclick="toggleGasPumpTwo()">Pump Two</button><br>
+            <button onclick="toggleGasPumpThree()">Pump Three</button><button onclick="toggleGasPumpFour()">Pump Four</button>
+
+       
+        
+            
+            <div>
+                <div id="gasPumpOne">
+                    <app-add-gas-pump-one></app-add-gas-pump-one>
+                </div>
+                <div id="gasPumpTwo">
+                    <app-add-gas-pump-two></app-add-gas-pump-two>
+                </div>
+                <div id="gasPumpThree">
+                    <app-add-gas-pump-three></app-add-gas-pump-three>
+                </div>
+                <div id="gasPumpFour">
+                    <app-add-gas-pump-four></app-add-gas-pump-four>
+                </div>
+            </div>
                 </div>
             </div>
 

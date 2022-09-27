@@ -9,10 +9,17 @@ import { FuelService } from 'src/app/services/fuel/fuel.service';
 })
 export class PetrolReceivedComponent implements OnInit {
   petrol_received: any;
+  petrolInfo: any;
 
   constructor(
     private fuelService:FuelService,
-  ) { }
+  ) { 
+    this.fuelService.getPetrolInfo().subscribe(
+      (data) => {
+        this.petrolInfo = data;
+      }
+    )
+  }
 
   petrolReceived(petrol_received: any) {
     console.warn(petrol_received);

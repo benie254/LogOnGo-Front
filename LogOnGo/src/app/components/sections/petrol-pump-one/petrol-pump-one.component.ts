@@ -32,6 +32,10 @@ export class PetrolPumpOneComponent implements OnInit {
         console.warn("pump one get error:",err)
       }
     )
+    this.fuelService.getPetrolInfo().subscribe((data) => {
+      this.info = data
+      console.warn("data",data)
+    });
    }
 
   ngOnInit(): void {
@@ -39,21 +43,14 @@ export class PetrolPumpOneComponent implements OnInit {
   }
 
   getPetrolLogs(id:number): void{
-    this.fuelService.getPetrolInfo().subscribe((data) => {
-      this.info = data
-      console.warn("data",data)
-    });
     this.logService.getFuelLogs(id).subscribe(
       data => {
       this.logs = data
       // this.ngOnInit();
       console.warn('petrol_info_today:',data)
-      Notiflix.Notify.success('Get success!');
-      
     },
     error => {
       console.log(error)
-      Notiflix.Notify.failure('Something went wrong!');
     });
   }
 

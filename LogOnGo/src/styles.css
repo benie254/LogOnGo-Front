@@ -433,3 +433,9 @@ ul {
 #petrolPumpOne, #petrolPumpTwo, #petrolPumpThree, #petrolPumpFour{
   display: none;
 }
+#dieselPumpOne, #dieselPumpTwo, #dieselPumpThree, #dieselPumpFour{
+  display: none;
+}
+#gasPumpOne, #gasPumpTwo, #gasPumpThree, #gasPumpFour{
+  display: none;
+}

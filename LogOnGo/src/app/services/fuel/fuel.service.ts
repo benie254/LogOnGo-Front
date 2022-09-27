@@ -21,7 +21,7 @@ export class FuelService {
   apiURLgasReceived = 'http://127.0.0.1:8000/api/gas-received-today/info/';
   // apiURLpetrolReceived = 'https://logongo.herokuapp.com/api/petrol-received-today/info/';
   apiURLlastFuelReceived = 'http://127.0.0.1:8000/api/total-fuel-received-today/';
-  apiURLallFuelsReceived = 'http://127.0.0.1:8000/api/fuel-received-today/';
+  apiURLallFuelsReceived = 'http://127.0.0.1:8000/api/all-fuel-received-today/';
   apiTotalPetrolReceived = 'http://127.0.0.1:8000/api/total-petrol-received-today/';
   apiTotalDieselReceived = 'http://127.0.0.1:8000/api/total-diesel-received-today/';
   apiTotalGasReceived = 'http://127.0.0.1:8000/api/total-gas-received-today/';

@@ -908,8 +908,40 @@ function toggleLogForm(){
       pumpOne.style.display = 'block';
     }
    }
+   function toggleDieselPumpOne(){
+    var pumpOne = document.getElementById("dieselPumpOne")
+    if (pumpOne.style.display === 'block'){
+      pumpOne.style.display = 'none';
+    } else {
+      pumpOne.style.display = 'block';
+    }
+   }
+   function toggleGasPumpOne(){
+    var pumpOne = document.getElementById("gasPumpOne")
+    if (pumpOne.style.display === 'block'){
+      pumpOne.style.display = 'none';
+    } else {
+      pumpOne.style.display = 'block';
+    }
+   }
    function togglePumpTwo(){
     var pump = document.getElementById("petrolPumpTwo")
+    if (pump.style.display === 'block'){
+      pump.style.display = 'none';
+    } else {
+      pump.style.display = 'block';
+    }
+   }
+   function toggleDieselPumpTwo(){
+    var pump = document.getElementById("dieselPumpTwo")
+    if (pump.style.display === 'block'){
+      pump.style.display = 'none';
+    } else {
+      pump.style.display = 'block';
+    }
+   }
+   function toggleGasPumpTwo(){
+    var pump = document.getElementById("gasPumpTwo")
     if (pump.style.display === 'block'){
       pump.style.display = 'none';
     } else {
@@ -924,8 +956,40 @@ function toggleLogForm(){
       pump.style.display = 'block';
     }
    }
+   function toggleDieselPumpThree(){
+    var pump = document.getElementById("dieselPumpThree")
+    if (pump.style.display === 'block'){
+      pump.style.display = 'none';
+    } else {
+      pump.style.display = 'block';
+    }
+   }
+   function toggleGasPumpThree(){
+    var pump = document.getElementById("gasPumpThree")
+    if (pump.style.display === 'block'){
+      pump.style.display = 'none';
+    } else {
+      pump.style.display = 'block';
+    }
+   }
    function togglePumpFour(){
     var pump = document.getElementById("petrolPumpFour")
+    if (pump.style.display === 'block'){
+      pump.style.display = 'none';
+    } else {
+      pump.style.display = 'block';
+    }
+   }
+   function toggleDieselPumpFour(){
+    var pump = document.getElementById("dieselPumpFour")
+    if (pump.style.display === 'block'){
+      pump.style.display = 'none';
+    } else {
+      pump.style.display = 'block';
+    }
+   }
+   function toggleGasPumpFour(){
+    var pump = document.getElementById("gasPumpFour")
     if (pump.style.display === 'block'){
       pump.style.display = 'none';
     } else {
