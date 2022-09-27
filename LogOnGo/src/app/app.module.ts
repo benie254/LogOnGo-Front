@@ -131,6 +131,9 @@ import { GasPumpOneComponent } from './components/sections/gas-pump-one/gas-pump
 import { GasPumpTwoComponent } from './components/sections/gas-pump-two/gas-pump-two.component';
 import { GasPumpThreeComponent } from './components/sections/gas-pump-three/gas-pump-three.component';
 import { GasPumpFourComponent } from './components/sections/gas-pump-four/gas-pump-four.component';
+import { AddMpesaLogpageComponent } from './components/pages/add-mpesa-logpage/add-mpesa-logpage.component';
+import { AddMpesaLogComponent } from './components/sections/add-mpesa-log/add-mpesa-log.component';
+import { MpesaLoggingInstructionsComponent } from './components/sections/mpesa-logging-instructions/mpesa-logging-instructions.component';
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -239,6 +242,9 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     GasPumpTwoComponent,
     GasPumpThreeComponent,
     GasPumpFourComponent,
+    AddMpesaLogpageComponent,
+    AddMpesaLogComponent,
+    MpesaLoggingInstructionsComponent,
   ],
   imports: [
     BrowserModule,

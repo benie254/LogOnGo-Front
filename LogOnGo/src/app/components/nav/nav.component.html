@@ -88,21 +88,12 @@
             LogsToday
           </a>
           <ul class="dropdown-menu">
-            <li *ngIf="petrol_info"><a class="drop-down-item btn" routerLink="/petrol/{{petrol_info.id}}">Petrol</a></li>
+            <li *ngIf="petrol_info"><a class="dropdown-item" routerLink="/petrol/{{petrol_info.id}}">Petrol</a></li>
             <li *ngIf="diesel_info"><a class="dropdown-item" routerLink="/diesel/{{diesel_info.id}}">Diesel</a></li>
             <li *ngIf="gas_info"><a class="dropdown-item" routerLink="/gas/{{gas_info.id}}">Gas</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" routerLink="add-log">Add Log</a></li>
             <li><a class="dropdown-item" routerLink="add-mpesa">Log Mpesa</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            AddLogs
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="drop-down-item btn" routerLink="add-log">General Logs</a></li>
-            <li><a class="drop-down-item btn" routerLink="add-mpesa">MPesa Logs</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
