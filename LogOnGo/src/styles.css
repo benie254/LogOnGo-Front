@@ -433,6 +433,3 @@ ul {
 #petrolPumpOne, #petrolPumpTwo, #petrolPumpThree, #petrolPumpFour{
   display: none;
 }
-#onePump, #twoPumps, #threePumps, #fourPumps {
-  display: none;
-}

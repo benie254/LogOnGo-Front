@@ -932,37 +932,7 @@ function toggleLogForm(){
       pump.style.display = 'block';
     }
    }
-   function pumps(){
-    var pump = document.getElementById("pumpsNo");
-    var oneP = document.getElementById("onePump");
-    var twoPs = document.getElementById("twoPumps");
-    var threePs = document.getElementById("threePumps");
-    var fourPs = document.getElementById("fourPumps");
-    
-    if (pump = 1){
-      oneP.style.display = 'block';
-      twoPs.style.display = 'none';
-      threePs.style.display = 'none';
-      fourPs.style.display = 'none';
-    } else if (pump = 2){
-      oneP.style.display = 'none';
-      twoPs.style.display = 'block';
-      threePs.style.display = 'none';
-      fourPs.style.display = 'none';
-    } else if (pump = 3){
-      oneP.style.display = 'none';
-      twoPs.style.display = 'none';
-      threePs.style.display = 'block';
-      fourPs.style.display = 'none';
-    } else if (pump = 4){
-      oneP.style.display = 'none';
-      twoPs.style.display = 'none';
-      threePs.style.display = 'none';
-      fourPs.style.display = 'block';
-    } else {
-      alert("No pumps!")
-    }
-   }
+   
 
    
    

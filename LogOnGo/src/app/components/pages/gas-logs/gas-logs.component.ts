@@ -33,34 +33,40 @@ export class GasLogsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // pumps()
-    this.getPumps();
+    pumps()
+    // this.getPumps();
   }
   
-  getPumps(){
-    let pump = document.getElementById("pumpsNo").textContent;
-    let oneP = document.getElementById("onePump");
-    let twoPs = document.getElementById("twoPumps");
-    let threePs = document.getElementById("threePumps");
-    let fourPs = document.getElementById("fourPumps");
-    if (parseInt(pump) === 1){
-      oneP.style.display = 'block';
-      twoPs.style.display = 'none';
-      threePs.style.display = 'none';
-      fourPs.style.display = 'none';
-    } 
-    if (parseInt(pump) === 2){
-      oneP.style.display = 'none';
-      twoPs.style.display = 'block';
-      threePs.style.display = 'none';
-      fourPs.style.display = 'none';
-    } 
-    if (pump === '3'){
-      oneP.style.display = 'none';
-      twoPs.style.display = 'none';
-      threePs.style.display = 'block';
-      fourPs.style.display = 'none';
-    }
-  }
+  // getPumps(){
+  //   let pump = document.getElementById("pumpsNo").textContent;
+  //   let oneP = document.getElementById("onePump");
+  //   let twoPs = document.getElementById("twoPumps");
+  //   let threePs = document.getElementById("threePumps");
+  //   let fourPs = document.getElementById("fourPumps");
+  //   if (pump = '1'){
+  //     alert("one pump!")
+  //     oneP.style.display = 'block';
+  //     twoPs.style.display = 'none';
+  //     threePs.style.display = 'none';
+  //     fourPs.style.display = 'none';
+  //   } 
+  //   if (pump = '2'){
+  //     alert("two pumps!")
+  //     oneP.style.display = 'none';
+  //     twoPs.style.display = 'block';
+  //     threePs.style.display = 'none';
+  //     fourPs.style.display = 'none';
+  //   } 
+  //   if (pump = '3'){
+  //     alert("three pumps!")
+  //     oneP.style.display = 'none';
+  //     twoPs.style.display = 'none';
+  //     threePs.style.display = 'block';
+  //     fourPs.style.display = 'none';
+  //   }
+  //   else{
+  //     alert("no pumps!")
+  //   }
+  // }
 
 }
