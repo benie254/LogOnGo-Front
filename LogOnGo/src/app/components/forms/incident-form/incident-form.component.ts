@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as Notiflix from 'notiflix';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { EmailService } from 'src/app/services/email/email.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-incident-form',
@@ -12,16 +13,36 @@ export class IncidentFormComponent implements OnInit {
   Equipment_Failure: any;
   Physical_Injury: any;
   username: any;
+  currentUser = this.authService.currentUserValue;
 
-  constructor(private emailService:EmailService, private notifService:NotificationService) { }
+
+  constructor(
+    private emailService:EmailService,
+    private authService:AuthService,
+    ) { }
 
   incidentReport(incident_report: any) {
     console.warn(incident_report);
+    Notiflix.Loading.hourglass("Reporting, please wait...")
     this.emailService.emailIncidentReport(incident_report).subscribe((result) => {
       console.warn('result', result);
-      // this.notifService.submitSuccess('success','Incident report sent successfully!')
-      // this.notifService.showSuccess("Data posted successfully !!", "Notification")
-    });
+      Notiflix.Loading.remove()
+      Notiflix.Report.success(
+        'Incident report sent!',
+        '"The reported incident has been delivered to the admin"',
+        'Okay',
+      );
+        // Notiflix.Report.success()
+      }, 
+      err => {
+        Notiflix.Loading.remove()
+        Notiflix.Report.failure(
+          'Sending failed!',
+          '"Something went wrong as we attempted to send your incident report"',
+          'Okay',
+        );
+        Notiflix.Notify.warning('Please try again.');
+      });
   }
   ngOnInit(): void {
   }

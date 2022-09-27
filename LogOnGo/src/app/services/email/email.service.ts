@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EmailService {
-  apiURLfuels = 'https://logongo-api.herokuapp.com/our-fuels/'
+  apiURLfuels = 'http://127.0.0.1:8000/api/incident-report/'
 
   constructor(private http:HttpClient) { }
 

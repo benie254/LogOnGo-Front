@@ -1,14 +1,13 @@
 <form #incidentForm="ngForm" (ngSubmit)="incidentReport(incidentForm.value)">
-    <div class="form-group hide">
-        <input type="text" class="hide" ngModel name="your_name" placeholder="Your name" value="username">
+    <div class="form-group">
+        <input type="text" class="" ngModel name="your_name" placeholder="Your name" [(ngModel)]="currentUser.username">
+        <input type="email" ngModel name="your_email" placeholder="your email" [(ngModel)]="currentUser.email">
     </div>
     <div class="row">
         <div class="col">
             <label for="nature">Nature</label>
             <select class="form-select" name="nature" id="nature" ngModel #nature="ngModel" required>
-                <div [hidden]="date.valid || date.pristine" class="alert alert-danger">
-                    <p>Nature required</p>
-                </div>
+                
                 <option ngModel selected="">Choose...</option>
               
                 <option ngModel value="Equipment_Failure">Equipment Failure</option>
@@ -19,11 +18,9 @@
               
               </select>                </div>
         <div class="col">
-            <label for="date">Date</label>
-    <input type="date" class="Aj-Inc form-control" #date="ngModel" name="incident_date" placeholder="Incident date" ngModel>
-    <div [hidden]="date.valid || date.pristine" class="alert alert-danger">
-        <p>Date required</p>
-    </div>
+            <label for="incident_date">Date</label>
+    <input type="date" class="Aj-Inc form-control" #incident_date="ngModel" name="incident_date" placeholder="Incident date" ngModel>
+    
         </div>
     </div>
     <div class="form-group">
