@@ -137,6 +137,7 @@ import { MpesaLoggingInstructionsComponent } from './components/sections/mpesa-l
 import { AllLogsCardComponent } from './components/sections/all-logs-card/all-logs-card.component';
 import { DetailsBtnComponent } from './components/sections/details-btn/details-btn.component';
 import { AllMpesaCardComponent } from './components/sections/all-mpesa-card/all-mpesa-card.component';
+import { ContactComponent } from './components/pages/contact/contact.component';
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -251,6 +252,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     AllLogsCardComponent,
     DetailsBtnComponent,
     AllMpesaCardComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

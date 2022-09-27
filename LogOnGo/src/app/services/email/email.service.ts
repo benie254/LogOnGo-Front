@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class EmailService {
   apiURLfuels = 'http://127.0.0.1:8000/api/incident-report/'
+  apiContact = 'http://127.0.0.1:8000/api/contact-admin/'
 
   constructor(private http:HttpClient) { }
 
@@ -14,5 +15,8 @@ export class EmailService {
   }
   emailIncidentReport(incident_report: any){
     return this.http.post(this.apiURLfuels, incident_report);
+  }
+  contactAdmin(message: any){
+    return this.http.post(this.apiContact, message);
   }
 }

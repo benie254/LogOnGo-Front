@@ -1,4 +1,4 @@
-<form id="contForm" #contForm="ngForm" class="text-c show margin" (ngSubmit)="contactManagement(contForm.value)">
+<form id="" #contForm="ngForm" class="text-c show margin" (ngSubmit)="contactAdmin(contForm.value)">
     <div class="form-group">
         <label for="subject">Email Subject</label>
     <input class="black form-control" ngModel #subject="ngModel" id="subject" type="text" name="subject" placeholder="Subject" required>
@@ -13,10 +13,10 @@
             <p>Message required</p>
         </div>
     </div>
-    <div class="form-group hide">
-        <div *ngFor="let profile of profile_details">
-            <input class="black hide" id="your_name" ngModel type="text" name="your_name" placeholder="Your name" value="profile.username">
-            <input class="black hide" id="your_email"  type="email" name="your_email" placeholder="Your email" value="profile.email">
+    <div class="form-group">
+        <div>
+            <input class="black" id="your_name" ngModel type="text" name="your_name" placeholder="Your name" [(ngModel)]="currentUser.username">
+            <input class="black" id="your_email"  type="email" name="your_email" placeholder="Your email" [(ngModel)]="currentUser.email">
         </div>
     </div>
     <div class="form-group">
