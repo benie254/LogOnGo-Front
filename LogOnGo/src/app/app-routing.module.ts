@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { AddMpesalogComponent } from './components/forms/add-mpesalog/add-mpesalog.component';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { AddLogpageComponent } from './components/pages/add-logpage/add-logpage.component';
 import { AllLogsComponent } from './components/pages/all-logs/all-logs.component';
 import { DieselDetailsComponent } from './components/pages/diesel-details/diesel-details.component';
 import { DieselLogsComponent } from './components/pages/diesel-logs/diesel-logs.component';
@@ -35,7 +36,7 @@ const routes: Routes = [
   { path: 'diesel-details/:id', component: DieselDetailsComponent },
   { path: 'gas-details/:id', component: GasDetailsComponent },
   { path: 'logs', component: AllLogsComponent },
-  { path: 'add-log', component: AddComponent },
+  { path: 'add-log', component: AddLogpageComponent },
   { path: 'add-mpesa', component: AddMpesalogComponent },
   { path: 'incident', component: IncidentComponent },
   { path: 'login', component: LoginComponent },
