@@ -1,17 +1,5 @@
 <div class="container">
-  <div>
-    Current user
-    <h1>
-      {{ currentUser.id }}
-      {{ currentUser.email }}
-      {{ currentUser.username }}
-      {{ currentUser.first_name }}
-      {{ currentUser.last_name }}
-      {{ currentUser.petrol_station }}
-    </h1>
-    <h1>Petrol logs:</h1>
-    <a (click)="refresh();goToPetrolLogs(info.id)" type="button">Go to Petrol logs</a>
-  </div>
+  <br><br><br><br><br>
     <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="false">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -21,7 +9,7 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="https://res.cloudinary.com/benie/image/upload/v1662904979/pistol-160119_1280_bbtxbm.png" height="650" width="auto" class="d-block w-100 carousel-landing" alt="...">
-            <div class="carousel-caption d-none d-md-block bg-dark opacityT">
+            <div class="carousel-caption d-md-block bg-dark opacityT">
               <h5 class="white">About LogOnGo</h5>
               <p class="white">
                 LoOnGo is a petrol station management app for:
@@ -39,7 +27,7 @@
           </div>
           <div class="carousel-item">
             <img src="https://res.cloudinary.com/benie/image/upload/v1662907281/no-admittance-98740_1280.3_yhsrnt.png" height="650" width="auto" class="d-block w-100 carousel-landing" alt="...">
-            <div class="carousel-caption d-none d-md-block bg-dark opacityT white">
+            <div class="carousel-caption d-md-block bg-dark opacityT white">
               <h5 class="white">Who will use LogOnGo?</h5>
               <p class="white">Only employees and the administration of <strong class="white">Pebo Kenya Ltd</strong> are authorized to use the app.</p>
               <p class="bg-danger white bold">You cannot register for an account if you are none of the above.</p>
@@ -47,7 +35,7 @@
           </div>
           <div class="carousel-item">
             <img src="https://res.cloudinary.com/benie/image/upload/v1662904323/emoticon-1610228_mrmoig.png" height="650" width="auto" class="d-block w-100 carousel-landing" alt="...">
-            <div class="carousel-caption d-none d-md-block bg-dark opacityT white">
+            <div class="carousel-caption d-md-block bg-dark opacityT white">
               <h5 class="white">Setting things up...</h5>
               <ul>
                 <li class="white">Step 1: <a routerLink="register">Register</a> for an employee account.</li>

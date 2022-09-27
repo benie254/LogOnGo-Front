@@ -336,11 +336,22 @@ ul {
   display: table;
   margin: 0 auto;
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1020px) {
+  .carousel-landing {
+    height: 500px;
+  }
+}
+@media only screen and (max-width: 780px) {
   .carousel-landing {
     height: 400px;
   }
 }
+@media only screen and (max-width: 640px) {
+  .carousel-landing {
+    height: 350px;
+  }
+}
+
 .bold{
   font-weight:bold;
 }
