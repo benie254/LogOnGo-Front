@@ -81,8 +81,11 @@ body{
 /* body,.color-one {
     background-color: #98B9AB;
 } */
-body,.color-one {
+body,.color-one, .bg-col {
     background-color: #E6EDFF;
+}
+.bg-col{
+
 }
 .color-red,.red{
     color:rgba(255, 0, 0, 0.226);
@@ -336,6 +339,11 @@ ul {
   display: table;
   margin: 0 auto;
 }
+@media only screen and (min-width: 1240px) {
+  .carousel-landing {
+    height: 650px;
+  }
+}
 @media only screen and (max-width: 1020px) {
   .carousel-landing {
     height: 500px;
@@ -352,6 +360,7 @@ ul {
   }
 }
 
+
 .bold{
   font-weight:bold;
 }
@@ -361,6 +370,9 @@ ul {
 
 .opacity-half{
   opacity: 0.95;
+}
+.opacity-max{
+  opacity:0.8
 }
 #pLogsBtn,#pLogs{
   display: block;
@@ -429,6 +441,11 @@ ul {
 		box-shadow:0 0 0 100em rgba(0,0,0,0);
 		transform:translate3d(-230px,0,0);
 		transition:all 0.3s ease-in-out;
+  }
+}
+@media screen and (min-width:1000px){
+	#restricted{
+		height:650px;
   }
 }
 

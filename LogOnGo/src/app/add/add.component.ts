@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
 import { FuelService } from '../services/fuel/fuel.service';
 import { LogService } from '../services/log/log.service';
 import { NotificationService } from '../services/notification/notification.service';
@@ -15,8 +17,21 @@ export class AddComponent implements OnInit {
 
   yesterday_logs: any;
   user: any;
+  authenticated = false;
 
-  constructor(private fuelService:FuelService, private notifService:NotificationService, private logService:LogService) { 
+  constructor(
+    private fuelService:FuelService, 
+    private notifService:NotificationService, 
+    private logService:LogService,
+    private authService:AuthService,
+    private router:Router,
+    ) { 
+    if (this.authService.currentUserValue) {
+      this.authenticated = true;
+    } else {
+      this.authenticated = false; 
+      this.router.navigate(['login'])
+    }
     this.fuelService.getPetrolInfo().subscribe((data) => {
       this.fuel = data
       console.warn("data",data);
