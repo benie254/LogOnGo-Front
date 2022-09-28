@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -88,6 +90,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatHint} from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import 'hammerjs';
 
@@ -138,6 +142,8 @@ import { AllLogsCardComponent } from './components/sections/all-logs-card/all-lo
 import { DetailsBtnComponent } from './components/sections/details-btn/details-btn.component';
 import { AllMpesaCardComponent } from './components/sections/all-mpesa-card/all-mpesa-card.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+
+
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -255,6 +261,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     ContactComponent,
   ],
   imports: [
+    NgxPaginationModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -282,8 +289,12 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
       MatTooltipModule,
       MatTableModule,
       MatPaginatorModule,
+      MatExpansionModule,
+      MatPaginatorModule,
+      MatProgressBarModule,
+
   ],
   providers: [],
-  bootstrap: [AppComponent,AuthBgComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

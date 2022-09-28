@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Pump } from 'src/app/classes/pump/pump';
@@ -14,6 +15,7 @@ import { PumpService } from 'src/app/services/pump/pump.service';
 export class AddPetrolPumpOneComponent implements OnInit {
   pumpOne: Pump;
   info: Fuel;
+  date = new Date();
 
   constructor(
     private pumpService:PumpService,
@@ -33,6 +35,8 @@ export class AddPetrolPumpOneComponent implements OnInit {
       }
     )
    }
+
+   
 
   ngOnInit(): void {
   }

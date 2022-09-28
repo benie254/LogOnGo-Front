@@ -1,310 +1,96 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button>
+            <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        </button>
+        <h1>SimpleCRM</h1>
+        <span class="menu-spacer"></span>
+        <div>
+            <a mat-button [routerLink]="'/accounts'"> Accounts </a>
+            <a mat-button [routerLink]="'/create-account'"> Create Account </a>
+            <a mat-button [routerLink]="'/contacts'"> Contacts </a>
+            <a mat-button [routerLink]="'/create-contact'"> Create Contact </a>
+            <a mat-button [routerLink]="'/activities'"> Activities </a>
+            <a mat-button [routerLink]="'/create-activity'"> Create Activity </a>
+        </div>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
+    </mat-toolbar-row>
+</mat-toolbar>
 
-<div id="profile-body" class="container-fluid">
-    <header>
-        <app-profile-sidebar></app-profile-sidebar>
-    </header>
-
-    <div class="container main">
-        <div class="container">
-            
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="'/accounts'"> Accounts </a>
+            <a mat-list-item [routerLink]="'/create-account'"> Create Account </a>
+            <a mat-list-item [routerLink]="'/contacts'"> Contacts </a>
+            <a mat-list-item [routerLink]="'/create-contact'"> Create Contact </a>
+            <a mat-list-item [routerLink]="'/activities'"> Activities </a>
+            <a mat-list-item [routerLink]="'/create-activity'"> Create Activity </a>
+            <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+        </mat-nav-list>
+    </mat-sidenav>
+<mat-sidenav-content>
+    <div style="height: 100vh;" class="container">
         <div class="row">
-            
-            <div class="col-md-2">
-    
-            </div>
-            
+            <div class="col-md-2"></div>
             <div class="col-lg-10">
-                <br>
                 <div class="row">
                     <div class="col-lg-8">
                         <img src="https://res.cloudinary.com/benie/image/upload/v1659033436/fuel-gauge-148923_1280_bifykm.png" class="margin-top" height="370" width="100%" alt="">
                     </div>
                     <div class="col-lg-4">
-                            <div *ngIf="announcements">
-                                <app-profile-announcements></app-profile-announcements>
-                            </div>
-                            <div *ngIf="!announcements">
-                                <app-profile-noannouncements></app-profile-noannouncements>
-                            </div>
-                        
-                </div>
-                <hr>
-                <div class="row">
-                    <!-- <col class="col-sm-2"> -->
-                    <div class="border col-lg-6 color-two shadow rounded black padding-2">
-                        <h2>Your Logs</h2>
-                        <div *ngIf="user_logs; else elseBlockUserlogs">
-                            <div *ngFor="let user_logs of user_logs">
-                                <app-profile-logcard></app-profile-logcard>
-                                <a type="button" class="btn btn-sm btn-dark btn-outline-primary" routerLink="/log-details/{{user_logs.id}}">Details</a>
-                            </div>
+                        <div *ngIf="announcements">
+                            <app-profile-announcements></app-profile-announcements>
                         </div>
-                        <div>
-                            <ng-template #elseBlockUserlogs>
-                                <div class="card color-two">
-                                    <div class="card-body">
-                                        <p class="card-text">Your logs will appear here.</p>
-                                        <p class="card-text"><a class="btn btn-sm btn-info btn-outline-dark" type="button" onclick="toggleProfileLogForm()" (click)="goToLogForm()">Record logs now?</a></p>
-                                    </div>
-                                </div>
-                                <div id="profileLogForm" class="rounded"><br>
-                                    <h2 class="text-center margin-top">Add Petrol Log details</h2>
-                                    <form #logForm="ngForm" class="form" (ngSubmit)="addLog(logForm.value)">
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="fuel" class="">Fuel type</label>
-                                                <input type="number" class="Aj" ngModel #fuel="ngModel" [(ngModel)]="info.id" id="fuel" name="fuel" placeholder="Fuel type">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="date" class="">Log date</label>
-                                                <input type="date" ngModel #date="ngModel" class="Aj form-control" id="date" name="date" placeholder="Date" required>
-                                                <div [hidden]="date.valid || date.pristine" class="alert margin-top2p5 alert-danger">
-                                                    <p>Date required</p>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="eod_reading_lts">End of day reading</label>
-                                                <input type="number" ngModel #eod_reading_lts="ngModel" class="Aj form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)" required>
-                                                <div [hidden]="eod_reading_lts.valid || eod_reading_lts.pristine" class="alert margin-top2p5 alert-danger">
-                                                    <p>EOD reading required</p>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="user_id">User ID</label>
-                                                <input type="number" ngModel #user_id="ngModel" class="Aj form-control" id="user_id" name="user_id" [(ngModel)]="currentUser.id">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" onclick="toggleLogForm()">Log</button>
-                                        </div> 
-                                    </form>  
-                                </div>
-                            </ng-template>
+                        <div *ngIf="!announcements">
+                            <app-profile-noannouncements></app-profile-noannouncements>
                         </div>
                     </div>
-                    <div class="col-lg-6 color-two shadow rounded black padding-2">
-                        <h2>Your Mpesa Logs</h2>
-                        <div *ngIf="mpesa_logs">
-                            <div *ngFor="let mpesa_logs of mpesa_logs" class="card margin-top color-one" style="margin:1%;border-bottom: 5%;border-color:white;">
-                     
-                                <h5 class="card-header">{{mpesa_logs.date}}</h5>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                              <tr>
-                                                <th scope="col">Transaction no.</th>
-                                                <th scope="col">Amount</th>
-                                                <th scope="col">Bank amount</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr>
-                                                  <td>{{mpesa_logs.transaction_number}}</td>
-                                                <td>{{mpesa_logs.amount}}</td>
-                                                <td>{{mpesa_logs.amount_transferred_to_bank}}</td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                    </div>
-                                  
-                                <div class="card-footer">
-                                    <small>Logged by {{mpesa_logs.user.username}} | <a type="button" class="btn btn-dark btn-outline-primary btn-sm" routerLink="/mpesa-details/{{mpesa_logs.id}}">Details</a> </small>
-                                </div>
-                                
-                                
-                            </div>
-                        </div>
-                        <div>
-                            <!-- <ng-template #elseBlockMpesa> -->
-                                <div class="card color-two">
-                                    <div class="card-body">
-                                        <p class="card-text">Your MPesa logs will appear here.</p>
-                                        <p class="card-text"><a class="btn btn-sm btn-info btn-outline-dark" type="button" onclick="toggleProfileMpesaForm()" (click)="goToMpesaLogForm()">Record Mpesa logs now?</a></p>
-                                    </div>
-                                </div>
-                                <!-- <div id="profileMpesaForm" class="border color-two margin padding"><br>
-                                    <h2 class="text-center">Add Mpesa logs</h2>
-                                    <h6 class="text-center"><span class="bg-danger padding-2 rounded">Remember to update your daily total!</span></h6>
-                                    <form #mpesaForm="ngForm" (ngSubmit)="addMpesaLog(mpesaForm.value)">
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="date">Date</label>
-                                                <input type="date" class="Aj-M form-control" ngModel #date="ngModel" name="date" placeholder="Date">
-                                                <div [hidden]="transaction_number.valid || transaction_number.pristine" class="alert margin-top2p5 alert-danger">
-                                                    <p>Date required</p>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="transaction_number">Transaction number</label>
-                                                <input type="text" ngModel #transaction_number="ngModel" id="transaction_number" class="Aj-M form-control" name="transaction_number" placeholder="Transaction number" required>
-                                                <div [hidden]="transaction_number.valid || transaction_number.pristine" class="alert margin-top2p5 alert-danger">
-                                                    <p>Transaction number required</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="customer_name">Customer name</label>
-                                                <input type="text" id="customer_name" ngModel #customer_name="ngModel" class="Aj-M form-control" name="customer_name" placeholder="Customer name" required>
-                                                <div [hidden]="customer_name.valid || customer_name.pristine" class="alert margin-top2p5 alert-danger">
-                                                    <p>Customer name required</p>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="customer_phone_number">Customer phone number</label>
-                                                <input type="number" id="customer_phone_number" ngModel #customer_phone_number="ngModel" class="Aj-M form-control" name="customer_phone_number" placeholder="Customer phone number" required>
-                                                <div [hidden]="customer_phone_number.valid || customer_phone_number.pristine" class="alert margin-top2p5 alert-danger">
-                                                    <p>Customer phone number required</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="amount">Amount</label>
-                                                <input type="number" ngModel class="Aj-M form-control" id="amount" name="amount" placeholder="Amount" required>
-                                            </div>
-                                            <div class="col">
-                                                <label for="amount_transferred_to_bank">Transferred to bank</label>
-                                                <input type="number" ngModel #amount_transferred_to_bank="ngModel" id="amount_transferred_to_bank" class="Aj-M form-control" name="amount_transferred_to_bank" placeholder="Amount transferred to bank" required>
-                                            </div>
-                                            <div class="col">
-                                                <input type="number" ngModel id="user" #user="ngModel" [(ngModel)]="currentUser.id" name="user" placeholder="Your user id">
-                                                <input  type="text" ngModel id="logged_by" #logged_by="ngModel" [(ngModel)]="currentUser.username" name="logged_by" placeholder="Your name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Log mpesa">
-                                        </div>
-                                    </form>
-                                </div> -->
-
-                                <div id="profileMpesaForm" class="border color-two margin padding"><br>
-                                    <h2 class="text-center">Add Mpesa logs</h2>
-                                    <form [formGroup]="mpesaForm" (submit)="addMpesaLog(mpesaForm.value)" class="color-two f-two padding-four rounded shadow">
-                                        <div class="row">
-                                            <div class="col">
-                                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                                    <mat-label>Date</mat-label>
-                                                    <input matInput placeholder="Enter date" formControlName="date" type="date" required>
-                                                    <mat-icon matSuffix>date</mat-icon>
-                                                    <mat-hint>e.g: </mat-hint>
-                                                  </mat-form-field>        
-                                                  <div *ngIf="mpesaForm.controls['date'].invalid && mpesaForm.controls['date'].touched" class="alert alert-danger">
-                                                    <div *ngIf="mpesaForm.controls['date'].errors['required']">
-                                                      Date is required.
-                                                    </div>
-                                                  </div>
-                                            </div>
-                                            <div class="col">
-                                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                                    <mat-label>Transaction Number</mat-label>
-                                                    <input matInput placeholder="Enter transaction number" formControlName="transaction_number" type="text" required>
-                                                    <mat-icon matSuffix>date</mat-icon>
-                                                    <mat-hint>e.g: </mat-hint>
-                                                  </mat-form-field>        
-                                                  <div *ngIf="mpesaForm.controls['transaction_number'].invalid && mpesaForm.controls['transaction_number'].touched" class="alert alert-danger">
-                                                    <div *ngIf="mpesaForm.controls['transaction_number'].errors['required']">
-                                                      Transaction number is required.
-                                                    </div>
-                                                  </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col">
-                                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                                    <mat-label>Customer name</mat-label>
-                                                    <input matInput placeholder="Enter customer's name" formControlName="customer_name" type="text" required>
-                                                    <mat-icon matSuffix>date</mat-icon>
-                                                    <mat-hint>e.g: </mat-hint>
-                                                  </mat-form-field>        
-                                                  <div *ngIf="mpesaForm.controls['customer_name'].invalid && mpesaForm.controls['customer_name'].touched" class="alert alert-danger">
-                                                    <div *ngIf="mpesaForm.controls['customer_name'].errors['required']">
-                                                      Customer name is required.
-                                                    </div>
-                                                  </div>
-                                            </div>
-                                            <div class="col">
-                                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                                    <mat-label>Customer phone number</mat-label>
-                                                    <input matInput placeholder="Enter customer's phone number" formControlName="customer_phone_number" type="number" required>
-                                                    <mat-icon matSuffix>date</mat-icon>
-                                                    <mat-hint>e.g: </mat-hint>
-                                                  </mat-form-field>        
-                                                  <div *ngIf="mpesaForm.controls['customer_phone_number'].invalid && mpesaForm.controls['customer_phone_number'].touched" class="alert alert-danger">
-                                                    <div *ngIf="mpesaForm.controls['customer_phone_number'].errors['required']">
-                                                      Customer phone number is required.
-                                                    </div>
-                                                  </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col">
-                                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                                    <mat-label>Amount</mat-label>
-                                                    <input matInput placeholder="Enter amount" formControlName="amount" type="number" required>
-                                                    <mat-icon matSuffix>date</mat-icon>
-                                                    <mat-hint>e.g: </mat-hint>
-                                                  </mat-form-field>        
-                                                  <div *ngIf="mpesaForm.controls['amount'].invalid && mpesaForm.controls['amount'].touched" class="alert alert-danger">
-                                                    <div *ngIf="mpesaForm.controls['amount'].errors['required']">
-                                                      Amount is required.
-                                                    </div>
-                                                  </div>
-                                            </div>
-                                            <div class="col">
-                                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                                    <mat-label>Amount transferred to bank</mat-label>
-                                                    <input matInput placeholder="Enter amount transferred to bank" formControlName="amount_transferred_to_bank" type="number">
-                                                    <mat-icon matSuffix>date</mat-icon>
-                                                    <mat-hint>e.g: </mat-hint>
-                                                  </mat-form-field>        
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                                    <mat-label>Logged by</mat-label>
-                                                    <input matInput formControlName="logged_by" type="text" [(ngModel)]="currentUser.username">
-                                                    <mat-icon matSuffix>date</mat-icon>
-                                                  </mat-form-field>   
-                                            </div>
-                                            <div class="col">
-                                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                                    <mat-label>User id</mat-label>
-                                                    <input matInput formControlName="user" type="number" [(ngModel)]="currentUser.id">
-                                                    <mat-icon matSuffix>date</mat-icon>
-                                                    <mat-hint>e.g: </mat-hint>
-                                                  </mat-form-field>   
-                                            </div>
-                                            
-                                        </div>
-
-                                        <div class="form-group">
-                                            <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Log mpesa">
-                                        </div>
-                                    </form>
-                                    
-                                </div>
-                                
-
-                            <!-- </ng-template> -->
-                            
-                        </div>
-                    </div>
-                    
                 </div>
-        
             </div>
-            
         </div>
-    
+        <div class="row">
+            <div class="border col-lg-6 color-two shadow rounded black padding-2">
+                <h2>Your Logs</h2>
+                <div *ngIf="user_logs; else elseBlockUserlogs">
+                    <div *ngFor="let user_logs of user_logs">
+                        <app-profile-logcard></app-profile-logcard>
+                        <a type="button" class="btn btn-sm btn-dark btn-outline-primary" routerLink="/log-details/{{user_logs.id}}">Details</a>
+                    </div>
+                </div>
+                <div>
+                    <ng-template #elseBlockUserlogs>
+                        <div class="card color-two">
+                            <div class="card-body">
+                                <p class="card-text">Your logs will appear here.</p>
+                                <p class="card-text"><a class="btn btn-sm btn-info btn-outline-dark" type="button" routerLink="/add-log">Record logs now?</a></p>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Your Mpesa Logs</h2>
+                <div *ngIf="mpesa_logs else noMpesa">
+                    <div *ngFor="let mpesa_logs of mpesa_logs">
+                        <app-profile-mpesalogs></app-profile-mpesalogs>
+                    </div>
+                </div>
+                <div>
+                    <ng-template #noMpesa> 
+                        <div class="card color-two">
+                            <div class="card-body">
+                                <p class="card-text">Your MPesa logs will appear here.</p>
+                                <p class="card-text"><a class="btn btn-sm btn-info btn-outline-dark" type="button" routerLink="/add-mpesa">Record Mpesa logs now?</a></p>
+                            </div>
+                        </div>  
+                    </ng-template> 
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>

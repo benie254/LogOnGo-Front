@@ -46,8 +46,8 @@ export class LogService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
-  getAllLogs(): Observable<Log>{
-    return this.http.get<Log>(this.apiURLallLogs);
+  getAllLogs(): Observable<any>{
+    return this.http.get<any>(this.apiURLallLogs);
   }
   getUserLogs(id: any): Observable<Log>{
     return this.http.get<Log>(this.apiURLuserLogs + id);

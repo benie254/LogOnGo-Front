@@ -9,10 +9,13 @@ import { LogService } from 'src/app/services/log/log.service';
 })
 export class AllLogsComponent implements OnInit {
   mpesa_logs: any;
+  logs: any;
   
   constructor(
     private mpesaService:LogMpesaService,
+    private logService:LogService,
   ) { 
+   
     this.mpesaService.getAllMpesaLogs().subscribe(
       (data) => {
       this.mpesa_logs = data

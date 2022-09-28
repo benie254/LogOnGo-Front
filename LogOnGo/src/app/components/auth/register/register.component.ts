@@ -16,6 +16,7 @@ import { ConfirmedValidator } from 'src/app/validators/confirmed.validator';
 export class RegisterComponent implements OnInit {
   form: FormGroup
   username: any;
+  hide = true;
   // apiURLreg = "https://logongo.herokuapp.com/api/register/"
   apiURLreg = "http://127.0.0.1:8000/api/register/"
   

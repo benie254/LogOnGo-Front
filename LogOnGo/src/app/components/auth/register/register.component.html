@@ -6,10 +6,13 @@
     <h1 class="text-center">Sign up to get started</h1>
   
     <div class="row rounded">
-      <div class="col color-one margin rounded shadow padding-2">
-        <img src="https://res.cloudinary.com/benie/image/upload/v1662907662/icons8-username-32_ijbhdr.png" height="35" width="35" alt="">
-        <label for="username">Username:</label>
-        <input id="username" formControlName="username" type="text" class="form-control" placeholder="your username..." required minlength="4" maxlength="15">
+      <div class="col col-lg-4 rounded">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Start typing..." formControlName="username" type="text" required required minlength="4" maxlength="15">
+          <mat-icon matSuffix>user</mat-icon>
+          <mat-hint>Min: 4 char | Max: 15 char</mat-hint>
+        </mat-form-field>  
         <div *ngIf="form.controls['username'].invalid && form.controls['username'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['username'].errors['required']">
             Username is required.
@@ -19,26 +22,13 @@
           </div>
         </div>
       </div>
-      <div class="col color-one margin rounded shadow padding-2">
-        <img src="https://res.cloudinary.com/benie/image/upload/v1662908137/icons8-mail-50_jcseod.png" height="35" width="35" alt="">
-        <label for="email">Email:</label>
-        <input formControlName="email" id="email" type="email" class="form-control" placeholder="your email..." required>
-        <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="alert alert-danger">
-          <div *ngIf="form.controls['email'].errors['required']">
-            Email is required.
-          </div>
-          <div *ngIf="form.controls['email'].errors['email']">
-            Please provide a valid email address.
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="row">
-      <div class="col color-one margin rounded shadow padding-2">
-        <img src="https://res.cloudinary.com/benie/image/upload/v1662908248/icons8-name-64_l2rpyx.png" height="35" width="35" alt="">
-        <label for="first_name">First name:</label>
-        <input formControlName="first_name" id="first_name" type="text" class="form-control" placeholder="your first name..." required minlength="3" maxlength="25">
+      <div class="col col-lg-4 rounded">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+          <mat-label>First name</mat-label>
+          <input matInput placeholder="Start typing..." formControlName="first_name" type="text" required minlength="3" maxlength="25">
+          <mat-icon matSuffix>user</mat-icon>
+          <mat-hint>Min: 3 char | Max: 25 char</mat-hint>
+        </mat-form-field>  
         <div *ngIf="form.controls['first_name'].invalid && form.controls['first_name'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['first_name'].errors['required']">
             First name is required.
@@ -48,10 +38,13 @@
           </div>
         </div>
       </div>
-      <div class="col color-one margin rounded shadow padding-2">
-        <img src="https://res.cloudinary.com/benie/image/upload/v1662908248/icons8-name-64_l2rpyx.png" height="35" width="35" alt="">
-        <label for="last_name">Last name:</label>
-        <input formControlName="last_name" id="last_name" type="text" class="form-control" placeholder="your last name..." required minlength="3" maxlength="20">
+      <div class="col col-lg-4 rounded">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+          <mat-label>Last name</mat-label>
+          <input matInput placeholder="Start typing..." formControlName="last_name" type="text" required minlength="3" maxlength="20">
+          <mat-icon matSuffix>user</mat-icon>
+          <mat-hint>Min: 3 char | Max: 20 char</mat-hint>
+        </mat-form-field> 
         <div *ngIf="form.controls['last_name'].invalid && form.controls['last_name'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['last_name'].errors['required']">
             Last name is required.
@@ -63,11 +56,34 @@
       </div>
     </div>
   
+  
     <div class="row">
-      <div class="col color-one margin rounded shadow padding-2">
-        <img src="https://res.cloudinary.com/benie/image/upload/v1662908433/icons8-petrol-station-67_bcboe0.png" height="35" width="35" alt="">
-        <label for="petrol_station">Petrol station:</label>
-        <input formControlName="petrol_station" id="petrol_station" type="text" class="form-control" placeholder="site name..." required minlength="7">
+      <div class="col col-lg-4 rounded">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Start typing..." formControlName="email" type="email" required>
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-hint>e.g: your_name@provider.com</mat-hint>
+        </mat-form-field> 
+        <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="alert alert-danger">
+          <div *ngIf="form.controls['email'].errors['required']">
+            Email is required.
+          </div>
+          <div *ngIf="form.controls['email'].errors['email']">
+            Please provide a valid email address.
+          </div>
+        </div>
+      </div>
+      <div class="col col-lg-4 rounded">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+          <mat-label>Select Petrol Station</mat-label>
+          <mat-select required>
+            <mat-option value="Station-Kisii" formControlName="petrol_station" type="text" required minlength="7">Station Kisii</mat-option>
+            <mat-option value="Station-Nairobi" formControlName="petrol_station" type="text" required minlength="7">Station Nairobi</mat-option>
+            <mat-option value="Station-Migori" formControlName="petrol_station" type="text" required minlength="7">Station Migori</mat-option>
+          </mat-select>
+          <mat-hint>Min: 7 char</mat-hint>
+        </mat-form-field>
         <div *ngIf="form.controls['petrol_station'].invalid && form.controls['petrol_station'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['petrol_station'].errors['required']">
             Petrol station name is required.
@@ -77,10 +93,13 @@
           </div>
         </div>
       </div>
-      <div class="col color-one margin rounded shadow padding-2">
-        <img src="https://res.cloudinary.com/benie/image/upload/v1662908490/icons8-id-66_y50o5e.png" height="35" width="35" alt="">
-        <label for="employee_id">Employee ID:</label>
-        <input formControlName="employee_id" id="employee_id" type="number" class="form-control" placeholder="employee ID no..." required>
+      <div class="col col-lg-4 rounded">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+          <mat-label>Employee ID</mat-label>
+          <input matInput placeholder="Start typing..." formControlName="employee_id" type="number" required>
+          <mat-icon matSuffix>assignment_ind</mat-icon>
+          <mat-hint class="bg-danger white">Employees of Pebo Kenya Ltd</mat-hint>
+        </mat-form-field> 
         <div *ngIf="form.controls['employee_id'].invalid && form.controls['employee_id'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['employee_id'].errors['required']">
             Employee ID is required.
@@ -90,24 +109,32 @@
     </div>
   
     <div class="row">
-      <div class="col"></div>
-      <div class="col margin rounded color-one margin-top margin-bottom shadow padding-2">
-        <div class="text-center margin-bottom-half">
-          <img src="https://res.cloudinary.com/benie/image/upload/v1662908548/icons8-security-shield-green-50_rdkwul.png" height="35" width="35" alt="">
-        </div>
-        <input formControlName="password" [NgPasswordValidator]="options" type="password" class="form-control center" placeholder="Create password" required (valid)="isValid($event)">
+      <div class="col-lg-3"></div>
+      <div class="col col-lg-3 rounded">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+          <mat-label><mat-icon matSuffix>security</mat-icon> Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Start typing..." [NgPasswordValidator]="options" formControlName="password" required (valid)="isValid($event)">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-hint>Password must be valid</mat-hint>
+        </mat-form-field>
         <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['password'].errors['required']">
             Password is required.
           </div>
         </div>
       </div>
-      <div class="col margin rounded color-one margin-top margin-bottom shadow padding-2">
-        <div class="text-center margin-bottom-half">
-          <img src="https://res.cloudinary.com/benie/image/upload/v1662908548/icons8-security-shield-green-50_rdkwul.png" height="35" width="35" alt="">
-        </div>
-        <input formControlName="password2" type="password" class="form-control center" placeholder="Confirm password" required>
-        <div *ngIf="form.controls['password2'].invalid && form.controls['password'].touched" class="alert alert-danger">
+      <div class="col col-lg-3 rounded margin-bottom">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+          <mat-label><mat-icon matSuffix>security</mat-icon> Confirm password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Start typing..." formControlName="password2" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-hint>Passwords must match</mat-hint>
+        </mat-form-field> 
+        <div *ngIf="form.controls['password2'].invalid && form.controls['password2'].touched" class="alert alert-danger">
           <div *ngIf="form.controls['password2'].errors['required']">
             Password confirmation is required.
           </div>
@@ -116,7 +143,7 @@
           </div>
         </div>
       </div>
-      <div class="col"></div>
+      <div class="col-lg-3"></div>
     </div>
   
     <div class="row">

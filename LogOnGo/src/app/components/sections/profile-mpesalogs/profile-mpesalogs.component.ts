@@ -56,7 +56,6 @@ export class ProfileMpesalogsComponent implements OnInit {
     this.logMpesaService.getUserMpesaLogs(id).subscribe(
       data => {
       this.mpesa_logs = data
-      this.ngOnInit();
       console.warn('user_mpesa_logs:',data)
     },
     error => {

@@ -12,10 +12,10 @@ export class DetailsBtnComponent implements OnInit {
   constructor(
     private logService:LogService,
     ) { 
-    this.logService.getAllLogs().subscribe((data) => {
-      this.logs = data
-      console.warn("data",data)
-    });
+    // this.logService.getAllLogs().subscribe((data) => {
+    //   this.logs = data
+    //   console.warn("data",data)
+    // });
   }
 
   

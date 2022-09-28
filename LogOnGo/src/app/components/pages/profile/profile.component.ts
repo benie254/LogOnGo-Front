@@ -45,6 +45,7 @@ export class ProfileComponent implements OnInit {
   };
   info: any; 
   mpesaForm: FormGroup;
+  isExpanded: boolean = false;
 
   constructor(
     private tokenStorage:TokenStorageService,
