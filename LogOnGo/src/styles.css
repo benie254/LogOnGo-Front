@@ -25,39 +25,73 @@
 @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
+.navbar-brand, .font-brand{
+  
+  font-family: 'Carter One', cursive;
+
+}
+.nav-link {
+  font-family: 'Averia Serif Libre', cursive;
+  font-size: 22px;
+}
+.dropdown-item{
+  font-family: 'Averia Serif Libre', cursive;
+}
+
 h1{
-    font-family: 'Staatliches', cursive;
+  font-family: 'Cormorant SC', serif;
+  font-size: 38px;
+  font-weight:bold;
 }
 h2{
-    font-family: 'Bangers', cursive;
+  font-family: 'Zen Antique Soft', serif;
+  font-size:32px;
+  font-weight:bold;
 }
 h3{
-    font-family: 'Secular One', sans-serif;
+  font-family: 'Noto Serif Kannada', serif;
+  font-size: 28px;
+  font-weight:bold;
 }
 h4{
-    font-family: 'Bree Serif', serif;
+  font-family: 'Noto Serif Kannada', serif;
+    font-size: 26px;
+    font-weight:bold;
 }
 h5{
-    font-family: 'Acme', sans-serif;
+  font-family: 'Averia Serif Libre', cursive;
+    font-size: 26px;
+    font-weight:bold;
 }
 h6{
-    font-family: 'Courgette', cursive;
+  font-family: 'Combo', cursive;
+  font-weight: bold;
+    font-size: 24px;
 }
-footer{
-    font-family: 'Courgette', cursive;
+.btn{
+  font-family: 'Combo', cursive;
+  font-weight: bold;
 }
+p {
+  font-family: 'Libre Baskerville', serif;
+}
+input::placeholder  {
+  font-family: 'Julee', cursive;
+}
+
 small{
-    font-family: 'Kalam', cursive;
+  font-family: 'Gochi Hand', cursive;
 }
-button,.btn,li,form{
-    font-family: 'Philosopher', sans-serif;
+li{
+  font-family: 'Amita', cursive;
 }
-p{
-    font-family: 'Amiri', serif;
+a{
+  font-family: 'Charm', cursive;
 }
-a,input{
-    font-family: 'Patrick Hand', cursive;
+.btn{
+  font-family: 'DynaPuff', cursive;
 }
+
 
 body{
   /* margin-top:5%; */
@@ -496,7 +530,7 @@ footer {
   font-size:32px;
 }
 .font-md-2{
-  font-size:24px;
+  font-size:20px;
 }
 .font-sm{
   font-size:16px;
