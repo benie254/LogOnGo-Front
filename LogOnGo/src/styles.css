@@ -83,7 +83,8 @@ body{
 } */
 body,.color-one, .bg-col {
     /* background-color: #E6EDFF; */
-    background: linear-gradient(90deg, rgba(12, 207, 240, 1), rgba(255, 202, 143, 1))
+    /* background: linear-gradient(90deg, rgba(12, 207, 240, 1), rgba(255, 202, 143, 1)) */
+    background-color:white;
     
 }
 
@@ -91,7 +92,8 @@ body,.color-one, .bg-col {
     color:rgba(255, 0, 0, 0.226);
 }
 .color-two{
-  background-color: white;
+  /* background-color: white; */
+  background: linear-gradient(90deg, rgba(12, 207, 240, 1), rgba(255, 202, 143, 1))
 }
 .f-two{
   color: #2B2D42;
@@ -335,14 +337,39 @@ body,.color-one, .bg-col {
 .white{
   color:white;
 }
-ul {
+ul, .align-ul {
   display: table;
   margin: 0 auto;
 }
-@media only screen and (min-width: 1240px) {
+#landing-bg{
+  /* background-image: url('https://res.cloudinary.com/benie/image/upload/v1659032529/fuel-2741_taw41i.jpg');
+  background-position:cover;
+  background-repeat:no-repeat;
+  background-size:cover; */
+  /* padding:5.75%; */
+  /* position:relative;
+  border-bottom-left-radius: 75%;
+  border-bottom-right-radius: 50%; */
+}
+.footer-content{
+  padding-top:1%;
+  padding-bottom:1%;
+}
+footer {
+  /* padding:2%; */
+  position: absolute;
+  bottom: 0;
+  width:100%;
+  
+}
+
+@media only screen and (min-width: 1040px) {
   .carousel-landing {
-    height: 750px;
+    height: 650px;
+    width:75%;
+
   }
+  
 }
 @media only screen and (max-width: 1240px ) {
   .carousel-landing, .carousel-item {
@@ -461,4 +488,16 @@ ul {
 
 .align-right {
   text-align: right;
+}
+.font-lg{
+  font-size:64px;
+}
+.font-md{
+  font-size:32px;
+}
+.font-md-2{
+  font-size:24px;
+}
+.font-sm{
+  font-size:16px;
 }
