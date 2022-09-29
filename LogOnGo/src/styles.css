@@ -559,3 +559,6 @@ footer {
 .margin-bottom-footer{
   margin-bottom: 15%;
 }
+.aloha::first-letter{
+  font-size:200px;
+}

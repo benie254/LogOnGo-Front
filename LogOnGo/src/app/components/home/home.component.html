@@ -1,8 +1,9 @@
-<div class="container-fluid shadow rounded color-two">
+<!-- <div class="container-fluid shadow rounded">
  
     <div class="row shadow rounded">
         <h1 class="text-center">{{today|date}}</h1>
         <h2>Summary</h2>
+
         
         <div class="border full-height shadow color-one rounded black padding-2">
             <div class="card color-two">
@@ -53,8 +54,22 @@
                 <h5 class="card-header">Tank balance yesterday: <span id="bal0">{{logs.balance_yesterday}}</span> Lts <br> <span class="float">Latest balance today: <span *ngIf="logs.updated_balance else elseBlockTank">{{logs.updated_balance}} <span>Lts</span></span> <span><div><ng-template #elseBlockTank>{{logs.balance}}</ng-template></div> </span></span></h5>
             </div>
             <div>
-                <app-petrol-received></app-petrol-received>
+                Petrol received
             </div>
             
     </div>   
+</div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <app-petrol-summary></app-petrol-summary>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
 </div>

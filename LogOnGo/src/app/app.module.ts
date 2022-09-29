@@ -146,6 +146,7 @@ import { FooterComponent } from './components/sections/footer/footer.component';
 import { AboutComponent } from './components/sections-b/about/about/about.component';
 import { UsingComponent } from './components/sections-b/using/using/using.component';
 import { SettingComponent } from './components/sections-b/setting/setting/setting.component';
+import { PetrolSummaryComponent } from './components/sections-b/petrol-summary/petrol-summary.component';
 
 
 
@@ -267,6 +268,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     AboutComponent,
     UsingComponent,
     SettingComponent,
+    PetrolSummaryComponent,
   ],
   imports: [
     NgxPaginationModule,
