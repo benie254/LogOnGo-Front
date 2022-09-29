@@ -1,44 +1,41 @@
-<div class="container padding" *ngIf="!authenticated">
-  <form [formGroup]="form" (submit)="submit()" class="color-two f-two padding-four rounded shadow">
-    <div class="text-align">
-      <img src="https://res.cloudinary.com/benie/image/upload/v1662828646/icons8-user-rights-50_sgvyxm.png" height="55" width="55" alt="">
-    </div>
-    <h1 class="text-center">Login to continue</h1>
-    <div class="row">
-      <div class="col col-md-6 padding">
-        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-          <mat-label>Email</mat-label>
-          <input matInput placeholder="Start typing..." formControlName="email" type="email" required>
-          <mat-icon matSuffix>email</mat-icon>
-          <mat-hint>e.g: your_name@provider.com</mat-hint>
-        </mat-form-field>        
-        <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="alert alert-danger">
-          <div *ngIf="form.controls['email'].errors['required']">
-            Email is required.
-          </div>
-          <div *ngIf="form.controls['email'].errors['email']">
-            Please provide a valid email address.
+<div class="container-fluid reg-cont height-lg">
+  <div class="container padding" *ngIf="!authenticated">
+    <form [formGroup]="form" (submit)="submit()" class="color-two f-two padding-four rounded shadow">
+      <div class="text-align">
+        <img src="https://res.cloudinary.com/benie/image/upload/v1662828646/icons8-user-rights-50_sgvyxm.png" height="55" width="55" alt="">
+      </div>
+      <h1 class="text-center">Login to continue</h1>
+      <div class="row">
+        <div class="col col-lg-4 padding-2">
+          <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Start typing..." formControlName="email" type="email" required>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-hint>e.g: your_name@provider.com</mat-hint>
+          </mat-form-field>        
+          <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="alert alert-danger">
+            <div *ngIf="form.controls['email'].errors['required']">
+              Email is required.
+            </div>
+            <div *ngIf="form.controls['email'].errors['email']">
+              Please provide a valid email address.
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col col-md-6 padding">
-        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-          <mat-label>Employee ID</mat-label>
-          <input matInput placeholder="Start typing..." formControlName="employee_id" type="number" required>
-          <mat-icon matSuffix>assignment_ind</mat-icon>
-          <mat-hint><span class="bg-danger white">Employees of Pebo Kenya Ltd.</span></mat-hint>
-        </mat-form-field>
-        <div *ngIf="form.controls['employee_id'].invalid && form.controls['employee_id'].touched" class="alert alert-danger">
-          <div *ngIf="form.controls['employee_id'].errors['required']">
-            Employee ID is required.
+        <div class="col col-lg-4 padding-2">
+          <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-label>Employee ID</mat-label>
+            <input matInput placeholder="Start typing..." formControlName="employee_id" type="number" required>
+            <mat-icon matSuffix>assignment_ind</mat-icon>
+            <mat-hint><span class="bg-danger white">Employees of Pebo Kenya Ltd.</span></mat-hint>
+          </mat-form-field>
+          <div *ngIf="form.controls['employee_id'].invalid && form.controls['employee_id'].touched" class="alert alert-danger">
+            <div *ngIf="form.controls['employee_id'].errors['required']">
+              Employee ID is required.
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col col-sm-4"></div>
-      <div class="col col-sm-4 margin rounded  margin-top margin-bottom">
+        <div class="col col-lg-4 rounded padding-2">
           <mat-form-field appearance="outline" class="color-one padding-2 rounded shadow full-width">
             <mat-label>Password</mat-label>
             <input matInput placeholder="Start typing..." formControlName="password" type="password" required>
@@ -51,30 +48,40 @@
             </div>
           </div>
       </div>
-      <div class="col col-sm-4"></div>
-    </div>
-
-    <div class="row">
-      <div class="col"></div>
-      <div class="col padding-bottom">
-        <button class="w-100 margin-top btn btn-sm btn-light btn-outline-dark" type="submit" [disabled]="form.invalid"><img src="https://res.cloudinary.com/benie/image/upload/v1662830129/icons8-login-64_glcxs4.png" height="60" width="60" alt=""></button>
-        <p>Don't have an account? <a routerLink="register">Sign up here</a></p>
       </div>
-      <div class="col"></div>
-    </div>
-  </form>
+  
+      <div class="row">
+        <div class="col col-sm-4"></div>
+        
+        <div class="col col-sm-4"></div>
+      </div>
+  
+      <div class="row">
+        <div class="col"></div>
+        <div class="col padding-bottom center">
+          <button class="margin-top btn btn-lg btn-light btn-outline-info" type="submit" [disabled]="form.invalid"><span><mat-icon>verified_user</mat-icon></span> Login</button>
+          <p>Don't have an account? <a routerLink="/register" class="margin btn btn-sm btn-info btn-outline-dark" type="button">Sign up here</a></p>
+        </div>
+        <div class="col"></div>
+      </div>
+    </form>
+    <br><br><br><br><br><br class="breaker"><br class="breaker"><br class="breaker"><br class="breaker"><br class="breaker">
+  </div>
+  
+  
+  <div *ngIf="authenticated">
+    <app-landing></app-landing>
+  </div>
+  
+  <p>
+    
+  </p>
+  <p>
+    
+  </p>
+  <p>
+    
+  </p>
+  
 </div>
-
-<div *ngIf="authenticated">
-  <app-landing></app-landing>
-</div>
-
-<p>
-  
-</p>
-<p>
-  
-</p>
-<p>
-  
-</p>
+<app-footer></app-footer>

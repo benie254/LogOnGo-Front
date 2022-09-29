@@ -1,5 +1,5 @@
 <div class="container-fluid reg-cont">
-  <div class="padding container reg-contents">
+  <div class="padding-3 container reg-contents">
     <form [formGroup]="form" (submit)="submit()" novalidate class="color-two f-two padding-four rounded shadow">
       <div class="text-align">
         <img src="https://res.cloudinary.com/benie/image/upload/v1662528617/icons8-user-64_1_aqgcf9.png" height="65" width="65" alt="">
@@ -10,7 +10,7 @@
         <div class="col col-lg-4 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label>Username</mat-label>
-            <input matInput placeholder="Start typing..." formControlName="username" type="text" required required minlength="4" maxlength="15">
+            <input matInput placeholder="Enter username..." formControlName="username" type="text" required required minlength="4" maxlength="15">
             <mat-icon matSuffix>account_box</mat-icon>
             <mat-hint>Min: 4 char | Max: 15 char</mat-hint>
           </mat-form-field>  
@@ -26,7 +26,7 @@
         <div class="col col-lg-4 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label>First name</mat-label>
-            <input matInput placeholder="Start typing..." formControlName="first_name" type="text" required minlength="3" maxlength="25">
+            <input matInput placeholder="Enter first name..." formControlName="first_name" type="text" required minlength="3" maxlength="25">
             <mat-icon matSuffix>person</mat-icon>
             <mat-hint>Min: 3 char | Max: 25 char</mat-hint>
           </mat-form-field>  
@@ -42,7 +42,7 @@
         <div class="col col-lg-4 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label>Last name</mat-label>
-            <input matInput placeholder="Start typing..." formControlName="last_name" type="text" required minlength="3" maxlength="20">
+            <input matInput placeholder="Enter last name..." formControlName="last_name" type="text" required minlength="3" maxlength="20">
             <mat-icon matSuffix>person</mat-icon>
             <mat-hint>Min: 3 char | Max: 20 char</mat-hint>
           </mat-form-field> 
@@ -62,7 +62,7 @@
         <div class="col col-lg-4 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Start typing..." formControlName="email" type="email" required>
+            <input matInput placeholder="Enter email..." formControlName="email" type="email" required>
             <mat-icon matSuffix>email</mat-icon>
             <mat-hint>e.g: your_name@provider.com</mat-hint>
           </mat-form-field> 
@@ -98,7 +98,7 @@
         <div class="col col-lg-4 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label>Employee ID</mat-label>
-            <input matInput placeholder="Start typing..." formControlName="employee_id" type="number" required>
+            <input matInput placeholder="Enter employee ID..." formControlName="employee_id" type="number" required>
             <mat-icon matSuffix>assignment_ind</mat-icon>
             <mat-hint class="bg-danger white">Employees of Pebo Kenya Ltd</mat-hint>
           </mat-form-field> 
@@ -159,3 +159,5 @@
     </form>
   </div>
 </div>
+
+<app-footer></app-footer>

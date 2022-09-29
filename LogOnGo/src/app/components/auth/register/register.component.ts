@@ -14,6 +14,7 @@ import { ConfirmedValidator } from 'src/app/validators/confirmed.validator';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  formValid: boolean = false;
   form: FormGroup
   username: any;
   hide = true;
@@ -63,18 +64,29 @@ export class RegisterComponent implements OnInit {
     { 
       validator: ConfirmedValidator('password', 'password2')
     });
+    this.hideBtn();
+  }
+  hideBtn(){
+    let btn = document.getElementById("regBtn");
+    if (this.form.valid){
+      btn.style.display = 'block';
+    } else {
+      btn.style.display = 'none';
+    }
   }
   submit(): void {
     this.http.post(this.apiURLreg, this.form.getRawValue())
       .subscribe(() => {
         Notiflix.Notify.success('Registration successful!');
         this.router.navigate(['/login']);
+        
       },
       err => {
         Notiflix.Notify.failure('Registration failed!');
         Notiflix.Notify.warning('Some of your details may be incorrect.');
         if (this.form.invalid) {
           Notiflix.Notify.warning('Some of your details may be null or incorrect.');
+          this.formValid = false;
         }
       });  
   }

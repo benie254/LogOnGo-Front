@@ -388,11 +388,11 @@ ul, .align-ul {
 }
 .footer-content{
   padding-top:1%;
-  padding-bottom:1%;
+  /* padding-bottom:; */
 }
 footer {
   /* padding:2%; */
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width:100%;
   
@@ -540,5 +540,22 @@ footer {
   background-image: url('https://res.cloudinary.com/benie/image/upload/v1664422910/Vorderrhein_lf1ky6.svg');
   background-position: cover;
   background-size:cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
+  /* height: 100vh; */
+}
+.height-lg{
+  height:90vh;
+}
+@media screen and (max-width: 580px) {
+  .breaker{
+    display: block;
+  }
+}
+@media screen and (min-width: 580px) {
+  .breaker{
+    display: none;
+  }
+}
+.margin-bottom-footer{
+  margin-bottom: 15%;
 }
