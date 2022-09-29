@@ -143,6 +143,9 @@ import { DetailsBtnComponent } from './components/sections/details-btn/details-b
 import { AllMpesaCardComponent } from './components/sections/all-mpesa-card/all-mpesa-card.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { FooterComponent } from './components/sections/footer/footer.component';
+import { AboutComponent } from './components/sections-b/about/about/about.component';
+import { UsingComponent } from './components/sections-b/using/using/using.component';
+import { SettingComponent } from './components/sections-b/setting/setting/setting.component';
 
 
 
@@ -261,6 +264,9 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     AllMpesaCardComponent,
     ContactComponent,
     FooterComponent,
+    AboutComponent,
+    UsingComponent,
+    SettingComponent,
   ],
   imports: [
     NgxPaginationModule,
