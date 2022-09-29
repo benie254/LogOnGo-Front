@@ -40,8 +40,9 @@
 
 h1{
   font-family: 'Cormorant SC', serif;
-  font-size: 38px;
-  font-weight:bold;
+  font-size: 40px;
+  font-weight:bolder;
+
 }
 h2{
   font-family: 'Zen Antique Soft', serif;
@@ -72,7 +73,7 @@ h6{
   font-family: 'Combo', cursive;
   font-weight: bold;
 }
-p {
+p, form {
   font-family: 'Libre Baskerville', serif;
 }
 input::placeholder  {
