@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService:AuthService,
   ) {
-    if (this.authService.currentUserValue) {
-      this.authenticated = true;
-    }
+    // if (this.authService.currentUserValue) {
+    //   this.authenticated = true;
+    // }
   }
 
   ngOnInit(): void {

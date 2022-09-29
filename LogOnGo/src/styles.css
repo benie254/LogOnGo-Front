@@ -536,3 +536,9 @@ footer {
 .font-sm{
   font-size:16px;
 }
+.reg-cont{
+  background-image: url('https://res.cloudinary.com/benie/image/upload/v1664422910/Vorderrhein_lf1ky6.svg');
+  background-position: cover;
+  background-size:cover;
+  background-repeat: no-repeat;
+}
