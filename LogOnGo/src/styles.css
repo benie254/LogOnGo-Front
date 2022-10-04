@@ -565,57 +565,82 @@ footer {
     display: none;
   }
 }
-.home-container{
+.home-container,#landing-bg{
   margin-bottom:8.5%;
 }
 @media screen and (max-width: 920px){
   .home-container{
     margin-bottom:15%;
   }
+  #landing-bg{
+    margin-bottom:10%;
+  }
 }
 @media screen and (max-width: 880px){
   .home-container{
     margin-bottom:20%;
+  }
+  #landing-bg{
+    margin-bottom:15%;
   }
 }
 @media screen and (max-width: 820px){
   .home-container{
     margin-bottom:25%;
   }
+  #landing-bg{
+    margin-bottom:20%;
+  }
 }
 @media screen and (max-width: 780px){
   .home-container{
     margin-bottom:30%;
+  }
+  #landing-bg{
+    margin-bottom:25%;
   }
 }
 @media screen and (max-width: 720px){
   .home-container{
     margin-bottom:35%;
   }
+  #landing-bg{
+    margin-bottom:30%;
+  }
 }
 @media screen and (max-width: 680px){
   .home-container{
     margin-bottom:40%;
+  }
+  #landing-bg{
+    margin-bottom:35%;
   }
 }
 @media screen and (max-width: 620px){
   .home-container{
     margin-bottom:45%;
   }
+  #landing-bg{
+    margin-bottom:40%;
+  }
 }
 @media screen and (max-width: 580px){
   .home-container{
     margin-bottom:50%;
   }
+  #landing-bg{
+    margin-bottom:45%;
+  }
 }
+
 /* @media screen and (max-width: 520px){
   .home-container{
     margin-bottom:40%;
   }
 } */
-.margin-bottom-footer{
+/* .margin-bottom-footer{
   margin-bottom: 15%;
-}
+} */
 .aloha::first-letter{
   font-size:180px;
 }
