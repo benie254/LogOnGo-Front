@@ -43,7 +43,6 @@ export class FuelReceivedComponent implements OnInit {
         Notiflix.Notify.failure('Get fuels data failed!')
         console.warn(err)
         this.message = err
-        alert(this.message)
       }
     )
 
@@ -55,7 +54,6 @@ export class FuelReceivedComponent implements OnInit {
       },
       err => {
         this.message = err 
-        alert(this.message)
         console.warn(err)
         Notiflix.Notify.failure('Get fuel rcv failed!')
       }
@@ -78,7 +76,6 @@ export class FuelReceivedComponent implements OnInit {
       },
       err => {
         this.message = err 
-        alert(this.message)
         console.warn(err)
         Notiflix.Notify.failure('Get diesel rcv failed!')
       }
@@ -101,7 +98,6 @@ export class FuelReceivedComponent implements OnInit {
       },
       err => {
         this.message = err 
-        alert(this.message)
         console.warn(err)
         Notiflix.Notify.failure('Get fuel rcv failed!')
       }
