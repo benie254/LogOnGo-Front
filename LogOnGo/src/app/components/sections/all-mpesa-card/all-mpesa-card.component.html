@@ -1,26 +1,26 @@
 <div class="card margin-top bg-light" style="margin:1%;border-bottom: 5%;border-color:white;height:100%;">
                      
-    <h4 class="card-header center margin-top"> Mpesa <i class="fa-solid fa-mobile-button"></i> {{mpesa_logs.date}}</h4>
+    <h4 class="card-header center margin-top"> Mpesa <i class="fa-solid fa-mobile-button"></i></h4>
     <div class="card-body" >
         <div class="table-responsive color-two rounded">
             <table class="table">
                 <thead>
                   <tr>
                     <th scope="col"><i class="fa-solid fa-hashtag"></i></th>
+                    <th scole="col">Date</th>
                     <th scope="col">Transaction no.</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Bank amount</th>
-                    <th scope="col">Logged by</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let mpesa_logs of mpesa_logs | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
                   <tr>
                     <td>{{mpesa_logs.id}}</td>
+                    <td>{{mpesa_logs.date}}</td>
                       <td>{{mpesa_logs.transaction_number}}</td>
                     <td>{{mpesa_logs.amount}}</td>
                     <td>{{mpesa_logs.amount_transferred_to_bank}}</td>
-                    <td>{{mpesa_logs.logged_by}}</td>
                     <td><a type="button" class="btn btn-dark btn-outline-info btn-sm" routerLink="/mpesa-details/{{mpesa_logs.id}}">Details</a></td>
                   </tr>
                 </tbody>
