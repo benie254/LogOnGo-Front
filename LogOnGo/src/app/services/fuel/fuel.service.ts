@@ -29,6 +29,10 @@ export class FuelService {
   apiDieselReceivedInfo = 'http://127.0.0.1:8000/api/diesel-received-today/info/';
   apiGasReceivedInfo = 'http://127.0.0.1:8000/api/gas-received-today/info/';
   apiPetrolSummary = 'http://127.0.0.1:8000/api/petrol-summary-today/';
+  apiDieselSummary = 'http://127.0.0.1:8000/api/diesel-summary-today/';
+  apiGasSummary = 'http://127.0.0.1:8000/api/gas-summary-today/';
+
+
 
   constructor(private http:HttpClient) { }
 
@@ -75,6 +79,12 @@ export class FuelService {
   }
   getPetrolSummary(): Observable<any>{
     return this.http.get<any>(this.apiPetrolSummary)
+  }
+  getDieselSummary(): Observable<any>{
+    return this.http.get<any>(this.apiDieselSummary)
+  }
+  getGasSummary(): Observable<any>{
+    return this.http.get<any>(this.apiGasSummary)
   }
 
   getPetrolReceived(): Observable<any>{

@@ -527,6 +527,12 @@ footer {
 .font-lg{
   font-size:64px;
 }
+.font-lg-2{
+  font-size:60px;
+}
+.font-lg-3{
+  font-size:50px;
+}
 .font-md{
   font-size:32px;
 }
@@ -560,5 +566,5 @@ footer {
   margin-bottom: 15%;
 }
 .aloha::first-letter{
-  font-size:200px;
+  font-size:180px;
 }

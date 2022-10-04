@@ -147,6 +147,8 @@ import { AboutComponent } from './components/sections-b/about/about/about.compon
 import { UsingComponent } from './components/sections-b/using/using/using.component';
 import { SettingComponent } from './components/sections-b/setting/setting/setting.component';
 import { PetrolSummaryComponent } from './components/sections-b/petrol-summary/petrol-summary.component';
+import { DieselSummaryComponent } from './components/sections-b/diesel-summary/diesel-summary.component';
+import { GasSummaryComponent } from './components/sections-b/gas-summary/gas-summary.component';
 
 
 
@@ -269,6 +271,8 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     UsingComponent,
     SettingComponent,
     PetrolSummaryComponent,
+    DieselSummaryComponent,
+    GasSummaryComponent,
   ],
   imports: [
     NgxPaginationModule,
