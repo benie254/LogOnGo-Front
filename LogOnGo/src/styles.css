@@ -97,10 +97,10 @@ a{
 }
 
 
-body{
+/* body{ */
   /* margin-top:5%; */
   /* visibility:hidden; */
-}
+/* } */
 .print{
   color:black;
   background-color:white;
@@ -379,7 +379,7 @@ ul, .align-ul {
   display: table;
   margin: 0 auto;
 }
-#landing-bg{
+/* #landing-bg{ */
   /* background-image: url('https://res.cloudinary.com/benie/image/upload/v1659032529/fuel-2741_taw41i.jpg');
   background-position:cover;
   background-repeat:no-repeat;
@@ -388,7 +388,7 @@ ul, .align-ul {
   /* position:relative;
   border-bottom-left-radius: 75%;
   border-bottom-right-radius: 50%; */
-}
+/* } */
 .footer-content{
   padding-top:1%;
   /* padding-bottom:; */

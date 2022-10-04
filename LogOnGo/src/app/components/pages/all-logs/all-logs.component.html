@@ -1,16 +1,13 @@
 <br>
-<div class="container-fluid color-two">
-    <br><br><br>
+<div class="container-fluid">
     <div class="row">
         <h1 class="text-center">All Logs</h1>
         
-        <div class="border full-height col-md-6 color-four rounded black padding-2">
-            <h2 class="text-center">General</h2>
+        <div class="full-height col-lg-6 rounded black padding-2">
             <app-all-logs-card></app-all-logs-card>
         </div>
 
-        <div class="col-md-6 full-height color-four rounded black padding-2 border">
-            <h2 class="text-center">Mpesa</h2>
+        <div class="col-lg-6 full-height rounded black padding-2">
             <div *ngIf="mpesa_logs else elseBlockMpesa">
                 <app-all-mpesa-card></app-all-mpesa-card>
             </div>
