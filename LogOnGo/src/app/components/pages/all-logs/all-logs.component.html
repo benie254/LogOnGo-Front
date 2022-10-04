@@ -1,12 +1,9 @@
-<br>
-<div class="container-fluid">
+<div class="container-fluid" id="all-logs-container">
     <div class="row">
         <h1 class="text-center">All Logs</h1>
-        
         <div class="full-height col-lg-6 rounded black padding-2">
             <app-all-logs-card></app-all-logs-card>
         </div>
-
         <div class="col-lg-6 full-height rounded black padding-2">
             <div *ngIf="mpesa_logs else elseBlockMpesa">
                 <app-all-mpesa-card></app-all-mpesa-card>
@@ -17,14 +14,6 @@
                 </ng-template>
             </div>
         </div>
-        
-        
     </div>
-    
-    
-
-   
-    
-
-    
 </div>
+<app-footer></app-footer>

@@ -565,7 +565,7 @@ footer {
     display: none;
   }
 }
-.home-container,#landing-bg{
+.home-container,#landing-bg,#all-logs-container{
   margin-bottom:8.5%;
 }
 @media screen and (max-width: 920px){
@@ -575,12 +575,18 @@ footer {
   #landing-bg{
     margin-bottom:10%;
   }
+  #all-logs-container{
+    margin-bottom:15%;
+  }
 }
 @media screen and (max-width: 880px){
   .home-container{
     margin-bottom:20%;
   }
   #landing-bg{
+    margin-bottom:15%;
+  }
+  #all-logs-container{
     margin-bottom:15%;
   }
 }
@@ -591,12 +597,18 @@ footer {
   #landing-bg{
     margin-bottom:20%;
   }
+  #all-logs-container{
+    margin-bottom:15%;
+  }
 }
 @media screen and (max-width: 780px){
   .home-container{
     margin-bottom:30%;
   }
   #landing-bg{
+    margin-bottom:25%;
+  }
+  #all-logs-container{
     margin-bottom:25%;
   }
 }
@@ -607,6 +619,10 @@ footer {
   #landing-bg{
     margin-bottom:30%;
   }
+  #all-logs-container{
+    margin-bottom:25%;
+  }
+  
 }
 @media screen and (max-width: 680px){
   .home-container{
@@ -614,6 +630,9 @@ footer {
   }
   #landing-bg{
     margin-bottom:35%;
+  }
+  #all-logs-container{
+    margin-bottom:25%;
   }
 }
 @media screen and (max-width: 620px){
@@ -623,6 +642,9 @@ footer {
   #landing-bg{
     margin-bottom:40%;
   }
+  #all-logs-container{
+    margin-bottom:25%;
+  }
 }
 @media screen and (max-width: 580px){
   .home-container{
@@ -630,6 +652,9 @@ footer {
   }
   #landing-bg{
     margin-bottom:45%;
+  }
+  #all-logs-container{
+    margin-bottom:30%;
   }
 }
 
