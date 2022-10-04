@@ -1,10 +1,10 @@
-<div class="card color-two">
+<div class="card bg-light">
     <h4 class="card-header center margin-top"> 
       General
     </h4>
     <div class="card-body">
         <h5 class="card-title"></h5>
-        <div class="table-responsive">
+        <div class="table-responsive rounded color-two">
             <table class="table">
                 <thead>
                   <tr>
@@ -13,6 +13,8 @@
                     <th scope="col">EOD Reading Today</th>
                     <th scope="col">EOD Reading Yesterday</th>
                     <th scope="col">Total litres sold</th>
+                    <th scope="col">Logged by</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let logs of logs | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
@@ -22,6 +24,8 @@
                       <td class="tester-today3">{{logs.eod_reading_lts}}</td>
                       <td class="tester-yesterday3">{{logs.eod_reading_yesterday}}</td>
                     <td id="">{{logs.total_litres_sold}}</td>
+                    <td>{{logs.logged_by}}</td>
+                    <td><button routerLink="/log-details/{{logs.id}}" class="btn btn-sm btn-dark btn-outline-info">Details</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -35,7 +39,6 @@
         </div>
     </div>
     <div class="card-footer">
-        <small class="">Logged by | <button type="button" routerLink="/log-details/{{logs.id}}">Details</button> </small>
     </div>
 </div>
 
