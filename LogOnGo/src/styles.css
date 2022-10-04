@@ -76,6 +76,9 @@ h6{
 p, form {
   font-family: 'Libre Baskerville', serif;
 }
+p{
+  font-size:18px;
+}
 input::placeholder  {
   font-family: 'Julee', cursive;
 }
