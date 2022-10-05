@@ -3,7 +3,7 @@
         <div class="col">
             <div *ngIf="petrol_received else noPetrolReceived">
                 <h5 class="card-header text-center">Petrol Received This Day: <span>{{petrol_received.total_fuel_received_today}}</span> Lts. <span><h6><a type="button" class="btn" onclick="toggleOrderInfo()">View order(s) info</a></h6></span>  Record <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="togglePetrolRcvd()">new order</a></h5>
-                <app-petrol-received></app-petrol-received>
+                <app-petrol-received-form></app-petrol-received-form>
                 <ol id="orderInfo">
                     <h6>Receipt info <span><a type="button" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleOrderInfo()">X</a></span></h6>
                     <li class="card-text" *ngFor="let petrol_received_info of petrol_received_info">{{petrol_received_info.litres_received}} Lts. from {{petrol_received_info.received_from}}</li>
@@ -20,6 +20,7 @@
         <div class="col">
             <div *ngIf="diesel_received else noDieselReceived">
                 <h5 class="card-header text-center">Diesel Received This Day: <span>{{diesel_received.total_fuel_received_today}}</span> Lts. <span><h6><a type="button" class="btn" onclick="toggleDieselOrderInfo()">View order(s) info</a></h6></span>  Record <a type="button" class="btn" onclick="toggleDieselRcvd()">new order</a></h5>
+                <app-diesel-received-form></app-diesel-received-form>
                 <ol id="dieselOrderInfo">
                     <h6>Receipt info <span><a type="button" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleDieselOrderInfo()">X</a></span></h6>
                     <li class="card-text" *ngFor="let diesel_received_info of diesel_received_info">{{diesel_received_info.litres_received}} Lts. from {{diesel_received_info.received_from}}</li>
@@ -27,8 +28,8 @@
             </div>
             <div>
                 <ng-template #noDieselReceived>
-                    <h5 class="card-header text-center">No Diesel received this day.</h5>
-                    <app-diesel-received></app-diesel-received>
+                    <h5 class="card-header text-center">No Diesel received this day. <button onclick="toggleDieselRcvd()">Add now?</button></h5>
+                    <app-diesel-received-form></app-diesel-received-form>
                 </ng-template>
             </div>
         </div>

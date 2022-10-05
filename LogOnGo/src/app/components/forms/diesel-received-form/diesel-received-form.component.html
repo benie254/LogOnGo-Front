@@ -1,4 +1,4 @@
-<form id="dieselReceived" #dieselReceivedForm="ngForm" (ngSubmit)="dieselReceived(dieselReceivedForm.value)">
+ <form id="dieselReceived" #dieselReceivedForm="ngForm" (ngSubmit)="dieselReceived(dieselReceivedForm.value)">
     <label for="fuel">fuel</label>
     <input type="number" id="fuel" ngModel #fuel="ngModel" name="fuel" [(ngModel)]="dieselInfo.id" placeholder="fuel type">
     <label for="litres_received">Litres received</label><br>
