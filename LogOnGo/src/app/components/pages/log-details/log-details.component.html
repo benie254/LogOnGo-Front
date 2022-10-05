@@ -1,10 +1,11 @@
-<div class="container padding rounded">
-    <div class="row color-four">
-      <div class="border full-height col center color-four rounded black padding-2">
-        <h2>Log Details {{logs.id}} <br> <span class=""><a routerLink="/print-report/{{logs.id}}"><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> </h2>
-        <h6><a routerLink="/email-report/{{logs.id}}" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6>
+<div class="container-fluid">
+  <div class="row padding">
+    <div class="col-sm-1"></div>
+    <div class="col-lg-10 rounded center bg-light padding-2">
+      <h2>Log [{{logs.id}}] Details <br></h2>
         <app-initial-amount></app-initial-amount>
-            <h5 class="card-header">{{logs.date}}</h5>
+        <div class="card color-two">
+          <h5 class="card-header margin-top"><span class="" style="float:left;"><a routerLink="/print-report/{{logs.id}}"><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> {{logs.date}} <span style="float:right;"><h6><a routerLink="/email-report/{{logs.id}}" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6></span></h5>
             <div class="card-body">
                 <div class="table-responsive" id="table" name="table">
                     <table class="table">
@@ -33,12 +34,14 @@
             <div class="card-footer">
                 <small class="">Logged by  | First logged on {{logs.first_logged}}</small>
             </div>
+            <p><a type="button" class="btn btn-sm btn-dark btn-outline-info" type="button" onclick="toggleUpdateLogDetailsForm()" (click)="reportWarn()">Update log? </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited on {{logs.last_edited}}</small></p>
+        </div>
             
         
         
-        <p><a type="button" class="btn btn-sm btn-dark btn-outline-info" type="button" onclick="toggleUpdateLogDetailsForm()" (click)="reportWarn()">Update log? </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited on {{logs.last_edited}}</small></p>
         
-        <form [formGroup]="form" (ngSubmit)="updateLogDetails()">
+        
+        <form id="logDetailsUpdate" [formGroup]="form" (ngSubmit)="updateLogDetails()">
             <div class="row">
                 <div class="col">
                     <label for="date" class="">Log date</label>
@@ -55,6 +58,7 @@
                 <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit">Update log</button>
             </div> 
         </form> 
+        
         <div class="card color-two">
           <!-- <app-petrol-received></app-petrol-received> -->
           <app-fuel-received></app-fuel-received>
@@ -65,6 +69,10 @@
   
         <span class="color-two"><a href=""><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> <br><br>
         <h6><a href="" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+        
   
         <!-- <div id="updateLogDetailsForm" class="rounded container center color-two border col-md-5"><br>
           <h2 class="text-center">Update Log details</h2>
@@ -76,6 +84,4 @@
           <h6 class="text-center"><span class="bg-danger padding-2 rounded">Remember to update your balance!</span></h6>
           <app-petrol-received-form></app-petrol-received-form>
         </div>    -->
-      </div>
-    </div>
   </div>
