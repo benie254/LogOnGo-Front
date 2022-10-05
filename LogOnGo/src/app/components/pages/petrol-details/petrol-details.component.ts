@@ -51,7 +51,7 @@ export class PetrolDetailsComponent implements OnInit {
     private authService:AuthService,
     private fuelService:FuelService,
     ) { 
-      this.fuelService.getPetrolReceived().subscribe(
+      this.fuelService.getPetrolReceived(this.id).subscribe(
         (fuel_received_data) => {
           this.petrol_received = fuel_received_data;
           console.warn("fuel recvd data:",fuel_received_data);
@@ -64,7 +64,7 @@ export class PetrolDetailsComponent implements OnInit {
           Notiflix.Notify.failure('Get fuel rcv failed!')
         }
       )
-      this.fuelService.getPetrolReceivedInfo().subscribe(
+      this.fuelService.getPetrolReceivedInfo(this.id).subscribe(
         (petrol_rcvd_info) => {
           this.petrol_received_info = petrol_rcvd_info
         },

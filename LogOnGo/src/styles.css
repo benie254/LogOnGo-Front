@@ -95,6 +95,9 @@ a{
 .btn{
   font-family: 'DynaPuff', cursive;
 }
+ol#orderInfo {
+  list-style-position: inside;
+}
 
 
 /* body{ */

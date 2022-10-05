@@ -87,20 +87,20 @@ export class FuelService {
     return this.http.get<any>(this.apiGasSummary)
   }
 
-  getPetrolReceived(): Observable<any>{
-    return this.http.get<any>(this.apiTotalPetrolReceived)
+  getPetrolReceived(id: number): Observable<any>{
+    return this.http.get<any>(this.apiTotalPetrolReceived + id)
   }
-  getPetrolReceivedInfo(): Observable<any>{
-    return this.http.get<any>(this.apiPetrolReceivedInfo)
+  getPetrolReceivedInfo(id: number): Observable<any>{
+    return this.http.get<any>(this.apiPetrolReceivedInfo + id)
   }
-  getDieselReceived(): Observable<any>{
-    return this.http.get<any>(this.apiTotalDieselReceived)
+  getDieselReceived(id: number): Observable<any>{
+    return this.http.get<any>(this.apiTotalDieselReceived + id)
   }
   getDieselReceivedInfo(): Observable<any>{
     return this.http.get<any>(this.apiDieselReceivedInfo)
   }
-  getGasReceived(): Observable<any>{
-    return this.http.get<any>(this.apiTotalGasReceived)
+  getGasReceived(id: number): Observable<any>{
+    return this.http.get<any>(this.apiTotalGasReceived + id)
   }
   getGasReceivedInfo(): Observable<any>{
     return this.http.get<any>(this.apiGasReceivedInfo)

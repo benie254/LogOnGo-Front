@@ -28,6 +28,7 @@ export class FuelReceivedComponent implements OnInit {
   gasInfo: any; 
   dieselInfo: any;
   petrol_received_info: any;
+  id: number;
 
   constructor(
     private fuelService:FuelService,
@@ -46,40 +47,22 @@ export class FuelReceivedComponent implements OnInit {
       }
     )
 
-    this.fuelService.getPetrolReceived().subscribe(
-      (fuel_received_data) => {
-        this.petrol_received = fuel_received_data;
-        console.warn("fuel recvd data:",fuel_received_data);
-        Notiflix.Notify.success('Get fuel rcv success!')
-      },
-      err => {
-        this.message = err 
-        console.warn(err)
-        Notiflix.Notify.failure('Get fuel rcv failed!')
-      }
-    )
+    
 
-    this.fuelService.getPetrolReceivedInfo().subscribe(
-      (petrol_rcvd_info) => {
-        this.petrol_received_info = petrol_rcvd_info
-      },
-      err => {
-        console.log(err)
-      }
-    )
+    
 
-    this.fuelService.getDieselReceived().subscribe(
-      (diesel_received_data) => {
-        this.diesel_received = diesel_received_data;
-        console.warn("diesel recvd data:",diesel_received_data);
-        Notiflix.Notify.success('Get diesel rcv success!')
-      },
-      err => {
-        this.message = err 
-        console.warn(err)
-        Notiflix.Notify.failure('Get diesel rcv failed!')
-      }
-    )
+    // this.fuelService.getDieselReceived().subscribe(
+    //   (diesel_received_data) => {
+    //     this.diesel_received = diesel_received_data;
+    //     console.warn("diesel recvd data:",diesel_received_data);
+    //     Notiflix.Notify.success('Get diesel rcv success!')
+    //   },
+    //   err => {
+    //     this.message = err 
+    //     console.warn(err)
+    //     Notiflix.Notify.failure('Get diesel rcv failed!')
+    //   }
+    // )
 
     this.fuelService.getDieselReceivedInfo().subscribe(
       (diesel_rcvd_info) => {
@@ -90,18 +73,7 @@ export class FuelReceivedComponent implements OnInit {
       }
     )
 
-    this.fuelService.getGasReceived().subscribe(
-      (gas_received_data) => {
-        this.gas_received = gas_received_data;
-        console.warn("gas recvd data:",gas_received_data);
-        Notiflix.Notify.success('Get gas rcv success!')
-      },
-      err => {
-        this.message = err 
-        console.warn(err)
-        Notiflix.Notify.failure('Get fuel rcv failed!')
-      }
-    )
+    
 
     this.fuelService.getGasReceivedInfo().subscribe(
       (gas_rcvd_info) => {
@@ -151,11 +123,67 @@ export class FuelReceivedComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.dieselReceived();
+    this.getGasReceived();
+    this.getPetrolReceived();
+    this.getPetrolReceivedInfo();
   }
 
+  dieselReceived() {
+    this.fuelService.getDieselReceived(this.id).subscribe(
+      (result) => {
+        this.diesel_received = result;
+      console.warn('result', result);
+      // this.notifService.submitSuccess('success','Diesel received added successfully!')
+      // this.notifService.showSuccess("Data posted successfully !!", "Notification")
+    },
+    err => {
+      
+    }
+    );
+  }
+  
+
+  
+
   getPetrolReceived(){
-    
-    
+    this.fuelService.getPetrolReceived(this.id).subscribe(
+      (fuel_received_data) => {
+        this.petrol_received = fuel_received_data;
+        console.warn("fuel recvd data:",fuel_received_data);
+        Notiflix.Notify.success('Get fuel rcv success!')
+      },
+      err => {
+        this.message = err 
+        console.warn(err)
+        Notiflix.Notify.failure('Get fuel rcv failed!')
+      }
+    )
+  }
+  getGasReceived(){
+    this.fuelService.getGasReceived(this.id).subscribe(
+      (gas_received_data) => {
+        this.gas_received = gas_received_data;
+        console.warn("gas recvd data:",gas_received_data);
+        Notiflix.Notify.success('Get gas rcv success!')
+      },
+      err => {
+        this.message = err 
+        console.warn(err)
+        Notiflix.Notify.failure('Get gas rcv failed!')
+      }
+    )
+  }
+  getPetrolReceivedInfo(){
+    this.fuelService.getPetrolReceivedInfo(this.id).subscribe(
+      (petrol_rcvd_info) => {
+        this.petrol_received_info = petrol_rcvd_info
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 
 }
