@@ -32,9 +32,9 @@
                 </div>
             </div>
             <div class="card-footer">
-                <small class="">Logged by  | First logged on {{logs.first_logged | date: 'medium'}} | <span *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited on {{logs.last_edited | date: 'medium'}}</span></small>
+                <small class="">First logged by {{logs.logged_by}} on {{logs.first_logged | date: 'medium'}}</small>
             </div>
-            <p><a type="button" class="btn margin-top btn-sm btn-light btn-outline-primary" type="button" (click)="reportWarn();"><i class="fa-solid fa-pen-to-square"></i> log? </a> </p>
+            <p><a type="button" class="btn btn-sm btn-light btn-outline-primary" type="button" (click)="reportWarn();"><i class="fa-solid fa-pen-to-square"></i> details </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited on {{logs.last_edited | date: 'medium'}}</small></p>
         </div>
             
         
