@@ -1,8 +1,8 @@
 <div *ngIf="fuels">
     <div class="row">
-        <div class="col">
+        <div class="col shadow bg-light">
             <div *ngIf="petrol_received else noPetrolReceived">
-                <h5 class="card-header text-center">Petrol Received This Day: <span>{{petrol_received.total_fuel_received_today}}</span> Lts. <span><h6><a type="button" class="btn" onclick="toggleOrderInfo()">View order(s) info</a></h6></span>  Record <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="togglePetrolRcvd()">new order</a></h5>
+                <h5 class="card-header text-center">Petrol Received This Day: <span>{{petrol_received.total_fuel_received_today}}</span> Lts. <span><h6><a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleOrderInfo()">View order(s) info</a></h6></span>  Record <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="togglePetrolRcvd()">new order</a></h5>
                 <app-petrol-received-form></app-petrol-received-form>
                 <ol id="orderInfo">
                     <h6>Receipt info <span><a type="button" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleOrderInfo()">X</a></span></h6>
@@ -11,7 +11,7 @@
             </div>
             <div>
                 <ng-template #noPetrolReceived>
-                    <h5 class="card-header text-center">No petrol received this day. <button onclick="togglePetrolRcvd()">Add now?</button></h5>
+                    <h5 class="card-header text-center">No petrol received this day. <button class="btn btn-sm btn-dark btn-outline-info" onclick="togglePetrolRcvd()">Add now?</button></h5>
                     <app-petrol-received-form></app-petrol-received-form>
                 </ng-template>
                 
@@ -19,7 +19,7 @@
         </div>
         <div class="col">
             <div *ngIf="diesel_received else noDieselReceived">
-                <h5 class="card-header text-center">Diesel Received This Day: <span>{{diesel_received.total_fuel_received_today}}</span> Lts. <span><h6><a type="button" class="btn" onclick="toggleDieselOrderInfo()">View order(s) info</a></h6></span>  Record <a type="button" class="btn" onclick="toggleDieselRcvd()">new order</a></h5>
+                <h5 class="card-header text-center">Diesel Received This Day: <span>{{diesel_received.total_fuel_received_today}}</span> Lts. <span><h6><a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleDieselOrderInfo()">View order(s) info</a></h6></span>  Record <a type="button" class="btn" onclick="toggleDieselRcvd()">new order</a></h5>
                 <app-diesel-received-form></app-diesel-received-form>
                 <ol id="dieselOrderInfo">
                     <h6>Receipt info <span><a type="button" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleDieselOrderInfo()">X</a></span></h6>
@@ -28,14 +28,15 @@
             </div>
             <div>
                 <ng-template #noDieselReceived>
-                    <h5 class="card-header text-center">No Diesel received this day. <button onclick="toggleDieselRcvd()">Add now?</button></h5>
+                    <h5 class="card-header text-center">No Diesel received this day. <button class="btn btn-sm btn-dark btn-outline-info" onclick="toggleDieselRcvd()">Add now?</button></h5>
                     <app-diesel-received-form></app-diesel-received-form>
                 </ng-template>
             </div>
         </div>
         <div class="col">
             <div *ngIf="gas_received else gasReceived">
-                <h5 class="card-header text-center">Gas Received This Day: <span>{{gas_received.total_fuel_received_today}}</span> Lts. <span><h6><a type="button" class="btn" onclick="toggleGasOrderInfo()">View order(s) info</a></h6></span>  Record <a type="button" class="btn" onclick="toggleGasRcvd()">new order</a></h5>
+                <h5 class="card-header text-center">Gas Received This Day: <span>{{gas_received.total_fuel_received_today}}</span> Lts. <span><h6><a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleGasOrderInfo()">View order(s) info</a></h6></span>  Record <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleGasRcvd()">new order</a></h5>
+                <app-gas-received-form></app-gas-received-form>
                 <ol id="gasOrderInfo">
                     <h6>Receipt info <span><a type="button" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleGasOrderInfo()">X</a></span></h6>
                     <li class="card-text" *ngFor="let gas_received_info of gas_received_info">{{gas_received_info.litres_received}} Lts. from {{gas_received_info.received_from}}</li>
@@ -44,29 +45,9 @@
             
             <div>
                 <ng-template #gasReceived>
-                    <h5 class="card-header text-center">No Gas received this day.</h5>
-                    <button onclick="toggleGasRcvd()">Add now?</button>
+                    <h5 class="card-header text-center">No Gas received this day. <button onclick="toggleGasRcvd()" class="btn btn-sm btn-dark btn-outline-info">Add now?</button></h5>
+                    <app-gas-received-form></app-gas-received-form>
                 </ng-template>
-                <form id="gasReceived" #gasReceivedForm="ngForm" (ngSubmit)="fuelReceived(gasReceivedForm.value)">
-                    <label for="fuel">fuel</label>
-                    <input type="number" id="fuel" ngModel #fuel="ngModel" name="fuel" [(ngModel)]="gasInfo.id" placeholder="fuel type">
-                    <label for="litres_received">Litres received</label><br>
-                    <input type="number" id="litres_received" ngModel #litres_received="ngModel" name="litres_received" placeholder="Litres received" required>
-                    <div [hidden]="litres_received.valid || litres_received.pristine" class="alert alert-danger">
-                        <p>Litres received required</p>
-                    </div>
-                    <label for="received_from">Received from</label><br>
-                    <input type="text" ngModel id="received_from" #received_from="ngModel" name="received_from" placeholder="Received from..." required>
-                    <div [hidden]="received_from.valid || received_from.pristine" class="alert alert-danger">
-                        <p>Received from input required</p>
-                    </div>
-                    <label for="date_received">Date received</label><br>
-                    <input type="date" ngModel id="#date_received" #date_received="ngModel" name="date_received" placeholder="date_received" required>
-                    <div [hidden]="date_received.valid || date_received.pristine" class="alert alert-danger">
-                        <p>Date required</p>
-                    </div>
-                    <button type="submit" onclick="toggleInfo()" class="btn btn-sm">Submit</button>
-                </form> 
             </div>
         </div>
     </div>
