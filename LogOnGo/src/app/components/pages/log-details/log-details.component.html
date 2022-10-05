@@ -5,7 +5,7 @@
       <h2>Log [{{logs.id}}] Details <br></h2>
         <app-initial-amount></app-initial-amount>
         <div class="card color-two">
-          <h5 class="card-header margin-top"><span class="" style="float:left;"><a routerLink="/print-report/{{logs.id}}"><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> {{logs.date}} <span style="float:right;"><h6><a routerLink="/email-report/{{logs.id}}" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6></span></h5>
+          <h5 class="card-header margin-top"><span class="" style="float:left;"><a routerLink="/print-report/{{logs.id}}"><button class=" margin-top btn btn-sm btn-light btn-outline-primary">Print <span><i class="fa-solid fa-print"></i></span></button></a></span> {{logs.date}} <span style="float:right;"><h6><a routerLink="/email-report/{{logs.id}}" type="button" class="btn btn-sm btn-light btn-outline-primary"><span><i class="fa-solid fa-paper-plane"></i></span> email</a></h6></span></h5>
             <div class="card-body">
                 <div class="table-responsive" id="table" name="table">
                     <table class="table">
@@ -32,9 +32,9 @@
                 </div>
             </div>
             <div class="card-footer">
-                <small class="">Logged by  | First logged on {{logs.first_logged}}</small>
+                <small class="">Logged by  | First logged on {{logs.first_logged | date: 'medium'}} | <span *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited on {{logs.last_edited | date: 'medium'}}</span></small>
             </div>
-            <p><a type="button" class="btn btn-sm btn-dark btn-outline-info" type="button" (click)="reportWarn();">Update log? </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited on {{logs.last_edited}}</small></p>
+            <p><a type="button" class="btn margin-top btn-sm btn-light btn-outline-primary" type="button" (click)="reportWarn();"><i class="fa-solid fa-pen-to-square"></i> log? </a> </p>
         </div>
             
         

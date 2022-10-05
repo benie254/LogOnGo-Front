@@ -1,36 +1,21 @@
-<form #updateLogForm="ngForm" class="form" (ngSubmit)="updateLog(updateLogForm.value)">
-    <div class="row">
-        <div class="col">
-            <label for="fuel" class="">Fuel type</label>
-            <input type="number" class="Aj" ngModel #fuel="ngModel" value="1" id="fuel" name="fuel" placeholder="Fuel type">
-        </div>
-        <div class="col">
-            <label for="eod_reading_yesterday" class="">Eod reading yesterday</label>
-            <input *ngIf="yesterday_logs" ngModel #eod_reading_yesterday="ngModel" value="yesterday_logs.eod_reading_lts" type="number" class="Aj form-control" id="eod_reading_yesterday" name="eod_reading_yesterday" placeholder="End of day reading yesterday(lts)">
-        </div>
-        <div class="col">
-            <input type="number" class="" ngModel id="user" #user="ngModel" value="1" name="user" placeholder="Your user id">
-            <input type="text" class="" name="logged_by" ngModel id="logged_by" #logged_by="ngModel" value="username" placeholder="Your name">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <label for="date" class="">Log date</label>
-            <input type="date" ngModel #date="ngModel" class="Aj form-control" id="date" name="date" placeholder="Date" value="date" required>
-            <div [hidden]="date.valid || date.pristine" class="alert margin-top2p5 alert-danger">
-                <p>Date required</p>
+<p><a type="button" class="btn btn-sm btn-dark btn-outline-info" type="button" (click)="reportWarn();">Update log? </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited on {{logs.last_edited}}</small></p>
+<div *ngIf="!closed">
+    <form class="bg-dark" *ngIf="updateConfirmed;" [formGroup]="form" (ngSubmit)="updateLogDetails()">
+      <span style="float:right;" (click)="toggleUpdateForm()" type="button" class="btn btn-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+        <div class="row">
+            <div class="col">
+                <label for="date" class="white">Log date</label>
+                <input type="date" #date class="Aj form-control" id="date" formControlName="date" placeholder="Date" [(ngModel)]="logs.date" required>
+                
+            </div>
+            <div class="col">
+                <label for="eod_reading_lts" class="white">End of day reading</label>
+                <input type="number" #eod_reading_lts class="Aj form-control" id="eod_reading_lts" formControlName="eod_reading_lts" placeholder="Eod reading (lts)" [(ngModel)]="logs.eod_reading_lts" required>
             </div>
         </div>
-        <div class="col">
-            <label for="eod_reading_lts">End of day reading</label>
-            <input type="number" ngModel #eod_reading_lts="ngModel" class="Aj form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)" value="log.eod_reading_lts" required>
-            <div [hidden]="eod_reading_lts.valid || eod_reading_lts.pristine" class="alert margin-top2p5 alert-danger">
-                <p>EOD reading required</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="form-group">
-        <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" onclick="toggleLogForm()">Update log</button>
-    </div> 
-</form> 
+        
+        <div class="form-group">
+            <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit">Update log</button>
+        </div> 
+    </form>
+  </div>
