@@ -64,7 +64,7 @@ export class FuelReceivedComponent implements OnInit {
     //   }
     // )
 
-    this.fuelService.getDieselReceivedInfo().subscribe(
+    this.fuelService.getDieselReceivedInfo(this.id).subscribe(
       (diesel_rcvd_info) => {
         this.diesel_received_info = diesel_rcvd_info
       },
@@ -73,9 +73,9 @@ export class FuelReceivedComponent implements OnInit {
       }
     )
 
-    
+  
 
-    this.fuelService.getGasReceivedInfo().subscribe(
+    this.fuelService.getGasReceivedInfo(this.id).subscribe(
       (gas_rcvd_info) => {
         this.gas_received_info = gas_rcvd_info;
       },

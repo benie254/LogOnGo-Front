@@ -5,7 +5,7 @@ export class Log {
     eod_reading_yesterday: number;
     total_litres_sold: number;
     amount_earned_today: number;
-    fuel: number;
+    fuel: any;
     fuel_name: string;
     pump: number; 
     pump_name: string;

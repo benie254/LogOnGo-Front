@@ -40,6 +40,7 @@ export class GasReceivedFormComponent implements OnInit {
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
       Notiflix.Loading.remove();
       Notiflix.Notify.success('Add success!');
+      location.reload()
     },
     err => {
       Notiflix.Notify.failure('Add failed!');

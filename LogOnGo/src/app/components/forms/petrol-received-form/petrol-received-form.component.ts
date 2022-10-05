@@ -44,6 +44,7 @@ export class PetrolReceivedFormComponent implements OnInit {
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
       Notiflix.Notify.success('Add success!');
       Notiflix.Loading.remove();
+      location.reload()
     },
     err => {
       Notiflix.Notify.failure('Add failed!')
