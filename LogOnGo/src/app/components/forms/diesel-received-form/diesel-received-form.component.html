@@ -1,20 +1,55 @@
- <form id="dieselReceived" #dieselReceivedForm="ngForm" (ngSubmit)="dieselReceived(dieselReceivedForm.value)">
-    <label for="fuel">fuel</label>
-    <input type="number" id="fuel" ngModel #fuel="ngModel" name="fuel" [(ngModel)]="dieselInfo.id" placeholder="fuel type">
-    <label for="litres_received">Litres received</label><br>
-    <input type="number" id="litres_received" ngModel #litres_received="ngModel" name="litres_received" placeholder="Litres received" required>
-    <div [hidden]="litres_received.valid || litres_received.pristine" class="alert alert-danger">
-        <p>Litres received required</p>
+
+  <form [formGroup]="dieselForm" id="dieselReceived" class="padding" (ngSubmit)="dieselReceived()">
+    <div class="row">
+        <div class="col col-sm-6">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" [(ngModel)]="dieselInfo.id" style="margin-top:5%;">
+                <mat-label>Fuel</mat-label>
+                <input matInput formControlName="fuel" required>
+            </mat-form-field> 
+        </div>
+        <div class="col col-sm-6">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                <mat-label>Litres received</mat-label>
+                <input matInput placeholder="Enter Lts..." formControlName="litres_received" type="number" required>
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-hint>e.g: 1000</mat-hint>
+              </mat-form-field> 
+              <div *ngIf="dieselForm.controls['litres_received'].invalid && dieselForm.controls['litres_received'].touched" class="alert alert-danger">
+                <div *ngIf="dieselForm.controls['litres_received'].errors['required']">
+                  Litres received required.
+                </div>
+              </div>
+        </div>
     </div>
-    <label for="received_from">Received from</label><br>
-    <input type="text" ngModel id="received_from" #received_from="ngModel" name="received_from" placeholder="Received from..." required>
-    <div [hidden]="received_from.valid || received_from.pristine" class="alert alert-danger">
-        <p>Received from input required</p>
+    <div class="row">
+        <div class="col">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                <mat-label>Received from</mat-label>
+                <input matInput placeholder="Enter No. Plate..." formControlName="received_from" type="text" required>
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-hint>e.g: KAA 123 T</mat-hint>
+              </mat-form-field> 
+              <div *ngIf="dieselForm.controls['received_from'].invalid && dieselForm.controls['received_from'].touched" class="alert alert-danger">
+                <div *ngIf="dieselForm.controls['received_from'].errors['required']">
+                  Received from input required.
+                </div>
+              </div>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                <mat-label>Date received</mat-label>
+                <input matInput placeholder="Enter date..." formControlName="date" type="date" required>
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-hint>e.g: </mat-hint>
+              </mat-form-field> 
+              <div *ngIf="dieselForm.controls['date'].invalid && dieselForm.controls['date'].touched" class="alert alert-danger">
+                <div *ngIf="dieselForm.controls['date'].errors['required']">
+                  Date required.
+                </div>
+              </div>
+        </div>
     </div>
-    <label for="date_received">Date received</label><br>
-    <input type="date" ngModel id="#date_received" #date_received="ngModel" name="date_received" placeholder="date_received" required>
-    <div [hidden]="date_received.valid || date_received.pristine" class="alert alert-danger">
-        <p>Date required</p>
+    <div class="form-group">
+        <button type="submit" onclick="toggleInfo()" class="btn btn-sm">Submit</button>
     </div>
-    <button type="submit" onclick="toggleInfo()" class="btn btn-sm">Submit</button>
 </form>

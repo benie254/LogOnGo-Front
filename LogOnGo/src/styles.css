@@ -669,3 +669,6 @@ footer {
 .aloha::first-letter{
   font-size:180px;
 }
+.c-gap{
+  column-gap:2px;
+}
