@@ -34,7 +34,7 @@
             <div class="card-footer">
                 <small class="">First logged by {{logs.logged_by}} on {{logs.first_logged | date: 'medium'}}</small>
             </div>
-            <p><a type="button" class="btn btn-sm btn-light btn-outline-primary" type="button" (click)="reportWarn();"><i class="fa-solid fa-pen-to-square"></i> details </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited on {{logs.last_edited | date: 'medium'}}</small></p>
+            <p><a type="button" class="btn btn-sm btn-light btn-outline-primary" type="button" (click)="reportWarn();"><i class="fa-solid fa-pen-to-square"></i> details </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited by on {{logs.last_edited | date: 'medium'}}</small></p>
         </div>
             
         
@@ -65,13 +65,7 @@
         <div class="card color-two">
           <!-- <app-petrol-received></app-petrol-received> -->
           <app-fuel-received></app-fuel-received>
-          <div class="card-body" id="orderInfo" *ngFor="let fuel_received_info of petrol_received_info">
-            <app-fuel-received-info></app-fuel-received-info>
-          </div>
         </div>
-  
-        <span class="color-two"><a href=""><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> <br><br>
-        <h6><a href="" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6>
     </div>
     <div class="col-sm-1"></div>
   </div>

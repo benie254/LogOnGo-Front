@@ -9,8 +9,13 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./diesel-received-form.component.css']
 })
 export class DieselReceivedFormComponent implements OnInit {
+  dieselInfo: any;
 
-  constructor(private fuelService:FuelService, private notifService:NotificationService, private logService:LogService) { }
+  constructor(
+    private fuelService:FuelService, 
+    private notifService:NotificationService, 
+    private logService:LogService
+    ) { }
 
   dieselReceived(diesel_received: any) {
     console.warn(diesel_received);
@@ -19,6 +24,11 @@ export class DieselReceivedFormComponent implements OnInit {
       // this.notifService.submitSuccess('success','Diesel received added successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")
     });
+    this.fuelService.getDieselInfo().subscribe(
+      (data) => {
+        this.dieselInfo = data;
+      }
+    )
   }
 
   ngOnInit(): void {
