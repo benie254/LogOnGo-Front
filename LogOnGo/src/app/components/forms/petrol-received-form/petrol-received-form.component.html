@@ -1,4 +1,4 @@
-<form id="petrolReceived" #petrolReceivedForm="ngForm" (ngSubmit)="petrolReceived(petrolReceivedForm.value)">
+<form id="petrolReceived" class="shadow padding rounded" #petrolReceivedForm="ngForm" (ngSubmit)="petrolReceived(petrolReceivedForm.value)">
     <label for="fuel">fuel</label>
     <input type="number" id="fuel" ngModel #fuel="ngModel" name="fuel" [(ngModel)]="petrolInfo.id" placeholder="fuel type">
     <label for="litres_received">Litres received</label><br>

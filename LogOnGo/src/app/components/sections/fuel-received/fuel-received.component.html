@@ -2,9 +2,11 @@
     <div class="row">
         <div class="col shadow bg-light">
             <div *ngIf="petrol_received else noPetrolReceived">
-                <p class="card-header text-center">Petrol Received This Day: <br> <span><h5>{{petrol_received.total_fuel_received_today}} <span>Lts.</span></h5></span>  <span><h6><a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleOrderInfo()">View order(s) info</a></h6></span>  Record <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="togglePetrolRcvd()">new order</a></p>
+                <p class="card-title shadow text-center">Petrol Received This Day: <br> <span><h5>{{petrol_received.total_fuel_received_today}} <span>Lts.</span></h5></span>  </p>
+                <span><a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleOrderInfo()">View order(s) info</a> | <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="togglePetrolRcvd()">new order</a></span> 
+                <br><br>
                 <app-petrol-received-form></app-petrol-received-form>
-                <ol id="orderInfo">
+                <ol id="orderInfo" class="shadow rounded padding">
                     <h6>Receipt info <span><a type="button" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleOrderInfo()">X</a></span></h6>
                     <span><p><li *ngFor="let petrol_received_info of petrol_received_info">{{petrol_received_info.litres_received}} Lts. from {{petrol_received_info.received_from}}</li></p></span>
                 </ol>
