@@ -14,6 +14,8 @@ import { LogService } from 'src/app/services/log/log.service';
   styleUrls: ['./log-details.component.css']
 })
 export class LogDetailsComponent implements OnInit {
+  updateConfirmed: boolean = false;
+  closed: boolean = false;
   @Input() viewMode = false;
   @Input() logDetails: Log = {
     // id: 0,
@@ -133,10 +135,12 @@ export class LogDetailsComponent implements OnInit {
           console.log(res);
           Notiflix.Notify.success('updated!');
           // this.message = res.message ? res.message : 'This tutorial was updated successfully!';
+          this.closed = true;
         },
         error: (e) => {
           console.error(e)
           Notiflix.Notify.failure('Update failed!')
+          this.closed = false;
         } 
       });
   }
@@ -153,15 +157,22 @@ export class LogDetailsComponent implements OnInit {
           "We keep records of all updates.",
           "Okay",
         )
+        this.updateConfirmed = true;
+        this.closed = false;
       },
       () => {
         Notiflix.Report.success(
           "Aborted!",
-          "Everything looks good.",
+          "",
           'Great',
         )
+        this.updateConfirmed = false;
       }
     )
+  }
+
+  toggleUpdateForm(){
+    this.closed = true;
   }
 
 }
