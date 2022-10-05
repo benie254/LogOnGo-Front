@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import * as Notiflix from 'notiflix';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
@@ -11,23 +12,29 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class GasReceivedFormComponent implements OnInit {
   gasInfo: any;
+  gasForm = this.fb.group({
+    fuel:0,
+    litres_received: [0, [Validators.required]],
+    received_from: ['', [Validators.required]],
+    date_received: [0, [Validators.required]]
+ });
 
   constructor(
     private fuelService:FuelService, 
     private notifService:NotificationService, 
-    private logService:LogService
+    private logService:LogService,
+    private fb:FormBuilder,
     ) { 
-      this.fuelService.getDieselInfo().subscribe(
+      this.fuelService.getGasInfo().subscribe(
         (data) => {
           this.gasInfo = data;
         }
       )
     }
 
-  gasReceived(gas_received: any) {
-    console.warn(gas_received);
+  gasReceived() {
     Notiflix.Loading.dots('Processing...')
-    this.fuelService.addFuelReceived(gas_received).subscribe((result) => {
+    this.fuelService.addFuelReceived(this.gasForm.value).subscribe((result) => {
       console.warn('result', result);
       // this.notifService.submitSuccess('success','Diesel received added successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")

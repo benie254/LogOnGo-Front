@@ -12,13 +12,18 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class DieselReceivedFormComponent implements OnInit {
   dieselInfo: any;
-  dieselForm: FormGroup
+  dieselForm = this.fb.group({
+    fuel:0,
+    litres_received: [0, [Validators.required]],
+    received_from: ['', [Validators.required]],
+    date_received: [0, [Validators.required]]
+ });
 
   constructor(
     private fuelService:FuelService, 
     private notifService:NotificationService, 
     private logService:LogService,
-    private formBuilder:FormBuilder
+    private fb:FormBuilder
     ) {
       this.fuelService.getDieselInfo().subscribe(
         (data) => {
@@ -28,23 +33,7 @@ export class DieselReceivedFormComponent implements OnInit {
      }
 
 
-  ngOnInit(): void {
-    this.dieselForm = new FormGroup({
-      fuel: new FormControl(0),
-      litres_received: new FormControl(0,Validators['required']),
-      received_from: new FormControl('',Validators['required']),
-      date_received: new FormControl('',Validators['required'],Validators['date']),
-    });
-    // this.dieselForm = this.formBuilder.group({
-    //   fuel: 0,
-    //   litres_received: [0,Validators['required']],
-    //   received_from: ['',Validators['required']],
-    //   date_received: ['',Validators['required'],Validators['date']],
-    // });
-  }
-  get f(){
-    return this.dieselForm.controls;
-  }
+  ngOnInit(): void { }
   dieselReceived() {
     Notiflix.Loading.dots('Processing...')
     this.fuelService.addFuelReceived(this.dieselForm.value).subscribe((result) => {

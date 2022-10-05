@@ -1,13 +1,17 @@
-
-  <form [formGroup]="dieselForm" id="dieselReceived" class="padding" (ngSubmit)="dieselReceived()">
+<div id="dieselReceived">
+    <br><br>
+  <form [formGroup]="dieselForm" class="padding shadow" (ngSubmit)="dieselReceived()">
+    <h5 class="text-center">Add diesel received</h5>
     <div class="row">
-        <div class="col col-sm-6">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" [(ngModel)]="dieselInfo.id" style="margin-top:5%;">
+        <div class="col">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Fuel</mat-label>
-                <input matInput formControlName="fuel" required>
+                <input matInput formControlName="fuel" [(ngModel)]="dieselInfo.id" required>
             </mat-form-field> 
         </div>
-        <div class="col col-sm-6">
+    </div>
+    <div class="row">
+        <div class="col">
             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Litres received</mat-label>
                 <input matInput placeholder="Enter Lts..." formControlName="litres_received" type="number" required>
@@ -21,6 +25,7 @@
               </div>
         </div>
     </div>
+        
     <div class="row">
         <div class="col">
             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
@@ -38,18 +43,19 @@
         <div class="col">
             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Date received</mat-label>
-                <input matInput placeholder="Enter date..." formControlName="date" type="date" required>
-                <mat-icon matSuffix>email</mat-icon>
+                <input matInput placeholder="Enter date..." formControlName="date_received" type="date" required>
+                <mat-icon matSuffix>date</mat-icon>
                 <mat-hint>e.g: </mat-hint>
               </mat-form-field> 
-              <div *ngIf="dieselForm.controls['date'].invalid && dieselForm.controls['date'].touched" class="alert alert-danger">
-                <div *ngIf="dieselForm.controls['date'].errors['required']">
+              <div *ngIf="dieselForm.controls['date_received'].invalid && dieselForm.controls['date_received'].touched" class="alert alert-danger">
+                <div *ngIf="dieselForm.controls['date_received'].errors['required']">
                   Date required.
                 </div>
               </div>
         </div>
     </div>
     <div class="form-group">
-        <button type="submit" onclick="toggleInfo()" class="btn btn-sm">Submit</button>
+        <button type="submit" onclick="toggleInfo()" class="btn btn-sm margin-top btn-dark btn-outline-info" [disabled]="!dieselForm.valid">Submit</button>
     </div>
 </form>
+</div>

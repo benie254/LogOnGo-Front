@@ -1,54 +1,65 @@
 <div *ngIf="fuels">
-    <div class="row">
-        <div class="col shadow bg-light">
-            <div *ngIf="petrol_received else noPetrolReceived">
+    <div class="row padding-2">
+        <div class="col center padding-2 rounded">
+            <div *ngIf="petrol_received else noPetrolReceived" class="bg-light rounded">
                 <p class="card-title shadow text-center">Petrol Received This Day: <br> <span><h5>{{petrol_received.total_fuel_received_today}} <span>Lts.</span></h5></span>  </p>
-                <span><a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleOrderInfo()">View order(s) info</a> | <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="togglePetrolRcvd()">new order</a></span> 
+                <span><a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleOrderInfo()">order(s) info</a> | <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="togglePetrolRcvd()">new order</a></span> 
                 <br><br>
                 <app-petrol-received-form></app-petrol-received-form>
-                <ol id="orderInfo" class="shadow rounded padding">
-                    <h6>Receipt info <span><a type="button" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleOrderInfo()">X</a></span></h6>
+                <ol id="orderInfo" class="shadow rounded padding" style="text-align:left;">
+                    <h6>Petrol Receipt Info <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleOrderInfo()">X</a></span></h6>
                     <span><p><li *ngFor="let petrol_received_info of petrol_received_info">{{petrol_received_info.litres_received}} Lts. from {{petrol_received_info.received_from}}</li></p></span>
                 </ol>
             </div>
             <div>
                 <ng-template #noPetrolReceived>
-                    <h5 class="card-header text-center">No petrol received this day. <button class="btn btn-sm btn-dark btn-outline-info" onclick="togglePetrolRcvd()">Add now?</button></h5>
+                    <div class="shadow bg-light padding">
+                        <h5 class="card-header text-center">No petrol received yet. <button class="btn btn-sm btn-dark btn-outline-info" onclick="togglePetrolRcvd()">Add now?</button></h5>
                     <app-petrol-received-form></app-petrol-received-form>
+                    </div>
                 </ng-template>
                 
             </div>
         </div>
-        <div class="col">
-            <div *ngIf="diesel_received else noDieselReceived">
-                <h5 class="card-header text-center">Diesel Received This Day: <span>{{diesel_received.total_fuel_received_today}}</span> Lts. <span><h6><a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleDieselOrderInfo()">View order(s) info</a></h6></span>  Record <a type="button" class="btn" onclick="toggleDieselRcvd()">new order</a></h5>
+        <div class="col center padding-2 rounded">
+            <div *ngIf="diesel_received else noDieselReceived" class="bg-light rounded">
+                <p class="card-title shadow text-center">Diesel Received This Day: <br> <span><h5>{{diesel_received.total_fuel_received_today}} <span>Lts.</span></h5> </span> </p>
+                <span><a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleDieselOrderInfo()">order(s) info</a> | <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleDieselRcvd()">new order</a></span>
+                <br><br>
                 <app-diesel-received-form></app-diesel-received-form>
-                <ol id="dieselOrderInfo">
-                    <h6>Receipt info <span><a type="button" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleDieselOrderInfo()">X</a></span></h6>
+                <ol id="dieselOrderInfo" class="shadow rounded padding" style="text-align:left;">
+                    <h6>Diesel Receipt Info <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleDieselOrderInfo()">X</a></span></h6>
                     <li class="card-text" *ngFor="let diesel_received_info of diesel_received_info">{{diesel_received_info.litres_received}} Lts. from {{diesel_received_info.received_from}}</li>
                   </ol>
             </div>
             <div>
                 <ng-template #noDieselReceived>
-                    <h5 class="card-header text-center">No Diesel received this day. <button class="btn btn-sm btn-dark btn-outline-info" onclick="toggleDieselRcvd()">Add now?</button></h5>
+                    <div class="shadow bg-light padding">
+                        <h5 class="card-header text-center">No Diesel received yet. <button class="btn btn-sm btn-dark btn-outline-info" onclick="toggleDieselRcvd()">Add now?</button></h5>
                     <app-diesel-received-form></app-diesel-received-form>
+                    </div>
+                    
                 </ng-template>
             </div>
         </div>
-        <div class="col">
-            <div *ngIf="gas_received else gasReceived">
-                <h5 class="card-header text-center">Gas Received This Day: <span>{{gas_received.total_fuel_received_today}}</span> Lts. <span><h6><a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleGasOrderInfo()">View order(s) info</a></h6></span>  Record <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleGasRcvd()">new order</a></h5>
+        <div class="col padding-2 center rounded">
+            <div *ngIf="gas_received else gasReceived" class="bg-light rounded">
+                <p class="card-title shadow text-center">Gas Received This Day: <br> <span><h5>{{gas_received.total_fuel_received_today}} <span>Lts.</span></h5> </span> </p>
+                <span><a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="toggleGasOrderInfo()">order(s) info</a> | <a type="button" class="btn" onclick="toggleGasRcvd()">new order</a></span>
+                <br><br>
                 <app-gas-received-form></app-gas-received-form>
-                <ol id="gasOrderInfo">
-                    <h6>Receipt info <span><a type="button" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleGasOrderInfo()">X</a></span></h6>
+                <ol id="gasOrderInfo" class="shadow rounded padding" style="text-align:left;">
+                    <h6>Gas Receipt Info <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleGasOrderInfo()">X</a></span></h6>
                     <li class="card-text" *ngFor="let gas_received_info of gas_received_info">{{gas_received_info.litres_received}} Lts. from {{gas_received_info.received_from}}</li>
                   </ol>
             </div>
             
             <div>
                 <ng-template #gasReceived>
-                    <h5 class="card-header text-center">No Gas received this day. <button onclick="toggleGasRcvd()" class="btn btn-sm btn-dark btn-outline-info">Add now?</button></h5>
-                    <app-gas-received-form></app-gas-received-form>
+                    <div class="shadow bg-light padding">
+                        <h5 class="card-header text-center">No Gas received yet. <button onclick="toggleGasRcvd()" class="btn btn-sm btn-dark btn-outline-info">Add now?</button></h5>
+                        <app-gas-received-form></app-gas-received-form>
+                    </div>
                 </ng-template>
             </div>
         </div>
