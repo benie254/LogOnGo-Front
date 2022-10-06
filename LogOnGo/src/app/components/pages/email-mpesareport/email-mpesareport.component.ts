@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { LogMpesa } from 'src/app/classes/log-mpesa/log-mpesa';
@@ -19,21 +20,34 @@ export class EmailMpesareportComponent implements OnInit {
   mpesaDetails: LogMpesa;
   currentUser = this.authService.currentUserValue;
 
+  mpesaReportForm = this.fb.group({
+    date: '',
+    transaction_number: '',
+    customer_name: '',
+    customer_phone_number: 0,
+    amount: 0,
+    amount_transferred_to_bank: 0,
+    daily_total: 0,
+    cumulative_amount: 0,
+    logged_by: '',
+    admin_name: ['', [Validators.required]],
+    admin_email: ['', [Validators.required], [Validators.email]]
+ });
 
   constructor(
     private emailService:ReportService,
     private mpesaService:LogMpesaService,
     private route:ActivatedRoute,
     private authService:AuthService,
+    private fb:FormBuilder,
     ) { 
     
   }
 
-  emailMpesaReport(mpesa_report: any) {
-    console.warn(mpesa_report);
+  emailMpesaReport() {
     Notiflix.Loading.hourglass('Sending... please wait.')
     // Notiflix.Block.arrows('Please wait')
-    this.emailService.emailMpesaReport(mpesa_report).subscribe((result) => {
+    this.emailService.emailMpesaReport(this.mpesaReportForm.value).subscribe((result) => {
       console.warn('result', result);
       Notiflix.Loading.remove()
       Notiflix.Report.success(
