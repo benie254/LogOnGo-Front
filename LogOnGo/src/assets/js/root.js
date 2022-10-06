@@ -595,6 +595,14 @@ function toggleLogForm(){
         hide.style.display = "block";
     }
   }
+  function togglePrint2(){
+    var hide = document.getElementById("printData2");
+    if (hide.style.display === "block"){
+        hide.style.display = "none";
+    } else{
+        hide.style.display = "block";
+    }
+  }
   function togglePrintMpesaData(){
     var hide = document.getElementById("printMpesaData");
     if (hide.style.display === "block"){

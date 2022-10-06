@@ -27,6 +27,7 @@ export class LogDetailsComponent implements OnInit {
     amount_earned_today: 0,
     fuel: 0,
     fuel_name: '',
+    price_per_litre: 0,
     pump: 0,
     pump_name: '',
     logged_by: '',
@@ -70,8 +71,8 @@ export class LogDetailsComponent implements OnInit {
         }
       )
       this.fuelService.getPetrolReceivedInfo(this.id).subscribe(
-        (diesel_rcvd_info) => {
-          this.diesel_received_info = diesel_rcvd_info
+        (petrol_rcvd_info) => {
+          this.petrol_received_info = petrol_rcvd_info
         },
         err => {
           console.log(err)

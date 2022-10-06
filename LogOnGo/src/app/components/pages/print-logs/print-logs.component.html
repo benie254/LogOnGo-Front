@@ -1,22 +1,17 @@
-<div class="container print">
-  <a type="button" class="btn btn-sm btn-dark btn-outline-primary" onclick="printData();togglePrint();" id="print"><img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" alt="" height="60" width="60"> <span></span></a>
-  <div id="printData">
-    <h3 class="print"><a href="">Go back</a> or <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="refreshPrint()">reload page</a></h3>
-  </div>
-</div>
-
-<div class="container padding rounded">
-    <div class="border full-height center rounded black padding-2">
-      <!-- <div class="card print">
-        <h5 class="card-header">Initial tank amount: <span id="initial-p" class="print">{{petrol_info.initial_litres_in_tank}}</span> Lts <span class="float-right print">Pumps: <span class="print">{{petrol_info.pumps}}</span></span></h5>
-      </div> -->
-
-      <!-- <div class="card print hide">
-        <h5 class="card-header">Yesterday's tank balance: <span id="bal0-p" class="print">{{yesterday_petrol_logs.balance}}</span> Lts </h5>
-      </div> -->
+<div class="container center padding print-container rounded">
+    <div class="full-height center rounded black padding-2">
+      <div class="container print">
+        <a type="button" class="btn btn-lg btn-light btn-outline-primary" onclick="printData();togglePrint();" id="print"><i class="fa-solid fa-print"></i>Print <span></span></a>
+        <div id="printData" class="printData">
+          <br>
+          <h3 class="print printData"><a href="">Go back</a> or <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="printData();togglePrint();">Print another</a></h3>
+        </div>
+      </div>
+  
       
       <div class="card print">
-        <h5 class="card-header print">{{log_details.date}} <span class="float-right margin-top print smaller"> <h6>Price per litre: Ksh. <span id="price-p" class="print"></span></h6></span></h5>
+        <h4 class="card-header print margin-top text-center">{{log_details.date}} </h4>
+        <div class="card-header print"><h5 class="card-title print"><span style="float:left;">{{fuelName}}</span> <span class="float-right print"> Price per litre: Ksh. <span id="price-p" class="print">{{log_details.price_per_litre}}</span></span></h5></div>
         <div class="card-body print">
           <div class="table-responsive print" id="table" name="table">
             <table class="table print">
@@ -42,11 +37,77 @@
           </div>
         </div>
         <div class="card-footer">
-          <small  class="print">Logged by {{log_details.user_id}} | First logged on {{log_details.first_logged | date}}</small>
-        </div>
-        <div class="card color-two">
-          <h5 class="card-header text-center print">Petrol Received This Day: <span id="new-order2" class="print">{{petrol_received}}</span> Lts. </h5>
+          <small  class="print">First logged by {{log_details.logged_by}} on {{log_details.first_logged | date: 'medium'}} | Last edited by on {{log_details.last_edited | date: 'medium'}}</small>
+          
         </div>
       </div>
+      <div *ngIf="fuels">
+        <div class="row">
+          <div class></div>
+            <div class="col center rounded" id="pReceived" *ngIf="!hidePetrol">
+              <br>
+                <div *ngIf="petrol_received else noPetrolReceived" class="rounded">
+                  <br>
+                    <p class="card-title shadow text-center">Petrol Received This Day: <br> <span><h5>{{petrol_received.total_fuel_received_today}} <span>Lts.</span></h5></span>  </p>
+                    <ol id="" class="padding shadow rounded" style="text-align:left;">
+                        <h6>Receipt Info: </h6>
+                        <span><p><li *ngFor="let petrol_received_info of petrol_received_info">{{petrol_received_info.litres_received}} Lts. from {{petrol_received_info.received_from}}</li></p></span>
+                    </ol>
+                </div>
+                <div>
+                    <ng-template #noPetrolReceived>
+                        <div class=" ">
+                          <br>
+                            <h5 class="card-title shadow padding-2 text-center">No petrol received this day.</h5>
+                        </div>
+                    </ng-template>
+                    
+                </div>
+            </div>
+            <div class="col center rounded" id="dReceived" *ngIf="!hideDiesel">
+                <div *ngIf="diesel_received else noDieselReceived" class=" rounded">
+                    <p class="card-title shadow text-center">Diesel Received This Day: <br> <span><h5>{{diesel_received.total_fuel_received_today}} <span>Lts.</span></h5> </span> </p>
+                    <br><br>
+                    <ol id="" class="shadow rounded padding" style="text-align:left;">
+                        <h6>Diesel Receipt Info </h6>
+                        <li class="card-text" *ngFor="let diesel_received_info of diesel_received_info">{{diesel_received_info.litres_received}} Lts. from {{diesel_received_info.received_from}}</li>
+                      </ol>
+                </div>
+                <div>
+                    <ng-template #noDieselReceived>
+                        <div class="  padding">
+                            <h5 class="card-header text-center">No Diesel received this day.</h5>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="col center rounded" id="gReceived" *ngIf="!hideGas">
+                <div *ngIf="gas_received else gasReceived" class=" rounded">
+                    <p class="card-title shadow text-center">Gas Received This Day: <br> <span><h5>{{gas_received.total_fuel_received_today}} <span>Lts.</span></h5> </span> </p>
+                    <br><br>
+                    <ol id="" class="shadow rounded padding" style="text-align:left;">
+                        <h6>Gas Receipt Info </h6>
+                        <li class="card-text" *ngFor="let gas_received_info of gas_received_info">{{gas_received_info.litres_received}} Lts. from {{gas_received_info.received_from}}</li>
+                      </ol>
+                </div>
+                
+                <div>
+                    <ng-template #gasReceived>
+                        <div class="  padding">
+                            <h5 class="card-header text-center">No Gas received this day. </h5>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+  </div>
+  <br>
+  <div class="container print">
+    <a type="button" class="btn btn-lg btn-light btn-outline-primary" onclick="printData();togglePrint2();" id="print"><i class="fa-solid fa-print"></i>Print <span></span></a>
+    <div id="printData2" class="printData">
+      <br>
+      <h3 class="print printData"><a href="">Go back</a> or <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="printData();togglePrint2();">Print another</a></h3>
     </div>
+  </div>
+</div>
 </div>

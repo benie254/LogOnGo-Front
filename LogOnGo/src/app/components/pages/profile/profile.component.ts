@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
     amount_earned_today: 0,
     fuel: 0,
     fuel_name: '',
+    price_per_litre: 0,
     pump: 0,
     pump_name: '',
     logged_by: '',
