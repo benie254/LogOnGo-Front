@@ -21,6 +21,11 @@ export class AllLogsComponent implements OnInit {
       this.mpesa_logs = data
       console.warn("all mpesa data",data)
     });
+    this.logService.getAllLogs().subscribe(
+      (data) => {
+      this.logs = data
+      console.warn("all mpesa data",data)
+    });
     
   }
 

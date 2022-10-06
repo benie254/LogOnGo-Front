@@ -611,6 +611,14 @@ function toggleLogForm(){
         hide.style.display = "block";
     }
   }
+  function togglePrintMpesaData2(){
+    var hide = document.getElementById("printMpesaData2");
+    if (hide.style.display === "block"){
+        hide.style.display = "none";
+    } else{
+        hide.style.display = "block";
+    }
+  }
   function toggleUpdatePetrolPumps(){
     var hide = document.getElementById("updatePetrolPumpsForm");
     if (hide.style.display === "block"){
