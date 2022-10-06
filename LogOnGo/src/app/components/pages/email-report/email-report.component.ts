@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -19,11 +20,24 @@ export class EmailReportComponent implements OnInit {
   // emailReport: any;
   currentUser = this.authService.currentUserValue;
 
+  emailReportForm = this.fb.group({
+    date:'',
+    eod_reading_yesterday: 0,
+    eod_reading_lts: 0,
+    litres_sold_today: 0,
+    amount_earned_today: 0,
+    balance: 0,
+    logged_by: '',
+    admin_name: ['', [Validators.required]],
+    admin_email: ['', [Validators.required], [Validators.email]]
+ });
+
   constructor(
     private route:ActivatedRoute,
     private logService:LogService,
     private authService:AuthService,
     private reportService:ReportService,
+    private fb:FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -43,9 +57,9 @@ export class EmailReportComponent implements OnInit {
     );
   }
 
-  emailReport(report_info: any){
+  emailReport(){
     Notiflix.Loading.hourglass('Sending...')
-    this.reportService.emailLogReport(report_info).subscribe(
+    this.reportService.emailLogReport(this.emailReportForm.value).subscribe(
       (report_data) => {
       Notiflix.Loading.remove()
       Notiflix.Report.success(
