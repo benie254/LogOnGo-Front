@@ -19,12 +19,21 @@ export class MpesaLogdetailsComponent implements OnInit {
   currentUser = this.authService.currentUserValue;
   closed: boolean = false;
   updateConfirmed: boolean = false;
+  mpesaUpdateForm = this.fb.group({
+    date: ['', [Validators.required]],
+    transaction_number: ['', [Validators.required]],
+    customer_name: ['', [Validators.required]],
+    customer_phone_number: [0, [Validators.required]],
+    amount: [0, [Validators.required]],
+    amount_transferred_to_bank: [0, [Validators.required]],
+ });
 
 
   constructor(
     private mpesaService:LogMpesaService,
     private route:ActivatedRoute,
     private authService:AuthService,
+    private fb:FormBuilder,
   ) { }
 
   ngOnInit(): void {

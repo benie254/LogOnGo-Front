@@ -1,7 +1,7 @@
 <div class="container-fluid rounded">
         <div class="row padding">
-          <div class="col-sm-1"></div>
-            <div class="full-height bg-light col-lg-10 center color-four rounded black padding-2">
+          <div class="col-sm-2"></div>
+            <div class="full-height bg-light col-lg-20 center color-four rounded black padding-2">
                 <h2>Mpesa Details </h2>
                 <h6></h6>
                 <div class="card color-two">
@@ -43,50 +43,116 @@
                     </div>
                     
                     <div *ngIf="!closed">
-                      <form *ngIf="updateConfirmed" [formGroup]="updateForm" (ngSubmit)="updateMpesaDetails()">
-                        <span style="float:right;" (click)="toggleUpdateForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
                         <div class="row">
-                            <div class="col">
-                                <label for="date" class="">Mpesa date</label>
-                                <input type="date" #date class="Aj form-control" id="date" formControlName="date" placeholder="Date" [(ngModel)]="mpesaDetails.date" required>
+                            <div class="col-sm-2"></div>
+                            <div class="col-md-8 rounded">
                                 
+                                <form class="rounded bg-light shadow margin" *ngIf="updateConfirmed" [formGroup]="updateForm" (ngSubmit)="updateMpesaDetails()">
+                                    <h6 class="margin-top">Mpesa Update Form <span style="float:right;" (click)="toggleUpdateForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span></h6>
+                                    
+                                    <div class="row">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-lg-4 rounded padding-2">
+                                            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                                <mat-label>Date</mat-label>
+                                                <input matInput placeholder="Date" formControlName="date" type="text" [(ngModel)]="mpesaDetails.date" required>
+                                                <mat-icon matSuffix>date</mat-icon>
+                                                <mat-hint>e.g: janja kip</mat-hint>
+                                              </mat-form-field> 
+                                              <div *ngIf="mpesaUpdateForm.controls['date'].invalid && mpesaUpdateForm.controls['date'].touched" class="alert alert-danger">
+                                                <div *ngIf="mpesaUpdateForm.controls['date'].errors['required']">
+                                                  Transaction number is required
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="col-lg-4 rounded padding-2">
+                                            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                                <mat-label>Transaction number</mat-label>
+                                                <input matInput placeholder="Transaction number" formControlName="transaction_number" type="text" [(ngModel)]="mpesaDetails.transaction_number" required>
+                                                <mat-icon matSuffix>email</mat-icon>
+                                                <mat-hint>e.g: janja kip</mat-hint>
+                                              </mat-form-field> 
+                                              <div *ngIf="mpesaUpdateForm.controls['transaction_number'].invalid && mpesaUpdateForm.controls['transaction_number'].touched" class="alert alert-danger">
+                                                <div *ngIf="mpesaUpdateForm.controls['transaction_number'].errors['required']">
+                                                  Transaction number is required
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-lg-4 rounded padding-2">
+                                            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                                <mat-label>Customer name</mat-label>
+                                                <input matInput placeholder="Customer name" formControlName="customer_name" type="text" [(ngModel)]="mpesaDetails.customer_name" required>
+                                                <mat-icon matSuffix>email</mat-icon>
+                                                <mat-hint>e.g: janja kip</mat-hint>
+                                              </mat-form-field> 
+                                              <div *ngIf="mpesaUpdateForm.controls['customer_name'].invalid && mpesaUpdateForm.controls['customer_name'].touched" class="alert alert-danger">
+                                                <div *ngIf="mpesaUpdateForm.controls['customer_name'].errors['required']">
+                                                  Customer name is required
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="col-lg-4 rounded padding-2">
+                                            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                                <mat-label>Customer phone no.</mat-label>
+                                                <input matInput placeholder="Customer phone number" formControlName="customer_phone_number" type="number" [(ngModel)]="mpesaDetails.customer_phone_number" required>
+                                                <mat-icon matSuffix>email</mat-icon>
+                                                <mat-hint>e.g: janja kip</mat-hint>
+                                              </mat-form-field> 
+                                              <div *ngIf="mpesaUpdateForm.controls['customer_phone_number'].invalid && mpesaUpdateForm.controls['customer_phone_number'].touched" class="alert alert-danger">
+                                                <div *ngIf="mpesaUpdateForm.controls['customer_phone_number'].errors['required']">
+                                                  Amount is required
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-lg-4 rounded padding-2">
+                                            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                                <mat-label>Amount</mat-label>
+                                                <input matInput placeholder="Amount" formControlName="amount" type="number" [(ngModel)]="mpesaDetails.amount" required>
+                                                <mat-icon matSuffix>email</mat-icon>
+                                                <mat-hint>e.g: janja kip</mat-hint>
+                                              </mat-form-field> 
+                                              <div *ngIf="mpesaUpdateForm.controls['amount'].invalid && mpesaUpdateForm.controls['amount'].touched" class="alert alert-danger">
+                                                <div *ngIf="mpesaUpdateForm.controls['amount'].errors['required']">
+                                                  Amount is required
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="col-lg-4 rounded padding-2">
+                                            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                                <mat-label>Bank amount</mat-label>
+                                                <input matInput placeholder="Amount transferred to bank" formControlName="amount_transferred_to_bank" type="number" [(ngModel)]="mpesaDetails.amount_transferred_to_bank" required>
+                                                <mat-icon matSuffix>email</mat-icon>
+                                                <mat-hint>e.g: janja kip</mat-hint>
+                                              </mat-form-field> 
+                                              <div *ngIf="mpesaUpdateForm.controls['amount_transferred_to_bank'].invalid && mpesaUpdateForm.controls['amount_transferred_to_bank'].touched" class="alert alert-danger">
+                                                <div *ngIf="mpesaUpdateForm.controls['amount_transferred_to_bank'].errors['required']">
+                                                  Bank amount is required
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <button class="btn margin btn-sm btn-outline-info btn-dark" type="submit">Update log</button>
+                                    </div> 
+                                </form> 
                             </div>
-                            <div class="col">
-                                <label for="transaction_number">Transaction number</label>
-                                <input type="text" class="Aj form-control" id="transaction_number" formControlName="transaction_number" placeholder="transaction_number" [(ngModel)]="mpesaDetails.transaction_number" required>
-                            </div>
+                            <div class="col-sm-2"></div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="customer_name" class="">customer_name</label>
-                                <input type="text" #date class="Aj form-control" id="customer_name" formControlName="customer_name" placeholder="customer_name" [(ngModel)]="mpesaDetails.customer_name" required>
-                                
-                            </div>
-                            <div class="col">
-                                <label for="customer_phone_number">customer_phone_number</label>
-                                <input type="number" class="Aj form-control" id="customer_phone_number" formControlName="customer_phone_number" placeholder="customer_phone_number" [(ngModel)]="mpesaDetails.customer_phone_number" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="amount" class="">amount</label>
-                                <input type="number" #date class="Aj form-control" id="amount" formControlName="amount" placeholder="amount" [(ngModel)]="mpesaDetails.amount" required>
-                                
-                            </div>
-                            <div class="col">
-                                <label for="amount_transferred_to_bank">amount_transferred_to_bank</label>
-                                <input type="number" class="Aj form-control" id="amount_transferred_to_bank" formControlName="amount_transferred_to_bank" placeholder="amount_transferred_to_bank" [(ngModel)]="mpesaDetails.amount_transferred_to_bank" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit">Update log</button>
-                        </div> 
-                    </form> 
+                      
                     </div>
                 </div>
             </div>
         </div>  
-        <div class="col-sm-1"></div>
+        <div class="col-sm-2"></div>
     </div>
 <app-footer></app-footer>

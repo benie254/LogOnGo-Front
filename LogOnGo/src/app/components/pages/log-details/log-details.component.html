@@ -45,31 +45,58 @@
                 <small class="">First logged by {{logs.logged_by}} on {{logs.first_logged | date: 'medium'}}</small>
             </div>
             <p><a type="button" class="btn btn-sm btn-light btn-outline-primary" type="button" (click)="reportWarn();"><i class="fa-solid fa-pen-to-square"></i> details </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited by on {{logs.last_edited | date: 'medium'}}</small></p>
+            <div *ngIf="!closed">
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-md-8">
+                  <form class="rounded bg-light margin shadow" *ngIf="updateConfirmed;" [formGroup]="form" (ngSubmit)="updateLogDetails()">
+                    <h6 class="margin-top">Log Update Form  <span style="float:right;" (click)="toggleUpdateForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span></h6>
+                      <div class="row">
+                          
+                          <div class="col-lg-6 rounded padding-2">
+                            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                <mat-label>Date</mat-label>
+                                <input matInput placeholder="Date" formControlName="date" type="text" [(ngModel)]="logs.date" required>
+                                <mat-icon matSuffix>date</mat-icon>
+                                <mat-hint>e.g: janja kip</mat-hint>
+                              </mat-form-field> 
+                              <div *ngIf="form.controls['date'].invalid && form.controls['date'].touched" class="alert alert-danger">
+                                <div *ngIf="form.controls['date'].errors['required']">
+                                  Date is required.
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-lg-6 rounded padding-2">
+                          <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                              <mat-label>EOD reading</mat-label>
+                              <input matInput placeholder="End of day reading" formControlName="eod_reading_lts" type="number" [(ngModel)]="logs.eod_reading_lts" required>
+                              <mat-icon matSuffix>date</mat-icon>
+                              <mat-hint>e.g: janja kip</mat-hint>
+                            </mat-form-field> 
+                            <div *ngIf="form.controls['eod_reading_lts'].invalid && form.controls['eod_reading_lts'].touched" class="alert alert-danger">
+                              <div *ngIf="form.controls['eod_reading_lts'].errors['required']">
+                                EOD reading is required.
+                              </div>
+                            </div>
+                      </div>
+                          
+                      </div>
+                      
+                      <div class="form-group">
+                          <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit">Update log</button>
+                      </div> 
+                  </form>
+                </div>
+                <div class="col-sm-2"></div>
+              </div>
+              
+            </div>
         </div>
             
         
         
         
-        <div *ngIf="!closed">
-          <form class="bg-dark" *ngIf="updateConfirmed;" [formGroup]="form" (ngSubmit)="updateLogDetails()">
-            <span style="float:right;" (click)="toggleUpdateForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
-              <div class="row">
-                  <div class="col">
-                      <label for="date" class="white">Log date</label>
-                      <input type="date" #date class="Aj form-control" id="date" formControlName="date" placeholder="Date" [(ngModel)]="logs.date" required>
-                      
-                  </div>
-                  <div class="col">
-                      <label for="eod_reading_lts" class="white">End of day reading</label>
-                      <input type="number" #eod_reading_lts class="Aj form-control" id="eod_reading_lts" formControlName="eod_reading_lts" placeholder="Eod reading (lts)" [(ngModel)]="logs.eod_reading_lts" required>
-                  </div>
-              </div>
-              
-              <div class="form-group">
-                  <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit">Update log</button>
-              </div> 
-          </form>
-        </div>
+        
 
         <div *ngIf="fuels">
           <div class="row padding-2">
