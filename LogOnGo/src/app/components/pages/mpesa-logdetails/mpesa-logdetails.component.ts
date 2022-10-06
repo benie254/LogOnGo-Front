@@ -17,6 +17,8 @@ export class MpesaLogdetailsComponent implements OnInit {
   updateForm: FormGroup;
   formBuilder: FormBuilder;
   currentUser = this.authService.currentUserValue;
+  closed: boolean = false;
+  updateConfirmed: boolean = false;
 
 
   constructor(
@@ -84,12 +86,42 @@ export class MpesaLogdetailsComponent implements OnInit {
           console.log(res);
           Notiflix.Notify.success('updated!');
           // this.message = res.message ? res.message : 'This tutorial was updated successfully!';
+          this.closed = true;
         },
         error: (e) => {
           console.error(e)
           Notiflix.Notify.failure('Update failed!')
+          this.closed = false;
         } 
       });
+  }
+  reportWarn(){
+    Notiflix.Confirm.show(
+      'Confirm update',
+      "Are you sure you want to edit this log?",
+      "I'm sure",
+      "Take me back",
+      () => {
+        Notiflix.Report.info(
+          "Remember",
+          "We keep records of all updates.",
+          "Okay",
+        )
+        this.updateConfirmed = true;
+        this.closed = false;
+      },
+      () => {
+        Notiflix.Report.success(
+          "Aborted!",
+          "",
+          'Great',
+        )
+        this.updateConfirmed = false;
+      }
+    )
+  }
+  toggleUpdateForm(){
+    this.closed = true;
   }
 
 }

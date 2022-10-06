@@ -1,8 +1,17 @@
 <div class="container-fluid">
   <div class="row padding">
-    <div class="col-sm-1"></div>
+    <div class="col-lg-2">
+      <div class="bg-light shadow rounded bg-light">
+        <p class="aloha font-md text-center">F<span class="font-md-2">uel</span> <i class="fa-solid fa-bolt"></i></p>
+    </div>
+    <div class="shadow padding">
+      <h6>Summary</h6>
+      <p><i class="fa-solid fa-gas-pump"></i> {{fuelName}}</p>
+      <p><i class="fa-solid fa-hand-holding-dollar"></i> Ksh. {{logs.price_per_litre}} P/Lt.</p>
+    </div>
+    </div>
     <div class="col-lg-10 rounded center bg-light padding-2">
-      <h2><span style="float:left;">{{fuelName}}</span> <span> Log Details</span> <span style="float:right;">PP: Ksh. {{logs.price_per_litre}}</span></h2>
+      <h2> <span> Log Details</span></h2>
         <app-initial-amount></app-initial-amount>
         <div class="card color-two">
           <h5 class="card-header margin-top"><span class="" style="float:left;"><a routerLink="/print-report/{{logs.id}}"><button class=" margin-top btn btn-sm btn-light btn-outline-primary">Print <span><i class="fa-solid fa-print"></i></span></button></a></span> <i class="fa-regular fa-calendar"></i> {{logs.date}} <span style="float:right;"><h6><a routerLink="/email-report/{{logs.id}}" type="button" class="btn btn-sm btn-light btn-outline-primary"><span><i class="fa-solid fa-paper-plane"></i></span> email</a></h6></span></h5>
@@ -66,6 +75,8 @@
 
         
     </div>
+    
+  </div>
     <div>
       <div *ngIf="fuels">
         <div class="row padding-2">
@@ -77,7 +88,7 @@
                     <br><br>
                     <app-petrol-received-form></app-petrol-received-form>
                     <ol id="orderInfo" class="shadow rounded padding" style="text-align:left;">
-                        <h6>Petrol Receipt Info <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleOrderInfo()">X</a></span></h6>
+                        <h6>Receipt Info <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleOrderInfo()">X</a></span></h6>
                         <span><p><li *ngFor="let petrol_received_info of petrol_received_info">{{petrol_received_info.litres_received}} Lts. from {{petrol_received_info.received_from}}</li></p></span>
                     </ol>
                 </div>
@@ -98,7 +109,7 @@
                     <br><br>
                     <app-diesel-received-form></app-diesel-received-form>
                     <ol id="dieselOrderInfo" class="shadow rounded padding" style="text-align:left;">
-                        <h6>Diesel Receipt Info <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleDieselOrderInfo()">X</a></span></h6>
+                        <h6>Receipt Info <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleDieselOrderInfo()">X</a></span></h6>
                         <li class="card-text" *ngFor="let diesel_received_info of diesel_received_info">{{diesel_received_info.litres_received}} Lts. from {{diesel_received_info.received_from}}</li>
                       </ol>
                 </div>
@@ -119,7 +130,7 @@
                     <br><br>
                     <app-gas-received-form></app-gas-received-form>
                     <ol id="gasOrderInfo" class="shadow rounded padding" style="text-align:left;">
-                        <h6>Gas Receipt Info <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleGasOrderInfo()">X</a></span></h6>
+                        <h6>Receipt Info <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" onclick="toggleGasOrderInfo()">X</a></span></h6>
                         <li class="card-text" *ngFor="let gas_received_info of gas_received_info">{{gas_received_info.litres_received}} Lts. from {{gas_received_info.received_from}}</li>
                       </ol>
                 </div>
@@ -145,10 +156,11 @@
     
         
         
+   
     </div>
-    </div>
-    <div class="col-sm-1"></div>
+    
   </div>
   
 
   </div>
+  <app-footer></app-footer>

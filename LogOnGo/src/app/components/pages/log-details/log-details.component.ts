@@ -103,11 +103,11 @@ export class LogDetailsComponent implements OnInit {
       (fuels_data) => {
         console.warn("fuels data:",fuels_data)
         this.fuels = fuels_data;
-        Notiflix.Notify.success('Get fuel success')
+        // Notiflix.Notify.success('Get fuel success')
       },
       err => {
         console.warn(err)
-        Notiflix.Notify.failure('Fuel get failed')
+        // Notiflix.Notify.failure('Fuel get failed')
       }
     )
 
@@ -129,7 +129,7 @@ export class LogDetailsComponent implements OnInit {
     this.logService.getLogDetails(id).subscribe((data) => {
       this.logs = data
       console.warn("log details",data)
-      Notiflix.Notify.success('Get success')
+      // Notiflix.Notify.success('Get success')
       this.fuelName = this.logs.fuel_name
       
       if (this.fuelName === 'Petrol'){
@@ -145,7 +145,7 @@ export class LogDetailsComponent implements OnInit {
     },
     err => {
       console.warn(err)
-      Notiflix.Notify.failure('Something went wrong!')
+      // Notiflix.Notify.failure('Something went wrong!')
     }
     );
   }

@@ -1,13 +1,11 @@
-
-    <br><br><br><br><br><br>
-    <div class="container color-two padding rounded">
-        <div class="row color-four">
-            <div class="border full-height col center color-four rounded black padding-2">
-                <!-- <h2 class="text-center">General</h2> -->
-                <h2>Mpesa Details <br><span class=""><a routerLink="/mpesa-report/{{mpesaDetails.id}}"><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span></h2>
-                <h6><a routerLink="/email-mpesa-report/{{mpesaDetails.id}}" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6>
+<div class="container-fluid rounded">
+        <div class="row padding">
+          <div class="col-sm-1"></div>
+            <div class="full-height bg-light col-lg-10 center color-four rounded black padding-2">
+                <h2>Mpesa Details </h2>
+                <h6></h6>
                 <div class="card color-two">
-                    <h5 class="card-header">{{mpesaDetails.date}}</h5>
+                    <h5 class="card-header"><span class="" style="float:left;"><a routerLink="/mpesa-report/{{mpesaDetails.id}}"><button class=" margin-top btn btn-sm btn-light btn-outline-primary">Print <i class="fa-solid fa-print"></i></button></a></span> {{mpesaDetails.date}} <span style="float:right;"><a routerLink="/email-mpesa-report/{{mpesaDetails.id}}" type="button" class="btn btn-sm btn-light btn-outline-primary"> <i class="fa-solid fa-paper-plane"></i> email</a></span></h5>
                     
                     <div class="card-body">
                         <div class="table-responsive">
@@ -37,123 +35,14 @@
                               </table>
                         </div>
                         <div class="card-footer">
-                            <small class="">First logged on {{mpesaDetails.first_logged | date}} by {{mpesaDetails.logged_by}} | <a href=""><button class="margin btn btn-sm btn-outline-primary btn-dark" type="button" onclick="toggleMPesa();">Add new?</button></a></small>
+                            <small class="">First logged by {{mpesaDetails.logged_by}} on {{mpesaDetails.first_logged | date: 'medium'}} </small>
                         </div>
-                        <p><a type="button" class="btn btn-sm btn-dark btn-outline-info" href="" onclick="toggleUpdateMpesaLogDetailsForm()">Update log? </a> <small *ngIf="mpesaDetails.first_logged != mpesaDetails.last_edited"> >>> Last edited on {{mpesaDetails.last_edited}}</small></p>
-                    </div>
-                    <span class="color-two"><a routerLink="/mpesa-report/{{mpesaDetails.id}}"><button class=" margin-top btn btn-sm btn-dark btn-outline-primary">Print <img src="https://res.cloudinary.com/benie/image/upload/v1660387522/printer-g47055846b_1280_ptvrkf.png" height="40" width="40"></button></a></span> <br><br>
-                    <h6><a routerLink="/email-mpesa-report/{{mpesaDetails.id}}" type="button" class="btn btn-sm btn-dark btn-outline-info">Request email report</a></h6>
-                    <div id="mpesaDetailsForm" class="border color-two margin padding"><br>
-                        <h2 class="text-center">Add Mpesa logs</h2>
-                        <form [formGroup]="mpesaDetailsForm" (submit)="addMpesaLog(mpesaDetailsForm.value)" class="color-two f-two padding-four rounded shadow">
-                            <div class="row">
-                                <div class="col">
-                                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                        <mat-label>Date</mat-label>
-                                        <input matInput placeholder="Enter date" formControlName="date" type="date" required>
-                                        <mat-icon matSuffix>date</mat-icon>
-                                        <mat-hint>e.g: </mat-hint>
-                                      </mat-form-field>        
-                                      <div *ngIf="mpesaDetailsForm.controls['date'].invalid && mpesaDetailsForm.controls['date'].touched" class="alert alert-danger">
-                                        <div *ngIf="mpesaDetailsForm.controls['date'].errors['required']">
-                                          Date is required.
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="col">
-                                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                        <mat-label>Transaction Number</mat-label>
-                                        <input matInput placeholder="Enter transaction number" formControlName="transaction_number" type="text" required>
-                                        <mat-icon matSuffix>date</mat-icon>
-                                        <mat-hint>e.g: </mat-hint>
-                                      </mat-form-field>        
-                                      <div *ngIf="mpesaDetailsForm.controls['transaction_number'].invalid && mpesaDetailsForm.controls['transaction_number'].touched" class="alert alert-danger">
-                                        <div *ngIf="mpesaDetailsForm.controls['transaction_number'].errors['required']">
-                                          Transaction number is required.
-                                        </div>
-                                      </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                        <mat-label>Customer name</mat-label>
-                                        <input matInput placeholder="Enter customer's name" formControlName="customer_name" type="text" required>
-                                        <mat-icon matSuffix>date</mat-icon>
-                                        <mat-hint>e.g: </mat-hint>
-                                      </mat-form-field>        
-                                      <div *ngIf="mpesaDetailsForm.controls['customer_name'].invalid && mpesaDetailsForm.controls['customer_name'].touched" class="alert alert-danger">
-                                        <div *ngIf="mpesaDetailsForm.controls['customer_name'].errors['required']">
-                                          Customer name is required.
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="col">
-                                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                        <mat-label>Customer phone number</mat-label>
-                                        <input matInput placeholder="Enter customer's phone number" formControlName="customer_phone_number" type="number" required>
-                                        <mat-icon matSuffix>date</mat-icon>
-                                        <mat-hint>e.g: </mat-hint>
-                                      </mat-form-field>        
-                                      <div *ngIf="mpesaDetailsForm.controls['customer_phone_number'].invalid && mpesaDetailsForm.controls['customer_phone_number'].touched" class="alert alert-danger">
-                                        <div *ngIf="mpesaDetailsForm.controls['customer_phone_number'].errors['required']">
-                                          Customer phone number is required.
-                                        </div>
-                                      </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                        <mat-label>Amount</mat-label>
-                                        <input matInput placeholder="Enter amount" formControlName="amount" type="number" required>
-                                        <mat-icon matSuffix>date</mat-icon>
-                                        <mat-hint>e.g: </mat-hint>
-                                      </mat-form-field>        
-                                      <div *ngIf="mpesaDetailsForm.controls['amount'].invalid && mpesaDetailsForm.controls['amount'].touched" class="alert alert-danger">
-                                        <div *ngIf="mpesaDetailsForm.controls['amount'].errors['required']">
-                                          Amount is required.
-                                        </div>
-                                      </div>
-                                </div>
-                                <div class="col">
-                                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                        <mat-label>Amount transferred to bank</mat-label>
-                                        <input matInput placeholder="Enter amount transferred to bank" formControlName="amount_transferred_to_bank" type="number">
-                                        <mat-icon matSuffix>date</mat-icon>
-                                        <mat-hint>e.g: </mat-hint>
-                                      </mat-form-field>        
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                        <mat-label>Logged by</mat-label>
-                                        <input matInput formControlName="logged_by" type="text" [(ngModel)]="currentUser.username">
-                                        <mat-icon matSuffix>date</mat-icon>
-                                      </mat-form-field>   
-                                </div>
-                                <div class="col">
-                                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                        <mat-label>User id</mat-label>
-                                        <input matInput formControlName="user" type="number" [(ngModel)]="currentUser.id">
-                                        <mat-icon matSuffix>date</mat-icon>
-                                        <mat-hint>e.g: </mat-hint>
-                                      </mat-form-field>   
-                                </div>
-                                
-                            </div>
-
-                            <div class="form-group">
-                                <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Log mpesa">
-                            </div>
-                        </form>
-                        
+                        <p class="margin-top"><a type="button" class="btn btn-sm btn-light btn-outline-primary" (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> details </a> <span *ngIf="mpesaDetails.first_logged != mpesaDetails.last_edited"><small> >>> Last edited on {{mpesaDetails.last_edited | date: 'medium'}}</small></span></p>
                     </div>
                     
-                    <form [formGroup]="updateForm" (ngSubmit)="updateMpesaDetails()">
+                    <div *ngIf="!closed">
+                      <form *ngIf="updateConfirmed" [formGroup]="updateForm" (ngSubmit)="updateMpesaDetails()">
+                        <span style="float:right;" (click)="toggleUpdateForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
                         <div class="row">
                             <div class="col">
                                 <label for="date" class="">Mpesa date</label>
@@ -192,7 +81,10 @@
                             <button class="btn margin btn-sm btn-outline-primary btn-dark" type="submit">Update log</button>
                         </div> 
                     </form> 
+                    </div>
                 </div>
             </div>
         </div>  
+        <div class="col-sm-1"></div>
     </div>
+<app-footer></app-footer>
