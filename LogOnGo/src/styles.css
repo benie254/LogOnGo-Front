@@ -559,6 +559,12 @@ footer {
   background-repeat: repeat;
   /* height: 100vh; */
 }
+.logInstructions{
+  background-image: url('https://res.cloudinary.com/benie/image/upload/v1664422910/Vorderrhein_lf1ky6.svg');
+  background-position: cover;
+  background-size:cover;
+  background-repeat: repeat;
+}
 .height-lg{
   height:90vh;
 }

@@ -1,37 +1,26 @@
 <div class="container-fluid">
         <br>
-        <div class="text-center margin">
-            <button id="petrol" onclick="togglePetrol()" class="btn btn-sm btn-dark btn-outline-primary">Log Petrol</button>
-            <button id="fuelOrder" onclick="toggleOrder()" class="btn btn-sm btn-dark btn-outline-primary margin-right">New Petrol Order</button>
-            <button id="diesel" onclick="toggleDiesel()" class="btn btn-sm btn-dark btn-outline-primary">Log Diesel</button>
-            <button id="dieselOrder" onclick="toggleDieselOrder()" class="btn btn-sm btn-dark btn-outline-primary margin-right">New Diesel Order</button>
-            <button id="gas" onclick="toggleGas()" class="btn btn-sm btn-dark btn-outline-primary">Log Gas</button>
-            <button id="dieselOrder" onclick="toggleGasOrder()" class="btn btn-sm btn-dark btn-outline-primary">New Gas Order</button>
+   
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-md-8">
+                <app-fuel-received></app-fuel-received>
+            </div>
+            <div class="col-sm-2"></div>
         </div>
-        <div class="row rounded color-four padding">
-            <div class="col-md-6">
-                <div id="fuelReceived" class="rounded text-center color-two border col-md-5"><br>
-                    <h2 class="text-center margin-top">Add Petrol Received information</h2> 
-                    <app-petrol-received></app-petrol-received>
-                </div>
-    
-                <div id="dieselReceived" class="rounded text-center color-two border col-md-6"><br>
-                    <h2 class="text-center margin-top">Add Diesel Received information</h2> 
-                    <app-diesel-received></app-diesel-received>
-                </div>
-    
-                <div id="gasReceived" class="rounded text-center color-two border col-md-6"><br>
-                    <h2 class="text-center margin-top">Add Gas Received information</h2> 
-                    <app-gas-received></app-gas-received>
-                </div>
+        <div class="row rounded">
+                
 
                 
     
-                <div id="petrolLog" class="rounded text-center padding color-two border col-md-6">
-                    <h2 class="text-center margin-top">Add Petrol Log details</h2> 
+                <div id="" class="rounded text-center padding-2 col-lg-4">
+                    <div class="color-two rounded padding">
+                        <h2 class="text-center margin-top">Add Petrol Log details</h2> 
                     <app-add-log></app-add-log>
-                    <button onclick="togglePumpOne()">Pump One</button><button onclick="togglePumpTwo()">Pump Two</button> <br>
-            <button onclick="togglePumpThree()">Pump Three</button><button onclick="togglePumpFour()">Pump Four</button>
+                    <button class="btn btn-sm btn-dark margin btn-outline-info" onclick="togglePumpOne()">Pump One</button><button class="btn margin btn-sm btn-dark btn-outline-info" onclick="togglePumpTwo()">Pump Two</button> <br>
+            <button class="btn btn-sm btn-dark margin btn-outline-info" onclick="togglePumpThree()">Pump Three</button><button class="btn margin btn-sm btn-dark btn-outline-info" onclick="togglePumpFour()">Pump Four</button>
+                    </div>
+                    
             <div>
                 <div id="petrolPumpOne">
                     <app-add-petrol-pump-one></app-add-petrol-pump-one>
@@ -48,10 +37,13 @@
             </div>
                 </div>
             
-                <div id="dieselLog" class="rounded text-center color-two border col-md-6">
-                    <h2 class="text-center margin-top">Add Diesel Log details</h2> 
-                    <button onclick="toggleDieselPumpOne()">Pump One</button><button onclick="toggleDieselPumpTwo()">Pump Two</button> <br>
-            <button onclick="toggleDieselPumpThree()">Pump Three</button><button onclick="toggleDieselPumpFour()">Pump Four</button>
+                <div id="" class="rounded text-center padding-2 col-lg-4">
+                    <div class="color-two rounded padding">
+                        <h2 class="text-center margin-top">Add Diesel Log details</h2> 
+                    <button class="btn btn-sm btn-dark margin btn-outline-info" onclick="toggleDieselPumpOne()">Pump One</button><button class="btn btn-sm btn-dark margin btn-outline-info" onclick="toggleDieselPumpTwo()">Pump Two</button> <br>
+            <button class="btn btn-sm btn-dark margin btn-outline-info" onclick="toggleDieselPumpThree()">Pump Three</button><button class="btn btn-sm btn-dark margin btn-outline-info" onclick="toggleDieselPumpFour()">Pump Four</button>
+                    </div>
+                    
             <div>
                 <div id="dieselPumpOne">
                     <app-add-diesel-pump-one></app-add-diesel-pump-one>
@@ -68,10 +60,13 @@
             </div>
                 </div>
             
-                <div id="gasLog" class="rounded text-center color-two border col-md-6">
-                    <h2 class="text-center margin-top">Add Gas Log details</h2> 
-                    <button onclick="toggleGasPumpOne()">Pump One</button><button onclick="toggleGasPumpTwo()">Pump Two</button><br>
-            <button onclick="toggleGasPumpThree()">Pump Three</button><button onclick="toggleGasPumpFour()">Pump Four</button>
+                <div id="" class="rounded text-center padding-2 col-lg-4">
+                    <div class="color-two rounded padding">
+                        <h2 class="text-center margin-top">Add Gas Log details</h2> 
+                    <button class="btn btn-sm btn-dark margin btn-outline-info" onclick="toggleGasPumpOne()">Pump One</button><button class="btn btn-sm btn-dark margin btn-outline-info" onclick="toggleGasPumpTwo()">Pump Two</button><br>
+            <button class="btn btn-sm btn-dark margin btn-outline-info" onclick="toggleGasPumpThree()">Pump Three</button><button class="btn btn-sm btn-dark margin btn-outline-info" onclick="toggleGasPumpFour()">Pump Four</button>
+                    </div>
+                    
 
        
         
@@ -92,12 +87,16 @@
             </div>
                 </div>
             </div>
-
-            <div class="col-md-6 rounded border color-two">
-                <br>
-                <app-logging-instructions></app-logging-instructions>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-md-6 shadow padding-2 logInstructions">
+                        <br>
+                        <app-logging-instructions></app-logging-instructions>
+                </div>
+                <div class="col-sm-3"></div>
             </div>
-        </div>
+
+            
         
         
 </div>

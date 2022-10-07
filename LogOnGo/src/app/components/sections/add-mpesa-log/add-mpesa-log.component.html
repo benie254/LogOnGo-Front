@@ -1,8 +1,8 @@
 <form *ngIf="!closed" [formGroup]="mpesaForm" (submit)="addMpesaLog(mpesaForm.value)" class="color-two f-two padding-four rounded shadow">
-  <h2>Add mpesa log <span style="float:right;" (click)="closeForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span></h2>
+  <h2 class="text-center">Add Mpesa Log <span style="float:right;" (click)="closeForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span></h2>
     <div class="row">
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Date</mat-label>
                 <input matInput placeholder="Enter date" formControlName="date" type="date" required>
                 <mat-icon matSuffix>date</mat-icon>
@@ -15,7 +15,7 @@
               </div>
         </div>
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Transaction Number</mat-label>
                 <input matInput placeholder="Enter transaction number" formControlName="transaction_number" type="text" required>
                 <mat-icon matSuffix>date</mat-icon>
@@ -31,7 +31,7 @@
 
     <div class="row">
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Customer name</mat-label>
                 <input matInput placeholder="Enter customer's name" formControlName="customer_name" type="text" required>
                 <mat-icon matSuffix>date</mat-icon>
@@ -44,7 +44,7 @@
               </div>
         </div>
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Customer phone number</mat-label>
                 <input matInput placeholder="Enter customer's phone number" formControlName="customer_phone_number" type="number" required>
                 <mat-icon matSuffix>date</mat-icon>
@@ -60,7 +60,7 @@
 
     <div class="row">
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Amount</mat-label>
                 <input matInput placeholder="Enter amount" formControlName="amount" type="number" required>
                 <mat-icon matSuffix>date</mat-icon>
@@ -73,7 +73,7 @@
               </div>
         </div>
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Amount transferred to bank</mat-label>
                 <input matInput placeholder="Enter amount transferred to bank" formControlName="amount_transferred_to_bank" type="number">
                 <mat-icon matSuffix>date</mat-icon>
@@ -83,14 +83,14 @@
     </div>
     <div class="row">
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Logged by</mat-label>
                 <input matInput formControlName="logged_by" type="text" [(ngModel)]="currentUser.username">
                 <mat-icon matSuffix>date</mat-icon>
               </mat-form-field>   
         </div>
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>User id</mat-label>
                 <input matInput formControlName="user" type="number" [(ngModel)]="currentUser.id">
                 <mat-icon matSuffix>date</mat-icon>
