@@ -1,20 +1,9 @@
-<div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-md-8" *ngIf="!minimized">
-        <div class="card">
-            <div class="card-body">
-                <p class="card-text">Pump 2 logs will appear here. </p>
-                <p class="card-text"><a class="btn btn-sm btn-light btn-outline-dark" type="button" (click)="toggleLog()">Record logs now?</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-2"></div>
-</div>
 
-<div id="" *ngIf="closed" class="rounded"><br>
+
+<div id="" class="rounded"><br>
     
     <form [formGroup]="logForm" class="form padding color-two bg-light rounded shadow" (ngSubmit)="addLog()">
-        <h2 class="text-center margin-top">{{pumpTwo.pump_name}} <span style="float:right;" (click)="closeForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span></h2>
+        <h2 class="text-center margin-top">{{pumpTwo.pump_name}} </h2>
         <h6 class="text-center">Add Petrol Log details</h6>
         <div class="row">
             <div class="col-lg-6 rounded padding-2">

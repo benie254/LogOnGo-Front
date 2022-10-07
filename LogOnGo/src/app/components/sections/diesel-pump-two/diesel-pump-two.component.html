@@ -38,7 +38,22 @@
 
 <div>
   <ng-template #elseBlock>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-md-8">
+          <div class="card">
+              <div class="card-body">
+                  <p class="card-text">Pump 2 logs will appear here.</p>
+                  <p class="card-text"><a class="btn btn-sm btn-light btn-outline-dark" type="button" (click)="toggleLog()">Record logs now?</a></p>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-2"></div>
+  </div>
+  <div *ngIf="closed">
     <app-add-diesel-pump-two></app-add-diesel-pump-two>  
+  </div>
+    
   </ng-template> 
   
 </div>

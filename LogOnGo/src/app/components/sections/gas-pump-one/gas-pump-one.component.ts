@@ -17,6 +17,7 @@ export class GasPumpOneComponent implements OnInit {
   logs: Log;
   info: Fuel;
   pumpOne: Pump;
+  closed: boolean;
 
   constructor(
     private logService:LogService,
@@ -52,6 +53,9 @@ export class GasPumpOneComponent implements OnInit {
     error => {
       console.log(error)
     });
+  }
+  toggleLog(){
+    this.closed = true;
   }
 
 }

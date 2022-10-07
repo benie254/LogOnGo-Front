@@ -16,7 +16,7 @@ export class AddPetrolPumpOneComponent implements OnInit {
   pumpOne: Pump;
   info: Fuel;
   date = new Date();
-  closed: boolean = true;
+  closed: boolean;
   logForm = this.fb.group({
     date: ['', [Validators.required]],
     fuel: 0,
@@ -67,7 +67,7 @@ export class AddPetrolPumpOneComponent implements OnInit {
     });
   }
   toggleLog(){
-    this.closed = false;
+    this.closed = true;
   }
   closeForm(){
     if (this.closed === true){

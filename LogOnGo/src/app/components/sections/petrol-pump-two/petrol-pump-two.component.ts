@@ -18,6 +18,7 @@ export class PetrolPumpTwoComponent implements OnInit {
   logs: Log;
   info: Fuel;
   pumpTwo: Pump;
+  closed: boolean;
 
   constructor(
     private logService:LogService,
@@ -56,6 +57,9 @@ export class PetrolPumpTwoComponent implements OnInit {
       console.log(error)
       Notiflix.Notify.failure('Something went wrong!');
     });
+  }
+  toggleLog(){
+    this.closed = true;
   }
 
 }
