@@ -26,11 +26,11 @@ export class DieselPumpFourComponent implements OnInit {
     private pumpService:PumpService,
   ) {
     this.pumpService.getPumpFourInfo().subscribe(
-      (data) => {
-        this.pumpFour = data;
+      (pump_one_data) => {
+        this.pumpFour = pump_one_data;
       }, 
       err => {
-        console.warn("pump two get error:",err)
+        console.warn("pump one get error:",err)
       }
     )
    }
@@ -44,11 +44,11 @@ export class DieselPumpFourComponent implements OnInit {
       this.info = data
       console.warn("data",data)
     });
-    this.logService.getFuelLogs(id).subscribe(
+    this.logService.getFuelLogs4(id).subscribe(
       data => {
       this.logs = data
       // this.ngOnInit();
-      console.warn('petrol_info_today:',data)
+      console.warn('diesel_info_today:',data)
       Notiflix.Notify.success('Get success!');
       
     },

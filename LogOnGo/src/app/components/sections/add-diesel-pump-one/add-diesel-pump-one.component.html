@@ -1,38 +1,70 @@
-<div class="card color-two">
-    <div class="card-body">
-        <p class="card-text">Your logs will appear here.</p>
-        <p class="card-text"><a class="btn btn-sm btn-dark" type="button" onclick="toggleLog()">Record logs now?</a></p>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">Pump 1 logs will appear here.</p>
+                <p class="card-text"><a class="btn btn-sm btn-light btn-outline-dark" type="button" (click)="toggleLog()">Record logs now?</a></p>
+            </div>
+        </div>
     </div>
+    <div class="col-sm-2"></div>
 </div>
 
-<div id="" class="rounded"><br>
-    <h2 class="text-center margin-top">{{pumpOne.pump_name}} <br> Add Diesel Log details</h2>
-    <form #logDieselForm="ngForm" class="form" (ngSubmit)="addLog(logDieselForm.value)">
+<div *ngIf="!closed" id="" class="rounded"><br>
+    
+    <form [formGroup]="logForm" class="form padding rounded color-two bg-light shadow" (ngSubmit)="addLog()">
+        <h2 class="text-center margin-top">{{pumpOne.pump_name}} <span style="float:right;" (click)="closeForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span></h2>
+        <h6 class="text-center">Add Diesel Log details</h6>
         <div class="row">
-            <div class="col">
-                <label for="fuel" class="">Fuel type</label>
-                fuel id: {{dieselInfo.id}}
-                <input type="number" class="Aj" ngModel #fuel="ngModel" [(ngModel)]="dieselInfo.id" id="fuel" name="fuel" placeholder="Fuel type">
+            <div class="col-lg-6 rounded padding-2">
+                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>Fuel</mat-label>
+                    <input matInput placeholder="fuel" formControlName="fuel" type="number" [(ngModel)]="info.id" required>
+                    <mat-icon matSuffix>date</mat-icon>
+                    <mat-hint>e.g: janja kip</mat-hint>
+                  </mat-form-field> 
+                  
+            </div>
+            <div class="col-lg-6 rounded padding-2">
+                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>Pump</mat-label>
+                    <input matInput placeholder="pump" formControlName="pump" type="number" [(ngModel)]="pumpOne.id" required>
+                    <mat-icon matSuffix>date</mat-icon>
+                    <mat-hint>e.g: janja kip</mat-hint>
+                  </mat-form-field> 
+                  
             </div>
             <div class="col">
-                <label for="pump" class="">Pump ID</label>
-                <input type="number" class="Aj" ngModel #pump="ngModel" [(ngModel)]="pumpOne.id" id="pump" name="pump" placeholder="Pump ID">
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <label for="date" class="">Log date</label>
-                <input type="date" ngModel #date="ngModel" class="Aj form-control" id="date" name="date" placeholder="Date" required>
-                <div [hidden]="date.valid || date.pristine" class="alert margin-top2p5 alert-danger">
-                    <p>Date required</p>
-                </div>
+            <div class="col-lg-6 rounded padding-2">
+                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>Date</mat-label>
+                    <input matInput placeholder="Date" formControlName="date" type="date" required>
+                    <mat-icon matSuffix>date</mat-icon>
+                    <mat-hint>e.g: janja kip</mat-hint>
+                  </mat-form-field> 
+                  <div *ngIf="logForm.controls['date'].invalid && logForm.controls['date'].touched" class="alert alert-danger">
+                    <div *ngIf="logForm.controls['date'].errors['required']">
+                      Date is required.
+                    </div>
+                  </div>
             </div>
-            <div class="col">
-                <label for="eod_reading_lts">End of day reading</label>
-                <input type="number" ngModel #eod_reading_lts="ngModel" class="Aj form-control" id="eod_reading_lts" name="eod_reading_lts" placeholder="Eod reading (lts)" required>
-                <div [hidden]="eod_reading_lts.valid || eod_reading_lts.pristine" class="alert margin-top2p5 alert-danger">
-                    <p>EOD reading required</p>
-                </div>
+            
+            <div class="col-lg-6 rounded padding-2">
+                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>EOD reading</mat-label>
+                    <input matInput placeholder="End of day reading" formControlName="eod_reading_lts" type="number" required>
+                    <mat-icon matSuffix>date</mat-icon>
+                    <mat-hint>e.g: janja kip</mat-hint>
+                  </mat-form-field> 
+                  <div *ngIf="logForm.controls['eod_reading_lts'].invalid && logForm.controls['eod_reading_lts'].touched" class="alert alert-danger">
+                    <div *ngIf="logForm.controls['eod_reading_lts'].errors['required']">
+                      EOD reading is required.
+                    </div>
+                  </div>
             </div>
         </div>
         <div class="form-group">
@@ -40,3 +72,4 @@
         </div> 
     </form>  
 </div>
+

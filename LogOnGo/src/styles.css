@@ -403,7 +403,11 @@ footer {
   width:100%;
   
 }
-
+/* @media only screen and (max-height: 800px){
+  footer{
+    position:sticky;
+  }
+} */
 @media only screen and (min-width: 1040px) {
   .carousel-landing {
     height: 650px;

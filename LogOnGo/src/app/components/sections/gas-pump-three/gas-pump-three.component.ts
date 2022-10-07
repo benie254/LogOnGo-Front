@@ -14,6 +14,7 @@ import { PumpService } from 'src/app/services/pump/pump.service';
   styleUrls: ['./gas-pump-three.component.css']
 })
 export class GasPumpThreeComponent implements OnInit {
+
   logs: Log;
   info: Fuel;
   pumpThree: Pump;
@@ -25,11 +26,11 @@ export class GasPumpThreeComponent implements OnInit {
     private pumpService:PumpService,
   ) {
     this.pumpService.getPumpThreeInfo().subscribe(
-      (data) => {
-        this.pumpThree = data;
+      (pump_one_data) => {
+        this.pumpThree = pump_one_data;
       }, 
       err => {
-        console.warn("pump three get error:",err)
+        console.warn("pump one get error:",err)
       }
     )
    }
@@ -43,11 +44,11 @@ export class GasPumpThreeComponent implements OnInit {
       this.info = data
       console.warn("data",data)
     });
-    this.logService.getFuelLogs(id).subscribe(
+    this.logService.getFuelLogs3(id).subscribe(
       data => {
       this.logs = data
       // this.ngOnInit();
-      console.warn('petrol_info_today:',data)
+      console.warn('gas_info_today:',data)
       Notiflix.Notify.success('Get success!');
       
     },
@@ -56,7 +57,5 @@ export class GasPumpThreeComponent implements OnInit {
       Notiflix.Notify.failure('Something went wrong!');
     });
   }
-
-  
 
 }

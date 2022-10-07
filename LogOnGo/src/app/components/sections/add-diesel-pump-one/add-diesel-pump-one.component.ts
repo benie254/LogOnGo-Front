@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Pump } from 'src/app/classes/pump/pump';
@@ -13,49 +14,68 @@ import { PumpService } from 'src/app/services/pump/pump.service';
 })
 export class AddDieselPumpOneComponent implements OnInit {
   pumpOne: Pump;
-  dieselInfo: Fuel;
-  message: '';
+  info: Fuel;
+  date = new Date();
+  closed: boolean = true;
+  logForm = this.fb.group({
+    date: ['', [Validators.required]],
+    fuel: 0,
+    pump: 0,
+    eod_reading_lts: [0, [Validators.required]],
+ });
 
   constructor(
     private pumpService:PumpService,
     private fuelService:FuelService,
     private logService:LogService,
-  ) { 
+    private fb:FormBuilder,
+  ) {
     this.fuelService.getDieselInfo().subscribe((data) => {
-      this.dieselInfo = data
-      console.warn("diesel_info",data)
-      Notiflix.Notify.success('get success-diesel info')
-    },
-    err => {
-      this.message = err 
-      Notiflix.Notify.failure('Get failed-diesel info')
-
+      this.info = data
+      console.warn("data",data)
     });
     this.pumpService.getPumpOneInfo().subscribe(
       (data) => {
         this.pumpOne = data;
       }, 
       err => {
-        alert(err)
         console.warn("pump one get error:",err)
       }
     )
-  }
+   }
+
+   
 
   ngOnInit(): void {
   }
 
-  addLog(log_info: any) {
-    console.warn(log_info);
-    this.logService.addLog(log_info).subscribe((result) => {
+  addLog() {
+    this.logService.addLog(this.logForm.value).subscribe((result) => {
       console.warn('result', result);
-      Notiflix.Notify.success('Petrol log added successful!');
+      Notiflix.Notify.success('Diesel log added successful!');
       this.ngOnInit();
+      if (this.closed === true){
+        this.closed = false;
+      } else {
+        this.closed = true;
+      }
+      location.reload();
     }, 
     err => {
       Notiflix.Notify.failure('Something went wrong!');
       Notiflix.Notify.warning('Please try again.');
     });
+  }
+  toggleLog(){
+    this.closed = false;
+  }
+  closeForm(){
+    if (this.closed === true){
+      this.closed = false;
+    } else {
+      this.closed = true;
+    }
+    
   }
 
 }

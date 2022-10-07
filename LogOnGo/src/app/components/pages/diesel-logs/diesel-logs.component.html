@@ -1,57 +1,94 @@
-<div class="container-fluid color-two">
-    <br><br><br>
-    <div class="row">
-        <h1 class="text-center">All Diesel Logs for {{date}}</h1>
-        
-        <div class="border full-height col-md-6 color-four rounded black padding-2">
-            <h2 class="text-center">General</h2>
-            <app-initial-amount></app-initial-amount>
-            <!-- <app-new-bal></app-new-bal> -->
-
-               <app-diesel-received></app-diesel-received>
-               <div id="fuelRecvdForm" class="rounded color-two padding margin"><br>
-                <h2 class="text-center margin-top">Add Diesel Received information</h2> 
-                <app-diesel-received-form></app-diesel-received-form>
+<div class="container-fluid rounded">
+    <br>
+    <div class="row rounded">
+        <h1 class="text-center">All Diesel Logs for {{today|date}}</h1>
+        <div class="col-lg-6 rounded padding-2">
+            <div class="bg-light shadow padding-2">
+                <h2 class="text-center">General</h2>
+            <h6 class="text-center">{{diesel_info.pumps}} <span>pumps</span></h6>
+         
+            
+            <button *ngIf="!pOneHidden" (click)="maximize()" class="btn btn-md btn-dark btn-outline-info margin">Pump One</button><button *ngIf="!pTwoHidden" (click)="maximize2()" class="btn btn-md btn-dark btn-outline-info margin">Pump Two</button> 
+            <button *ngIf="!pThreeHidden" (click)="maximize3()" class="btn btn-md btn-dark btn-outline-info margin">Pump Three</button><button *ngIf="!pFourHidden" (click)="maximize4()" class="btn btn-md btn-dark btn-outline-info margin">Pump Four</button>
+            <div>
+                <br>
+                <div *ngIf="!pOneHidden">
+                    <div *ngIf="!minimized" id="">
+                        <div class="row">
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-5">
+                                <span (click)="close()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <app-diesel-pump-one></app-diesel-pump-one>
+                    </div>
+                    <br>
                 </div>
-            <div id="diesel-one">
+                <div *ngIf="!pTwoHidden">
+                    <div *ngIf="!minimized2" id="">
+                        <div class="row">
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-5">
+                                <span (click)="close2()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                            
+                        <app-diesel-pump-two></app-diesel-pump-two>
+                    </div>
+                    <br>
+                </div>
+                <div *ngIf="!pThreeHidden">
+                    <div *ngIf="!minimized3"  id="">
+                        <div class="row">
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-5">
+                                <span (click)="close3()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <app-diesel-pump-three></app-diesel-pump-three>
+                    </div>
+                    <br>
+                </div>
+                <div *ngIf="!pFourHidden">
+                    <div *ngIf="!minimized4" id="">
+                        <div class="row">
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-5">
+                                <span (click)="close4()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <app-diesel-pump-four></app-diesel-pump-four>
+                    </div>
+                    <br>
+                </div>
                 
+                
+                
+                
+            </div>
+            </div>
+            </div>
+            
+        <div class="col-lg-6 full-height rounded black padding-2">
+            <div class="bg-light shadow rounded padding-2">
+                <h2 class="text-center">Mpesa</h2>
+            <div *ngIf="mpesa_logs else elseBlockMpesa">
+                <app-mpesa-logs></app-mpesa-logs>
+            </div>
             <div>
                 <ng-template #elseBlockMpesa>
                     <app-no-mpesalogs></app-no-mpesalogs>
                 </ng-template>
             </div>
-        </div>
-        <button onclick="togglePumpOne()">Pump One</button><button onclick="togglePumpTwo()">Pump Two</button> <br>
-            <button onclick="togglePumpThree()">Pump Three</button><button onclick="togglePumpFour()">Pump Four</button>
-            <div>
-                <div id="petrolPumpOne">
-                    <app-diesel-pump-one></app-diesel-pump-one>
-                    <app-add-diesel-pump-one></app-add-diesel-pump-one>
-                </div>
-                <div id="petrolPumpTwo">
-                    <app-diesel-pump-two></app-diesel-pump-two>
-                    <app-add-diesel-pump-two></app-add-diesel-pump-two>
-                </div>
-                <div id="petrolPumpThree">
-                    <app-diesel-pump-three></app-diesel-pump-three>
-                    <app-add-diesel-pump-three></app-add-diesel-pump-three>
-                </div>
-                <div id="petrolPumpFour">
-                    <app-diesel-pump-four></app-diesel-pump-four>
-                    <app-add-diesel-pump-four></app-add-diesel-pump-four>
-                </div>
             </div>
-           
-       
-        
-        
-    </div>
-    <br><br><br><br><br>
-    
-    
+            
+        </div>
 
-    
-    
-
-    
+        
+    </div>   
 </div>
+<app-footer></app-footer>

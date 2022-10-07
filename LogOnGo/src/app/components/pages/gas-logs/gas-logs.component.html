@@ -1,22 +1,81 @@
-<div class="container-fluid color-two">
-    <br><br><br>
-    <div class="row">
-        
-        
-        <div class="border full-height col-md-6 color-four rounded black padding-2">
-            <h2 class="text-center">General</h2>
-            <app-initial-amount></app-initial-amount>
-
-               <app-gas-received></app-gas-received>
-               <div id="fuelRecvdForm" class="rounded color-two padding margin"><br>
-                <h2 class="text-center margin-top">Add Gas Received information</h2> 
-                <app-gas-received-form></app-gas-received-form>
-                </div>
+<div class="container-fluid rounded">
+    <br>
+    <div class="row rounded">
+        <h1 class="text-center">All Gas Logs for {{today|date}}</h1>
+        <div class="col-lg-6 rounded padding-2">
+            <div class="bg-light shadow padding-2">
+                <h2 class="text-center">General</h2>
+            <h6 class="text-center">{{gas_info.pumps}} <span>pumps</span></h6>
+         
             
-        
-
-        <div class="col-md-6 full-height color-four rounded black padding-2 border">
-            <h2 class="text-center">Mpesa</h2>
+            <button *ngIf="!pOneHidden" (click)="maximize()" class="btn btn-md btn-dark btn-outline-info margin">Pump One</button><button *ngIf="!pTwoHidden" (click)="maximize2()" class="btn btn-md btn-dark btn-outline-info margin">Pump Two</button> 
+            <button *ngIf="!pThreeHidden" (click)="maximize3()" class="btn btn-md btn-dark btn-outline-info margin">Pump Three</button><button *ngIf="!pFourHidden" (click)="maximize4()" class="btn btn-md btn-dark btn-outline-info margin">Pump Four</button>
+            <div>
+                <br>
+                <div *ngIf="!pOneHidden">
+                    <div *ngIf="!minimized" id="">
+                        <div class="row">
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-5">
+                                <span (click)="close()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <app-gas-pump-one></app-gas-pump-one>
+                    </div>
+                    <br>
+                </div>
+                <div *ngIf="!pTwoHidden">
+                    <div *ngIf="!minimized2" id="">
+                        <div class="row">
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-5">
+                                <span (click)="close2()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                            
+                        <app-gas-pump-two></app-gas-pump-two>
+                    </div>
+                    <br>
+                </div>
+                <div *ngIf="!pThreeHidden">
+                    <div *ngIf="!minimized3"  id="">
+                        <div class="row">
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-5">
+                                <span (click)="close3()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <app-gas-pump-three></app-gas-pump-three>
+                    </div>
+                    <br>
+                </div>
+                <div *ngIf="!pFourHidden">
+                    <div *ngIf="!minimized4" id="">
+                        <div class="row">
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-5">
+                                <span (click)="close4()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <app-gas-pump-four></app-gas-pump-four>
+                    </div>
+                    <br>
+                </div>
+                
+                
+                
+                
+            </div>
+            </div>
+            </div>
+            
+        <div class="col-lg-6 full-height rounded black padding-2">
+            <div class="bg-light shadow rounded padding-2">
+                <h2 class="text-center">Mpesa</h2>
             <div *ngIf="mpesa_logs else elseBlockMpesa">
                 <app-mpesa-logs></app-mpesa-logs>
             </div>
@@ -25,41 +84,11 @@
                     <app-no-mpesalogs></app-no-mpesalogs>
                 </ng-template>
             </div>
+            </div>
+            
         </div>
 
-            <button onclick="togglePumpOne()">Pump One</button><button onclick="togglePumpTwo()">Pump Two</button><br>
-            <button onclick="togglePumpThree()">Pump Three</button><button onclick="togglePumpFour()">Pump Four</button>
-
-       
         
-            
-            <div>
-                <div id="petrolPumpOne">
-                    <app-gas-pump-one></app-gas-pump-one>
-                    <app-add-gas-pump-one></app-add-gas-pump-one>
-                </div>
-                <div id="petrolPumpTwo">
-                    <app-gas-pump-two></app-gas-pump-two>
-                    <app-add-gas-pump-two></app-add-gas-pump-two>
-                </div>
-                <div id="petrolPumpThree">
-                    <app-gas-pump-three></app-gas-pump-three>
-                    <app-add-gas-pump-three></app-add-gas-pump-three>
-                </div>
-                <div id="petrolPumpFour">
-                    <app-gas-pump-four></app-gas-pump-four>
-                    <app-add-gas-pump-four></app-add-gas-pump-four>
-                </div>
-            </div>
-        
-        
-    </div>
-    <br><br><br><br><br>
-    
-    
-
-    
-    
-
-    
+    </div>   
 </div>
+<app-footer></app-footer>

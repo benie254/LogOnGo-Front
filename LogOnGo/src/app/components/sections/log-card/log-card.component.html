@@ -1,4 +1,4 @@
-<div class="card color-two">
+<div class="card color-two" *ngIf="logs else noLogs">
     <h4 class="card-header">{{logs.date}} <span class="float-right smaller margin-top"><h6>price per litre: Ksh. <span id="price-p2">{{info.price_per_litre}}</span> <span><button class="btn margin-bottom-two btn-sm btn-light btn-outline-info" onclick="toggleUpdatePetrolPrice()"><img type="button" src="https://res.cloudinary.com/benie/image/upload/v1661103475/383147_edit_icon_hixt9z.png" height="17.5" width="17.5" alt=""></button> <span id="updatePetrolPriceForm2"> <app-priceperlitre-update-form></app-priceperlitre-update-form> </span> </span> </h6> </span></h4>
     <div class="card-body">
         <h5 class="card-title">Logs</h5>
@@ -22,4 +22,9 @@
     <div class="card-footer">
         <small class="">Logged by {{logs.logged_by}} | <a type="button" class="btn btn-sm btn-dark btn-outline-primary" href="">Details</a> </small>
     </div>
+</div>
+<div>
+  <ng-template #noLogs>
+    <app-no-logs></app-no-logs>
+  </ng-template>
 </div>

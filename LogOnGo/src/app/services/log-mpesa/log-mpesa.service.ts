@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { LogMpesa } from 'src/app/classes/log-mpesa/log-mpesa';
+import { Log } from 'src/app/classes/log/log';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,9 @@ export class LogMpesaService {
   }
   getUserMpesaLogs(id: any): Observable<LogMpesa>{
     return this.http.get<LogMpesa>(this.apiURLuserMpesaLogs + id);
+  }
+  getTodayMpesaLogs(): Observable<LogMpesa>{
+    return this.http.get<LogMpesa>(this.apiURLtodayMpesaLogs)
   }
   getMpesaLogDetails(id: number): Observable<LogMpesa>{
     return this.http.get<LogMpesa>(this.apiMpesaLogDetails + id)

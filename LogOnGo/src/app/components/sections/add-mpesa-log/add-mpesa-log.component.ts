@@ -13,6 +13,7 @@ export class AddMpesaLogComponent implements OnInit {
 
   mpesaForm: FormGroup;
   currentUser = this.authService.currentUserValue;
+  closed: boolean;
 
   constructor(
     private logMpesaService:LogMpesaService,
@@ -43,6 +44,9 @@ export class AddMpesaLogComponent implements OnInit {
       Notiflix.Notify.failure('Something went wrong!');
       Notiflix.Notify.warning('Please try again.');
     });
+  }
+  closeForm(){
+    this.closed = true;
   }
 
 }

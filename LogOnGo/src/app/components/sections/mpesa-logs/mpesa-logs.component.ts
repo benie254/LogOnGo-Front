@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LogMpesaService } from 'src/app/services/log-mpesa/log-mpesa.service';
 
 @Component({
   selector: 'app-mpesa-logs',
@@ -9,9 +10,18 @@ export class MpesaLogsComponent implements OnInit {
   mpesa: any;
   mpesa_cumulative: any;
   mpesa_logs: any;
-  constructor() { }
+  constructor(
+    private mpesaService:LogMpesaService,
+  ) {
+    this.mpesaService.getTodayMpesaLogs().subscribe(
+      (data) => {
+        this.mpesa_logs = data;
+      }
+    )
+   }
 
   ngOnInit(): void {
+
   }
 
 }

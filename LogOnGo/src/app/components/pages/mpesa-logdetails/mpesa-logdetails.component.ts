@@ -90,7 +90,7 @@ export class MpesaLogdetailsComponent implements OnInit {
 
   updateMpesaDetails(){
 
-    this.mpesaService.updateMpesaDetails(this.id,this.updateForm.value).subscribe({
+    this.mpesaService.updateMpesaDetails(this.id,this.mpesaUpdateForm.value).subscribe({
         next: (res) => {
           console.log(res);
           Notiflix.Notify.success('updated!');

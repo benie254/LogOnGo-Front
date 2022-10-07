@@ -14,6 +14,7 @@ import { PumpService } from 'src/app/services/pump/pump.service';
   styleUrls: ['./diesel-pump-two.component.css']
 })
 export class DieselPumpTwoComponent implements OnInit {
+
   logs: Log;
   info: Fuel;
   pumpTwo: Pump;
@@ -25,29 +26,29 @@ export class DieselPumpTwoComponent implements OnInit {
     private pumpService:PumpService,
   ) {
     this.pumpService.getPumpTwoInfo().subscribe(
-      (data) => {
-        this.pumpTwo = data;
+      (pump_one_data) => {
+        this.pumpTwo = pump_one_data;
       }, 
       err => {
-        console.warn("pump two get error:",err)
+        console.warn("pump one get error:",err)
       }
     )
    }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.getDieselLogs(params['id']))
+    this.route.params.subscribe(params => this.getDieselLogs2(params['id']))
   }
 
-  getDieselLogs(id:number): void{
+  getDieselLogs2(id:number): void{
     this.fuelService.getDieselInfo().subscribe((data) => {
       this.info = data
       console.warn("data",data)
     });
-    this.logService.getFuelLogs(id).subscribe(
+    this.logService.getFuelLogs2(id).subscribe(
       data => {
       this.logs = data
       // this.ngOnInit();
-      console.warn('petrol_info_today:',data)
+      console.warn('diesel_info_today:',data)
       Notiflix.Notify.success('Get success!');
       
     },
@@ -56,7 +57,5 @@ export class DieselPumpTwoComponent implements OnInit {
       Notiflix.Notify.failure('Something went wrong!');
     });
   }
-
-  
 
 }
