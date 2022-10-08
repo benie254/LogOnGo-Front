@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
+import { Log } from 'src/app/classes/log/log';
 import { LogService } from 'src/app/services/log/log.service';
 
 @Component({
@@ -22,17 +23,14 @@ export class ProfileLogcardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.route.params.subscribe(params => this.getUserLogs(params['id']));
-    this.id = this.route.snapshot.params['id'];
-    this.getUserLogs;
-    
+    this.id = this.route.snapshot.params['id']
+    this.getUserLogs();
   }
-
+  
   getUserLogs(): void{
     this.logService.getUserLogs(this.id).subscribe(
-      (data) => {
+      data => {
       this.user_logs = data
-      // this.ngOnInit();
       console.warn('user_logs:',data)
     },
     error => {

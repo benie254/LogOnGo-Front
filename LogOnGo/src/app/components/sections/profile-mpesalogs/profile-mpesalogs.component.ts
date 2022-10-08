@@ -31,33 +31,12 @@ export class ProfileMpesalogsComponent implements OnInit {
   ngOnInit(): void {
     // this.route.params.subscribe(params => this.getUserMpesaLogs(params['id']))
     this.id = this.route.snapshot.params['id']
-    this.mpesaForm = this.formBuilder.group({
-      date: ['',Validators['date']],
-      transaction_number: ['',Validators['required']],
-      customer_name: ['',Validators['required']],
-      customer_phone_number: [0,Validators['required']],
-      amount: [0,Validators['required']],
-      amount_transferred_to_bank: 0,
-      user: 0,
-      logged_by: ''
-    });
+
     this.getUserMpesaLogs();
   }
 
-  get f() { return this.mpesaForm.controls; }
 
 
-  addMpesaLog(mpesa_info) {
-    this.logMpesaService.addMpesaLog(mpesa_info).subscribe((result) => {
-      console.warn('result', result);
-      Notiflix.Notify.success('Mpesa log added successful!');
-      this.ngOnInit();
-    }, 
-    err => {
-      Notiflix.Notify.failure('Something went wrong!');
-      Notiflix.Notify.warning('Please try again.');
-    });
-  }
 
   getUserMpesaLogs(): void{
     this.logMpesaService.getUserMpesaLogs(this.id).subscribe(

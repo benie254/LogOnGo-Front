@@ -64,6 +64,7 @@
     </mat-sidenav>
 <mat-sidenav-content>
     <div style="height: 100vh;" class="container">
+        <br>
         <div class="row">
                     <div class="col-lg-6">
                         <div class="shadow text-center bg-light">
@@ -143,7 +144,7 @@
                                 </mat-expansion-panel> -->
                               </mat-accordion>
                         </div>
-                        <br>
+                        
                         
 
                     </div>
@@ -156,54 +157,17 @@
                         </div>
                    </div>
         </div>
-        <br><br><br>
+        <br>
         <div class="row">
             <div class="border col-lg-6 color-two shadow rounded black padding-2">
                 <h2>Your Logs</h2>
                 <div>
-                    <div>
-                        <div class="card color-two">
-                            <h4 class="card-header"> </h4>
-                            <div class="card-body">
-                                <h5 class="card-title"></h5>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col"><i class="fa-solid fa-hashtag"></i></th>
-                                            <th scope="col">EOD Reading Today</th>
-                                            <th scope="col">EOD Reading Yesterday</th>
-                                            <th scope="col">Balance (lts)</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody *ngFor="let user_logs of user_logs">
-                                          {{user_logs.date}}
-                                          <tr>
-                                            <td>{{user_logs.id}}</td>
-                                              <td class="tester-today3">{{user_logs.eod_reading_lts}}</td>
-                                              <td class="tester-yesterday3">{{user_logs.eod_reading_yesterday}}</td>
-                                            <td id="">{{user_logs.balance}}</td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                      <!-- <div class="d-flex justify-content-center">
-                                        <pagination-controls
-                                          previousLabel="Prev"
-                                          nextLabel="Next"
-                                          (pageChange)="onTableDataChange($event)"
-                                        >
-                                        </pagination-controls>
-                                </div> -->
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <small class="">Logged by |  </small>
-                            </div>
-                        </div>
+                    <div *ngIf="user_logs else noUserLogs">
+                        <app-profile-logcard></app-profile-logcard>
                     </div>
                 </div>
                 <div>
-                    <ng-template #elseBlockUserlogs>
+                    <ng-template #noUserLogs>
                         <div class="card color-two">
                             <div class="card-body">
                                 <p class="card-text">Your logs will appear here.</p>

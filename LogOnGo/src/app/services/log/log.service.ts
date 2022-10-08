@@ -49,8 +49,8 @@ export class LogService {
   getAllLogs(): Observable<any>{
     return this.http.get<any>(this.apiURLallLogs);
   }
-  getUserLogs(id: any): Observable<Log>{
-    return this.http.get<Log>(this.apiURLuserLogs + id);
+  getUserLogs(id: any): Observable<any>{
+    return this.http.get<any>(this.apiURLuserLogs + id);
   }
   getFuelLogs(id:any): Observable<Log>{
     return this.http.get<Log>(this.apiFuelLogs + id);

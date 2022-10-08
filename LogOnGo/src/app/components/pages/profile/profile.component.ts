@@ -21,7 +21,7 @@ declare function toggleProfileMpesaForm(): any;
 })
 export class ProfileComponent implements OnInit {
   mpesa_logs: any;
-  user_logs: any; 
+  user_logs: Log; 
   announcements: any;
   page: number = 1;
   count: number = 0;
@@ -74,7 +74,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getUserAnnouncements();
     this.route.params.subscribe(params => this.getUserMpesaLogs(params['id']))
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['id']
+    this.getUserLogs();
     this.mpesaForm = this.formBuilder.group({
       date: ['',Validators['date']],
       transaction_number: ['',Validators['required']],
@@ -124,11 +125,9 @@ export class ProfileComponent implements OnInit {
 
   getUserLogs(): void{
     this.logService.getUserLogs(this.id).subscribe(
-      (data) => {
+      data => {
       this.user_logs = data
-      // this.ngOnInit();
       console.warn('user_logs:',data)
-      Notiflix.Notify.success("user logs")
     },
     error => {
       console.log(error)
@@ -161,14 +160,14 @@ export class ProfileComponent implements OnInit {
       x.scrollIntoView();
     }
   }
-  onTableDataChange(event: any) {
-    this.page = event;
-    this.getUserLogs();
-  }
-  onTableSizeChange(event: any): void {
-    this.tableSize = event.target.value;
-    this.page = 1;
-    this.getUserLogs();
-  }
+  // onTableDataChange(event: any) {
+  //   this.page = event;
+  //   this.getUserLogs();
+  // }
+  // onTableSizeChange(event: any): void {
+  //   this.tableSize = event.target.value;
+  //   this.page = 1;
+  //   this.getUserLogs();
+  // }
 
 }
