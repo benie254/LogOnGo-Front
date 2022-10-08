@@ -149,6 +149,7 @@ import { SettingComponent } from './components/sections-b/setting/setting/settin
 import { PetrolSummaryComponent } from './components/sections-b/petrol-summary/petrol-summary.component';
 import { DieselSummaryComponent } from './components/sections-b/diesel-summary/diesel-summary.component';
 import { GasSummaryComponent } from './components/sections-b/gas-summary/gas-summary.component';
+import { FooterProfileComponent } from './components/sections/footer-profile/footer-profile.component';
 
 
 
@@ -273,6 +274,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     PetrolSummaryComponent,
     DieselSummaryComponent,
     GasSummaryComponent,
+    FooterProfileComponent,
   ],
   imports: [
     NgxPaginationModule,

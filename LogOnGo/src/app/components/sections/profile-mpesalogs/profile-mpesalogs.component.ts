@@ -13,6 +13,11 @@ export class ProfileMpesalogsComponent implements OnInit {
   mpesa_logs: any;
   info: any; 
   mpesaForm: FormGroup;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 5;
+  tableSizes: any = [2, 5, 10, 15];
+  id: number;
 
   currentUser = this.authService.currentUserValue;
 
@@ -24,7 +29,8 @@ export class ProfileMpesalogsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.getUserMpesaLogs(params['id']))
+    // this.route.params.subscribe(params => this.getUserMpesaLogs(params['id']))
+    this.id = this.route.snapshot.params['id']
     this.mpesaForm = this.formBuilder.group({
       date: ['',Validators['date']],
       transaction_number: ['',Validators['required']],
@@ -35,6 +41,7 @@ export class ProfileMpesalogsComponent implements OnInit {
       user: 0,
       logged_by: ''
     });
+    this.getUserMpesaLogs();
   }
 
   get f() { return this.mpesaForm.controls; }
@@ -52,8 +59,8 @@ export class ProfileMpesalogsComponent implements OnInit {
     });
   }
 
-  getUserMpesaLogs(id:number): void{
-    this.logMpesaService.getUserMpesaLogs(id).subscribe(
+  getUserMpesaLogs(): void{
+    this.logMpesaService.getUserMpesaLogs(this.id).subscribe(
       data => {
       this.mpesa_logs = data
       console.warn('user_mpesa_logs:',data)
@@ -62,6 +69,15 @@ export class ProfileMpesalogsComponent implements OnInit {
       console.log(error)
       Notiflix.Notify.failure('Something went wrong!');
     });
+  }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getUserMpesaLogs();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.getUserMpesaLogs();
   }
 
 }

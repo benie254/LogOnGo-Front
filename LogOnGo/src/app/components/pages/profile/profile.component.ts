@@ -23,6 +23,10 @@ export class ProfileComponent implements OnInit {
   mpesa_logs: any;
   user_logs: any; 
   announcements: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 5;
+  tableSizes: any = [2, 5, 10, 15];
   currentUser = this.authService.currentUserValue;
   logs: Log = {
     id: 0,
@@ -47,6 +51,8 @@ export class ProfileComponent implements OnInit {
   info: any; 
   mpesaForm: FormGroup;
   isExpanded: boolean = false;
+  panelOpenState = false;
+  id: number;
 
   constructor(
     private tokenStorage:TokenStorageService,
@@ -67,8 +73,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserAnnouncements();
-    this.route.params.subscribe(params => this.getUserLogs(params['id']))
     this.route.params.subscribe(params => this.getUserMpesaLogs(params['id']))
+    this.id = this.route.snapshot.params['id'];
     this.mpesaForm = this.formBuilder.group({
       date: ['',Validators['date']],
       transaction_number: ['',Validators['required']],
@@ -116,12 +122,13 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  getUserLogs(id:number): void{
-    this.logService.getUserLogs(id).subscribe(
+  getUserLogs(): void{
+    this.logService.getUserLogs(this.id).subscribe(
       (data) => {
       this.user_logs = data
       // this.ngOnInit();
       console.warn('user_logs:',data)
+      Notiflix.Notify.success("user logs")
     },
     error => {
       console.log(error)
@@ -153,6 +160,15 @@ export class ProfileComponent implements OnInit {
     if (x){
       x.scrollIntoView();
     }
+  }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getUserLogs();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.getUserLogs();
   }
 
 }

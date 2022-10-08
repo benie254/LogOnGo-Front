@@ -565,6 +565,12 @@ footer {
   background-size:cover;
   background-repeat: repeat;
 }
+#side-cont{
+  background-image: url('https://res.cloudinary.com/benie/image/upload/v1664422982/Waimakariri_ptk1ul.svg');
+  background-position: cover;
+  background-size:cover;
+  background-repeat: repeat;
+}
 .height-lg{
   height:90vh;
 }

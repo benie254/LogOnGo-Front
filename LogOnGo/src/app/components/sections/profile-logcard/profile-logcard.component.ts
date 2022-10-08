@@ -10,6 +10,11 @@ import { LogService } from 'src/app/services/log/log.service';
 })
 export class ProfileLogcardComponent implements OnInit {
   user_logs: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 5;
+  tableSizes: any = [2, 5, 10, 15];
+  id: number;
 
   constructor(
     private route:ActivatedRoute,
@@ -17,11 +22,14 @@ export class ProfileLogcardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.getUserLogs(params['id']))
+    // this.route.params.subscribe(params => this.getUserLogs(params['id']));
+    this.id = this.route.snapshot.params['id'];
+    this.getUserLogs;
+    
   }
 
-  getUserLogs(id:number): void{
-    this.logService.getUserLogs(id).subscribe(
+  getUserLogs(): void{
+    this.logService.getUserLogs(this.id).subscribe(
       (data) => {
       this.user_logs = data
       // this.ngOnInit();
@@ -31,6 +39,15 @@ export class ProfileLogcardComponent implements OnInit {
       console.log(error)
       Notiflix.Notify.failure('Something went wrong!');
     });
+  }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getUserLogs();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.getUserLogs();
   }
 
 

@@ -1,4 +1,4 @@
-<div class="card margin-top color-two" style="margin:1%;border-bottom: 5%;border-color:white;" *ngFor="let mpesa_logs of mpesa_logs">
+<div class="card margin-top color-two" style="margin:1%;border-bottom: 5%;border-color:white;">
                      
     <h5 class="card-header">{{mpesa_logs.date}}</h5>
     <div class="card-body" >
@@ -11,7 +11,7 @@
                     <th scope="col">Bank amount</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody *ngFor="let mpesa_logs of mpesa_logs | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
                   <tr>
                       <td>{{mpesa_logs.transaction_number}}</td>
                     <td>{{mpesa_logs.amount}}</td>
@@ -19,6 +19,14 @@
                   </tr>
                 </tbody>
               </table>
+              <div class="d-flex justify-content-center">
+                <pagination-controls
+                  previousLabel="Prev"
+                  nextLabel="Next"
+                  (pageChange)="onTableDataChange($event)"
+                >
+                </pagination-controls>
+        </div>
         </div>
       
     <div class="card-footer">
