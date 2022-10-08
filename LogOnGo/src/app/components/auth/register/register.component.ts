@@ -15,15 +15,32 @@ import { ConfirmedValidator } from 'src/app/validators/confirmed.validator';
 })
 export class RegisterComponent implements OnInit {
   formValid: boolean = false;
-  form: FormGroup
   username: any;
   hide = true;
+
+  form = this.formBuilder.group({
+    username: ['',Validators['required'], Validators['min'](4), Validators['maxLength'](60)],
+    email: ['',Validators['email']],
+    employee_id: [0,Validators['required']],
+    first_name: ['',Validators['required'], Validators['minLength(3)']],
+    last_name: ['',Validators['required'], Validators['minLength(3)']],
+    petrol_station: ['',Validators['required'], Validators['minLength(7)']],
+    password: ['',Validators['required']],
+    password2:['',Validators['required']]
+  }, 
+  { 
+    validator: ConfirmedValidator('password', 'password2')
+  });
+
+
   apiURLreg = "https://logongo.herokuapp.com/api/register/"
   // apiURLreg = "http://127.0.0.1:8000/api/register/"
   
 
   constructor(
-    private formBuilder:FormBuilder, private http:HttpClient, private router:Router
+    private formBuilder:FormBuilder, 
+    private http:HttpClient, 
+    private router:Router
     ) { }
 
     options: NgPasswordValidatorOptions = {
@@ -51,19 +68,7 @@ export class RegisterComponent implements OnInit {
     
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      username: ['',Validators['required'], Validators['min'](4), Validators['maxLength'](60)],
-      email: ['',Validators['email']],
-      employee_id: ['',Validators['required']],
-      first_name: ['',Validators['required'], Validators['minLength(3)']],
-      last_name: ['',Validators['required'], Validators['minLength(3)']],
-      petrol_station: ['',Validators['required'], Validators['minLength(7)']],
-      password: ['',Validators['required']],
-      password2:['',Validators['required']]
-    }, 
-    { 
-      validator: ConfirmedValidator('password', 'password2')
-    });
+    
     this.hideBtn();
   }
   hideBtn(){
@@ -75,15 +80,22 @@ export class RegisterComponent implements OnInit {
     }
   }
   submit(): void {
+    Notiflix.Loading.hourglass('Processing, please wait...');
     this.http.post(this.apiURLreg, this.form.getRawValue())
       .subscribe(() => {
         Notiflix.Notify.success('Registration successful!');
         this.router.navigate(['/login']);
+        Notiflix.Loading.remove();
         
       },
       err => {
-        Notiflix.Notify.failure('Registration failed!');
-        Notiflix.Notify.warning('Some of your details may be incorrect.');
+        Notiflix.Loading.remove();
+        Notiflix.Report.failure(
+          'Registration failed!',
+          'Something went wrong with your registration. Please confirm that all your details are correct.',
+          'Okay',
+        );
+        Notiflix.Notify.warning('Please try again.');
         if (this.form.invalid) {
           Notiflix.Notify.warning('Some of your details may be null or incorrect.');
           this.formValid = false;
