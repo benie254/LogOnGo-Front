@@ -69,8 +69,7 @@
                                             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                                                 <mat-label>Transaction number</mat-label>
                                                 <input matInput placeholder="Transaction number" formControlName="transaction_number" type="text" [(ngModel)]="mpesaDetails.transaction_number" required>
-                                                <mat-icon matSuffix>email</mat-icon>
-                                                <mat-hint>e.g: janja kip</mat-hint>
+                                                <mat-hint>e.g: QWUAKAL182</mat-hint>
                                               </mat-form-field> 
                                               <div *ngIf="mpesaUpdateForm.controls['transaction_number'].invalid && mpesaUpdateForm.controls['transaction_number'].touched" class="alert alert-danger">
                                                 <div *ngIf="mpesaUpdateForm.controls['transaction_number'].errors['required']">
@@ -86,8 +85,8 @@
                                             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                                                 <mat-label>Customer name</mat-label>
                                                 <input matInput placeholder="Customer name" formControlName="customer_name" type="text" [(ngModel)]="mpesaDetails.customer_name" required>
-                                                <mat-icon matSuffix>email</mat-icon>
-                                                <mat-hint>e.g: janja kip</mat-hint>
+                                                <mat-icon matSuffix>person</mat-icon>
+                                                <mat-hint>e.g: John Doe</mat-hint>
                                               </mat-form-field> 
                                               <div *ngIf="mpesaUpdateForm.controls['customer_name'].invalid && mpesaUpdateForm.controls['customer_name'].touched" class="alert alert-danger">
                                                 <div *ngIf="mpesaUpdateForm.controls['customer_name'].errors['required']">
@@ -99,8 +98,8 @@
                                             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                                                 <mat-label>Customer phone no.</mat-label>
                                                 <input matInput placeholder="Customer phone number" formControlName="customer_phone_number" type="number" [(ngModel)]="mpesaDetails.customer_phone_number" required>
-                                                <mat-icon matSuffix>email</mat-icon>
-                                                <mat-hint>e.g: janja kip</mat-hint>
+                                                <mat-icon matSuffix>contact_phone</mat-icon>
+                                                <mat-hint>e.g: 0712345678</mat-hint>
                                               </mat-form-field> 
                                               <div *ngIf="mpesaUpdateForm.controls['customer_phone_number'].invalid && mpesaUpdateForm.controls['customer_phone_number'].touched" class="alert alert-danger">
                                                 <div *ngIf="mpesaUpdateForm.controls['customer_phone_number'].errors['required']">
@@ -116,8 +115,7 @@
                                             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                                                 <mat-label>Amount</mat-label>
                                                 <input matInput placeholder="Amount" formControlName="amount" type="number" [(ngModel)]="mpesaDetails.amount" required>
-                                                <mat-icon matSuffix>email</mat-icon>
-                                                <mat-hint>e.g: janja kip</mat-hint>
+                                                <mat-hint>e.g: 1000 </mat-hint>
                                               </mat-form-field> 
                                               <div *ngIf="mpesaUpdateForm.controls['amount'].invalid && mpesaUpdateForm.controls['amount'].touched" class="alert alert-danger">
                                                 <div *ngIf="mpesaUpdateForm.controls['amount'].errors['required']">
@@ -129,8 +127,8 @@
                                             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                                                 <mat-label>Bank amount</mat-label>
                                                 <input matInput placeholder="Amount transferred to bank" formControlName="amount_transferred_to_bank" type="number" [(ngModel)]="mpesaDetails.amount_transferred_to_bank" required>
-                                                <mat-icon matSuffix>email</mat-icon>
-                                                <mat-hint>e.g: janja kip</mat-hint>
+                                                <mat-icon matSuffix>local_atm</mat-icon>
+                                                <mat-hint>e.g: 2000</mat-hint>
                                               </mat-form-field> 
                                               <div *ngIf="mpesaUpdateForm.controls['amount_transferred_to_bank'].invalid && mpesaUpdateForm.controls['amount_transferred_to_bank'].touched" class="alert alert-danger">
                                                 <div *ngIf="mpesaUpdateForm.controls['amount_transferred_to_bank'].errors['required']">

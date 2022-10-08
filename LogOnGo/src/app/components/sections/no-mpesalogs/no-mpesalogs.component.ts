@@ -39,6 +39,7 @@ export class NoMpesalogsComponent implements OnInit {
       console.warn('result', result);
       Notiflix.Notify.success('Mpesa log added successful!');
       this.ngOnInit();
+      location.reload();
     }, 
     err => {
       Notiflix.Notify.failure('Something went wrong!');

@@ -15,22 +15,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 import { PumpService } from 'src/app/services/pump/pump.service';
 
 
-declare function togglePLogs(): any;
-declare function secondAlert(): any;
-declare function myTotal(): any;
-declare function myAlert(): any; 
-declare function myTester(): any;
-declare function amountToday(): any;
-declare function getBal(): any;
-declare function getBalHome(): any;
-declare function myPumps(): any;
-declare function toggleInitUpdateForm(): any;
-declare var angular: any;
 
-declare function togglePumpOne(): any; 
-declare function togglePumpTwo(): any; 
-declare function togglePumpThree(): any; 
-declare function togglePumpFour(): any; 
 
 
 @Component({
@@ -78,7 +63,6 @@ export class PetrolLogsComponent implements OnInit {
   mpesa: LogMpesa;
   id: number;
   mpesa_logs: LogMpesa;
-  yesterday_logs: Log;
   pumpOne: Pump; 
   pumpTwo: Pump;
   pumpThree: Pump;
@@ -101,6 +85,7 @@ export class PetrolLogsComponent implements OnInit {
   pTwoHidden: boolean;
   pThreeHidden: boolean;
   pFourHidden: boolean;
+
   
 
   constructor(
@@ -152,11 +137,7 @@ export class PetrolLogsComponent implements OnInit {
     )
     
 
-    this.logService.getYesterdayLogs().subscribe((data) => {
-      this.yesterday_logs = data
-      console.warn("data",data);
-      
-    });
+    
     this.fuelService.getPetrolInfo().subscribe((data) => {
       this.petrol_info = data
       console.warn("petrol info data:",data)
@@ -254,12 +235,11 @@ export class PetrolLogsComponent implements OnInit {
   ngOnInit():void {
     this.route.params.subscribe(params => this.getPetrolLogs(params['id']))
     
-    toggleInitUpdateForm();
     this.selectPetrol();
     this.selectDiesel();
     this.selectGas();
-    this.getPetrolReceived();
-    this.getPetrolReceivedInfo();
+    // this.getPetrolReceived();
+    // this.getPetrolReceivedInfo();
 
     // this.getPetrolLogs(
     //   this.route.snapshot.params['id']
@@ -306,29 +286,29 @@ export class PetrolLogsComponent implements OnInit {
   addPetrol(){
     this.closed = true;
   }
-  getPetrolReceived(){
-    this.fuelService.getPetrolReceived(this.id).subscribe(
-      (fuel_received_data) => {
-        this.petrol_received = fuel_received_data;
-        console.warn("fuel recvd data:",fuel_received_data);
-        Notiflix.Notify.success('Get fuel rcv success!')
-      },
-      err => {
-        console.warn(err)
-        Notiflix.Notify.failure('Get fuel rcv failed!')
-      }
-    )
-  }
-  getPetrolReceivedInfo(){
-    this.fuelService.getPetrolReceivedInfo(this.id).subscribe(
-      (petrol_rcvd_info) => {
-        this.petrol_received_info = petrol_rcvd_info
-      },
-      err => {
-        console.log(err)
-      }
-    )
-  }
+  // getPetrolReceived(){
+  //   this.fuelService.getPetrolReceived(this.id).subscribe(
+  //     (fuel_received_data) => {
+  //       this.petrol_received = fuel_received_data;
+  //       console.warn("fuel recvd data:",fuel_received_data);
+  //       Notiflix.Notify.success('Get fuel rcv success!')
+  //     },
+  //     err => {
+  //       console.warn(err)
+  //       Notiflix.Notify.failure('Get fuel rcv failed!')
+  //     }
+  //   )
+  // }
+  // getPetrolReceivedInfo(){
+  //   this.fuelService.getPetrolReceivedInfo(this.id).subscribe(
+  //     (petrol_rcvd_info) => {
+  //       this.petrol_received_info = petrol_rcvd_info
+  //     },
+  //     err => {
+  //       console.log(err)
+  //     }
+  //   )
+  // }
 
   maximize(){
     if(this.minimized === true){
@@ -369,6 +349,9 @@ export class PetrolLogsComponent implements OnInit {
   }
   close4(){
     this.minimized4 = true;
+  }
+  toggleMpesaLog(){
+    this.closed = true;
   }
 
 }

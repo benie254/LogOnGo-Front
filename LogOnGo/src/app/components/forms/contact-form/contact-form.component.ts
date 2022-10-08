@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Editor } from 'ngx-editor';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { EmailService } from 'src/app/services/email/email.service';
@@ -12,11 +14,20 @@ export class ContactFormComponent implements OnInit {
   profile_details: any;
   contactManagement: any;
   currentUser = this.authService.currentUserValue;
+  editor: Editor;
+  html: '';
+  contactForm = this.fb.group({
+    your_name: ['', [Validators.required]],
+    your_email: ['', [Validators.required]],
+    subject: ['', [Validators.required]],
+    message: ['', [Validators.required]],
+ });
 
 
   constructor(
     private emailService:EmailService,
     private authService:AuthService,
+    private fb:FormBuilder,
     ) { }
 
   contactAdmin(message: any) {
@@ -44,6 +55,11 @@ export class ContactFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.editor = new Editor();
   }
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
 
 }

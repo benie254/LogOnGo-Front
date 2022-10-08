@@ -10,7 +10,6 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./add-log.component.css']
 })
 export class AddLogComponent implements OnInit {
-  yesterday_logs: any;
   user: any;
   fuel: any;
   fuel_data: any;
@@ -21,10 +20,7 @@ export class AddLogComponent implements OnInit {
       console.warn("data",fuel_data)
     });
 
-    this.logService.getYesterdayLogs().subscribe((data) => {
-      this.yesterday_logs = data
-      console.warn("data",data)
-    });
+    
   }
 
   addLog(log_info: any) {

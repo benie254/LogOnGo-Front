@@ -1,10 +1,31 @@
-<div class="card color-four color-black margin-top-one" *ngFor="let announcements of announcements">
-    <h3 class="card-header text-center color-black"><span class="padding-2 black">Announcement!</span></h3>
-    <div class="card-body">
-        <h5 class="color-black card-title">{{announcements.subject}}</h5>
-        <p class="card-text color-black">{{announcements.announcement}}</p>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <div class="card-footer">
-    <small class="color-black">By {{announcements.announced_by}} | {{announcements.date}}</small>
+    <div class="carousel-inner">
+      <div class="carousel-item active" *ngFor="let announcements of announcements" data-bs-interval="3000">
+        <div class="card margin-top-one" style="height:215px" >
+            <h3 class="card-header text-center color-two"><span class="padding-2">Announcement! <i class="fa-solid fa-bullhorn"></i></span></h3>
+            <div class="card-body">
+                <h5 class="color-black card-title">{{announcements.subject}}</h5>
+                <p class="card-text color-black ">{{announcements.announcement}}</p>
+            </div>
+            <div class="card-footer color-two">
+            <small class="">By {{announcements.announced_by}} | {{announcements.date}}</small>
+            </div>
+        </div>
+      </div>
+      
     </div>
-</div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>

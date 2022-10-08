@@ -1,5 +1,4 @@
 <div class="card color-two" >
-    <h4 class="card-header"> </h4>
     <div class="card-body">
         <h5 class="card-title"></h5>
         <div class="table-responsive">
@@ -10,7 +9,6 @@
                     <th scope="col">Date</th>
                     <th scope="col">EOD Reading Today</th>
                     <th scope="col">EOD Reading Yesterday</th>
-                    <th scope="col">Balance (lts)</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -20,7 +18,6 @@
                     <td>{{user_logs.date}}</td>
                       <td class="tester-today3">{{user_logs.eod_reading_lts}}</td>
                       <td class="tester-yesterday3">{{user_logs.eod_reading_yesterday}}</td>
-                    <td id="">{{user_logs.balance}}</td>
                     <td><a type="button" class="btn btn-dark btn-outline-primary btn-sm" routerLink="/log-details/{{user_logs.id}}">Details</a></td>
                   </tr>
                 </tbody>

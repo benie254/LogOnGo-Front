@@ -8,13 +8,9 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./bal-form.component.css']
 })
 export class BalFormComponent implements OnInit {
-  yesterday_logs: any;
 
   constructor(private logService:LogService, private notifService:NotificationService) { 
-    this.logService.getYesterdayLogs().subscribe((data) => {
-      this.yesterday_logs = data
-      console.warn("data",data)
-    });
+    
   }
 
   updateBal(log_info:any){

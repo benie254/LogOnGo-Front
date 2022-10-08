@@ -153,6 +153,7 @@ import { PetrolSummaryComponent } from './components/sections-b/petrol-summary/p
 import { DieselSummaryComponent } from './components/sections-b/diesel-summary/diesel-summary.component';
 import { GasSummaryComponent } from './components/sections-b/gas-summary/gas-summary.component';
 import { FooterProfileComponent } from './components/sections/footer-profile/footer-profile.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 
 
@@ -295,6 +296,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    NgxEditorModule,
     MatButtonModule,
       MatToolbarModule,
       MatIconModule,

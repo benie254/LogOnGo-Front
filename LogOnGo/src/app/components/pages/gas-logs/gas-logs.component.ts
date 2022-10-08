@@ -77,7 +77,6 @@ export class GasLogsComponent implements OnInit {
   mpesa: LogMpesa;
   id: number;
   mpesa_logs: LogMpesa;
-  yesterday_logs: Log;
   pumpOne: Pump; 
   pumpTwo: Pump;
   pumpThree: Pump;
@@ -150,11 +149,7 @@ export class GasLogsComponent implements OnInit {
     )
     
 
-    this.logService.getYesterdayLogs().subscribe((data) => {
-      this.yesterday_logs = data
-      console.warn("data",data);
-      
-    });
+ 
     this.fuelService.getGasInfo().subscribe((data) => {
       this.gas_info = data
       console.warn("gas info data:",data)

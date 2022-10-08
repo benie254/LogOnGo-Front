@@ -19,7 +19,6 @@ export class LogService {
   apiURLlogDetails = 'http://127.0.0.1:8000/api/log-details/';
   // apiURLlogDetails = 'https://logongo.herokuapp.com/api/log-details/';
   // apiURLpetrolLogsYesterday = 'https://logongo.herokuapp.com/api/logs-yesterday/';
-  apiURLpetrolLogsYesterday = 'http://127.0.0.1:8000/api/logs-yesterday/';
   apiFuelLogs = 'http://127.0.0.1:8000/api/fuel-logs-today/';
   // apiURLpetrolLogs2 = 'https://logongo.herokuapp.com/api/fuel-logs-ii-today/';
   apiFuelLogs2 = 'http://127.0.0.1:8000/api/fuel-logs-ii-today/';
@@ -78,9 +77,7 @@ export class LogService {
   getPetrolLogDetails(id: number): Observable<Log>{
     return this.http.get<Log>(this.apiURLpetrolLogDetails + id);
   }
-  getYesterdayLogs(): Observable<Log>{
-    return this.http.get<Log>(this.apiURLpetrolLogsYesterday);
-  }
+
 
   addLog(log_info: any) {
     return this.http.post(this.apiURLtodayLogs, log_info);

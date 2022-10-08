@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { EmailService } from 'src/app/services/email/email.service';
+import { Editor, Validators } from 'ngx-editor';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-incident-form',
@@ -14,11 +16,23 @@ export class IncidentFormComponent implements OnInit {
   Physical_Injury: any;
   username: any;
   currentUser = this.authService.currentUserValue;
+  editor: Editor;
+  html: '';
+  today = new Date();
+
+  incidentForm = this.fb.group({
+    incident_date: ['', [Validators.required]],
+    your_name: ['', [Validators.required]],
+    your_email: ['', [Validators.required]],
+    nature: ['', [Validators.required]],
+    description: ['', [Validators.required]],
+ });
 
 
   constructor(
     private emailService:EmailService,
     private authService:AuthService,
+    private fb:FormBuilder,
     ) { }
 
   incidentReport(incident_report: any) {
@@ -45,6 +59,10 @@ export class IncidentFormComponent implements OnInit {
       });
   }
   ngOnInit(): void {
+    this.editor = new Editor();
+  }
+  ngOnDestroy(): void {
+    this.editor.destroy();
   }
 
 }

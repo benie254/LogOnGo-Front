@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CalendarEvent, CalendarView } from 'angular-calendar';
+import { startOfDay } from 'date-fns';
 import * as Notiflix from 'notiflix';
 import { Announcement } from 'src/app/classes/announcement/announcement';
 import { Log } from 'src/app/classes/log/log';
@@ -20,6 +22,12 @@ declare function toggleProfileMpesaForm(): any;
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  viewDate: Date = new Date();
+  view: CalendarView = CalendarView.Month;
+  CalendarView = CalendarView;
+  
+  
+  date = new Date();
   mpesa_logs: any;
   user_logs: Log; 
   announcements: any;
@@ -53,6 +61,7 @@ export class ProfileComponent implements OnInit {
   isExpanded: boolean = false;
   panelOpenState = false;
   id: number;
+  noAnnouncement: boolean;
 
   constructor(
     private tokenStorage:TokenStorageService,
@@ -88,11 +97,20 @@ export class ProfileComponent implements OnInit {
     });
     // this.currentUser = this.tokenStorage.getUser();
   }
+  setView(view: CalendarView){
+    this.view = view;
+  }
+
 
   getUserAnnouncements(){
     this.profileService.getAnnouncements().subscribe((data) => {
       this.announcements = data 
       console.warn(this.announcements)
+      if(this.announcements == undefined || this.announcements && this.announcements == 0){
+        this.noAnnouncement = true;
+      } else {
+        this.noAnnouncement = false;
+      }
     })
   }
 

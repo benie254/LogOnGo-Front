@@ -76,7 +76,6 @@ export class DieselLogsComponent implements OnInit {
   mpesa: LogMpesa;
   id: number;
   mpesa_logs: LogMpesa;
-  yesterday_logs: Log;
   pumpOne: Pump; 
   pumpTwo: Pump;
   pumpThree: Pump;
@@ -147,12 +146,6 @@ export class DieselLogsComponent implements OnInit {
       }
     )
     
-
-    this.logService.getYesterdayLogs().subscribe((data) => {
-      this.yesterday_logs = data
-      console.warn("data",data);
-      
-    });
     this.fuelService.getDieselInfo().subscribe((data) => {
       this.diesel_info = data
       console.warn("diesel info data:",data)

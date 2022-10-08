@@ -13,7 +13,6 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class UpdateLogDetailsComponent implements OnInit {
   log: any; 
-  yesterday_logs: any;
   date: any; 
   username: any;
   form: FormGroup;
@@ -33,10 +32,6 @@ export class UpdateLogDetailsComponent implements OnInit {
     //   console.warn("data",data)
     // });
 
-    this.logService.getYesterdayLogs().subscribe((data) => {
-      this.yesterday_logs = data
-      console.warn("data",data)
-    });
    }
 
   updateLog(log_info:any){

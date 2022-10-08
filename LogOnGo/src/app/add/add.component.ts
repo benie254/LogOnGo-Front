@@ -15,7 +15,6 @@ export class AddComponent implements OnInit {
   @Input() fuel: any;
   @Output() addLogEvent = new EventEmitter<any>();
 
-  yesterday_logs: any;
   user: any;
   authenticated = false;
 
@@ -38,11 +37,7 @@ export class AddComponent implements OnInit {
       this.addLogEvent.emit(data);
     });
 
-    this.logService.getYesterdayLogs().subscribe((data) => {
-      this.yesterday_logs = data
-      console.warn("data",data);
-      this.addLogEvent.emit(data);
-    });
+    
   }
 
   addLog(log_info: any) {

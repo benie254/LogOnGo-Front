@@ -15,7 +15,7 @@
             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Litres received</mat-label>
                 <input matInput placeholder="Enter Lts..." formControlName="litres_received" type="number" required>
-                <mat-icon matSuffix>email</mat-icon>
+                <mat-icon matSuffix>ev_station</mat-icon>
                 <mat-hint>e.g: 1000</mat-hint>
               </mat-form-field> 
               <div *ngIf="gasForm.controls['litres_received'].invalid && gasForm.controls['litres_received'].touched" class="alert alert-danger">
@@ -31,7 +31,7 @@
             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Received from</mat-label>
                 <input matInput placeholder="Enter No. Plate..." formControlName="received_from" type="text" required>
-                <mat-icon matSuffix>email</mat-icon>
+                <mat-icon matSuffix>drive_eta</mat-icon>
                 <mat-hint>e.g: KAA 123 T</mat-hint>
               </mat-form-field> 
               <div *ngIf="gasForm.controls['received_from'].invalid && gasForm.controls['received_from'].touched" class="alert alert-danger">
@@ -45,7 +45,6 @@
                 <mat-label>Date received</mat-label>
                 <input matInput placeholder="Enter date..." formControlName="date_received" type="date" required>
                 <mat-icon matSuffix>date</mat-icon>
-                <mat-hint>e.g: </mat-hint>
               </mat-form-field> 
               <div *ngIf="gasForm.controls['date_received'].invalid && gasForm.controls['date_received'].touched" class="alert alert-danger">
                 <div *ngIf="gasForm.controls['date_received'].errors['required']">

@@ -565,7 +565,7 @@ footer {
   background-image: url('https://res.cloudinary.com/benie/image/upload/v1664422910/Vorderrhein_lf1ky6.svg');
   background-position: cover;
   background-size:cover;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
 }
 #side-cont{
   background-image: url('https://res.cloudinary.com/benie/image/upload/v1664422982/Waimakariri_ptk1ul.svg');
@@ -703,4 +703,7 @@ footer {
   #printMpesaContainer{
     margin-top: 25%;
   }
+}
+.fullHeightB{
+  height:100vh;
 }

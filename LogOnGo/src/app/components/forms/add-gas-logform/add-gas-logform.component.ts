@@ -9,14 +9,10 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./add-gas-logform.component.css']
 })
 export class AddGasLogformComponent implements OnInit {
-  yesterday_logs: any;
   user: any;
 
   constructor(private fuelService:FuelService, private notifService:NotificationService, private logService:LogService) { 
-    this.logService.getYesterdayLogs().subscribe((data) => {
-      this.yesterday_logs = data
-      console.warn("data",data)
-    });
+    
   }
 
   addGasLog(log_info: any) {

@@ -6,7 +6,7 @@
         </div>
         <div class="col">
             <label for="eod_reading_yesterday" class="">Eod reading yesterday</label>
-            <input *ngIf="yesterday_logs" ngModel #eod_reading_yesterday="ngModel" value="yesterday_logs.eod_reading_lts" type="number" class="Aj form-control" id="eod_reading_yesterday" name="eod_reading_yesterday" placeholder="End of day reading yesterday(lts)">
+            <input ngModel #eod_reading_yesterday="ngModel" value="yesterday_logs.eod_reading_lts" type="number" class="Aj form-control" id="eod_reading_yesterday" name="eod_reading_yesterday" placeholder="End of day reading yesterday(lts)">
         </div>
         <div class="col">
             <input type="number" class="" ngModel id="user" #user="ngModel" value="1" name="user" placeholder="Your user id">

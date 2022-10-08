@@ -16,7 +16,7 @@ export class ProfileAnnouncementsComponent implements OnInit {
   ) {
     this.profileService.getAnnouncements().subscribe((data) => {
       this.announcements = data 
-      console.warn(this.announcements)
+      console.warn("ann:",data)
     })
    }
 

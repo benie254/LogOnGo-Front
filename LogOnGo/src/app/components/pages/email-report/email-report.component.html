@@ -59,7 +59,7 @@
                             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                                 <mat-label>Your name</mat-label>
                                 <input matInput placeholder="Your name" formControlName="admin_name" type="text" [(ngModel)]="currentUser.first_name" required>
-                                <mat-icon matSuffix>email</mat-icon>
+                                <mat-icon matSuffix>person</mat-icon>
                                 <mat-hint>e.g: janja kip</mat-hint>
                               </mat-form-field> 
                               <div *ngIf="emailReportForm.controls['admin_name'].invalid && emailReportForm.controls['admin_name'].touched" class="alert alert-danger">
