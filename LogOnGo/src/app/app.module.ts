@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -288,6 +291,10 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     CommonModule,
     NoopAnimationsModule,
     NgPasswordValidatorModule.forRoot(MyDefaultOptions as NgPasswordValidatorOptions),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
     MatButtonModule,
       MatToolbarModule,
       MatIconModule,
