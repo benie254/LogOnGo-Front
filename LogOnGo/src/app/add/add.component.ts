@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { FuelService } from '../services/fuel/fuel.service';
 import { LogService } from '../services/log/log.service';
-import { NotificationService } from '../services/notification/notification.service';
 
 @Component({
   selector: 'app-add',
@@ -20,7 +19,6 @@ export class AddComponent implements OnInit {
 
   constructor(
     private fuelService:FuelService, 
-    private notifService:NotificationService, 
     private logService:LogService,
     private authService:AuthService,
     private router:Router,

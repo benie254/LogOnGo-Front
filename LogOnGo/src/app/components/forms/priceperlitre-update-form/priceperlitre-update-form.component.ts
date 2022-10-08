@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-priceperlitre-update-form',
@@ -11,7 +10,9 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class PriceperlitreUpdateFormComponent implements OnInit {
   petrol_details: any; 
 
-  constructor(private fuelService:FuelService, private notifService:NotificationService, private http:HttpClient) {
+  constructor(
+    private fuelService:FuelService, 
+    ) {
     this.fuelService.getPetrolInfo().subscribe((data) => {
       this.petrol_details = data
       console.warn("data",data)

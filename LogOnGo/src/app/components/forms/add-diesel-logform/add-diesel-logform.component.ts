@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-add-diesel-logform',
@@ -11,7 +10,10 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class AddDieselLogformComponent implements OnInit {
   user: any;
 
-  constructor(private fuelService:FuelService, private notifService:NotificationService, private logService:LogService) { 
+  constructor(
+    private fuelService:FuelService, 
+    private logService:LogService
+    ) { 
     
    }
 

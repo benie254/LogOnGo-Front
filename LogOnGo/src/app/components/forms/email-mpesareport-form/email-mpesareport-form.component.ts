@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailService } from 'src/app/services/email/email.service';
 import { LogService } from 'src/app/services/log/log.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-email-mpesareport-form',
@@ -13,7 +12,10 @@ export class EmailMpesareportFormComponent implements OnInit {
   user: any;
   mpesa_cumulative: any;
 
-  constructor(private emailService:EmailService, private notifService:NotificationService,private logService:LogService) { 
+  constructor(
+    private emailService:EmailService, 
+    private logService:LogService
+    ) { 
     this.logService.getMpesaLogs().subscribe((data) => {
       this.mpesa_log_details = data
       console.warn("data",data)

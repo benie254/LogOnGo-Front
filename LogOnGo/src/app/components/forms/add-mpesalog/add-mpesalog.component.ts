@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LogMpesaService } from 'src/app/services/log-mpesa/log-mpesa.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-add-mpesalog',
@@ -14,7 +13,6 @@ export class AddMpesalogComponent implements OnInit {
 
   constructor(
     private logMpesaService:LogMpesaService, 
-    private notifService:NotificationService,
     private formBuilder:FormBuilder,
     ) { }
 

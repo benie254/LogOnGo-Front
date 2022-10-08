@@ -27,11 +27,8 @@ export class NavComponent implements OnInit {
 
   constructor(
     private profileService:ProfileService,
-    private router:Router,
-    private route:ActivatedRoute, 
     private fuelService:FuelService,
     private authService:AuthService,
-    private http:HttpClient,
     ) { 
     this.fuelService.getPetrolInfo().subscribe((data) => {
       this.petrol_info = data

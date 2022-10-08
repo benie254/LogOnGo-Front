@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 import * as Notiflix from 'notiflix';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
@@ -21,8 +20,6 @@ export class PetrolReceivedFormComponent implements OnInit {
 
   constructor(
     private fuelService:FuelService, 
-    private notifService:NotificationService, 
-    private logService:LogService,
     private fb: FormBuilder,
     ) { 
       this.fuelService.getPetrolInfo().subscribe(

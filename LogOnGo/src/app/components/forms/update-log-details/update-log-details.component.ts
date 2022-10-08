@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { Log } from 'src/app/classes/log/log';
 import { LogService } from 'src/app/services/log/log.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-update-log-details',
@@ -24,7 +23,6 @@ export class UpdateLogDetailsComponent implements OnInit {
 
   constructor(
     private logService:LogService, 
-    private notifService:NotificationService,
     private route:ActivatedRoute,
     ) {
     // this.logService.getPetrolLogs().subscribe((data) => {

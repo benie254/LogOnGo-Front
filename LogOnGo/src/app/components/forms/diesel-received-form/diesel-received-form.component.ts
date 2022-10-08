@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import * as Notiflix from 'notiflix';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-diesel-received-form',
@@ -21,8 +20,6 @@ export class DieselReceivedFormComponent implements OnInit {
 
   constructor(
     private fuelService:FuelService, 
-    private notifService:NotificationService, 
-    private logService:LogService,
     private fb:FormBuilder
     ) {
       this.fuelService.getDieselInfo().subscribe(

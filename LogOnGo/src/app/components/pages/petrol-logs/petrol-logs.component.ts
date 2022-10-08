@@ -10,7 +10,6 @@ import { Pump } from 'src/app/classes/pump/pump';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogMpesaService } from 'src/app/services/log-mpesa/log-mpesa.service';
 import { LogService } from 'src/app/services/log/log.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { PumpService } from 'src/app/services/pump/pump.service';
 
@@ -90,12 +89,9 @@ export class PetrolLogsComponent implements OnInit {
 
   constructor(
     private fuelService:FuelService, 
-    private http:HttpClient,
-    private notifService:NotificationService, 
     private logService:LogService, 
     private route:ActivatedRoute,
     private router:Router,
-    private pumpService:PumpService,
     private mpesaService:LogMpesaService,
     ) { 
     this.fuelService.getPetrolInfo().subscribe((data) => {

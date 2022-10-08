@@ -5,7 +5,6 @@ import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Log } from 'src/app/classes/log/log';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-log-card',
@@ -19,7 +18,6 @@ export class LogCardComponent implements OnInit {
 
   constructor(
     private logService:LogService, 
-    private notifService:NotificationService, 
     private fuelService:FuelService,
     private route:ActivatedRoute,
     ) { 

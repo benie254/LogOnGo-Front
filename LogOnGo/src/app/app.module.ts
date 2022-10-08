@@ -17,7 +17,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FuelComponent } from './forms/fuel/fuel.component';
-import { InitialUpdateComponent } from './forms/initial-update/initial-update/initial-update.component';
 import { AddLogComponent } from './components/forms/add-log/add-log.component';
 import { InitialAmountComponent } from './components/sections/initial-amount/initial-amount.component';
 import { NewBalComponent } from './components/sections/new-bal/new-bal.component';
@@ -177,7 +176,6 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     HomeComponent,
     NavComponent,
     FuelComponent,
-    InitialUpdateComponent,
     AddLogComponent,
     InitialAmountComponent,
     NewBalComponent,

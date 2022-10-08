@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LogService } from 'src/app/services/log/log.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-bal-form',
@@ -9,7 +8,9 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class BalFormComponent implements OnInit {
 
-  constructor(private logService:LogService, private notifService:NotificationService) { 
+  constructor(
+    private logService:LogService, 
+    ) { 
     
   }
 

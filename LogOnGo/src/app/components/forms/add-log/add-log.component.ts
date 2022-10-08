@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-add-log',
@@ -14,7 +13,10 @@ export class AddLogComponent implements OnInit {
   fuel: any;
   fuel_data: any;
 
-  constructor(private fuelService:FuelService, private notifService:NotificationService, private logService:LogService) { 
+  constructor(
+    private fuelService:FuelService, 
+    private logService:LogService
+    ) { 
     this.fuelService.getPetrolInfo().subscribe((fuel_data) => {
       this.fuel.id = fuel_data
       console.warn("data",fuel_data)

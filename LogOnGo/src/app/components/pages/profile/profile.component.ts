@@ -64,7 +64,6 @@ export class ProfileComponent implements OnInit {
   noAnnouncement: boolean;
 
   constructor(
-    private tokenStorage:TokenStorageService,
     private authService:AuthService,
     private profileService:ProfileService,
     private logService:LogService,
