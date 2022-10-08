@@ -5,8 +5,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EmailService {
-  apiURLfuels = 'http://127.0.0.1:8000/api/incident-report/'
-  apiContact = 'http://127.0.0.1:8000/api/contact-admin/'
+  // apiURLfuels = 'http://127.0.0.1:8000/api/incident-report/';
+  apiURLfuels = 'https://logongo.herokuapp.com/api/incident-report/';
+  // apiContact = 'http://127.0.0.1:8000/api/contact-admin/';
+  apiContact = 'https://logongo.herokuapp.com/api/contact-admin/';
 
   constructor(private http:HttpClient) { }
 

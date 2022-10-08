@@ -9,14 +9,14 @@ import { Profile } from 'src/app/classes/profile/profile';
 })
 export class ProfileService {
 
-  apiURL = 'https://logongo.herokuapp.com/api/user-profile/'
-  // apiURL = 'http://127.0.0.1:8000/api/user-profile/'
-  apiURL2 = 'https://logongo.herokuapp.com/api/gas-info/'
-  // apiURL2 = 'http://127.0.0.1:8000/api/gas-info/'
-  apiURL3 = 'https://logongo.herokuapp.com/api/our-fuels/'
-  // apiURL3 = 'http://127.0.0.1:8000/api/our-fuels/'
-  // apiURLannouncements = 'https://logongo.herokuapp.com/api/announcements/'
-  apiURLannouncements = 'http://127.0.0.1:8000/api/announcements/'
+  apiURL = 'https://logongo.herokuapp.com/api/user-profile/';
+  // apiURL = 'http://127.0.0.1:8000/api/user-profile/';
+  apiURL2 = 'https://logongo.herokuapp.com/api/gas-info/';
+  // apiURL2 = 'http://127.0.0.1:8000/api/gas-info/';
+  apiURL3 = 'https://logongo.herokuapp.com/api/our-fuels/';
+  // apiURL3 = 'http://127.0.0.1:8000/api/our-fuels/';
+  apiURLannouncements = 'https://logongo.herokuapp.com/api/announcements/';
+  // apiURLannouncements = 'http://127.0.0.1:8000/api/announcements/';
 
   constructor(private http:HttpClient) { }
 

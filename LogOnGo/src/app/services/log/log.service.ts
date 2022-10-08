@@ -8,26 +8,26 @@ import { Log } from 'src/app/classes/log/log';
   providedIn: 'root'
 })
 export class LogService {
-  // apiURLtodayLogs = 'https://logongo.herokuapp.com/api/logs-today/'
-  apiURLtodayLogs = 'http://127.0.0.1:8000/api/logs-today/';
-  apiURLuserLogs = 'http://127.0.0.1:8000/api/user-logs/';
-  // apiURLuserLogs = 'https://logongo.herokuapp.com/api/user-logs/';
-  // apiURLallLogs = 'https://logongo.herokuapp.com/api/all-logs/';
-  apiURLallLogs = 'http://127.0.0.1:8000/api/all-logs/';
-  // apiURLpetrolLogDetails = 'https://logongo.herokuapp.com/api/log-details/';
-  apiURLpetrolLogDetails = 'http://127.0.0.1:8000/api/petrol-log-details/';
-  apiURLlogDetails = 'http://127.0.0.1:8000/api/log-details/';
-  // apiURLlogDetails = 'https://logongo.herokuapp.com/api/log-details/';
-  // apiURLpetrolLogsYesterday = 'https://logongo.herokuapp.com/api/logs-yesterday/';
-  apiFuelLogs = 'http://127.0.0.1:8000/api/fuel-logs-today/';
-  // apiURLpetrolLogs2 = 'https://logongo.herokuapp.com/api/fuel-logs-ii-today/';
-  apiFuelLogs2 = 'http://127.0.0.1:8000/api/fuel-logs-ii-today/';
-  // apiURLpetrolLogs3 = 'https://logongo.herokuapp.com/api/fuel-logs-iii-today/';
-  apiFuelLogs3 = 'http://127.0.0.1:8000/api/fuel-logs-iii-today/';
-  // apiURLpetrolLogs4 = 'https://logongo.herokuapp.com/api/fuel-logs-iv-today/';
-  apiFuelLogs4 = 'http://127.0.0.1:8000/api/fuel-logs-iv-today/';
-  // apiURLmpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/';
-  apiURLmpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
+  apiURLtodayLogs = 'https://logongo.herokuapp.com/api/logs-today/'
+  // apiURLtodayLogs = 'http://127.0.0.1:8000/api/logs-today/';
+  // apiURLuserLogs = 'http://127.0.0.1:8000/api/user-logs/';
+  apiURLuserLogs = 'https://logongo.herokuapp.com/api/user-logs/';
+  apiURLallLogs = 'https://logongo.herokuapp.com/api/all-logs/';
+  // apiURLallLogs = 'http://127.0.0.1:8000/api/all-logs/';
+  apiURLpetrolLogDetails = 'https://logongo.herokuapp.com/api/petrol-log-details/';
+  // apiURLpetrolLogDetails = 'http://127.0.0.1:8000/api/petrol-log-details/';
+  // apiURLlogDetails = 'http://127.0.0.1:8000/api/log-details/';
+  apiURLlogDetails = 'https://logongo.herokuapp.com/api/log-details/';
+  apiFuelLogs = 'https://logongo.herokuapp.com/api/fuel-logs-today/';
+  // apiFuelLogs = 'http://127.0.0.1:8000/api/fuel-logs-today/';
+  apiFuelLogs2 = 'https://logongo.herokuapp.com/api/fuel-logs-ii-today/';
+  // apiFuelLogs2 = 'http://127.0.0.1:8000/api/fuel-logs-ii-today/';
+  apiFuelLogs3 = 'https://logongo.herokuapp.com/api/fuel-logs-iii-today/';
+  // apiFuelLogs3 = 'http://127.0.0.1:8000/api/fuel-logs-iii-today/';
+  apiFuelLogs4 = 'https://logongo.herokuapp.com/api/fuel-logs-iv-today/';
+  // apiFuelLogs4 = 'http://127.0.0.1:8000/api/fuel-logs-iv-today/';
+  apiURLmpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/';
+  // apiURLmpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
 
   constructor(private http:HttpClient) { }
 

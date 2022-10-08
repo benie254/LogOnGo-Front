@@ -8,13 +8,14 @@ import { Log } from 'src/app/classes/log/log';
   providedIn: 'root'
 })
 export class LogMpesaService {
-   // apiURLallMpesaLogs = 'https://logongo.herokuapp.com/api/all-mpesa-logs/'
-  apiURLallMpesaLogs = 'http://127.0.0.1:8000/api/all-mpesa-logs/';
-  // apiURLtodayMpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/'
-  apiURLtodayMpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
-  // apiURLuserMpesaLogs = 'https://logongo.herokuapp.com/api/user-mpesa-logs/'
-  apiURLuserMpesaLogs = 'http://127.0.0.1:8000/api/user-mpesa-logs/';
-  apiMpesaLogDetails = 'http://127.0.0.1:8000/api/mpesa-log-details/'
+   apiURLallMpesaLogs = 'https://logongo.herokuapp.com/api/all-mpesa-logs/';
+  // apiURLallMpesaLogs = 'http://127.0.0.1:8000/api/all-mpesa-logs/';
+  apiURLtodayMpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/';
+  // apiURLtodayMpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
+  apiURLuserMpesaLogs = 'https://logongo.herokuapp.com/api/user-mpesa-logs/';
+  // apiURLuserMpesaLogs = 'http://127.0.0.1:8000/api/user-mpesa-logs/';
+  // apiMpesaLogDetails = 'http://127.0.0.1:8000/api/mpesa-log-details/';
+  apiMpesaLogDetails = 'https://logongo.herokuapp.com/api/mpesa-log-details/';
 
   constructor(private http:HttpClient) { }
 
