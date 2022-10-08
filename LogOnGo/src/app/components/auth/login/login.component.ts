@@ -13,7 +13,7 @@ import { first } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 
-  authenticated: boolean;
+  authenticated: boolean = false;
   
 
   form: FormGroup;
@@ -59,22 +59,34 @@ export class LoginComponent implements OnInit {
 
   submit(): void {
     this.loading = true;
+    Notiflix.Loading.hourglass('Processing, please wait...');
     if (this.form.invalid){
-      Notiflix.Notify.failure('Login failed!');
-      Notiflix.Notify.warning('Some of your details may be null, incomplete or incorrect.');
+      Notiflix.Report.failure(
+        'Login failed!',
+        'Some of your details may be null, incomplete or incorrect.',
+        'Okay',
+      );
+      Notiflix.Notify.warning('Please try again.');
     }
     this.authService.login(this.f['email'].value,this.f['employee_id'].value,this.f['password'].value).pipe(
       first()
       ).subscribe(
         data => {
-                  this.router.navigate(['']);
+                  this.router.navigate(['/']);
                   Notiflix.Notify.success('Login successful! Welcome.');
-                  location.reload()
+                  // location.reload();
+                  this.authenticated = true;
                 },
                 error => {
-                  Notiflix.Notify.failure('Login failed!');
+                  Notiflix.Loading.remove();
+                  Notiflix.Report.failure(
+                    'Login failed!',
+                    'Please confirm that all your details are correct.',
+                    'Okay',
+                  );
+                  Notiflix.Notify.warning('Please try again.');
+
                   this.loading = false;
-                  Notiflix.Notify.warning('Some of your details may be incorrect.');
                 });
     }
     // this.http.post('https://logongo.herokuapp.com/api/login/', this.form.getRawValue(), {

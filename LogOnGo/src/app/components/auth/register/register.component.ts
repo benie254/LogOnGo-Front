@@ -92,12 +92,17 @@ export class RegisterComponent implements OnInit {
         Notiflix.Loading.remove();
         Notiflix.Report.failure(
           'Registration failed!',
-          'Something went wrong with your registration. Please confirm that all your details are correct.',
+          'Please confirm that all your details are correct.',
           'Okay',
         );
         Notiflix.Notify.warning('Please try again.');
         if (this.form.invalid) {
-          Notiflix.Notify.warning('Some of your details may be null or incorrect.');
+          Notiflix.Report.failure(
+            'Login failed!',
+            'Some of your details may be null, incomplete or incorrect.',
+            'Okay',
+          );
+          Notiflix.Notify.warning('Please try again.');
           this.formValid = false;
         }
       });  
