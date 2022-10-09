@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { Log } from 'src/app/classes/log/log';
@@ -48,7 +48,7 @@ export class NavComponent implements OnInit {
 
 
   searchForm = this.fb.group({
-    date: '',
+    date: ['', [Validators.pattern]]
  });
   
 
