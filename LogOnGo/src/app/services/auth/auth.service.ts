@@ -17,8 +17,8 @@ const httpOptions = {
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  apiURLlogin = "https://logongo.herokuapp.com/api/login/"
-  // apiURLlogin = "http://127.0.0.1:8000/api/login/"
+  // apiURLlogin = "https://logongo.herokuapp.com/api/login/"
+  apiURLlogin = "http://127.0.0.1:8000/api/login/"
   
   constructor(private http: HttpClient,) { 
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));

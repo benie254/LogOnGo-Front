@@ -18,6 +18,7 @@ export class PetrolDetailsComponent implements OnInit {
   @Input() logDetails: Log = {
     // id: 0,
     date: '',
+    formatted_date: '',
     eod_reading_lts: 0,
     eod_reading_yesterday: 0,
     total_litres_sold: 0,

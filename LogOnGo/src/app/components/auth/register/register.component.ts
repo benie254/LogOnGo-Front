@@ -33,8 +33,8 @@ export class RegisterComponent implements OnInit {
   });
 
 
-  apiURLreg = "https://logongo.herokuapp.com/api/register/"
-  // apiURLreg = "http://127.0.0.1:8000/api/register/"
+  // apiURLreg = "https://logongo.herokuapp.com/api/register/"
+  apiURLreg = "http://127.0.0.1:8000/api/register/"
   
 
   constructor(

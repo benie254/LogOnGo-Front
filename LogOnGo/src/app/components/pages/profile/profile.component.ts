@@ -39,6 +39,7 @@ export class ProfileComponent implements OnInit {
   logs: Log = {
     id: 0,
     date: '',
+    formatted_date: '',
     eod_reading_lts: 0.00,
     eod_reading_yesterday: 0.00,
     total_litres_sold: 0.00,

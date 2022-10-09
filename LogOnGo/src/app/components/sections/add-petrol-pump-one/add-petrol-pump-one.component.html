@@ -40,6 +40,10 @@
                       Date is required.
                     </div>
                   </div>
+                  <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>Formatted Date</mat-label>
+                    <input matInput placeholder="Formatted date" formControlName="formatted_date" [(ngModel)]="date" type="text" required>
+                  </mat-form-field> 
             </div>
             
             <div class="col-lg-6 rounded padding-2">

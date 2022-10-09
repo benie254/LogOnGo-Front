@@ -7,14 +7,14 @@ import { Fuel } from 'src/app/classes/fuel/fuel';
   providedIn: 'root'
 })
 export class FuelService {
-  apiURLpetrol = 'https://logongo.herokuapp.com/api/petrol-info/';
-  // apiURLpetrol = 'http://127.0.0.1:8000/api/petrol-info/';
+  // apiURLpetrol = 'https://logongo.herokuapp.com/api/petrol-info/';
+  apiURLpetrol = 'http://127.0.0.1:8000/api/petrol-info/';
   apiURLdiesel = 'https://logongo.herokuapp.com/api/diesel-info/';
   // apiURLdiesel = 'http://127.0.0.1:8000/api/diesel-info/';
   apiURLgas = 'https://logongo.herokuapp.com/api/gas-info/';
   // apiURLgas = 'http://127.0.0.1:8000/api/gas-info/';
-  apiURLfuels = 'https://logongo.herokuapp.com/api/our-fuels/';
-  // apiURLfuels = 'http://127.0.0.1:8000/api/our-fuels/';
+  // apiURLfuels = 'https://logongo.herokuapp.com/api/our-fuels/';
+  apiURLfuels = 'http://127.0.0.1:8000/api/our-fuels/';
   apiURLdieselReceived = 'https://logongo.herokuapp.com/api/diesel-received-today/info/';
   // apiURLdieselReceived = 'http://127.0.0.1:8000/api/diesel-received-today/info/';
   apiURLgasReceived = 'https://logongo.herokuapp.com/api/gas-received-today/info/';

@@ -1,4 +1,4 @@
-
+<!-- 
     <div class="container-fluid color-two">
         <br><br><br>
         <div class="row">
@@ -6,8 +6,8 @@
             <ng-template #elseBlockSearch>
                 <h4 class="text-center" >We found 0 results for this... </h4><br>
             </ng-template>
-            <!-- <col class="col-sm-2"> -->
-            <div class="col-md-3"></div>
+            <col class="col-sm-2"> -->
+            <!-- <div class="col-md-3"></div>
             <div class="col-md-6" *ngFor="let log of searched_logs">
                 <app-profile-logcard></app-profile-logcard>
             </div>
@@ -18,6 +18,22 @@
             </div>
             
             
+        </div> -->
+
+        <div class="row mt-5" *ngIf="!logDate">
+            <div class="col-sm-4" *ngFor="let log of searchResults | filter:searchText">
+                <div class="card">
+                    <div class="title" name="date">{{log.date}}</div>
+                    <div name="eod_reading_lts">{{log.eod_reading_lts}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5" *ngIf="logDate">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="title" name="title">{{logDate}}</div>
+                </div>
+            </div>
         </div>
         
         
@@ -25,4 +41,4 @@
         
         
 
-        
+         

@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import * as Notiflix from 'notiflix';
@@ -15,10 +16,11 @@ import { PumpService } from 'src/app/services/pump/pump.service';
 export class AddPetrolPumpOneComponent implements OnInit {
   pumpOne: Pump;
   info: Fuel;
-  date = new Date();
+  date = new Date().toDateString();
   closed: boolean;
   logForm = this.fb.group({
     date: ['', [Validators.required]],
+    formatted_date: '',
     fuel: 0,
     pump: 0,
     eod_reading_lts: [0, [Validators.required]],
@@ -48,6 +50,7 @@ export class AddPetrolPumpOneComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
   addLog() {
     this.logService.addLog(this.logForm.value).subscribe((result) => {

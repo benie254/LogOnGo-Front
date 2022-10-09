@@ -1,6 +1,7 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { Injectable, Input } from '@angular/core';
+// import { NgControl } from '@angular/forms';
+import { catchError, Observable, shareReplay, throwError } from 'rxjs';
 import { LogMpesa } from 'src/app/classes/log-mpesa/log-mpesa';
 import { Log } from 'src/app/classes/log/log';
 
@@ -8,28 +9,33 @@ import { Log } from 'src/app/classes/log/log';
   providedIn: 'root'
 })
 export class LogService {
-  apiURLtodayLogs = 'https://logongo.herokuapp.com/api/logs-today/'
-  // apiURLtodayLogs = 'http://127.0.0.1:8000/api/logs-today/';
+  // @Input('bindQueryParam') paramKey: string;
+  // apiURLtodayLogs = 'https://logongo.herokuapp.com/api/logs-today/'
+  apiURLtodayLogs = 'http://127.0.0.1:8000/api/logs-today/';
   // apiURLuserLogs = 'http://127.0.0.1:8000/api/user-logs/';
   apiURLuserLogs = 'https://logongo.herokuapp.com/api/user-logs/';
-  apiURLallLogs = 'https://logongo.herokuapp.com/api/all-logs/';
-  // apiURLallLogs = 'http://127.0.0.1:8000/api/all-logs/';
+  // apiURLallLogs = 'https://logongo.herokuapp.com/api/all-logs/';
+  apiURLallLogs = 'http://127.0.0.1:8000/api/all-logs/';
   apiURLpetrolLogDetails = 'https://logongo.herokuapp.com/api/petrol-log-details/';
   // apiURLpetrolLogDetails = 'http://127.0.0.1:8000/api/petrol-log-details/';
   // apiURLlogDetails = 'http://127.0.0.1:8000/api/log-details/';
   apiURLlogDetails = 'https://logongo.herokuapp.com/api/log-details/';
-  apiFuelLogs = 'https://logongo.herokuapp.com/api/fuel-logs-today/';
-  // apiFuelLogs = 'http://127.0.0.1:8000/api/fuel-logs-today/';
-  apiFuelLogs2 = 'https://logongo.herokuapp.com/api/fuel-logs-ii-today/';
-  // apiFuelLogs2 = 'http://127.0.0.1:8000/api/fuel-logs-ii-today/';
-  apiFuelLogs3 = 'https://logongo.herokuapp.com/api/fuel-logs-iii-today/';
-  // apiFuelLogs3 = 'http://127.0.0.1:8000/api/fuel-logs-iii-today/';
+  // apiFuelLogs = 'https://logongo.herokuapp.com/api/fuel-logs-today/';
+  apiFuelLogs = 'http://127.0.0.1:8000/api/fuel-logs-today/';
+  // apiFuelLogs2 = 'https://logongo.herokuapp.com/api/fuel-logs-ii-today/';
+  apiFuelLogs2 = 'http://127.0.0.1:8000/api/fuel-logs-ii-today/';
+  // apiFuelLogs3 = 'https://logongo.herokuapp.com/api/fuel-logs-iii-today/';
+  apiFuelLogs3 = 'http://127.0.0.1:8000/api/fuel-logs-iii-today/';
   apiFuelLogs4 = 'https://logongo.herokuapp.com/api/fuel-logs-iv-today/';
   // apiFuelLogs4 = 'http://127.0.0.1:8000/api/fuel-logs-iv-today/';
   apiURLmpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/';
   // apiURLmpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
+  // apiSearch = 'https://logongo.herokuapp.com/api/past-logs/';
+  apiSearch = 'http://127.0.0.1:8000/api/past-logs/';
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    ) { }
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
@@ -87,5 +93,12 @@ export class LogService {
     return this.http.put<Log>(this.apiURLtodayLogs, log_info).pipe(
       catchError(this.handleError)
     );
+  }
+
+  searchLog(): Observable<Log>{
+    return this.http.get<Log>(this.apiURLallLogs)
+  }
+  searchByDate(logDate:string): Observable<Log>{
+    return this.http.get<Log>(this.apiSearch + logDate)
   }
 }

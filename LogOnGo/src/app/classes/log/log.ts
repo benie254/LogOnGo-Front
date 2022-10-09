@@ -1,6 +1,7 @@
 export class Log {
     id?: number;
     date: string;
+    formatted_date: string;
     eod_reading_lts: number;
     eod_reading_yesterday: number;
     total_litres_sold: number;

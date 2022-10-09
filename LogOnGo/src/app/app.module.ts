@@ -152,6 +152,8 @@ import { DieselSummaryComponent } from './components/sections-b/diesel-summary/d
 import { GasSummaryComponent } from './components/sections-b/gas-summary/gas-summary.component';
 import { FooterProfileComponent } from './components/sections/footer-profile/footer-profile.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { BindQueryParamDirective } from './directives/queryParams/bind-query-param.directive';
 
 
 
@@ -276,6 +278,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     DieselSummaryComponent,
     GasSummaryComponent,
     FooterProfileComponent,
+    BindQueryParamDirective,
   ],
   imports: [
     NgxPaginationModule,
@@ -294,6 +297,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
       useFactory: adapterFactory,
     }),
     NgxEditorModule,
+    Ng2SearchPipeModule,
     MatButtonModule,
       MatToolbarModule,
       MatIconModule,
