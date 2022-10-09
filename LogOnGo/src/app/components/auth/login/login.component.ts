@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService:AuthService,
   ) {
-    // if (this.authService.currentUserValue) {
-    //   this.authenticated = true;
-    // }
+    if (this.authService.currentUserValue) {
+      this.authenticated = true;
+    }
   }
 
   ngOnInit(): void {
@@ -72,9 +72,10 @@ export class LoginComponent implements OnInit {
       first()
       ).subscribe(
         data => {
-                  this.router.navigate(['/']);
+          Notiflix.Loading.remove();
+                  // this.router.navigate(['/']);
                   Notiflix.Notify.success('Login successful! Welcome.');
-                  // location.reload();
+                  location.reload();
                   this.authenticated = true;
                 },
                 error => {

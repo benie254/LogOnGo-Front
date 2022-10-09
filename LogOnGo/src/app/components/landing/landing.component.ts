@@ -47,6 +47,7 @@ export class LandingComponent implements OnInit {
     // this.currentUser = this.token.getUser();
     this.currentUser = this.authService.currentUserValue;
     this.refreshUser()
+    
   }
 
   // getDecodedToken(currentUser): any {
