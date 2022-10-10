@@ -117,11 +117,12 @@
             <option value="Petrol" *ngFor="let log of searchResults" [value]="log.formatted_date">                                  
         </datalist>
     </form>
+    <!-- [value]="date | date: 'yyyy-MM-dd'" -->
     <form class="d-flex" role="search">
-      <input class="form-control me-2" type="text" (mouseover)="onKey($event)" (keyup)="onKey($event)" [value]="date | date: 'yyyy-MM-dd'" placeholder="Search by date" aria-label="Search">
-      <button class="btn btn-outline-success" type="button" (click)="search($event.value)">Search</button>
+      <input class="form-control me-2" type="date" (mousemove)="onKey($event)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (mousedown)="onKey($event)" (keyup)="onKey($event)" (mouseleave)="onKey($event)"  placeholder="Search by date" aria-label="Search">
+      <button class="btn btn-outline-success" type="button" (click)="search($event.value)" [disabled]="!values">Search</button>
     </form>
-    value: {{values}}
+    Date selected: {{values | date: 'fullDate'}} 
     <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
       <span class="sr-only"> Searching; please wait... </span>
   </div>
