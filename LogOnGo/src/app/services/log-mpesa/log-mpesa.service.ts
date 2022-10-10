@@ -8,12 +8,12 @@ import { Log } from 'src/app/classes/log/log';
   providedIn: 'root'
 })
 export class LogMpesaService {
-   apiURLallMpesaLogs = 'https://logongo.herokuapp.com/api/all-mpesa-logs/';
-  // apiURLallMpesaLogs = 'http://127.0.0.1:8000/api/all-mpesa-logs/';
-  apiURLtodayMpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/';
-  // apiURLtodayMpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
-  apiURLuserMpesaLogs = 'https://logongo.herokuapp.com/api/user-mpesa-logs/';
-  // apiURLuserMpesaLogs = 'http://127.0.0.1:8000/api/user-mpesa-logs/';
+   apiAllMpesaLogs = 'https://logongo.herokuapp.com/api/all-mpesa-logs/';
+  // apiAllMpesaLogs = 'http://127.0.0.1:8000/api/all-mpesa-logs/';
+  // apiTodayMpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/';
+  apiTodayMpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
+  apiUserMpesaLogs = 'https://logongo.herokuapp.com/api/user-mpesa-logs/';
+  // apiUserMpesaLogs = 'http://127.0.0.1:8000/api/user-mpesa-logs/';
   // apiMpesaLogDetails = 'http://127.0.0.1:8000/api/mpesa-log-details/';
   apiMpesaLogDetails = 'https://logongo.herokuapp.com/api/mpesa-log-details/';
 
@@ -34,20 +34,20 @@ export class LogMpesaService {
   }
 
   getAllMpesaLogs(): Observable<LogMpesa>{
-    return this.http.get<LogMpesa>(this.apiURLallMpesaLogs);
+    return this.http.get<LogMpesa>(this.apiAllMpesaLogs);
   }
   getUserMpesaLogs(id: any): Observable<LogMpesa>{
-    return this.http.get<LogMpesa>(this.apiURLuserMpesaLogs + id);
+    return this.http.get<LogMpesa>(this.apiUserMpesaLogs + id);
   }
-  getTodayMpesaLogs(): Observable<LogMpesa>{
-    return this.http.get<LogMpesa>(this.apiURLtodayMpesaLogs)
+  getTodayMpesaLogs(id: any): Observable<LogMpesa>{
+    return this.http.get<LogMpesa>(this.apiTodayMpesaLogs + id);
   }
   getMpesaLogDetails(id: number): Observable<LogMpesa>{
     return this.http.get<LogMpesa>(this.apiMpesaLogDetails + id)
   }
 
   addMpesaLog(mpesa_info: LogMpesa) {
-    return this.http.post(this.apiURLtodayMpesaLogs, mpesa_info);
+    return this.http.post(this.apiAllMpesaLogs, mpesa_info);
   }
 
   updateMpesaDetails(id,data): Observable<LogMpesa>{

@@ -6,15 +6,16 @@ import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogMpesaService } from 'src/app/services/log-mpesa/log-mpesa.service';
 
 @Component({
-  selector: 'app-no-mpesalogs',
-  templateUrl: './no-mpesalogs.component.html',
-  styleUrls: ['./no-mpesalogs.component.css']
+  selector: 'app-diesel-no-mpesa',
+  templateUrl: './diesel-no-mpesa.component.html',
+  styleUrls: ['./diesel-no-mpesa.component.css']
 })
-export class NoMpesalogsComponent implements OnInit {
+export class DieselNoMpesaComponent implements OnInit {
+
   closed: boolean;
   currentUser = this.authService.currentUserValue;
   mpesaForm: FormGroup;
-  petrolInfo: any;
+  dieselInfo: any;
   
 
   constructor(
@@ -24,9 +25,9 @@ export class NoMpesalogsComponent implements OnInit {
     private authService:AuthService,
     private fuelService:FuelService,
   ) {
-    this.fuelService.getPetrolInfo().subscribe(
+    this.fuelService.getDieselInfo().subscribe(
       data => {
-        this.petrolInfo = data;
+        this.dieselInfo = data;
       }
     )
    }

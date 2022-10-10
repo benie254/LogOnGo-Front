@@ -1,5 +1,7 @@
 export class LogMpesa {
     date: string;
+    fuel: number;
+    fuel_name: string;
     transaction_number: string; 
     customer_name: string; 
     customer_phone_number: number; 

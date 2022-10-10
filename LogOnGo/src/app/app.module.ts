@@ -154,6 +154,10 @@ import { FooterProfileComponent } from './components/sections/footer-profile/foo
 import { NgxEditorModule } from 'ngx-editor';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BindQueryParamDirective } from './directives/queryParams/bind-query-param.directive';
+import { DieselMpesaComponent } from './components/sections/diesel-mpesa/diesel-mpesa.component';
+import { DieselNoMpesaComponent } from './components/sections/diesel-no-mpesa/diesel-no-mpesa.component';
+import { GasNoMpesaComponent } from './components/sections/gas-no-mpesa/gas-no-mpesa.component';
+import { GasMpesaComponent } from './components/sections/gas-mpesa/gas-mpesa.component';
 
 
 
@@ -279,6 +283,10 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     GasSummaryComponent,
     FooterProfileComponent,
     BindQueryParamDirective,
+    DieselMpesaComponent,
+    DieselNoMpesaComponent,
+    GasNoMpesaComponent,
+    GasMpesaComponent,
   ],
   imports: [
     NgxPaginationModule,

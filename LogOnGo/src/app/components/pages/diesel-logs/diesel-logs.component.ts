@@ -139,7 +139,7 @@ export class DieselLogsComponent implements OnInit {
         this.fuels = data;
       }
     )
-    this.mpesaService.getTodayMpesaLogs().subscribe(
+    this.mpesaService.getTodayMpesaLogs(this.id).subscribe(
       (data) => {
         this.mpesa_logs = data;
       }

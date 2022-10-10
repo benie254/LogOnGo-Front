@@ -62,7 +62,8 @@ export class PetrolLogsComponent implements OnInit {
   logs_four: Log;
   mpesa: LogMpesa;
   id: number;
-  mpesa_logs: LogMpesa;
+  mpesa_logs: any;
+  noMpesa: boolean;
   pumpOne: Pump; 
   pumpTwo: Pump;
   pumpThree: Pump;
@@ -127,11 +128,11 @@ export class PetrolLogsComponent implements OnInit {
         this.fuels = data;
       }
     )
-    this.mpesaService.getTodayMpesaLogs().subscribe(
-      (data) => {
-        this.mpesa_logs = data;
-      }
-    )
+    // this.mpesaService.getTodayMpesaLogs(this.id).subscribe(
+    //   (data) => {
+    //     this.mpesa_logs = data;
+    //   }
+    // )
     
 
     
@@ -347,8 +348,29 @@ export class PetrolLogsComponent implements OnInit {
   close4(){
     this.minimized4 = true;
   }
-  toggleMpesaLog(){
+  toggleMpesa(){
     this.closed = true;
+  }
+  closeMpesa(){
+    this.closed = false;
+  }
+  getMpesa(){
+    this.mpesaService.getTodayMpesaLogs(this.id).subscribe(
+      (data) => {
+        this.mpesa_logs = data;
+        Notiflix.Notify.success('mpesa success')
+        console.warn("mpesa data:",this.mpesa_logs)
+        this.noMpesa = false;
+        if (this.mpesa_logs == undefined || this.mpesa_logs.length == undefined || this.mpesa_logs && this.mpesa_logs.length == 0 ){
+          this.noMpesa = true;
+        }
+      },
+      err => {
+        Notiflix.Notify.failure('couldnt get mpesa')
+        this.noMpesa = true;
+        console.warn("error:",err)
+      }
+    )
   }
 
 }

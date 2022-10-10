@@ -76,14 +76,10 @@
         <div class="col-lg-6 full-height rounded black padding-2">
             <div class="bg-light shadow rounded padding-2">
                 <h2 class="text-center">Mpesa</h2>
-            <div *ngIf="mpesa_logs else elseBlockMpesa">
-                <app-mpesa-logs></app-mpesa-logs>
-            </div>
             <div>
-                <ng-template #elseBlockMpesa>
-                    <app-no-mpesalogs></app-no-mpesalogs>
-                </ng-template>
+                <app-diesel-mpesa></app-diesel-mpesa>
             </div>
+           
             </div>
             
         </div>
