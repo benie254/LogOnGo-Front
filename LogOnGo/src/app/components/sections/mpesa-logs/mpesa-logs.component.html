@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="mpesa_logs">
   <div class="card margin-top color-two" *ngFor="let mpesa of mpesa_logs">
                      
     <h5 class="card-header text-center">{{mpesa.date}}</h5>
@@ -35,3 +35,37 @@
     </div>
     
 </div>
+
+<div *ngIf="mNull">
+  <div class="bg-light shadow rounded padding-2">
+      <h2 class="text-center">Mpesa</h2>
+      <div class="row">
+          <div class="col-sm-5"></div>
+          <div class="col-sm-5">
+              <span (click)="close()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+          </div>
+          <div class="col-sm-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <div class="card color-one">
+            <div class="card-body">
+                <p class="card-text">Your mpesa logs will appear here.</p>
+                <p class="card-text"><a (click)="toggleMpesa()" type="button" class="btn btn-sm btn-light btn-outline-dark">Record mpesa logs now?</a></p>
+            </div>
+            
+        </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+        
+        
+        <div *ngIf="show">
+            
+          <app-no-mpesalogs></app-no-mpesalogs>
+        </div>
+      
+          
+      </div>
+  </div>

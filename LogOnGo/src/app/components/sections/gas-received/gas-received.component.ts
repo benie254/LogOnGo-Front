@@ -26,8 +26,6 @@ export class GasReceivedComponent implements OnInit {
     this.fuelService.addFuelReceived(gas_received).subscribe((result) => {
       console.warn('result', result);
       Notiflix.Notify.success('Added successfully')
-      // this.notifService.submitSuccess('success','Gas received added successfully!')
-      // this.notifService.showSuccess("Data posted successfully !!", "Notification")
     },
     err => {
       Notiflix.Notify.failure('Add failed!')

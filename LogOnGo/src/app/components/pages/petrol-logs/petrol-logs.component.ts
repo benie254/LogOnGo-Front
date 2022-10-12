@@ -31,6 +31,10 @@ export class PetrolLogsComponent implements OnInit {
   minimized2: boolean = false;
   minimized3: boolean = false;
   minimized4: boolean = false;
+  mNull: boolean;
+  empty: boolean;
+  show: boolean;
+  // statusText: any;
 
 
   logs: Log = {
@@ -86,6 +90,8 @@ export class PetrolLogsComponent implements OnInit {
   pTwoHidden: boolean;
   pThreeHidden: boolean;
   pFourHidden: boolean;
+  errorM: any; 
+  message = '';
 
   
 
@@ -231,17 +237,18 @@ export class PetrolLogsComponent implements OnInit {
   }
 
   ngOnInit():void {
-    this.route.params.subscribe(params => this.getPetrolLogs(params['id']))
-    
+    this.route.params.subscribe(params => this.getPetrolLogs(params['id']));
+    // this.route.params.subscribe(params => this.getMpesa(params['id']));
     this.selectPetrol();
     this.selectDiesel();
     this.selectGas();
+    
     // this.getPetrolReceived();
     // this.getPetrolReceivedInfo();
 
-    // this.getPetrolLogs(
-    //   this.route.snapshot.params['id']
-    // );
+    
+    this.id =  this.route.snapshot.params['id']
+  
     
 
     
@@ -349,28 +356,13 @@ export class PetrolLogsComponent implements OnInit {
     this.minimized4 = true;
   }
   toggleMpesa(){
-    this.closed = true;
+    // this.closed = true;
+    this.show = true;
   }
   closeMpesa(){
     this.closed = false;
+    this.show = false;
   }
-  getMpesa(){
-    this.mpesaService.getTodayMpesaLogs(this.id).subscribe(
-      (data) => {
-        this.mpesa_logs = data;
-        Notiflix.Notify.success('mpesa success')
-        console.warn("mpesa data:",this.mpesa_logs)
-        this.noMpesa = false;
-        if (this.mpesa_logs == undefined || this.mpesa_logs.length == undefined || this.mpesa_logs && this.mpesa_logs.length == 0 ){
-          this.noMpesa = true;
-        }
-      },
-      err => {
-        Notiflix.Notify.failure('couldnt get mpesa')
-        this.noMpesa = true;
-        console.warn("error:",err)
-      }
-    )
-  }
+ 
 
 }

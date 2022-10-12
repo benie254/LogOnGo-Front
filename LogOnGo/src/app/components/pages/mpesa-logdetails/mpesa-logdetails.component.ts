@@ -27,6 +27,8 @@ export class MpesaLogdetailsComponent implements OnInit {
     amount: [0, [Validators.required]],
     amount_transferred_to_bank: [0, [Validators.required]],
  });
+ error: any;
+ message = '';
 
 
   constructor(
@@ -69,6 +71,9 @@ export class MpesaLogdetailsComponent implements OnInit {
         Notiflix.Notify.success('Get mpesa details success')
       },
       err => {
+        this.error = err;
+        this.message = this.error.statusText;
+        Notiflix.Notify.failure(this.message);
         console.warn(err)
         Notiflix.Notify.failure('Something went wrong!')
       }

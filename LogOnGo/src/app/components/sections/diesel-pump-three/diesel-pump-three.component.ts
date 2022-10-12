@@ -50,12 +50,10 @@ export class DieselPumpThreeComponent implements OnInit {
       this.logs = data
       // this.ngOnInit();
       console.warn('diesel_info_today:',data)
-      Notiflix.Notify.success('Get success!');
       
     },
     error => {
       console.log(error)
-      Notiflix.Notify.failure('Something went wrong!');
     });
   }
 

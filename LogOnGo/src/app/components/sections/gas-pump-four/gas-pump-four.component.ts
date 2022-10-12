@@ -50,12 +50,10 @@ export class GasPumpFourComponent implements OnInit {
       this.logs = data
       // this.ngOnInit();
       console.warn('gas_info_today:',data)
-      Notiflix.Notify.success('Get success!');
       
     },
     error => {
       console.log(error)
-      Notiflix.Notify.failure('Something went wrong!');
     });
   }
   toggleLog(){

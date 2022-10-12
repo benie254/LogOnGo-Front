@@ -25,14 +25,12 @@ export class GasMpesaComponent implements OnInit {
       (data) => {
         this.mpesa_logs = data;
         this.present = true;
-        Notiflix.Notify.success('mpesa success')
         console.warn(this.mpesa_logs)
         if (this.mpesa_logs.length == undefined || this.mpesa_logs && this.mpesa_logs == 0 ){
           this.noMpesa = true;
         }
       },
       err => {
-        Notiflix.Notify.failure('couldnt get mpesa')
       }
     )
    }

@@ -15,6 +15,10 @@ export class NoMpesalogsComponent implements OnInit {
   currentUser = this.authService.currentUserValue;
   mpesaForm: FormGroup;
   petrolInfo: any;
+  today = new Date().toISOString();
+  error: any; 
+  message = '';
+  
   
 
   constructor(
@@ -29,7 +33,9 @@ export class NoMpesalogsComponent implements OnInit {
         this.petrolInfo = data;
       }
     )
+    
    }
+   
 
   ngOnInit(): void {
     this.mpesaForm = this.fb.group({
@@ -37,7 +43,7 @@ export class NoMpesalogsComponent implements OnInit {
       fuel: 0,
       transaction_number: ['', [Validators.required]],
       customer_name: ['', [Validators.required]],
-      customer_phone_number: [0, [Validators.required]],
+      customer_phone_number: [254, [Validators.required]],
       amount: [0, [Validators.required]],
       amount_transferred_to_bank: [0, [Validators.required]],
       logged_by: '',
@@ -52,7 +58,9 @@ export class NoMpesalogsComponent implements OnInit {
       location.reload();
     }, 
     err => {
-      Notiflix.Notify.failure('Something went wrong!');
+      this.error = err;
+      this.message = this.error.statusText;
+      Notiflix.Notify.failure(this.message);
       Notiflix.Notify.warning('Please try again.');
     });
   }

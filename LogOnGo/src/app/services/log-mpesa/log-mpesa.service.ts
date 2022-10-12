@@ -8,14 +8,14 @@ import { Log } from 'src/app/classes/log/log';
   providedIn: 'root'
 })
 export class LogMpesaService {
-   apiAllMpesaLogs = 'https://logongo.herokuapp.com/api/all-mpesa-logs/';
-  // apiAllMpesaLogs = 'http://127.0.0.1:8000/api/all-mpesa-logs/';
+  //  apiAllMpesaLogs = 'https://logongo.herokuapp.com/api/all-mpesa-logs/';
+  apiAllMpesaLogs = 'http://127.0.0.1:8000/api/all-mpesa-logs/';
   // apiTodayMpesaLogs = 'https://logongo.herokuapp.com/api/mpesa-logs-today/';
   apiTodayMpesaLogs = 'http://127.0.0.1:8000/api/mpesa-logs-today/';
   apiUserMpesaLogs = 'https://logongo.herokuapp.com/api/user-mpesa-logs/';
   // apiUserMpesaLogs = 'http://127.0.0.1:8000/api/user-mpesa-logs/';
-  // apiMpesaLogDetails = 'http://127.0.0.1:8000/api/mpesa-log-details/';
-  apiMpesaLogDetails = 'https://logongo.herokuapp.com/api/mpesa-log-details/';
+  apiMpesaLogDetails = 'http://127.0.0.1:8000/api/mpesa-log-details/';
+  // apiMpesaLogDetails = 'https://logongo.herokuapp.com/api/mpesa-log-details/';
 
   constructor(private http:HttpClient) { }
 
@@ -39,7 +39,7 @@ export class LogMpesaService {
   getUserMpesaLogs(id: any): Observable<LogMpesa>{
     return this.http.get<LogMpesa>(this.apiUserMpesaLogs + id);
   }
-  getTodayMpesaLogs(id: any): Observable<LogMpesa>{
+  getTodayMpesaLogs(id: number): Observable<LogMpesa>{
     return this.http.get<LogMpesa>(this.apiTodayMpesaLogs + id);
   }
   getMpesaLogDetails(id: number): Observable<LogMpesa>{
