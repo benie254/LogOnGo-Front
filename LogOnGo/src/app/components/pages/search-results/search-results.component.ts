@@ -8,6 +8,9 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent implements OnInit {
+  panelOpenState = false;
+  cleared: boolean;
+  hidden: boolean;
   searched_logs: any; 
   searched_date: any;
   searchResults: any;
@@ -17,6 +20,7 @@ export class SearchResultsComponent implements OnInit {
   dateResults: any;
   id: number;
   values = '';
+  mValue: any;
   noInput: boolean = true;
   fetchLogSuccess: boolean = false; 
   noLog: boolean = false;
@@ -26,6 +30,10 @@ export class SearchResultsComponent implements OnInit {
   message = '';
   empty: boolean;
   noResults: boolean;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 5;
+  tableSizes: any = [2, 5, 10, 15];
 
   searchForm = this.fb.group({
     search: ['', [Validators.pattern]]
@@ -55,6 +63,18 @@ export class SearchResultsComponent implements OnInit {
     //   this.noInput = false;
     // }
   }
+  clearValues(){
+    document.forms["searchForm"].reset();
+    this.values = '';
+    this.cleared = true;
+  }
+  unClear(){
+    this.cleared = false;
+  }
+  hide(){
+    this.hidden = true;
+  }
+
   search(logDate: string): void{
     this.fetchLogSuccess = false;
     this.noLog = false;
@@ -106,6 +126,15 @@ export class SearchResultsComponent implements OnInit {
         Notiflix.Notify.failure('search failed!')
       }
     )
+  }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.searchEverything();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.searchEverything();
   }
   dateValue(eod: any){
     this.eOD = eod;
