@@ -4,19 +4,18 @@ import { Observable } from 'rxjs';
 import { Announcement } from 'src/app/classes/announcement/announcement';
 import { Profile } from 'src/app/classes/profile/profile';
 
+// const apiURL = 'https://logongo.herokuapp.com/api/';
+const apiURL = 'http://127.0.0.1:8000/api/';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  apiURL = 'https://logongo.herokuapp.com/api/user-profile/';
-  // apiURL = 'http://127.0.0.1:8000/api/user-profile/';
-  apiURL2 = 'https://logongo.herokuapp.com/api/gas-info/';
-  // apiURL2 = 'http://127.0.0.1:8000/api/gas-info/';
-  apiURL3 = 'https://logongo.herokuapp.com/api/our-fuels/';
-  // apiURL3 = 'http://127.0.0.1:8000/api/our-fuels/';
-  apiURLannouncements = 'https://logongo.herokuapp.com/api/announcements/';
-  // apiURLannouncements = 'http://127.0.0.1:8000/api/announcements/';
+  apiURL = apiURL + 'user-profile/';
+  apiURL2 = apiURL + 'gas-info/';
+  apiURL3 = apiURL + 'our-fuels/';
+  apiURLannouncements = apiURL + 'announcements/';
 
   constructor(private http:HttpClient) { }
 

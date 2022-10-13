@@ -5,7 +5,8 @@ import { User } from 'src/app/classes/user/user';
 import { map } from 'rxjs/operators';
 import jwtDecode from 'jwt-decode';
 
-const AUTH_API = 'http://127.0.0.1:8000';
+const AUTH_API = 'http://127.0.0.1:8000/api/';
+// const AUTH_API = 'https://logongo.herokuapp.com/api/';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -17,8 +18,7 @@ const httpOptions = {
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  // apiURLlogin = "https://logongo.herokuapp.com/api/login/"
-  apiURLlogin = "http://127.0.0.1:8000/api/login/"
+  apiURLlogin = AUTH_API + "login/"
   
   constructor(private http: HttpClient,) { 
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -62,7 +62,7 @@ export class AuthService {
   //   }, httpOptions);
   // }
   register(username: string, email: string, first_name: string, last_name: string, petrol_station: string, password: string): Observable<any> {
-    return this.http.post('http://127.0.0.1:8000/api/register/', {
+    return this.http.post(AUTH_API + 'register/', {
       username,
       email,
       first_name,
@@ -76,7 +76,7 @@ export class AuthService {
     console.log('this.currentUserValue.refreshToken')
     console.log(this.currentUserValue.refreshToken)
     const refreshToken = this.currentUserValue.refreshToken
-    return this.http.post<any>("https://logongo.herokuapp.com/api/token/refresh/", { 'refresh': refreshToken })
+    return this.http.post<any>(AUTH_API + "token/refresh/", { 'refresh': refreshToken })
         .pipe(
             map(response => {
                 // login successful if there's a jwt token in the response

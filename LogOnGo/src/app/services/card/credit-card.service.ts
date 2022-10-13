@@ -4,18 +4,18 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { CreditCard } from 'src/app/classes/card/credit-card'; 
 import { Log } from 'src/app/classes/log/log';
 
+// const apiURL = 'https://logongo.herokuapp.com/api/';
+const apiURL = 'http://127.0.0.1:8000/api/';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CreditCardService {
-   apiAllCreditCardLogs = 'https://logongo.herokuapp.com/api/all-credit-card-logs/';
-  // apiAllCreditCardLogs = 'http://127.0.0.1:8000/api/all-credit-card-logs/';
-  apiTodayCreditCardLogs = 'https://logongo.herokuapp.com/api/credit-card-logs-today/';
-  // apiTodayCreditCardLogs = 'http://127.0.0.1:8000/api/credit-card-logs-today/';
-  apiUserCreditCardLogs = 'https://logongo.herokuapp.com/api/user-credit-card-logs/';
-  // apiUserCreditCardLogs = 'http://127.0.0.1:8000/api/user-credit-card-logs/';
-  // apiCreditCardLogDetails = 'http://127.0.0.1:8000/api/credit-card-log-details/';
-  apiCreditCardLogDetails = 'https://logongo.herokuapp.com/api/credit-card-log-details/';
+
+  apiAllCreditCardLogs = apiURL + 'all-credit-card-logs/';
+  apiTodayCreditCardLogs = apiURL + 'credit-card-logs-today/';
+  apiUserCreditCardLogs = apiURL + 'user-credit-card-logs/';
+  apiCreditCardLogDetails = apiURL + 'credit-card-log-details/';
 
   constructor(private http:HttpClient) { }
 

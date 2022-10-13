@@ -109,50 +109,7 @@ export class NavComponent implements OnInit {
     // this.route.params.subscribe(params => this.getByDate(params['id']))
   }
 
-  onKey(event: any){
-    this.values = event.target.value; 
-    this.fetchLogSuccess = false;
-    this.noLog = false;
-    // if (this.values == ''){
-    //   this.noInput = true;
-    // } else {
-    //   this.noInput = false;
-    // }
-  }
-  search(logDate: string): void{
-    this.fetchLogSuccess = false;
-    this.noLog = false;
-    logDate = this.values.trim();
-    if (!logDate) { return; }
-    this.logService.searchByDate(logDate);
-    this.isLoading= true;
-    this.getByDate(logDate);
-  }
-  getByDate(logDate): void{
-    console.log("log date:",logDate)
-    Notiflix.Loading.hourglass('Searching...')
-    this.logService.searchByDate(logDate).subscribe( data => {
-        this.dateResults = data;
-        Notiflix.Loading.remove();
-        Notiflix.Notify.success('Search success')
-        if (this.log == undefined || this.log && this.log.length == 0){
-          this.noLog = true;
-        } else {
-          this.noLog = false;
-        }
-      },
-      err => {
-        Notiflix.Loading.remove();
-        Notiflix.Notify.failure('search failed!')
-      }
-    );
-    setTimeout(
-      function(){
-        this.isLoading= false;
-        this.fetchLogSuccess = true;
-      }.bind(this),1000
-    );
-  }
+  
   
 
   profileDetails(){

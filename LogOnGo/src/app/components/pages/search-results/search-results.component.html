@@ -1,42 +1,99 @@
-<!-- 
-    <div class="container-fluid color-two">
-        <br><br><br>
-        <div class="row">
-            <h2 class="text-center" *ngIf="searched_logs; else elseBlockSearch">We found {{searched_logs}} results for the date '{{searched_date}}'</h2>
-            <ng-template #elseBlockSearch>
-                <h4 class="text-center" >We found 0 results for this... </h4><br>
-            </ng-template>
-            <col class="col-sm-2"> -->
-            <!-- <div class="col-md-3"></div>
-            <div class="col-md-6" *ngFor="let log of searched_logs">
-                <app-profile-logcard></app-profile-logcard>
-            </div>
-            <div class="col-md-3">
-            </div> 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-md-5">
+            <form class="form" id="f1">
+                <h1>Search Filter: Day or Month</h1>
+                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Enter Month or Day to start searching..." (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText">
+                <datalist id="datalistOptions">
+                    <option value="Petrol" *ngFor="let log of searchResults" [value]="log.formatted_date">                                  
+                </datalist>
+                <div>
+                    <p>To search for logs of a month like October, enter <span><code>Oct</code> (its abbreviation)</span></p>
+                    <p>To search for logs of a day like Monday, enter <span><code>Mon</code> (its abbreviation)</span></p>
+                    <p><span class="bg-danger">Please note that the results from this search filter are not the most accurate.</span></p>
+                    <p>Why?</p>
+                    <p><span class="bg-danger">If you search for a day like <span><code>Mon</code>,</span> the server will return <strong>all</strong> records that have the day 'Mon'.</span></p>
+                    <p>For more accurate results, use the <span class="bg-info padding-2 rounded">Specific Search</span></p>
+                </div>
+                <div class="row mt-5" *ngIf="eOD">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="title" name="title"><h6>Did you exit the search filter?</h6></div>
+                            <p>If you were not done searching, you can hit <button (click)="refresh()">this button</button> to reset</p>
+                        </div>
+                    </div>
+                  </div>
+            </form>
            
+           
+            <div class="row mt-5" *ngIf="!eOD">
                 
-            </div>
-            
-            
-        </div> -->
+                    <h2>All Logs</h2>
+                <h6>We will filter your search against all log records</h6>
+                <div class="col-sm-4" *ngFor="let log of searchResults | filter:searchText">
+                    <div class="card">
+                      <div name="formatted_date">{{log.formatted_date}}</div>
+                        <div class="title" name="user">{{log.user}}</div>
+                        <div name="eod_reading_lts">{{log.eod_reading_lts}}</div>
+                    </div>
+                </div>
+              </div>
+              
+              
+              
+        </div>
+        <div class="col-md-5">
+            <form class="form" role="search">
+                <h1>Specific Search</h1>
+                <input class="form-control me-2" type="date" (mousemove)="onKey($event)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (mousedown)="onKey($event)" (keyup)="onKey($event)" (mouseleave)="onKey($event)"  placeholder="Search by date" aria-label="Search">
+                
+                <div>
+                    <p *ngIf="values">{{values | date: 'fullDate'}} <span class="bg-primary padding-2 rounded">Selected!</span> <span><button class="margin btn btn-md btn-outline-primary" type="button" (click)="search($event.value)" [disabled]="!values"><i class="fa-solid fa-magnifying-glass"></i> Now</button></span></p>
+                </div>
+                <div>
+                    <p>This search tool will request the server for all records of a specific date.</p>
+                    <p>All you have to do is enter the date you would like to search, and hit the search button</p>
+                    <p>If no logs have been posted for the day you searched, the server will return an empty response.</p>
+                    <p>To reset the search and start a new one, simply pass the mouse (PC) or your hand (mobile) over the date picker</p>
+                </div>
+              </form>
+              
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
 
-        <div class="row mt-5" *ngIf="!logDate">
-            <div class="col-sm-4" *ngFor="let log of searchResults | filter:searchText">
-                <div class="card">
-                    <div class="title" name="date">{{log.date}}</div>
-                    <div name="eod_reading_lts">{{log.eod_reading_lts}}</div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-5" *ngIf="logDate">
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="title" name="title">{{logDate}}</div>
-                </div>
-            </div>
-        </div>
+       
+        <!-- [value]="date | date: 'yyyy-MM-dd'" -->
         
         
+        <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
+          <span class="sr-only"> Searching; please wait... </span>
+      </div>
+      <div *ngIf="dateResults">
+        <div *ngIf="!empty">
+            We found the following logs for the date {{values}}
+            <ul *ngFor="let log of dateResults"> 
+                <li>date {{log.formatted_date}}</li>
+                <li>eod {{log.eod_reading_lts}}</li>
+              </ul>
+        </div>
+        
+        <div *ngIf="empty">
+            <h1>Sorry, we didn't find any logs for the date {{values}}</h1>
+        </div>
+      </div>
+      
+      <div *ngIf="error">
+        <h1>Sorry, we didn't find any results for the date {{values}}</h1>
+        <p>The server responded with this message: {{message}}</p>
+      </div>
+        
+        
+  
+    
+
 
         
         

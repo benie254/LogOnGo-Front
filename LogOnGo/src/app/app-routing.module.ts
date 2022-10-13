@@ -25,6 +25,7 @@ import { PetrolLogsComponent } from './components/pages/petrol-logs/petrol-logs.
 import { PrintLogsComponent } from './components/pages/print-logs/print-logs.component';
 import { PrintMpesaComponent } from './components/pages/print-mpesa/print-mpesa.component';
 import { ProfileComponent } from './components/pages/profile/profile.component';
+import { SearchResultsComponent } from './components/pages/search-results/search-results.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'email-report/:id', component: EmailReportComponent },
   { path: 'mpesa-report/:id', component: PrintMpesaComponent },
   { path: 'email-mpesa-report/:id', component: EmailMpesareportComponent },
+  { path: 'search', component: SearchResultsComponent },
 ];
 
 @NgModule({

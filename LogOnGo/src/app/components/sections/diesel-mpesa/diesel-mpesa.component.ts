@@ -19,6 +19,10 @@ export class DieselMpesaComponent implements OnInit {
   error: any;
   message = '';
   mNull: boolean;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 5;
+  tableSizes: any = [2, 5, 10, 15];
   constructor(
     private mpesaService:LogMpesaService,
     private route:ActivatedRoute,
@@ -61,8 +65,18 @@ export class DieselMpesaComponent implements OnInit {
         this.error = err;
         this.message = this.error.statusText;
         console.warn("error:",err)
+        Notiflix.Notify.failure(this.message)
       }
     )
+  }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getMpesa(this.id);
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.getMpesa(this.id);
   }
   toggleMpesa(){
     this.show = true;

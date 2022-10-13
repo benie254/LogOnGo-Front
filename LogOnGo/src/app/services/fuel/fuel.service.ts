@@ -3,46 +3,31 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 
+// const apiURL = 'https://logongo.herokuapp.com/api/';
+const apiURL = 'http://127.0.0.1:8000/api/';
+
 @Injectable({
   providedIn: 'root'
 })
 export class FuelService {
-  // apiURLpetrol = 'https://logongo.herokuapp.com/api/petrol-info/';
-  apiURLpetrol = 'http://127.0.0.1:8000/api/petrol-info/';
-  // apiURLdiesel = 'https://logongo.herokuapp.com/api/diesel-info/';
-  apiURLdiesel = 'http://127.0.0.1:8000/api/diesel-info/';
-  apiURLgas = 'https://logongo.herokuapp.com/api/gas-info/';
-  // apiURLgas = 'http://127.0.0.1:8000/api/gas-info/';
-  // apiURLfuels = 'https://logongo.herokuapp.com/api/our-fuels/';
-  apiURLfuels = 'http://127.0.0.1:8000/api/our-fuels/';
-  apiURLdieselReceived = 'https://logongo.herokuapp.com/api/diesel-received-today/info/';
-  // apiURLdieselReceived = 'http://127.0.0.1:8000/api/diesel-received-today/info/';
-  apiURLgasReceived = 'https://logongo.herokuapp.com/api/gas-received-today/info/';
-  // apiURLgasReceived = 'http://127.0.0.1:8000/api/gas-received-today/info/';
-  apiURLpetrolReceived = 'https://logongo.herokuapp.com/api/petrol-received-today/info/';
-  // apiURLpetrolReceived = 'http://127.0.0.1:8000/api/petrol-received-today/info/';
-  // apiURLlastFuelReceived = 'http://127.0.0.1:8000/api/total-fuel-received-today/';
-  apiURLlastFuelReceived = 'https://logongo.herokuapp.com/api/total-fuel-received-today/';
-  apiURLallFuelsReceived = 'https://logongo.herokuapp.com/api/all-fuel-received-today/';
-  // apiURLallFuelsReceived = 'http://127.0.0.1:8000/api/all-fuel-received-today/';
-  apiTotalPetrolReceived = 'https://logongo.herokuapp.com/api/total-petrol-received-today/';
-  // apiTotalPetrolReceived = 'http://127.0.0.1:8000/api/total-petrol-received-today/';
-  apiTotalDieselReceived = 'https://logongo.herokuapp.com/api/total-diesel-received-today/';
-  // apiTotalDieselReceived = 'http://127.0.0.1:8000/api/total-diesel-received-today/';
-  apiTotalGasReceived = 'https://logongo.herokuapp.com/api/total-gas-received-today/';
-  // apiTotalGasReceived = 'http://127.0.0.1:8000/api/total-gas-received-today/';
-  apiPetrolReceivedInfo = 'https://logongo.herokuapp.com/api/petrol-received-today/info/';
-  // apiPetrolReceivedInfo = 'http://127.0.0.1:8000/api/petrol-received-today/info/';
-  apiDieselReceivedInfo = 'https://logongo.herokuapp.com/api/diesel-received-today/info/';
-  // apiDieselReceivedInfo = 'http://127.0.0.1:8000/api/diesel-received-today/info/';
-  apiGasReceivedInfo = 'https://logongo.herokuapp.com/api/gas-received-today/info/';
-  // apiGasReceivedInfo = 'http://127.0.0.1:8000/api/gas-received-today/info/';
-  apiPetrolSummary = 'https://logongo.herokuapp.com/api/petrol-summary-today/';
-  // apiPetrolSummary = 'http://127.0.0.1:8000/api/petrol-summary-today/';
-  apiDieselSummary = 'https://logongo.herokuapp.com/api/diesel-summary-today/';
-  // apiDieselSummary = 'http://127.0.0.1:8000/api/diesel-summary-today/';
-  apiGasSummary = 'https://logongo.herokuapp.com/api/gas-summary-today/';
-  // apiGasSummary = 'http://127.0.0.1:8000/api/gas-summary-today/';
+  apiURLpetrol = apiURL + 'petrol-info/';
+  apiURLdiesel = apiURL + 'diesel-info/';
+  apiURLgas = apiURL + 'gas-info/';
+  apiURLfuels = apiURL + 'our-fuels/';
+  apiURLdieselReceived = apiURL + 'diesel-received-today/info/';
+  apiURLgasReceived = apiURL + 'gas-received-today/info/';
+  apiURLpetrolReceived = apiURL + 'petrol-received-today/info/';
+  apiURLlastFuelReceived = apiURL + 'total-fuel-received-today/';
+  apiURLallFuelsReceived = apiURL + 'all-fuel-received-today/';
+  apiTotalPetrolReceived = apiURL + 'total-petrol-received-today/';
+  apiTotalDieselReceived = apiURL + 'total-diesel-received-today/';
+  apiTotalGasReceived = apiURL + 'total-gas-received-today/';
+  apiPetrolReceivedInfo = apiURL + 'petrol-received-today/info/';
+  apiDieselReceivedInfo = apiURL + 'diesel-received-today/info/';
+  apiGasReceivedInfo = apiURL + 'gas-received-today/info/';
+  apiPetrolSummary = apiURL + 'petrol-summary-today/';
+  apiDieselSummary = apiURL + 'diesel-summary-today/';
+  apiGasSummary = apiURL + 'gas-summary-today/';
 
 
 

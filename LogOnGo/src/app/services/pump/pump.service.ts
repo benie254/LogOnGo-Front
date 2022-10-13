@@ -3,18 +3,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Pump } from 'src/app/classes/pump/pump';
 
+// const apiURL = 'https://logongo.herokuapp.com/api/';
+const apiURL = 'http://127.0.0.1:8000/api/';
+
 @Injectable({
   providedIn: 'root'
 })
 export class PumpService {
-  apiPumpOneInfo = 'https://logongo.herokuapp.com/api/pump-one-info/';
-  // apiPumpOneInfo = 'http://127.0.0.1:8000/api/pump-one-info/';
-  apiPumpTwoInfo = 'https://logongo.herokuapp.com/api/pump-two-info/';
-  // apiPumpTwoInfo = 'http://127.0.0.1:8000/api/pump-two-info/';
-  apiPumpThreeInfo = 'https://logongo.herokuapp.com/api/pump-three-info/';
-  // apiPumpThreeInfo = 'http://127.0.0.1:8000/api/pump-three-info/';
-  apiPumpFourInfo = 'https://logongo.herokuapp.com/api/pump-four-info/';
-  // apiPumpFourInfo = 'http://127.0.0.1:8000/api/pump-four-info/';
+  apiPumpOneInfo = apiURL + 'pump-one-info/';
+  apiPumpTwoInfo = apiURL + 'pump-two-info/';
+  apiPumpThreeInfo = apiURL + 'pump-three-info/';
+  apiPumpFourInfo = apiURL + 'pump-four-info/';
 
   constructor(
     private http:HttpClient,

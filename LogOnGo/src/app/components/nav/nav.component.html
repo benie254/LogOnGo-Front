@@ -111,58 +111,13 @@
           </ul>
         </li>
       </ul>
-      <form class="form-mt-6">
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText">
-        <datalist id="datalistOptions">
-            <option value="Petrol" *ngFor="let log of searchResults" [value]="log.formatted_date">                                  
-        </datalist>
-    </form>
-    <!-- [value]="date | date: 'yyyy-MM-dd'" -->
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="date" (mousemove)="onKey($event)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (mousedown)="onKey($event)" (keyup)="onKey($event)" (mouseleave)="onKey($event)"  placeholder="Search by date" aria-label="Search">
-      <button class="btn btn-outline-success" type="button" (click)="search($event.value)" [disabled]="!values">Search</button>
-    </form>
-    Date selected: {{values | date: 'fullDate'}} 
-    <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
-      <span class="sr-only"> Searching; please wait... </span>
-  </div>
-  <div *ngIf="fetchLogSuccess">
-    <h1>Results:</h1>
-    <ul *ngFor="let log of dateResults">result: 
-      <li>date {{log.formatted_date}}</li>
-      <li>eod {{log.eod_reading_lts}}</li>
-    </ul>
-  </div>
+      <div>
+        <a type="button" routerLink="/search" class="btn btn-md btn-light btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
+      </div>
+      
+  
     
     
     </div>
   </div>
 </nav>
-<div class="row mt-5" *ngIf="!eOD">
-  <div class="col-sm-4" *ngFor="let log of searchResults | filter:searchText">
-      <div class="card">
-        <div name="formatted_date">{{log.formatted_date}}</div>
-          <div class="title" name="user">{{log.user}}</div>
-          <div name="eod_reading_lts">{{log.eod_reading_lts}}</div>
-      </div>
-  </div>
-</div>
-<div class="row mt-5" *ngIf="eOD">
-  <div class="col-sm-4">
-      <div class="card">
-          <div class="title" name="title">{{eOD}}</div>
-      </div>
-  </div>
-</div>
-<div *ngIf="dateResults">
-  <div *ngFor="let log of dateResults">
-    <ul>
-      <li>{{log.formatted_date}}</li>
-      <li>{{log.eod_reading_lts}}</li>
-    </ul>
-  </div>
-</div>
-<div *ngIf="!dateResults">
-  <h1>Sorry, we couldn't find anything</h1>
-</div>
-
