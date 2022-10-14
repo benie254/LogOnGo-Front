@@ -158,6 +158,8 @@ import { DieselMpesaComponent } from './components/sections/diesel-mpesa/diesel-
 import { DieselNoMpesaComponent } from './components/sections/diesel-no-mpesa/diesel-no-mpesa.component';
 import { GasNoMpesaComponent } from './components/sections/gas-no-mpesa/gas-no-mpesa.component';
 import { GasMpesaComponent } from './components/sections/gas-mpesa/gas-mpesa.component';
+import { CreditCardLogsComponent } from './components/sections-b/credit-card-logs/credit-card-logs.component';
+import { NoCreditCardComponent } from './components/sections-b/no-credit-card/no-credit-card.component';
 
 
 
@@ -287,6 +289,8 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     DieselNoMpesaComponent,
     GasNoMpesaComponent,
     GasMpesaComponent,
+    CreditCardLogsComponent,
+    NoCreditCardComponent,
   ],
   imports: [
     NgxPaginationModule,

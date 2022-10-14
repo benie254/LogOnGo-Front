@@ -21,7 +21,7 @@ export class DieselMpesaComponent implements OnInit {
   mNull: boolean;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 5;
+  tableSize: number = 3;
   tableSizes: any = [2, 5, 10, 15];
   constructor(
     private mpesaService:LogMpesaService,

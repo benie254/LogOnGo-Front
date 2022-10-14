@@ -39,15 +39,15 @@ export class CreditCardService {
   getUserCreditCardLogs(id: any): Observable<CreditCard>{
     return this.http.get<CreditCard>(this.apiUserCreditCardLogs + id);
   }
-  getTodayCreditCardLogs(): Observable<CreditCard>{
-    return this.http.get<CreditCard>(this.apiTodayCreditCardLogs)
+  getTodayCreditCardLogs(id: number): Observable<CreditCard>{
+    return this.http.get<CreditCard>(this.apiTodayCreditCardLogs + id)
   }
   getCreditCardLogDetails(id: number): Observable<CreditCard>{
     return this.http.get<CreditCard>(this.apiCreditCardLogDetails + id)
   }
 
   addCreditCardLog(creditCardInfo: CreditCard) {
-    return this.http.post(this.apiTodayCreditCardLogs, creditCardInfo);
+    return this.http.post(this.apiAllCreditCardLogs, creditCardInfo);
   }
 
   updateCreditCardDetails(id,data): Observable<CreditCard>{
