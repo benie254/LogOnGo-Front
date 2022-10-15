@@ -17,6 +17,8 @@ export class RegisterComponent implements OnInit {
   formValid: boolean = false;
   username: any;
   hide = true;
+  err: any; 
+  errMessage = ''
 
   form = this.formBuilder.group({
     username: ['',Validators['required'], Validators['min'](4), Validators['maxLength'](60)],
@@ -88,21 +90,23 @@ export class RegisterComponent implements OnInit {
         Notiflix.Loading.remove();
         
       },
-      err => {
+      error => {
         Notiflix.Loading.remove();
+        this.err = error
+        this.errMessage = this.err.error.detail
         Notiflix.Report.failure(
-          'Registration failed!',
-          'Please confirm that all your details are correct.',
-          'Okay',
+          'Login failed.',
+          this.errMessage,
+          'Retry',
         );
-        Notiflix.Notify.warning('Please try again.');
         if (this.form.invalid) {
+          this.err = error
+          this.errMessage = this.err.error.detail
           Notiflix.Report.failure(
-            'Login failed!',
-            'Some of your details may be null, incomplete or incorrect.',
-            'Okay',
-          );
-          Notiflix.Notify.warning('Please try again.');
+            'Login failed.',
+            this.errMessage,
+            'Retry',
+        );
           this.formValid = false;
         }
       });  

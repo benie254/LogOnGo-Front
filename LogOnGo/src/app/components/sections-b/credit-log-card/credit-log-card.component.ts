@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
-import { CreditCardService } from 'src/app/services/card/credit-card.service'; 
+import { CreditCardService } from 'src/app/services/card/credit-card.service';
 
 @Component({
-  selector: 'app-credit-card-logs',
-  templateUrl: './credit-card-logs.component.html',
-  styleUrls: ['./credit-card-logs.component.css']
+  selector: 'app-credit-log-card',
+  templateUrl: './credit-log-card.component.html',
+  styleUrls: ['./credit-log-card.component.css']
 })
-export class CreditCardLogsComponent implements OnInit {
-
+export class CreditLogCardComponent implements OnInit {
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 3;
+  tableSizes: any = [2, 5, 10, 15];
   creditCard: any;
   creditCard_cumulative: any;
   creditCard_logs: any;
@@ -20,20 +23,11 @@ export class CreditCardLogsComponent implements OnInit {
   error: any;
   message = '';
   mNull: boolean;
-  
+
   constructor(
     private creditCardService:CreditCardService,
     private route:ActivatedRoute,
-    
-  ) {
-    // if(this.creditCard_logs){
-    //   this.noCreditCard = false;
-    // } else {
-    //   this.noCreditCard = true;
-    // }
-    
-    
-   }
+  ) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id']
@@ -67,12 +61,14 @@ export class CreditCardLogsComponent implements OnInit {
       }
     )
   }
-  
-  toggleCreditCard(){
-    this.show = true;
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getCreditCard(this.id);
   }
-  close(){
-    this.show = false;
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.getCreditCard(this.id);
   }
 
 }

@@ -1,7 +1,26 @@
 
-
+<div class="row">
+  <div class="col-sm-5"></div>
+  <div class="col-sm-5">
+      <span (click)="close()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+  </div>
+  <div class="col-sm-2"></div>
+</div>
+<div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+  <div class="card color-one">
+    <div class="card-body">
+        <p class="card-text">Your credit card logs will appear here.</p>
+        <p class="card-text"><a (click)="toggleCreditCard()" type="button" class="btn btn-sm btn-light btn-outline-dark">Record creditCard logs now?</a></p>
+    </div>
+    
+</div>
+</div>
+<div class="col-sm-2"></div>
+</div>
 <br>
-<div>
+<div *ngIf="show">
     <form [formGroup]="creditCardForm" (submit)="addCreditCardLog()" class="bg-light padding color-two rounded shadow">
         <h2 class="text-center">Add CreditCard Log </h2>
           <div class="row">

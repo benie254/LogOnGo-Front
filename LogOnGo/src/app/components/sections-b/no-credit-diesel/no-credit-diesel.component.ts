@@ -5,18 +5,17 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { CreditCardService } from 'src/app/services/card/credit-card.service';
 
-
 @Component({
-  selector: 'app-no-credit-card',
-  templateUrl: './no-credit-card.component.html',
-  styleUrls: ['./no-credit-card.component.css']
+  selector: 'app-no-credit-diesel',
+  templateUrl: './no-credit-diesel.component.html',
+  styleUrls: ['./no-credit-diesel.component.css']
 })
-export class NoCreditCardComponent implements OnInit {
+export class NoCreditDieselComponent implements OnInit {
 
   closed: boolean;
   currentUser = this.authService.currentUserValue;
   creditCardForm: FormGroup;
-  petrolInfo: any;
+  dieselInfo: any;
   today = new Date().toISOString();
   error: any; 
   message = '';
@@ -31,9 +30,9 @@ export class NoCreditCardComponent implements OnInit {
     private authService:AuthService,
     private fuelService:FuelService,
   ) {
-    this.fuelService.getPetrolInfo().subscribe(
+    this.fuelService.getDieselInfo().subscribe(
       data => {
-        this.petrolInfo = data;
+        this.dieselInfo = data;
       }
     )
     

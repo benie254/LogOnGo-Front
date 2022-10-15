@@ -14,6 +14,8 @@ import { first } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
   authenticated: boolean = false;
+  err: any;
+  errMessage = '';
   
 
   form: FormGroup;
@@ -80,14 +82,18 @@ export class LoginComponent implements OnInit {
                 },
                 error => {
                   Notiflix.Loading.remove();
-                  Notiflix.Report.failure(
-                    'Login failed!',
-                    'Please confirm that all your details are correct.',
-                    'Okay',
-                  );
-                  Notiflix.Notify.warning('Please try again.');
+                  
+                  
 
                   this.loading = false;
+                  console.warn(error)
+                  this.err = error
+                  this.errMessage = this.err.error.detail
+                  Notiflix.Report.failure(
+                    'Login failed.',
+                    this.errMessage,
+                    'Retry',
+                  );
                 });
     }
     // this.http.post('https://logongo.herokuapp.com/api/login/', this.form.getRawValue(), {

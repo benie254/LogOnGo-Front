@@ -1,31 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddComponent } from './add/add.component';
 import { AdminComponent } from './components/auth/admin/admin.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { AddMpesalogComponent } from './components/forms/add-mpesalog/add-mpesalog.component';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { AddLogpageComponent } from './components/pages/add-logpage/add-logpage.component';
 import { AddMpesaLogpageComponent } from './components/pages/add-mpesa-logpage/add-mpesa-logpage.component';
 import { AllLogsComponent } from './components/pages/all-logs/all-logs.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
-import { DieselDetailsComponent } from './components/pages/diesel-details/diesel-details.component';
 import { DieselLogsComponent } from './components/pages/diesel-logs/diesel-logs.component';
 import { EmailMpesareportComponent } from './components/pages/email-mpesareport/email-mpesareport.component';
 import { EmailReportComponent } from './components/pages/email-report/email-report.component';
-import { GasDetailsComponent } from './components/pages/gas-details/gas-details.component';
 import { GasLogsComponent } from './components/pages/gas-logs/gas-logs.component';
 import { IncidentComponent } from './components/pages/incident/incident.component';
 import { LogDetailsComponent } from './components/pages/log-details/log-details.component';
 import { MpesaLogdetailsComponent } from './components/pages/mpesa-logdetails/mpesa-logdetails.component';
-import { PetrolDetailsComponent } from './components/pages/petrol-details/petrol-details.component';
 import { PetrolLogsComponent } from './components/pages/petrol-logs/petrol-logs.component';
 import { PrintLogsComponent } from './components/pages/print-logs/print-logs.component';
 import { PrintMpesaComponent } from './components/pages/print-mpesa/print-mpesa.component';
 import { ProfileComponent } from './components/pages/profile/profile.component';
 import { SearchResultsComponent } from './components/pages/search-results/search-results.component';
+import { CreditDetailsComponent } from './components/sections-b/credit-details/credit-details.component';
+import { EmailCreditCardComponent } from './components/sections-b/email-credit-card/email-credit-card.component';
+import { PrintCreditCardComponent } from './components/sections-b/print-credit-card/print-credit-card.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -35,9 +33,7 @@ const routes: Routes = [
   { path: 'gas/:id', component: GasLogsComponent },
   { path: 'log-details/:id', component: LogDetailsComponent },
   { path: 'mpesa-details/:id', component: MpesaLogdetailsComponent },
-  { path: 'petrol-details/:id', component: PetrolDetailsComponent },
-  { path: 'diesel-details/:id', component: DieselDetailsComponent },
-  { path: 'gas-details/:id', component: GasDetailsComponent },
+  { path: 'credit-card-details/:id', component: CreditDetailsComponent },
   { path: 'logs', component: AllLogsComponent },
   { path: 'add-log', component: AddLogpageComponent },
   { path: 'add-mpesa', component: AddMpesaLogpageComponent },
@@ -51,6 +47,8 @@ const routes: Routes = [
   { path: 'email-report/:id', component: EmailReportComponent },
   { path: 'mpesa-report/:id', component: PrintMpesaComponent },
   { path: 'email-mpesa-report/:id', component: EmailMpesareportComponent },
+  { path: 'credit-card-report/:id', component: PrintCreditCardComponent },
+  { path: 'email-credit-card-report/:id', component: EmailCreditCardComponent },
   { path: 'search', component: SearchResultsComponent },
 ];
 

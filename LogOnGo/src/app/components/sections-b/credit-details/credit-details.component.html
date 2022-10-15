@@ -1,0 +1,125 @@
+<div class="container-fluid rounded">
+    <div class="row padding">
+      <div class="col-sm-1"></div>
+        <div class="full-height bg-light col-lg-10 center color-four rounded black padding-2">
+            <h2>CreditCard Details </h2>
+            <div class="card color-two">
+                <h5 class="card-header"><span class="" style="float:left;"><a routerLink="/credit-card-report/{{creditCardDetails.id}}"><button class=" margin-top btn btn-sm btn-light btn-outline-primary">Print <i class="fa-solid fa-print"></i></button></a></span> {{creditCardDetails.date}} <span style="float:right;"><a routerLink="/email-credit-card-report/{{creditCardDetails.id}}" type="button" class="btn btn-sm btn-light btn-outline-primary"> <i class="fa-solid fa-paper-plane"></i> email</a></span></h5>
+                
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Card name</th>
+                                <th scope="col">Card number</th>
+                                <th scope="col">Daily total</th>
+                                <th scope="col">Cumulative amount</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{creditCardDetails.id}}</td>
+                                <td>{{creditCardDetails.date}}</td>
+                                <td>{{creditCardDetails.amount}}</td>
+                                <td>{{creditCardDetails.card_name}}</td>
+                                <td>{{creditCardDetails.card_number}}</td>
+                                <td>{{creditCardDetails.daily_total}}</td>
+                                <td>{{creditCardDetails.cumulative_amount}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                    <div class="card-footer">
+                        <small class="">First logged by {{creditCardDetails.logged_by}} on {{creditCardDetails.first_logged | date: 'medium'}} </small>
+                    </div>
+                    <p class="margin-top"><a type="button" class="btn btn-sm btn-light btn-outline-primary" (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> details </a> <span *ngIf="creditCardDetails.first_logged != creditCardDetails.last_edited"><small> >>> Last edited on {{creditCardDetails.last_edited | date: 'medium'}}</small></span></p>
+                </div>
+                
+                <div *ngIf="!closed">
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-md-8 rounded">
+                            
+                            <form class="rounded bg-light shadow margin" *ngIf="updateConfirmed" [formGroup]="creditCardUpdateForm" (ngSubmit)="updateCreditCardDetails()">
+                                <h6 class="margin-top">CreditCard Update Form <span style="float:right;" (click)="toggleUpdateForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span></h6>
+                                
+                                <div class="row">
+                                    <div class="col-lg-6 rounded padding-2 rounded">
+                                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                            <mat-label>Date</mat-label>
+                                            <input matInput placeholder="Enter date" class="form-control" name="date" type="text" [(ngModel)]="creditCardDetails.date" required>
+                                            <mat-icon matSuffix>date</mat-icon>
+                                            <mat-hint>e.g 13/10/2022</mat-hint>
+                                          </mat-form-field>        
+                                          
+                                    </div>
+                                    <div class="col-lg-6 padding-2 rounded">
+                                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                            <mat-label>Card name</mat-label>
+                                            <input matInput placeholder="Enter card name" name="card_name" type="text" required>
+                                            <mat-hint>e.g JOHN ALEXA DOE</mat-hint>
+                                          </mat-form-field>        
+                                          <div *ngIf="creditCardUpdateForm.controls['card_name'].invalid && creditCardUpdateForm.controls['card_name'].touched" class="alert alert-danger">
+                                            <div *ngIf="creditCardUpdateForm.controls['card_name'].errors['required']">
+                                              Card name is required.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="row">
+                                    <div class="col-lg-6 padding-2 rounded">
+                                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                            <mat-label>Card number</mat-label>
+                                            <input matInput placeholder="Enter card number" name="card_number" type="number" minlength="16" maxlength="16" required>
+                                            <mat-hint>e.g 1111 2222 3333 4444</mat-hint>
+                                          </mat-form-field>  
+                                          <div *ngIf="creditCardUpdateForm.controls['card_number'].invalid && creditCardUpdateForm.controls['card_number'].touched" class="alert alert-danger">
+                                            <div *ngIf="creditCardUpdateForm.controls['card_number'].errors['required']">
+                                              Credit card number is required.
+                                            </div>
+                                            <div *ngIf="creditCardUpdateForm.controls['card_number'].errors['min']">
+                                              Card number must be at least 16 digits.
+                                            </div>
+                                            <div *ngIf="creditCardUpdateForm.controls['card_number'].errors['max']">
+                                              Card number cannot be more than 16 digits.
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="col-lg-6 padding-2 rounded">
+                                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                            <mat-label>Amount</mat-label>
+                                            <input matInput placeholder="Enter amount" name="amount" type="number" required>
+                                            <mat-hint>e.g 1200</mat-hint>
+                                          </mat-form-field>        
+                                          <div *ngIf="creditCardUpdateForm.controls['amount'].invalid && creditCardUpdateForm.controls['amount'].touched" class="alert alert-danger">
+                                            <div *ngIf="creditCardUpdateForm.controls['amount'].errors['required']">
+                                              Amount is required.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+    
+                                
+                                <div class="form-group">
+                                    <button class="btn margin btn-sm btn-outline-info btn-dark" type="submit">Update log</button>
+                                </div> 
+                            </form> 
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                  
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-sm-1"></div>
+    </div>  
+    
+    
+</div>
+<app-footer></app-footer>

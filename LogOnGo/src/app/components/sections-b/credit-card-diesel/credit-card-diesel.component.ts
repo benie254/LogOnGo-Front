@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
-import { CreditCardService } from 'src/app/services/card/credit-card.service'; 
+import { CreditCardService } from 'src/app/services/card/credit-card.service';
 
 @Component({
-  selector: 'app-credit-card-logs',
-  templateUrl: './credit-card-logs.component.html',
-  styleUrls: ['./credit-card-logs.component.css']
+  selector: 'app-credit-card-diesel',
+  templateUrl: './credit-card-diesel.component.html',
+  styleUrls: ['./credit-card-diesel.component.css']
 })
-export class CreditCardLogsComponent implements OnInit {
+export class CreditCardDieselComponent implements OnInit {
 
   creditCard: any;
   creditCard_cumulative: any;

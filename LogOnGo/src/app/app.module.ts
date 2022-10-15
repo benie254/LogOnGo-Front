@@ -160,6 +160,14 @@ import { GasNoMpesaComponent } from './components/sections/gas-no-mpesa/gas-no-m
 import { GasMpesaComponent } from './components/sections/gas-mpesa/gas-mpesa.component';
 import { CreditCardLogsComponent } from './components/sections-b/credit-card-logs/credit-card-logs.component';
 import { NoCreditCardComponent } from './components/sections-b/no-credit-card/no-credit-card.component';
+import { CreditCardDieselComponent } from './components/sections-b/credit-card-diesel/credit-card-diesel.component';
+import { CreditCardGasComponent } from './components/sections-b/credit-card-gas/credit-card-gas.component';
+import { CreditLogCardComponent } from './components/sections-b/credit-log-card/credit-log-card.component';
+import { NoCreditDieselComponent } from './components/sections-b/no-credit-diesel/no-credit-diesel.component';
+import { NoCreditGasComponent } from './components/sections-b/no-credit-gas/no-credit-gas.component';
+import { CreditDetailsComponent } from './components/sections-b/credit-details/credit-details.component';
+import { PrintCreditCardComponent } from './components/sections-b/print-credit-card/print-credit-card.component';
+import { EmailCreditCardComponent } from './components/sections-b/email-credit-card/email-credit-card.component';
 
 
 
@@ -291,6 +299,14 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     GasMpesaComponent,
     CreditCardLogsComponent,
     NoCreditCardComponent,
+    CreditCardDieselComponent,
+    CreditCardGasComponent,
+    CreditLogCardComponent,
+    NoCreditDieselComponent,
+    NoCreditGasComponent,
+    CreditDetailsComponent,
+    PrintCreditCardComponent,
+    EmailCreditCardComponent,
   ],
   imports: [
     NgxPaginationModule,
