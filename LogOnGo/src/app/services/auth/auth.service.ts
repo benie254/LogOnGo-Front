@@ -5,12 +5,8 @@ import { User } from 'src/app/classes/user/user';
 import { map } from 'rxjs/operators';
 import jwtDecode from 'jwt-decode';
 
-const AUTH_API = 'http://127.0.0.1:8000/api/';
-// const AUTH_API = 'https://logongo.herokuapp.com/api/';
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
+const authAPI = 'http://127.0.0.1:8000/api/';
+// const authAPI = 'https://logongo.herokuapp.com/api/';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +14,8 @@ const httpOptions = {
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  apiURLlogin = AUTH_API + "login/"
+  apiLogin = authAPI + "login/"
+  apiReg = authAPI + "register/"
   
   constructor(private http: HttpClient,) { 
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -30,8 +27,8 @@ export class AuthService {
   
   }
 
-  login(email,employee_id, password) {
-    return this.http.post<any>(this.apiURLlogin, { email, employee_id, password })
+  login(userData) {
+    return this.http.post<any>(this.apiLogin, userData)
     .pipe(
       map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -39,44 +36,17 @@ export class AuthService {
         this.currentUserSubject.next(user);
         return user;
     }));
-  //       .pipe(map(response => {
-  //         // login successful if there's a jwt token in the response
-  //         let currentUser: User;
-  //         if (response.access) {
-  //             // store user details and jwt token in local storage to keep user logged in between page refreshes
-  //             currentUser = jwtDecode(response.access)
-  //             currentUser.token = response.access
-  //             currentUser.refreshToken = response.refresh
-  //             localStorage.setItem('currentUser', JSON.stringify(currentUser));
-  //             this.currentUserSubject.next(currentUser);
-  //         } 
-  //         return currentUser;
-  //     }),
-  // )
-}
+  }
 
-  // login(username: string, password: string): Observable<any> {
-  //   return this.http.post(AUTH_API + 'login/', {
-  //     username,
-  //     password
-  //   }, httpOptions);
-  // }
-  register(username: string, email: string, first_name: string, last_name: string, petrol_station: string, password: string): Observable<any> {
-    return this.http.post(AUTH_API + 'register/', {
-      username,
-      email,
-      first_name,
-      last_name,
-      petrol_station,
-      password,
-    });
+  register(userData) {
+    return this.http.post<any>(this.apiReg, userData);
   }
 
   refreshToken() {
     console.log('this.currentUserValue.refreshToken')
     console.log(this.currentUserValue.refreshToken)
     const refreshToken = this.currentUserValue.refreshToken
-    return this.http.post<any>(AUTH_API + "token/refresh/", { 'refresh': refreshToken })
+    return this.http.post<any>(authAPI + "token/refresh/", { 'refresh': refreshToken })
         .pipe(
             map(response => {
                 // login successful if there's a jwt token in the response

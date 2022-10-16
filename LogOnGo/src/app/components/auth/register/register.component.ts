@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgPasswordValidatorOptions } from 'ng-password-validator';
 import * as Notiflix from 'notiflix';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConfirmedValidator } from 'src/app/validators/confirmed.validator';
 
 
@@ -18,7 +19,9 @@ export class RegisterComponent implements OnInit {
   username: any;
   hide = true;
   err: any; 
-  errMessage = ''
+  errMessage = '';
+  noMatch: boolean;
+  matched: boolean;
 
   form = this.formBuilder.group({
     username: ['',Validators['required'], Validators['min'](4), Validators['maxLength'](60)],
@@ -35,14 +38,12 @@ export class RegisterComponent implements OnInit {
   });
 
 
-  // apiURLreg = "https://logongo.herokuapp.com/api/register/"
-  apiURLreg = "http://127.0.0.1:8000/api/register/"
   
 
   constructor(
     private formBuilder:FormBuilder, 
-    private http:HttpClient, 
-    private router:Router
+    private router:Router,
+    private authService:AuthService,
     ) { }
 
     options: NgPasswordValidatorOptions = {
@@ -73,6 +74,16 @@ export class RegisterComponent implements OnInit {
     
     this.hideBtn();
   }
+  confirmPass(){
+    let pass1 = document.getElementsByName("password");  
+    var pass2 = document.getElementsByName("pass2");  
+    if(pass1 != pass2)  
+      {   
+        this.noMatch = true;
+      } else {  
+        this.matched = true;
+      }  
+    }
   hideBtn(){
     let btn = document.getElementById("regBtn");
     if (this.form.valid){
@@ -81,14 +92,13 @@ export class RegisterComponent implements OnInit {
       btn.style.display = 'none';
     }
   }
-  submit(): void {
+  submit(userData): void {
     Notiflix.Loading.hourglass('Processing, please wait...');
-    this.http.post(this.apiURLreg, this.form.getRawValue())
-      .subscribe(() => {
+    this.authService.register(userData).subscribe( 
+      () => {
         Notiflix.Notify.success('Registration successful!');
         this.router.navigate(['/login']);
         Notiflix.Loading.remove();
-        
       },
       error => {
         Notiflix.Loading.remove();

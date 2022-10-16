@@ -1,6 +1,6 @@
 <div class="container-fluid reg-cont height-lg">
   <div class="container padding" *ngIf="!authenticated">
-    <form [formGroup]="form" (submit)="submit()" class="color-two f-two padding-four rounded shadow">
+    <form #loginForm="ngForm" (ngSubmit)="submit(loginForm.value)" class="color-two f-two padding-four rounded shadow">
       <div class="text-align">
         <img src="https://res.cloudinary.com/benie/image/upload/v1662828646/icons8-user-rights-50_sgvyxm.png" height="55" width="55" alt="">
       </div>
@@ -9,50 +9,45 @@
         <div class="col col-lg-4 padding-2">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Start typing..." formControlName="email" type="email" required>
+            <input matInput placeholder="Start typing..." name="email" ngModel #email="ngModel" type="email" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
             <mat-icon matSuffix>email</mat-icon>
             <mat-hint>e.g: your_name@provider.com</mat-hint>
+            <mat-error *ngIf="email.hasError('pattern')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required') || email.pristine">
+              Email is <strong>required</strong>
+            </mat-error>
+            
           </mat-form-field>        
-          <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="alert alert-danger">
-            <div *ngIf="form.controls['email'].errors['required']">
-              Email is required.
-            </div>
-            <div *ngIf="form.controls['email'].errors['email']">
-              Please provide a valid email address.
-            </div>
-          </div>
         </div>
         <div class="col col-lg-4 padding-2">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
             <mat-label>Employee ID</mat-label>
-            <input matInput placeholder="Start typing..." formControlName="employee_id" type="number" required>
+            <input matInput placeholder="Start typing..." name="employee_id" ngModel #employee_id="ngModel" type="number" required>
             <mat-icon matSuffix>assignment_ind</mat-icon>
             <mat-hint><span class="bg-danger white">Employees of Pebo Kenya Ltd.</span></mat-hint>
+            <mat-error *ngIf="employee_id.hasError('required') || employee_id.pristine">
+              Employee ID is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
-          <div *ngIf="form.controls['employee_id'].invalid && form.controls['employee_id'].touched" class="alert alert-danger">
-            <div *ngIf="form.controls['employee_id'].errors['required']">
-              Employee ID is required.
-            </div>
-          </div>
         </div>
         <div class="col col-lg-4 rounded padding-2">
           <mat-form-field appearance="outline" class="color-one padding-2 rounded shadow full-width">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="Start typing..." formControlName="password" type="password" required>
+            <input matInput placeholder="Start typing..." name="password" ngModel #password="ngModel" type="password" required>
             <mat-icon matSuffix>security</mat-icon>
             <mat-hint>Forgot password?</mat-hint>
+            <mat-error *ngIf="password.hasError('required') || password.pristine">
+              Password is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
-          <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">
-            <div *ngIf="form.controls['password'].errors['required']">
-              Password is required.
-            </div>
-          </div>
         </div>
       </div>
       <div class="row">
         <div class="col"></div>
         <div class="col padding-bottom center">
-          <button class="margin-top btn btn-lg btn-light btn-outline-primary" type="submit" [disabled]="form.invalid"><span><mat-icon>verified_user</mat-icon></span> Login</button>
+          <button class="margin-top btn btn-lg btn-light btn-outline-primary" type="submit"><span><mat-icon>verified_user</mat-icon></span> Login</button>
           <p>Don't have an account? <a routerLink="/register" class="margin btn btn-sm btn-info btn-outline-dark" type="button">Sign up here</a></p>
         </div>
         <div class="col"></div>

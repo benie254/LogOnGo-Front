@@ -1,6 +1,6 @@
 <div class="container-fluid reg-cont">
   <div class="padding-3 container reg-contents">
-    <form [formGroup]="form" (submit)="submit()" class="color-two f-two padding-four rounded shadow">
+    <form #regForm="ngForm" (ngSubmit)="submit(regForm.value)" class="color-two f-two padding-four rounded shadow">
       <div class="text-align">
         <img src="https://res.cloudinary.com/benie/image/upload/v1662528617/icons8-user-64_1_aqgcf9.png" height="65" width="65" alt="">
       </div>
@@ -10,50 +10,53 @@
         <div class="col col-lg-4 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label>Username</mat-label>
-            <input matInput placeholder="Enter username..." formControlName="username" type="text" required minlength="4" maxlength="15">
+            <input matInput placeholder="Enter username..." name="username" ngModel #username="ngModel" type="text" required minlength="4" maxlength="15">
             <mat-icon matSuffix>account_box</mat-icon>
             <mat-hint>Min: 4 char | Max: 15 char</mat-hint>
-          </mat-form-field>  
-          <div *ngIf="form.controls['username'].invalid && form.controls['username'].touched" class="alert alert-danger">
-            <div *ngIf="form.controls['username'].errors['required']">
-              Username is required.
-            </div>
-            <div *ngIf="form.controls['username'].errors['minlength']">
+            <mat-error *ngIf="username.hasError('minlength')">
               Username must be at least 4 characters.
-            </div>
-          </div>
+            </mat-error>
+            <mat-error *ngIf="username.hasError('maxlength')">
+              Username cannot be more than 15 characters.
+            </mat-error>
+            <mat-error *ngIf="username.hasError('required') || username.pristine">
+              Username is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>  
         </div>
         <div class="col col-lg-4 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label>First name</mat-label>
-            <input matInput placeholder="Enter first name..." formControlName="first_name" type="text" required minlength="3" maxlength="25">
+            <input matInput placeholder="Enter first name..." name="first_name" ngModel #first_name="ngModel" type="text" required minlength="3" maxlength="25">
             <mat-icon matSuffix>person</mat-icon>
             <mat-hint>Min: 3 char | Max: 25 char</mat-hint>
-          </mat-form-field>  
-          <div *ngIf="form.controls['first_name'].invalid && form.controls['first_name'].touched" class="alert alert-danger">
-            <div *ngIf="form.controls['first_name'].errors['required']">
-              First name is required.
-            </div>
-            <div *ngIf="form.controls['first_name'].errors['minlength']">
+            <mat-error *ngIf="first_name.hasError('minlength')">
               First name must be at least 3 characters.
-            </div>
-          </div>
+            </mat-error>
+            <mat-error *ngIf="first_name.hasError('maxlength')">
+              First name cannot be more than 25 characters.
+            </mat-error>
+            <mat-error *ngIf="first_name.hasError('required') || first_name.pristine">
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>  
         </div>
         <div class="col col-lg-4 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label>Last name</mat-label>
-            <input matInput placeholder="Enter last name..." formControlName="last_name" type="text" required minlength="3" maxlength="20">
+            <input matInput placeholder="Enter last name..." name="last_name" ngModel #last_name="ngModel" type="text" required minlength="3" maxlength="20">
             <mat-icon matSuffix>person</mat-icon>
             <mat-hint>Min: 3 char | Max: 20 char</mat-hint>
-          </mat-form-field> 
-          <div *ngIf="form.controls['last_name'].invalid && form.controls['last_name'].touched" class="alert alert-danger">
-            <div *ngIf="form.controls['last_name'].errors['required']">
-              Last name is required.
-            </div>
-            <div *ngIf="form.controls['last_name'].errors['minlength']">
+            <mat-error *ngIf="last_name.hasError('minlength')">
               Last name must be at least 3 characters.
-            </div>
-          </div>
+            </mat-error>
+            <mat-error *ngIf="last_name.hasError('maxlength')">
+              Last name cannot be more than 25 characters.
+            </mat-error>
+            <mat-error *ngIf="last_name.hasError('required') || last_name.pristine">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field> 
         </div>
       </div>
     
@@ -62,51 +65,42 @@
         <div class="col col-lg-4 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Enter email..." formControlName="email" type="email" required>
+            <input matInput placeholder="Enter email..." name="email" ngModel #email="ngModel" type="email" required>
             <mat-icon matSuffix>email</mat-icon>
             <mat-hint>e.g: your_name@provider.com</mat-hint>
+            <mat-error *ngIf="email.hasError('pattern')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required') || email.pristine">
+              Email is <strong>required</strong>
+            </mat-error>
           </mat-form-field> 
-          <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="alert alert-danger">
-            <div *ngIf="form.controls['email'].errors['required']">
-              Email is required.
-            </div>
-            <div *ngIf="form.controls['email'].errors['email']">
-              Please provide a valid email address.
-            </div>
-          </div>
         </div>
         <div class="col col-lg-4 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label><span><mat-icon>local_gas_station</mat-icon></span> Select Petrol Station </mat-label>
             
-            <mat-select formControlName="petrol_station" required>
-              <mat-option value="Station-Kisii" formControlName="petrol_station" type="text" required minlength="7">Station Kisii</mat-option>
-              <mat-option value="Station-Nairobi" formControlName="petrol_station" type="text" required minlength="7">Station Nairobi</mat-option>
-              <mat-option value="Station-Migori" formControlName="petrol_station" type="text" required minlength="7">Station Migori</mat-option>
+            <mat-select name="petrol_station" ngModel #petrol_station="ngModel" required>
+              <mat-option value="Station-Kisii" name="petrol_station" ngModel #petrol_station="ngModel" type="text" required>Station Kisii</mat-option>
+              <mat-option value="Station-Nairobi" name="petrol_station" ngModel #petrol_station="ngModel" type="text">Station Nairobi</mat-option>
+              <mat-option value="Station-Migori" name="petrol_station" ngModel #petrol_station="ngModel" type="text" required>Station Migori</mat-option>
             </mat-select>
-            <mat-hint>Min: 7 char</mat-hint>
+            <mat-hint>Select one</mat-hint>
+            <mat-error *ngIf="petrol_station.hasError('required') || petrol_station.pristine">
+              Petrol station is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
-          <div *ngIf="form.controls['petrol_station'].invalid && form.controls['petrol_station'].touched" class="alert alert-danger">
-            <div *ngIf="form.controls['petrol_station'].errors['required']">
-              Petrol station name is required.
-            </div>
-            <div *ngIf="form.controls['petrol_station'].errors['minlength']">
-              Petrol station name must be at least 7 characters.
-            </div>
-          </div>
         </div>
         <div class="col col-lg-4 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label>Employee ID</mat-label>
-            <input matInput placeholder="Enter employee ID..." formControlName="employee_id" type="number" required>
+            <input matInput placeholder="Enter employee ID..." name="employee_id" ngModel #employee_id="ngModel" type="number" required>
             <mat-icon matSuffix>assignment_ind</mat-icon>
             <mat-hint class="bg-danger white">Employees of Pebo Kenya Ltd</mat-hint>
           </mat-form-field> 
-          <div *ngIf="form.controls['employee_id'].invalid && form.controls['employee_id'].touched" class="alert alert-danger">
-            <div *ngIf="form.controls['employee_id'].errors['required']">
-              Employee ID is required.
-            </div>
-          </div>
+          <mat-error *ngIf="employee_id.hasError('required') || employee_id.pristine">
+            Employee ID is <strong>required</strong>
+          </mat-error>
         </div>
       </div>
     
@@ -115,35 +109,34 @@
         <div class="col col-lg-3 rounded">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label><mat-icon matSuffix>security</mat-icon> Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Start typing..." [NgPasswordValidator]="options" formControlName="password" required (valid)="isValid($event)">
+            <input id="pass1" matInput [type]="hide ? 'password' : 'text'" placeholder="Start typing..." [NgPasswordValidator]="options" name="password" ngModel #password="ngModel" required (valid)="isValid($event)">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-hint>Password must be valid</mat-hint>
+            <mat-error *ngIf="password.hasError('required') || password.pristine">
+              Password is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
-          <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="alert alert-danger">
-            <div *ngIf="form.controls['password'].errors['required']">
-              Password is required.
-            </div>
-          </div>
         </div>
         <div class="col col-lg-3 rounded margin-bottom">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label><mat-icon matSuffix>security</mat-icon> Confirm password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Start typing..." formControlName="password2" required>
+            <input id="pass2" matInput [type]="hide ? 'password' : 'text'" placeholder="Start typing..." name="password2" ngModel #password2="ngModel" required>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             <mat-hint>Passwords must match</mat-hint>
+            <mat-error *ngIf="password2.hasError('required') || password2.pristine">
+              Password is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="noMatch">
+              Passwords don't match.
+            </mat-error>
+            <div *ngIf="matched">
+              <i class="fa-solid fa-thumbs-up"></i> Passwords match
+            </div>
           </mat-form-field> 
-          <div *ngIf="form.controls['password2'].invalid && form.controls['password2'].touched" class="alert alert-danger">
-            <div *ngIf="form.controls['password2'].errors['required']">
-              Password confirmation is required.
-            </div>
-            <div *ngIf="form.controls['password2'].errors['confirmedValidator']">
-              Passwords must match.
-            </div>
-          </div>
         </div>
         <div class="col-lg-3"></div>
       </div>
