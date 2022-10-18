@@ -23,19 +23,19 @@ export class RegisterComponent implements OnInit {
   noMatch: boolean;
   matched: boolean;
 
-  form = this.formBuilder.group({
-    username: ['',Validators['required'], Validators['min'](4), Validators['maxLength'](60)],
-    email: ['',Validators['email']],
-    employee_id: [0,Validators['required']],
-    first_name: ['',Validators['required'], Validators['minLength(3)']],
-    last_name: ['',Validators['required'], Validators['minLength(3)']],
-    petrol_station: ['',Validators['required'], Validators['minLength(7)']],
-    password: ['',Validators['required']],
-    password2:['',Validators['required']]
-  }, 
-  { 
-    validator: ConfirmedValidator('password', 'password2')
-  });
+  // form = this.formBuilder.group({
+  //   username: ['',Validators['required'], Validators['min'](4), Validators['maxLength'](60)],
+  //   email: ['',Validators['email']],
+  //   employee_id: [0,Validators['required']],
+  //   first_name: ['',Validators['required'], Validators['minLength(3)']],
+  //   last_name: ['',Validators['required'], Validators['minLength(3)']],
+  //   petrol_station: ['',Validators['required'], Validators['minLength(7)']],
+  //   password: ['',Validators['required']],
+  //   password2:['',Validators['required']]
+  // }, 
+  // { 
+  //   validator: ConfirmedValidator('password', 'password2')
+  // });
 
 
   
@@ -73,6 +73,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     
     this.hideBtn();
+    this.confirmPass();
   }
   confirmPass(){
     let pass1 = document.getElementsByName("password");  
@@ -86,11 +87,7 @@ export class RegisterComponent implements OnInit {
     }
   hideBtn(){
     let btn = document.getElementById("regBtn");
-    if (this.form.valid){
-      btn.style.display = 'block';
-    } else {
-      btn.style.display = 'none';
-    }
+    
   }
   submit(userData): void {
     Notiflix.Loading.hourglass('Processing, please wait...');
@@ -109,16 +106,7 @@ export class RegisterComponent implements OnInit {
           this.errMessage,
           'Retry',
         );
-        if (this.form.invalid) {
-          this.err = error
-          this.errMessage = this.err.error.detail
-          Notiflix.Report.failure(
-            'Login failed.',
-            this.errMessage,
-            'Retry',
-        );
-          this.formValid = false;
-        }
+        
       });  
   }
 
