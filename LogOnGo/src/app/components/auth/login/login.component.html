@@ -11,9 +11,9 @@
             <mat-label>Email</mat-label>
             <input matInput placeholder="Start typing..." name="email" ngModel #email="ngModel" type="email" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
             <mat-icon matSuffix>email</mat-icon>
-            <mat-hint>e.g: your_name@provider.com</mat-hint>
+            <mat-hint>e.g <strong>your_name@provider.com</strong></mat-hint>
             <mat-error *ngIf="email.hasError('pattern')">
-              Please enter a valid email address
+              Please enter a <strong>valid email address</strong>
             </mat-error>
             <mat-error *ngIf="email.hasError('required') || email.pristine">
               Email is <strong>required</strong>
@@ -26,7 +26,7 @@
             <mat-label>Employee ID</mat-label>
             <input matInput placeholder="Start typing..." name="employee_id" ngModel #employee_id="ngModel" type="number" required>
             <mat-icon matSuffix>assignment_ind</mat-icon>
-            <mat-hint><span class="bg-danger white">Employees of Pebo Kenya Ltd.</span></mat-hint>
+            <mat-hint><span class="alert alert-danger rounded">Employees of <strong>Pebo Kenya Ltd</strong>.</span></mat-hint>
             <mat-error *ngIf="employee_id.hasError('required') || employee_id.pristine">
               Employee ID is <strong>required</strong>
             </mat-error>
@@ -47,8 +47,8 @@
       <div class="row">
         <div class="col"></div>
         <div class="col padding-bottom center">
-          <button class="margin-top btn btn-lg btn-light btn-outline-primary" type="submit"><span><mat-icon>verified_user</mat-icon></span> Login</button>
-          <p>Don't have an account? <a routerLink="/register" class="margin btn btn-sm btn-info btn-outline-dark" type="button">Sign up here</a></p>
+          <button class="margin-top btn btn-lg btn-light btn-outline-primary" type="submit" [disabled]="loginForm.invalid"><span><i class="fa-solid fa-user-check"></i></span> Login</button><br><br>
+          <a routerLink="/register"><p class="small">or Sign up here</p></a>
         </div>
         <div class="col"></div>
       </div>

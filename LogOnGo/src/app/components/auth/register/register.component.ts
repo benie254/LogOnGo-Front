@@ -7,6 +7,7 @@ import { NgPasswordValidatorOptions } from 'ng-password-validator';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConfirmedValidator } from 'src/app/validators/confirmed.validator';
+import { MyErrorStateMatcher } from '../login/login.component';
 
 
 @Component({
@@ -19,27 +20,21 @@ export class RegisterComponent implements OnInit {
   username: any;
   hide = true;
   err: any; 
+  errors: any;
   errMessage = '';
   noMatch: boolean;
   matched: boolean;
-
-  // form = this.formBuilder.group({
-  //   username: ['',Validators['required'], Validators['min'](4), Validators['maxLength'](60)],
-  //   email: ['',Validators['email']],
-  //   employee_id: [0,Validators['required']],
-  //   first_name: ['',Validators['required'], Validators['minLength(3)']],
-  //   last_name: ['',Validators['required'], Validators['minLength(3)']],
-  //   petrol_station: ['',Validators['required'], Validators['minLength(7)']],
-  //   password: ['',Validators['required']],
-  //   password2:['',Validators['required']]
-  // }, 
-  // { 
-  //   validator: ConfirmedValidator('password', 'password2')
-  // });
-
+  values = '';
+  value = '';
+  noPass2: boolean;
+  matcher = new MyErrorStateMatcher();
+  errEmail = '';
+  errUser = '';
+  errEID = '';
+  errPass = '';
+  status = '';
 
   
-
   constructor(
     private formBuilder:FormBuilder, 
     private router:Router,
@@ -75,15 +70,20 @@ export class RegisterComponent implements OnInit {
     this.hideBtn();
     this.confirmPass();
   }
+  onKeyOne(event: any){
+    this.value = event.target.value; 
+  }
+  onKey(event: any){
+    this.values = event.target.value; 
+  }
   confirmPass(){
-    let pass1 = document.getElementsByName("password");  
-    var pass2 = document.getElementsByName("pass2");  
-    if(pass1 != pass2)  
-      {   
-        this.noMatch = true;
-      } else {  
-        this.matched = true;
-      }  
+    let pass1 = document.getElementById("pass1").textContent;  
+    var pass2 = document.getElementById("pass2").textContent;  
+    if (pass1 == pass2) {
+      this.noMatch = false;
+    } else if (pass1 != pass2){
+      this.noMatch = true;
+    } 
     }
   hideBtn(){
     let btn = document.getElementById("regBtn");
@@ -101,10 +101,18 @@ export class RegisterComponent implements OnInit {
         Notiflix.Loading.remove();
         this.err = error
         this.errMessage = this.err.error.detail
+        this.errors = this.err.error
+        this.status = this.err.statusText
+        this.errEmail = this.err.error.email
+        this.errUser = this.err.error.username 
+        this.errEID = this.err.error.employee_id 
+        this.errPass = this.err.error.password
+        
+        console.warn("sign up error:",error)
         Notiflix.Report.failure(
-          'Login failed.',
-          this.errMessage,
-          'Retry',
+          this.status,
+          'Please fix the highligted errors and try again.',
+          'Okay',
         );
         
       });  
