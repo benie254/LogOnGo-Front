@@ -39,6 +39,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  isValid(event: boolean): void {
+    console.log(event);
+  }
   
   submit(userData): void {
     this.loading = true;
@@ -56,21 +60,16 @@ export class LoginComponent implements OnInit {
                 error => {
                   Notiflix.Loading.remove();
                   this.loading = false;
-                  console.warn(error)
+                  console.warn("login error:",error)
                   this.err = error
                   this.errMessage = this.err.error.detail
+                  console.warn("err message:",this.errMessage)
                   Notiflix.Report.failure(
                     'Login failed.',
                     this.errMessage,
                     'Retry',
                   );
-                  if (this.form.invalid){
-                                Notiflix.Report.failure(
-                                  'Login failed.',
-                                  this.errMessage,
-                                  'Retry',
-                                );
-                  }
+                  
                 });
     }
 }

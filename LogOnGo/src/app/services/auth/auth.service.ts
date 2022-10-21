@@ -5,7 +5,7 @@ import { User } from 'src/app/classes/user/user';
 import { map } from 'rxjs/operators';
 import jwtDecode from 'jwt-decode';
 
-const authAPI = 'http://127.0.0.1:8000/api/';
+const authAPI = 'http://127.0.0.1:8000/api/auth/';
 // const authAPI = 'https://logongo.herokuapp.com/api/';
 
 @Injectable({
@@ -14,8 +14,8 @@ const authAPI = 'http://127.0.0.1:8000/api/';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  apiLogin = authAPI + "login/"
-  apiReg = authAPI + "register/"
+  apiLogin = authAPI + "login"
+  apiReg = authAPI + "register"
   
   constructor(private http: HttpClient,) { 
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));

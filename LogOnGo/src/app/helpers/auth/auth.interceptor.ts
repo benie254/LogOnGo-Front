@@ -5,26 +5,61 @@ import {
   HttpEvent,
   HttpInterceptor,
   HTTP_INTERCEPTORS,
+  HttpHeaders,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TokenStorageService } from 'src/app/services/token/token-storage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
-const TOKEN_HEADER_KEY = 'Authorization'; 
+const tokenHeaderKey = 'Authorization'; 
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  currentUser: any;
+  token: string;
+  
 
-  constructor(private token:TokenStorageService) {}
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let authReq = req;
-    const token = this.token.getToken();
-    if (token != null){
-      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
+  constructor(private authService:AuthService) {
+    this.currentUser = this.authService.currentUserValue;
+    if(this.currentUser){
+      this.token = this.currentUser.token;
+    } else {
+      this.token = null;
+    }
+    
+  }
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let authReq = request;
+    // if (request.method == "PUT") {
+    //   return next.handle(this.addAuthTokenAndModifyData(request));
+    // }
+    if (this.token != null){
+      return next.handle(this.addAuthToken(request));
     }
     return next.handle(authReq)
+    
   }
+  addAuthToken(request: HttpRequest<any>){
+    return request.clone(
+      {
+        setHeaders: {
+          Authorization: `Token ${this.token}`
+        }
+      }
+    )
+  }
+  // addAuthTokenAndModifyData(request: HttpRequest<any>) {
+  //   return request.clone(
+  //     {
+  //       setHeaders: {
+  //         Authorization: `Basic ${this.token}`
+  //       },
+  //       body: { "data" : "Modified"}
+  //     }
+  //   )
+  // }
 }
 
-export const authInterceptorProviders = [
-  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-]
+// export const authInterceptorProviders = [
+//   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+// ]

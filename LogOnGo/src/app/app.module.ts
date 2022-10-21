@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
@@ -76,7 +76,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { AdminComponent } from './components/auth/admin/admin.component';
 import { ModeratorComponent } from './components/auth/moderator/moderator.component';
 import { UsersComponent } from './components/auth/users/users.component';
-import { authInterceptorProviders } from './helpers/auth/auth.interceptor';
+import { AuthInterceptor } from './helpers/auth/auth.interceptor';
 
 import * as Notiflix from 'notiflix';
 import { NgPasswordValidatorModule, NgPasswordValidatorOptions } from 'ng-password-validator';
@@ -168,6 +168,8 @@ import { NoCreditGasComponent } from './components/sections-b/no-credit-gas/no-c
 import { CreditDetailsComponent } from './components/sections-b/credit-details/credit-details.component';
 import { PrintCreditCardComponent } from './components/sections-b/print-credit-card/print-credit-card.component';
 import { EmailCreditCardComponent } from './components/sections-b/email-credit-card/email-credit-card.component';
+import { ChangePasswordComponent } from './components/pages/change-password/change-password.component';
+import { NewLoginComponent } from './components/auth/new-login/new-login.component';
 
 
 
@@ -307,6 +309,8 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     CreditDetailsComponent,
     PrintCreditCardComponent,
     EmailCreditCardComponent,
+    ChangePasswordComponent,
+    NewLoginComponent,
   ],
   imports: [
     NgxPaginationModule,
@@ -348,7 +352,9 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
       MatProgressBarModule,
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS,  useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

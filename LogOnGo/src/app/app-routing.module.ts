@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './components/auth/admin/admin.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { NewLoginComponent } from './components/auth/new-login/new-login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { AddLogpageComponent } from './components/pages/add-logpage/add-logpage.component';
 import { AddMpesaLogpageComponent } from './components/pages/add-mpesa-logpage/add-mpesa-logpage.component';
 import { AllLogsComponent } from './components/pages/all-logs/all-logs.component';
+import { ChangePasswordComponent } from './components/pages/change-password/change-password.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { DieselLogsComponent } from './components/pages/diesel-logs/diesel-logs.component';
 import { EmailMpesareportComponent } from './components/pages/email-mpesareport/email-mpesareport.component';
@@ -50,6 +52,8 @@ const routes: Routes = [
   { path: 'credit-card-report/:id', component: PrintCreditCardComponent },
   { path: 'email-credit-card-report/:id', component: EmailCreditCardComponent },
   { path: 'search', component: SearchResultsComponent },
+  { path: 'change-password/:id', component: ChangePasswordComponent },
+  { path: 'new-password/login', component: NewLoginComponent },
 ];
 
 @NgModule({
