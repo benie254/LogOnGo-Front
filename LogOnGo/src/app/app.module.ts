@@ -170,6 +170,8 @@ import { PrintCreditCardComponent } from './components/sections-b/print-credit-c
 import { EmailCreditCardComponent } from './components/sections-b/email-credit-card/email-credit-card.component';
 import { ChangePasswordComponent } from './components/pages/change-password/change-password.component';
 import { NewLoginComponent } from './components/auth/new-login/new-login.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { ResetConfirmedComponent } from './components/auth/reset-confirmed/reset-confirmed.component';
 
 
 
@@ -311,6 +313,8 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     EmailCreditCardComponent,
     ChangePasswordComponent,
     NewLoginComponent,
+    ResetPasswordComponent,
+    ResetConfirmedComponent,
   ],
   imports: [
     NgxPaginationModule,

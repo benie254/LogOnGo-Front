@@ -45,8 +45,12 @@ export class UserService {
     return this.http.get(apiURL + 'admin', { responseType: 'text' });
   }
   changePassword(passData, id:number): Observable<any>{
-    // const token = this.currentUser.token
-    // const headers = new HttpHeaders().set('Authorization', `${token}`)
     return this.http.put(apiURL + 'change-password/' + id, passData)
+  }
+  requestResetPassword(userData, id:number): Observable<any>{
+    return this.http.post(apiURL + 'reset-password/request/' + id, userData)
+  }
+  resetPassword(passData, id:number): Observable<any>{
+    return this.http.put(apiURL + 'reset-password/confirmed/' + id, passData)
   }
 }

@@ -4,6 +4,8 @@ import { AdminComponent } from './components/auth/admin/admin.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { NewLoginComponent } from './components/auth/new-login/new-login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { ResetConfirmedComponent } from './components/auth/reset-confirmed/reset-confirmed.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { AddLogpageComponent } from './components/pages/add-logpage/add-logpage.component';
@@ -53,7 +55,8 @@ const routes: Routes = [
   { path: 'email-credit-card-report/:id', component: EmailCreditCardComponent },
   { path: 'search', component: SearchResultsComponent },
   { path: 'change-password/:id', component: ChangePasswordComponent },
-  { path: 'new-password/login', component: NewLoginComponent },
+  { path: 'reset-password/:id', component: ResetPasswordComponent },
+  { path: 'confirmed/reset-password/:id', component: ResetConfirmedComponent },
 ];
 
 @NgModule({

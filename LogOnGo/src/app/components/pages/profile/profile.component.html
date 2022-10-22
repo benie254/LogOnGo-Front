@@ -58,7 +58,7 @@
             <a disabled mat-list-item [routerLink]="'/accounts'"> {{currentUser.petrol_station}} </a>
             <hr>
             <a class="bg-light" mat-list-item routerLink='/change-password/{{currentUser.id}}'> Change password </a>
-            <a class="bg-light" mat-list-item [routerLink]="'/contacts'"> Reset password </a>
+            <a class="bg-light" mat-list-item routerLink='/reset-password/{{currentUser.id}}'> Reset password </a>
             <a class="bg-light" mat-list-item (click)="sidenav.toggle()" mat-list-item>Close</a>
         </mat-nav-list>
     </mat-sidenav>
