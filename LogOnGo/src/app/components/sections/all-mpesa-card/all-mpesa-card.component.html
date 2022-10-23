@@ -13,7 +13,7 @@
                     <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let mpesa_logs of mpesa_logs | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+                <tbody *ngFor="let mpesa_logs of mpesa_logs | paginate: { id:'mpesaPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
                   <tr>
                     <td>{{mpesa_logs.id}}</td>
                     <td>{{mpesa_logs.date}}</td>
@@ -26,11 +26,12 @@
               </table>
               <div class="d-flex justify-content-center">
                 <pagination-controls
+                  id="mpesaPage"
                   previousLabel="Prev"
                   nextLabel="Next"
                   (pageChange)="onTableDataChange($event)"
                 >
                 </pagination-controls>
-        </div>
+              </div>
         </div>
 </div>

@@ -1,36 +1,20 @@
-<br><br>
+<br>
 <div class="container-fluid" id="all-logs-container">
     <div class="row">
         <h1 class="text-center">All Logs</h1>
         <div class="full-height col-lg-6 rounded black padding-2">
-            <div *ngIf="logs else noLogs">
-                <app-all-logs-card></app-all-logs-card>
-            </div>
             <div>
-                <ng-template #noLogs>
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col shadow padding-2 rounded">
-                            <app-no-logs></app-no-logs>
-                        </div>
-                    </div>
-                </ng-template>
+                <app-all-logs-card></app-all-logs-card>
             </div>
             
         </div>
         <div class="col-lg-6 full-height rounded black padding-2">
-            <div *ngIf="mpesa_logs else elseBlockMpesa">
+            <div>
                 <app-all-mpesa-card></app-all-mpesa-card>
             </div>
+            <hr>
             <div>
-                <ng-template #elseBlockMpesa>
-                    <div class="row">
-                        <div class="col shadow padding-2 bg-light rounded">
-                            <app-no-mpesalogs></app-no-mpesalogs>
-                        </div>
-                        <div class="col"></div>
-                    </div>
-                </ng-template>
+                <app-all-credit-logs></app-all-credit-logs>
             </div>
         </div>
     </div>

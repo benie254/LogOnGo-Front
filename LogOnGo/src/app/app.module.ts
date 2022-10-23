@@ -172,6 +172,7 @@ import { ChangePasswordComponent } from './components/pages/change-password/chan
 import { NewLoginComponent } from './components/auth/new-login/new-login.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { ResetConfirmedComponent } from './components/auth/reset-confirmed/reset-confirmed.component';
+import { AllCreditLogsComponent } from './components/sections-b/all-credit-logs/all-credit-logs.component';
 
 
 
@@ -315,6 +316,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     NewLoginComponent,
     ResetPasswordComponent,
     ResetConfirmedComponent,
+    AllCreditLogsComponent,
   ],
   imports: [
     NgxPaginationModule,

@@ -11,7 +11,7 @@ export class AllMpesaCardComponent implements OnInit {
   mpesa_logs: any;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 5;
+  tableSize: number = 3;
   tableSizes: any = [2, 5, 10, 15];
 
   constructor(

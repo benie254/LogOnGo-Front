@@ -32,8 +32,8 @@ export class LogMpesaService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
-  getAllMpesaLogs(): Observable<LogMpesa>{
-    return this.http.get<LogMpesa>(this.apiAllMpesaLogs);
+  getAllMpesaLogs(): Observable<any>{
+    return this.http.get<any>(this.apiAllMpesaLogs);
   }
   getUserMpesaLogs(id: any): Observable<LogMpesa>{
     return this.http.get<LogMpesa>(this.apiUserMpesaLogs + id);
