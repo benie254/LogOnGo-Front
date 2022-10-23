@@ -11,12 +11,31 @@ import { LogMpesaService } from 'src/app/services/log-mpesa/log-mpesa.service';
 })
 export class AddMpesaLogpageComponent implements OnInit {
   
-  constructor(
+  pHidden: boolean = true;
+  dHidden: boolean = true;
+  gHidden: boolean = true;
 
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-   
+  }
+  togglePetrol(){
+    this.pHidden = false;
+  }
+  closePetrol(){
+    this.pHidden = true;
+  }
+  toggleDiesel(){
+    this.dHidden = false;
+  }
+  closeDiesel(){
+    this.dHidden = true;
+  }
+  toggleGas(){
+    this.gHidden = false;
+  }
+  closeGas(){
+    this.gHidden = true;
   }
 
 }

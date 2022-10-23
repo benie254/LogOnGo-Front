@@ -179,8 +179,6 @@ import { AddCreditCardFormComponent } from './components/forms/add-credit-card-f
 import { AddDieselCreditFormComponent } from './components/forms/add-diesel-credit-form/add-diesel-credit-form.component';
 import { AddGasCreditFormComponent } from './components/forms/add-gas-credit-form/add-gas-credit-form.component';
 
-
-
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
   rules: {

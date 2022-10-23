@@ -677,6 +677,9 @@ footer {
   #all-logs-container{
     margin-bottom:30%;
   }
+  .reg-cont{
+    margin-bottom:30%;
+  }
 }
 
 /* @media screen and (max-width: 520px){
