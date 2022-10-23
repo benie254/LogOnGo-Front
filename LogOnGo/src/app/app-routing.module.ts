@@ -8,6 +8,7 @@ import { ResetConfirmedComponent } from './components/auth/reset-confirmed/reset
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { AddCreditLogpageComponent } from './components/pages/add-credit-logpage/add-credit-logpage.component';
 import { AddLogpageComponent } from './components/pages/add-logpage/add-logpage.component';
 import { AddMpesaLogpageComponent } from './components/pages/add-mpesa-logpage/add-mpesa-logpage.component';
 import { AllLogsComponent } from './components/pages/all-logs/all-logs.component';
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'logs', component: AllLogsComponent },
   { path: 'add-log', component: AddLogpageComponent },
   { path: 'add-mpesa', component: AddMpesaLogpageComponent },
+  { path: 'add-credit-card', component: AddCreditLogpageComponent },
   { path: 'incident', component: IncidentComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },

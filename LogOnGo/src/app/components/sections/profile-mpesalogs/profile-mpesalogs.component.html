@@ -6,7 +6,6 @@
                 <thead>
                   <tr>
                     <th scope="col">Date</th>
-                    <th scope="col">Transaction no.</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Bank amount</th>
                     <th scope="col"></th>
@@ -14,8 +13,7 @@
                 </thead>
                 <tbody *ngFor="let mpesa_logs of mpesa_logs | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
                   <tr>
-                    <td>{{mpesa_logs.date}}</td>
-                      <td>{{mpesa_logs.transaction_number}}</td>
+                    <td>{{mpesa_logs.date | date: 'dd/MM/yyyy'}}</td>
                     <td>{{mpesa_logs.amount}}</td>
                     <td>{{mpesa_logs.amount_transferred_to_bank}}</td>
                     <td><a type="button" class="btn btn-dark btn-outline-primary btn-sm" routerLink="/mpesa-details/{{mpesa_logs.id}}">Details</a></td>

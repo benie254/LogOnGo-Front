@@ -173,6 +173,11 @@ import { NewLoginComponent } from './components/auth/new-login/new-login.compone
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { ResetConfirmedComponent } from './components/auth/reset-confirmed/reset-confirmed.component';
 import { AllCreditLogsComponent } from './components/sections-b/all-credit-logs/all-credit-logs.component';
+import { ProfileCreditLogsComponent } from './components/sections-b/profile-credit-logs/profile-credit-logs.component';
+import { AddCreditLogpageComponent } from './components/pages/add-credit-logpage/add-credit-logpage.component';
+import { AddCreditCardFormComponent } from './components/forms/add-credit-card-form/add-credit-card-form.component';
+import { AddDieselCreditFormComponent } from './components/forms/add-diesel-credit-form/add-diesel-credit-form.component';
+import { AddGasCreditFormComponent } from './components/forms/add-gas-credit-form/add-gas-credit-form.component';
 
 
 
@@ -317,6 +322,11 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     ResetPasswordComponent,
     ResetConfirmedComponent,
     AllCreditLogsComponent,
+    ProfileCreditLogsComponent,
+    AddCreditLogpageComponent,
+    AddCreditCardFormComponent,
+    AddDieselCreditFormComponent,
+    AddGasCreditFormComponent,
   ],
   imports: [
     NgxPaginationModule,
