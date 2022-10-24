@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CreditCardService } from 'src/app/services/card/credit-card.service';  
@@ -31,6 +31,7 @@ export class CreditDetailsComponent implements OnInit {
     private route:ActivatedRoute,
     private authService:AuthService,
     private fb:FormBuilder,
+    private router:Router,
   ) { 
 
     if(this.date){
@@ -125,6 +126,29 @@ export class CreditDetailsComponent implements OnInit {
   }
   toggleUpdateForm(){
     this.closed = true;
+  }
+  delWarn(){
+    Notiflix.Confirm.show(
+      'Confirm delete',
+      "Are you sure you want to delete this log?",
+      "I'm sure",
+      "Take me back",
+      () => {
+        Notiflix.Report.warning(
+          "Please note",
+          "We will send this request to the administration.",
+          "Okay",
+        )
+        this.router.navigate(['/delete-mpesa/' + this.id])
+      },
+      () => {
+        Notiflix.Report.success(
+          "Aborted!",
+          "",
+          'Great',
+        )
+      }
+    )
   }
 
 }

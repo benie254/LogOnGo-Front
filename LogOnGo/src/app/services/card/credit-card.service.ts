@@ -16,6 +16,7 @@ export class CreditCardService {
   apiTodayCreditCardLogs = apiURL + 'credit-card-logs-today/';
   apiUserCreditCardLogs = apiURL + 'user-credit-card-logs/';
   apiCreditCardLogDetails = apiURL + 'credit-card-log-details/';
+  apiDelCard = apiURL + 'delete-credit-card/request/';
 
   constructor(private http:HttpClient) { }
 
@@ -54,5 +55,8 @@ export class CreditCardService {
     return this.http.put<CreditCard>(this.apiCreditCardLogDetails + id, data).pipe(
       catchError(this.handleError)
     );
+  }
+  deleteCard(logData): Observable<any>{
+    return this.http.post<any>(this.apiDelCard, logData)
   }
 }

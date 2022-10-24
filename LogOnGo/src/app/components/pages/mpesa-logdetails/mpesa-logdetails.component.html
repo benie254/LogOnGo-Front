@@ -37,7 +37,7 @@
                               </table>
                         </div>
                         <div class="card-footer">
-                            <small class="">First logged by {{mpesaDetails.logged_by}} on {{mpesaDetails.first_logged | date: 'medium'}} </small>
+                            <small class=""><span><button class="btn btn-sm btn-light btn-outline-danger" type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> Delete</button></span> >>> First logged by {{mpesaDetails.logged_by}} on {{mpesaDetails.first_logged | date: 'medium'}} </small>
                         </div>
                         <p class="margin-top"><a type="button" class="btn btn-sm btn-light btn-outline-primary" (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> details </a> <span *ngIf="mpesaDetails.first_logged != mpesaDetails.last_edited"><small> >>> Last edited on {{mpesaDetails.last_edited | date: 'medium'}}</small></span></p>
                     </div>

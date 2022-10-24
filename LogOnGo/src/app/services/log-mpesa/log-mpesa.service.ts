@@ -15,6 +15,7 @@ export class LogMpesaService {
   apiTodayMpesaLogs = apiURL + 'mpesa-logs-today/';
   apiUserMpesaLogs = apiURL + 'user-mpesa-logs/';
   apiMpesaLogDetails = apiURL + 'mpesa-log-details/';
+  apiDelMpesa = apiURL + 'delete-mpesa/request/';
 
   constructor(private http:HttpClient) { }
 
@@ -53,5 +54,8 @@ export class LogMpesaService {
     return this.http.put<LogMpesa>(this.apiMpesaLogDetails + id, data).pipe(
       catchError(this.handleError)
     );
+  }
+  deleteMpesa(logData): Observable<any>{
+    return this.http.post<any>(this.apiDelMpesa, logData)
   }
 }

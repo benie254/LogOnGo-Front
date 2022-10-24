@@ -67,7 +67,7 @@
         <br>
         <div class="row">
             <div class="col-md-6">
-                <div class="shadow text-center bg-light">
+                <div class="shadow text-center margin-bottom-two bg-light">
                     <h6>Feeling lost? <i class="fa-solid fa-person-circle-question"></i></h6>
                     <mat-accordion>
                         <mat-expansion-panel (opened)="panelOpenState = true"
@@ -150,7 +150,7 @@
             </div>
           
             <div class="col-md-6">
-                <div *ngIf="announcements">
+                <div *ngIf="!noAnnouncement">
                     <app-profile-announcements></app-profile-announcements>
                 </div>
                 <div *ngIf="noAnnouncement">
@@ -243,7 +243,7 @@
                 
             <div class="col-md-1"></div>
         </div>
-        <br><br><br>
+        <br><br><br><br><br><br><br><br>
     <footer>
         <div class="container-fluid opacity footer-content color-two footer">
             <div class="row">

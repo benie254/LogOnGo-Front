@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Log } from 'src/app/classes/log/log';
@@ -55,6 +55,7 @@ export class LogDetailsComponent implements OnInit {
   hideDiesel: boolean = false;
   hidePetrol: boolean = false;
   hideGas: boolean = false;
+  delConfirmed: boolean = false;
   
 
   constructor(
@@ -62,6 +63,7 @@ export class LogDetailsComponent implements OnInit {
     private logService:LogService,
     private authService:AuthService,
     private fuelService:FuelService,
+    private router:Router,
     ) {
       this.fuelService.getDieselReceivedInfo(this.id).subscribe(
         (diesel_rcvd_info) => {
@@ -285,5 +287,31 @@ export class LogDetailsComponent implements OnInit {
       }
     )
   }
+  delWarn(){
+    Notiflix.Confirm.show(
+      'Confirm delete',
+      "Are you sure you want to delete this log?",
+      "I'm sure",
+      "Take me back",
+      () => {
+        Notiflix.Report.warning(
+          "Please note",
+          "We will send this request to the administration.",
+          "Okay",
+        )
+        this.delConfirmed = true;
+        this.router.navigate(['/delete-log/' + this.id])
+      },
+      () => {
+        Notiflix.Report.success(
+          "Aborted!",
+          "",
+          'Great',
+        )
+        this.delConfirmed = false;
+      }
+    )
+  }
+  
 
 }

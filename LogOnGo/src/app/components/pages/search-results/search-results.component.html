@@ -4,7 +4,7 @@
         <div class="col-md-6">
             <form class="form" id="f1">
             <h1>Search Filter</h1>
-                <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width" style="margin-top:5%;">
+                <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width">
                     <mat-label>Month or Day</mat-label>
                     <input matInput placeholder="Enter Month or Day" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
                     <datalist id="datalistOptions">
@@ -129,8 +129,8 @@
         </div>
         <div class="col-md-6">
             <form class="form" role="search" id="searchForm">
-                <h1 class="float-right">Specific Search Tool</h1>
-                <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width" style="margin-top:5%;">
+                <h1 class="float-right">Specific Search</h1>
+                <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width">
                     <mat-label>Date</mat-label>
                     <input matInput type="date" (mousemove)="onKey($event);" (mouseover)="onKey($event)" (keydown)="onKey($event);" (mousedown)="onKey($event)" (keyup)="onKey($event)" (mouseleave)="onKey($event)" placeholder="Select date" aria-label="Search" required>
                     <mat-icon matSuffix>date</mat-icon>
@@ -270,7 +270,9 @@
        
         
         
-        
+<br><br><br><br><br><br><br>
+
+<app-footer></app-footer>
         
         
   

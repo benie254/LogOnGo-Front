@@ -26,7 +26,10 @@ import { PrintLogsComponent } from './components/pages/print-logs/print-logs.com
 import { PrintMpesaComponent } from './components/pages/print-mpesa/print-mpesa.component';
 import { ProfileComponent } from './components/pages/profile/profile.component';
 import { SearchResultsComponent } from './components/pages/search-results/search-results.component';
+import { DeleteCardComponent } from './components/sections-b/delete-card/delete-card.component';
+import { DeleteMpesaComponent } from './components/sections-b/delete-mpesa/delete-mpesa.component';
 import { CreditDetailsComponent } from './components/sections-b/credit-details/credit-details.component';
+import { DeleteLogComponent } from './components/sections-b/delete-log/delete-log.component';
 import { EmailCreditCardComponent } from './components/sections-b/email-credit-card/email-credit-card.component';
 import { PrintCreditCardComponent } from './components/sections-b/print-credit-card/print-credit-card.component';
 
@@ -59,6 +62,9 @@ const routes: Routes = [
   { path: 'change-password/:id', component: ChangePasswordComponent },
   { path: 'reset-password/:id', component: ResetPasswordComponent },
   { path: 'confirmed/reset-password/:id', component: ResetConfirmedComponent },
+  { path: 'delete-log/:id', component: DeleteLogComponent },
+  { path: 'delete-card/:id', component: DeleteCardComponent },
+  { path: 'delete-mpesa/:id', component: DeleteMpesaComponent },
 ];
 
 @NgModule({

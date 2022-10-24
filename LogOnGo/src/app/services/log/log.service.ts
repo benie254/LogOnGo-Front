@@ -23,6 +23,9 @@ export class LogService {
   apiFuelLogs4 = apiURL + 'fuel-logs-iv-today/';
   apiURLmpesaLogs = apiURL + 'mpesa-logs-today/';
   apiSearch = apiURL + 'past-logs/';
+  apiDelLog = apiURL + 'delete-log/request/';
+  
+  
 
   constructor(
     private http:HttpClient,
@@ -91,5 +94,8 @@ export class LogService {
   }
   searchByDate(logDate:string): Observable<Log>{
     return this.http.get<Log>(this.apiSearch + logDate)
+  }
+  deleteLog(logData): Observable<any>{
+    return this.http.post<any>(this.apiDelLog, logData)
   }
 }

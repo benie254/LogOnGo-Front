@@ -178,6 +178,9 @@ import { AddCreditLogpageComponent } from './components/pages/add-credit-logpage
 import { AddCreditCardFormComponent } from './components/forms/add-credit-card-form/add-credit-card-form.component';
 import { AddDieselCreditFormComponent } from './components/forms/add-diesel-credit-form/add-diesel-credit-form.component';
 import { AddGasCreditFormComponent } from './components/forms/add-gas-credit-form/add-gas-credit-form.component';
+import { DeleteLogComponent } from './components/sections-b/delete-log/delete-log.component';
+import { DeleteMpesaComponent } from './components/sections-b/delete-mpesa/delete-mpesa.component';
+import { DeleteCardComponent } from './components/sections-b/delete-card/delete-card.component';
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -325,6 +328,9 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     AddCreditCardFormComponent,
     AddDieselCreditFormComponent,
     AddGasCreditFormComponent,
+    DeleteLogComponent,
+    DeleteMpesaComponent,
+    DeleteCardComponent,
   ],
   imports: [
     NgxPaginationModule,

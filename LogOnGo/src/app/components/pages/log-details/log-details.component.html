@@ -11,10 +11,9 @@
     </div>
     <div class="col-lg-10 rounded center bg-light padding-2">
       <h2> <span> Log Details</span></h2>
-        <app-initial-amount></app-initial-amount>
         <div class="card color-two">
-          <h5 class="card-header margin-top"><span class="" style="float:left;"><a routerLink="/print-report/{{logs.id}}"><button class=" margin-top btn btn-sm btn-light btn-outline-primary">Print <span><i class="fa-solid fa-print"></i></span></button></a></span> <i class="fa-regular fa-calendar"></i> {{logs.date}} <span style="float:right;"><h6><a routerLink="/email-report/{{logs.id}}" type="button" class="btn btn-sm btn-light btn-outline-primary"><span><i class="fa-solid fa-paper-plane"></i></span> email</a></h6></span></h5>
-            <div class="card-body">
+          <h5 class="card-header margin-top"><span class="" style="float:left;"><a routerLink="/print-report/{{logs.id}}"><button class=" margin-top btn btn-sm btn-light btn-outline-primary">Print <span><i class="fa-solid fa-print"></i></span></button></a></span> <i class="fa-regular fa-calendar"></i> {{logs.date}}  <span style="float:right;"><h6><a routerLink="/email-report/{{logs.id}}" type="button" class="btn btn-sm btn-light btn-outline-primary"><span><i class="fa-solid fa-paper-plane"></i></span> email</a></h6></span></h5>
+          <div class="card-body">
                 <div class="table-responsive" id="table" name="table">
                     <table class="table">
                       <thead>
@@ -42,7 +41,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <small class="">First logged by {{logs.logged_by}} on {{logs.first_logged | date: 'medium'}}</small>
+                <small><span><button class="btn btn-sm btn-light btn-outline-danger" type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> Delete</button></span> >>> First logged by {{logs.logged_by}} on {{logs.first_logged | date: 'medium'}}</small>
             </div>
             <p><a type="button" class="btn btn-sm btn-light btn-outline-primary" type="button" (click)="reportWarn();"><i class="fa-solid fa-pen-to-square"></i> details </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited by on {{logs.last_edited | date: 'medium'}}</small></p>
             <div *ngIf="!closed">

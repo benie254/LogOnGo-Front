@@ -1,4 +1,5 @@
 <form [formGroup]="incidentForm" (ngSubmit)="incidentReport(incidentForm.value)">
+  <h2 class="text-center">Report an incident</h2>
     <div class="form-group hide">
         <input type="text" class="" formControlName="your_name" placeholder="Your name" [(ngModel)]="currentUser.username">
         <input type="email" formControlName="your_email" placeholder="your email" [(ngModel)]="currentUser.email">
