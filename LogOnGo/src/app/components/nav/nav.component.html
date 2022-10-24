@@ -103,7 +103,8 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" routerLink="/profile/{{currentUser.id}}">Profile</a></li>
-            <li><a class="dropdown-item" href="https://logongo.herokuapp.com/admin/">Admin</a></li>
+            <li *ngIf="isStaff"><a class="dropdown-item" href="{{backURL}}">Admin</a></li>
+            <li *ngIf="isSuper"><a class="dropdown-item" href="{{backURL}}">SuperUser</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" routerLink="/incident">Report Incident</a></li>
             <li><a class="dropdown-item" routerLink="/contact">Contact Admin</a></li>

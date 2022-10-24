@@ -45,6 +45,10 @@ export class NavComponent implements OnInit {
   searchText: any;
   dateResults: any;
   currentUser = this.authService.currentUserValue;
+  isStaff: boolean = false;
+  isSuper: boolean = false;
+  // backURL = 'https://logongo.herokuapp.com/admin/';
+  backURL = 'http://127.0.0.1:8000/admin/'
 
 
   searchForm = this.fb.group({
@@ -60,6 +64,7 @@ export class NavComponent implements OnInit {
     private fb:FormBuilder,
     private route:ActivatedRoute,
     ) { 
+      
       
 
     
@@ -89,7 +94,12 @@ export class NavComponent implements OnInit {
       // Notiflix.Notify.failure("get diesel failure!")
     });
     if (this.currentUser){
-      this.authenticated = true
+      this.authenticated = true;
+      this.isStaff = this.currentUser.is_staff;
+      this.isSuper = this.currentUser.is_superuser;
+      if(this.isSuper == true){
+        this.isStaff = false;
+      }
       this.ngOnInit()
     } else {
       this.authenticated = false;
