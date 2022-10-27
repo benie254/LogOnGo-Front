@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Pump } from 'src/app/classes/pump/pump';
@@ -15,59 +15,80 @@ import { PumpService } from 'src/app/services/pump/pump.service';
 export class AddDieselPumpOneComponent implements OnInit {
   pumpOne: Pump;
   info: Fuel;
-  date = new Date();
-  closed: boolean = true;
-  logForm = this.fb.group({
-    date: ['', [Validators.required]],
-    fuel: 0,
-    pump: 0,
-    eod_reading_lts: [0, [Validators.required]],
- });
+  closed: boolean;
+  errMsg = '';
+  errDate = '';
+  errEOD = '';
+  statusText = '';
+  
 
   constructor(
     private pumpService:PumpService,
     private fuelService:FuelService,
     private logService:LogService,
     private fb:FormBuilder,
-  ) {
-    this.fuelService.getDieselInfo().subscribe((data) => {
+  ) { 
+    this.fuelService.getDieselInfo().subscribe({
+      next: (data) => {
       this.info = data
       console.warn("data",data)
-    });
-    this.pumpService.getPumpOneInfo().subscribe(
-      (data) => {
-        this.pumpOne = data;
-      }, 
-      err => {
-        console.warn("pump one get error:",err)
       }
-    )
-   }
-
-   
+    });
+    this.pumpService.getPumpOneInfo().subscribe({
+      next: (data) => {
+        this.pumpOne = data;
+      }
+    })
+  }
 
   ngOnInit(): void {
   }
 
-  addLog() {
-    this.logService.addLog(this.logForm.value).subscribe((result) => {
-      console.warn('result', result);
-      Notiflix.Notify.success('Diesel log added successful!');
-      this.ngOnInit();
+  addLog(logData) {
+    this.logService.addLog(logData).subscribe({
+      next: (result) => {
+        Notiflix.Notify.success('Diesel log added successful!');
+        this.ngOnInit();
       if (this.closed === true){
         this.closed = false;
       } else {
         this.closed = true;
       }
       location.reload();
-    }, 
-    err => {
-      Notiflix.Notify.failure('Something went wrong!');
-      Notiflix.Notify.warning('Please try again.');
+      }, 
+      error: (err) => {
+        this.errMsg = err.error.detail;
+        this.statusText = err.statusText;
+        this.errEOD = err.error.eod_reading_lts;
+        this.errDate = err.error.date;
+        if(this.errMsg && this.statusText){
+          Notiflix.Report.failure(
+            this.statusText,
+            this.errMsg,
+            'Okay',
+          )
+        } else if(this.statusText && this.errEOD || this.errDate){
+          Notiflix.Report.failure(
+            this.statusText,
+            'Please fix the highlighted errors and try again.',
+            'Okay',
+          )
+        } else if(this.statusText) {
+          Notiflix.Report.failure(
+            this.statusText,
+            'Something went wrong as we attempted to add your log record. Please try again.',
+            'Okay',
+          )
+        } else {
+          Notiflix.Notify.failure('Failed to add log.')
+          Notiflix.Notify.warning('Please try again!')
+        }
+        
+      }
     });
   }
   toggleLog(){
-    this.closed = false;
+    this.closed = true;
   }
   closeForm(){
     if (this.closed === true){
@@ -75,7 +96,7 @@ export class AddDieselPumpOneComponent implements OnInit {
     } else {
       this.closed = true;
     }
-    
   }
+
 
 }

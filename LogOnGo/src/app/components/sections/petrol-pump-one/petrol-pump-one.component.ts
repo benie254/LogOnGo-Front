@@ -18,6 +18,8 @@ export class PetrolPumpOneComponent implements OnInit {
   info: Fuel;
   pumpOne: Pump;
   closed: boolean;
+  status: number; 
+  notFound: boolean = false;
 
   constructor(
     private logService:LogService,
@@ -44,18 +46,23 @@ export class PetrolPumpOneComponent implements OnInit {
   }
 
   getPetrolLogs(id:number): void{
-    this.logService.getFuelLogs(id).subscribe(
-      data => {
-      this.logs = data
-      // this.ngOnInit();
-      console.warn('petrol_info_today:',data)
-    },
-    error => {
-      console.log(error)
+    this.logService.getFuelLogs(id).subscribe({
+      next: (data) => {
+        this.logs = data
+      },
+      error: (e) => {
+        this.status = e.status;
+        if(this.status === 404){
+          this.notFound = true;
+        }
+      }
     });
   }
   toggleLog(){
     this.closed = true;
+  }
+  closeP1(){
+    this.closed = false;
   }
 
 }

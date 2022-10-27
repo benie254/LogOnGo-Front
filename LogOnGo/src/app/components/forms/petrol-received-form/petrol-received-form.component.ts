@@ -11,13 +11,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class PetrolReceivedFormComponent implements OnInit {
   petrolInfo: any;
-  petrolForm = this.fb.group({
-    fuel:0,
-    litres_received: [0, [Validators.required]],
-    received_from: ['', [Validators.required]],
-    date_received: [0, [Validators.required]]
- });
-
+  closed: boolean = false;
+  
   constructor(
     private fuelService:FuelService, 
     private fb: FormBuilder,
@@ -31,11 +26,17 @@ export class PetrolReceivedFormComponent implements OnInit {
     } 
   
   ngOnInit(): void { }
+  openPetrolForm(){
+    this.closed = true;
+  }
+  closePetrolForm(){
+    this.closed = false;
+  }
 
 
-  addPetrolReceived() {
+  addPetrolReceived(petrolData) {
     Notiflix.Loading.hourglass('Processing...');
-    this.fuelService.addFuelReceived(this.petrolForm.value).subscribe((result) => {
+    this.fuelService.addFuelReceived(petrolData).subscribe((result) => {
       console.warn('result', result);
       // this.notifService.submitSuccess('success','Petrol received added successfully!')
       // this.notifService.showSuccess("Data posted successfully !!", "Notification")

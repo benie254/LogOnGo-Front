@@ -11,91 +11,79 @@ import { CreditCardService } from 'src/app/services/card/credit-card.service';
   styleUrls: ['./credit-details.component.css']
 })
 export class CreditDetailsComponent implements OnInit {
-  creditCardUpdateForm: FormGroup;
   creditCardDetails: any; 
   id: number;
-  creditCardDetailsForm: FormGroup;
   currentUser = this.authService.currentUserValue;
   closed: boolean = false;
   updateConfirmed: boolean = false;
   date = '';
-  
- error: any;
- message = '';
-
- 
-
+  error: any;
+  message = '';
+  errMsg = '';
+  errName = '';
+  errNo = '';
+  errAmount = '';
+  errDate = '';
+  statusText = '';
 
   constructor(
     private creditCardService:CreditCardService,
     private route:ActivatedRoute,
     private authService:AuthService,
-    private fb:FormBuilder,
     private router:Router,
   ) { 
 
-    if(this.date){
-      alert(this.date)
-    } else {
-      alert("no date")
-    }
+    
   }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.route.params.subscribe(params => this.getCreditCardLogDetails(params['id']));
-    // this.date = this.creditCardDetails.date
-    
-    this.creditCardUpdateForm = this.fb.group({
-      date: [this.date, [Validators.required]],
-        card_name: ['', [Validators.required]],
-        card_number: [0, [Validators['required'],Validators['min'](1000000000000000),Validators['max'](9999999999999999)]],
-        amount: [0, [Validators.required]],
-    });
     this.getCreditCardLogDetails(this.id)
-    // this.updateForm = this.fb.group({
-    //   date: ['', [Validators.required]],
-    //   card_name: ['', [Validators.required]],
-    //   card_number: [0, [Validators['required'],Validators['min'](1000000000000000),Validators['max'](9999999999999999)]],
-    //   amount: [0, [Validators.required]],
-    // });
-    
   }
-
-
   getCreditCardLogDetails(id:number){
-    this.creditCardService.getCreditCardLogDetails(id).subscribe(
-      (data) => {
+    this.creditCardService.getCreditCardLogDetails(id).subscribe({
+      next: (data) => {
         this.creditCardDetails = data
-        console.warn("creditCard log details",data)
-        Notiflix.Notify.success('Get creditCard details success')
         this.date = this.creditCardDetails.date
-      },
-      err => {
-        this.error = err;
-        this.message = this.error.statusText;
-        Notiflix.Notify.failure(this.message);
-        console.warn(err)
-        Notiflix.Notify.failure('Something went wrong!')
       }
-    );
+    });
   }
-
-  
-
-  updateCreditCardDetails(){
-
-    this.creditCardService.updateCreditCardDetails(this.id,this.creditCardUpdateForm.value).subscribe({
+  updateCreditCardDetails(cardData){
+    this.creditCardService.updateCreditCardDetails(this.id,cardData).subscribe({
         next: (res) => {
           console.log(res);
           Notiflix.Notify.success('updated!');
-          // this.message = res.message ? res.message : 'This tutorial was updated successfully!';
           this.closed = true;
+          this.errMsg = '';
+          this.errDate = '';
+          this.errAmount = '';
+          this.errName = '';
+          this.errNo = '';
         },
         error: (e) => {
           console.error(e)
           Notiflix.Notify.failure('Update failed!')
           this.closed = false;
+          this.errMsg = e.error.detail;
+          this.statusText = e.statusText;
+          this.errDate = e.error.date;
+          this.errName = e.error.card_name;
+          this.errNo = e.error.card_number;
+          this.errAmount = e.error.amount;
+          if(this.errMsg && this.statusText){
+            Notiflix.Report.failure(
+              this.statusText,
+              this.errMsg,
+              'Okay',
+            )
+          } else if(this.statusText){
+            Notiflix.Report.failure(
+              this.statusText,
+              'Please fix the highlighted errors and try again.',
+              'Okay',
+            )
+          }
         } 
       });
   }
@@ -139,7 +127,7 @@ export class CreditDetailsComponent implements OnInit {
           "We will send this request to the administration.",
           "Okay",
         )
-        this.router.navigate(['/delete-mpesa/' + this.id])
+        this.router.navigate(['/delete-card/' + this.id])
       },
       () => {
         Notiflix.Report.success(

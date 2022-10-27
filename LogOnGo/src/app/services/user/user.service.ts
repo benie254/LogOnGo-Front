@@ -39,7 +39,7 @@ export class UserService {
     return this.http.get(apiURL + 'all', { responseType: 'text' });
   }
   getUser(): Observable<any> {
-    return this.http.get(apiURL + 'profile_details', { responseType: 'text' });
+    return this.http.get(apiURL + 'user-profile/', { responseType: 'text' });
   }
   getAdmin(): Observable<any> {
     return this.http.get(apiURL + 'admin', { responseType: 'text' });

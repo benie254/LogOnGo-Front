@@ -18,6 +18,15 @@ export class NoMpesalogsComponent implements OnInit {
   today = new Date().toISOString();
   error: any; 
   message = '';
+  err: any;
+  errDate = '';
+  errTrans = '';
+  errName = '';
+  errPhone = '';
+  errAmount = '';
+  errBank = '';
+  errMsg = '';
+  statusText = '';
   
   
 
@@ -50,18 +59,46 @@ export class NoMpesalogsComponent implements OnInit {
       user: 0
     });
   }
-  addMpesaLog() {
-    this.logMpesaService.addMpesaLog(this.mpesaForm.value).subscribe((result) => {
-      console.warn('result', result);
-      Notiflix.Notify.success('Mpesa log added successful!');
-      this.ngOnInit();
-      location.reload();
-    }, 
-    err => {
-      this.error = err;
-      this.message = this.error.statusText;
-      Notiflix.Notify.failure(this.message);
-      Notiflix.Notify.warning('Please try again.');
+  addMpesaLog(mpesaData) {
+    this.logMpesaService.addMpesaLog(mpesaData).subscribe({
+      next: (res) => {
+        console.log(res);
+        Notiflix.Notify.success('Log added!');
+        this.closed = true;
+        this.errDate = '';
+        this.errTrans = ''; 
+        this.errName = '';
+        this.errPhone = '';
+        this.errAmount = '';
+        this.errBank = '';
+        location.reload();
+      },
+      error: (e) => {
+        console.error(e)
+        Notiflix.Notify.failure('Logging failed!')
+        this.closed = false;
+        this.errMsg = e.error.detail;
+        this.statusText = e.statusText;
+        this.errDate = e.error.date;
+        this.errTrans = e.error.transaction_number; 
+        this.errName = e.error.customer_name;
+        this.errPhone = e.error.customer_phone_number;
+        this.errAmount = e.error.amount;
+        this.errBank = e.error.amount_transferred_to_bank;
+        if(this.errMsg && this.statusText){
+          Notiflix.Report.failure(
+            this.statusText,
+            this.errMsg,
+            "Okay",
+          )
+        } else if(this.statusText){
+          Notiflix.Report.failure(
+            this.statusText,
+            'Please fix the highlighted errors and try again.',
+            "Okay",
+          )
+        }
+      } 
     });
   }
 

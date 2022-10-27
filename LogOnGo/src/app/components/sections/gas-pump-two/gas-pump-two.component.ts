@@ -19,6 +19,8 @@ export class GasPumpTwoComponent implements OnInit {
   info: Fuel;
   pumpTwo: Pump;
   closed: boolean;
+  status: number;
+  notFound: boolean = false;
 
   constructor(
     private logService:LogService,
@@ -45,19 +47,23 @@ export class GasPumpTwoComponent implements OnInit {
       this.info = data
       console.warn("data",data)
     });
-    this.logService.getFuelLogs2(id).subscribe(
-      data => {
-      this.logs = data
-      // this.ngOnInit();
-      console.warn('gas_info_today:',data)
-      
-    },
-    error => {
-      console.log(error)
+    this.logService.getFuelLogs2(id).subscribe({
+      next: (data) => {
+        this.logs = data
+      },
+      error: (e) => {
+        this.status = e.status;
+        if(this.status === 404){
+          this.notFound = true;
+        }
+      }
     });
   }
   toggleLog(){
     this.closed = true;
+  }
+  closeG2(){
+    this.closed = false;
   }
 
 }

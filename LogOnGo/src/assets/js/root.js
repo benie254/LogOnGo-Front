@@ -258,10 +258,17 @@ function toggleLogForm(){
     // document.getElementsByClassName("print").style.display = "none"
     return window.print();
   }
+  function printCardData(){
+    // document.getElementsByClassName("print").style.display = "none"
+    return window.print();
+  }
   function refreshPrint(){
     return location.reload()
   }
   function refreshPrintMpesa(){
+    return location.reload()
+  }
+  function refreshPrintCard(){
     return location.reload()
   }
   $(document).ready(function(){
@@ -613,6 +620,22 @@ function toggleLogForm(){
   }
   function togglePrintMpesaData2(){
     var hide = document.getElementById("printMpesaData2");
+    if (hide.style.display === "block"){
+        hide.style.display = "none";
+    } else{
+        hide.style.display = "block";
+    }
+  }
+  function togglePrintCardData(){
+    var hide = document.getElementById("printCardData");
+    if (hide.style.display === "block"){
+        hide.style.display = "none";
+    } else{
+        hide.style.display = "block";
+    }
+  }
+  function togglePrintCardData2(){
+    var hide = document.getElementById("printCardData2");
     if (hide.style.display === "block"){
         hide.style.display = "none";
     } else{

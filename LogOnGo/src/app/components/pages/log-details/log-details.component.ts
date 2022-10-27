@@ -18,33 +18,12 @@ export class LogDetailsComponent implements OnInit {
   closed: boolean = false;
   fuelName= '';
   @Input() viewMode = false;
-  @Input() logDetails: Log = {
-    // id: 0,
-    date: '',
-    formatted_date: '',
-    eod_reading_lts: 0,
-    eod_reading_yesterday: 0,
-    total_litres_sold: 0,
-    amount_earned_today: 0,
-    fuel: 0,
-    fuel_name: '',
-    price_per_litre: 0,
-    pump: 0,
-    pump_name: '',
-    logged_by: '',
-    user_id: 0,
-    balance: 0,
-    balance_yesterday: 0,
-    updated_balance: 0,
-    first_logged: '',
-    last_edited: ''
-  };
+  
   message = '';
   logs: Log;
   id: number;
   yesterday_logs: any;
   petrol_received_info: any;
-  form: FormGroup;
   fuels:Fuel;
   currentUser = this.authService.currentUserValue;
   diesel_received: any;
@@ -56,7 +35,11 @@ export class LogDetailsComponent implements OnInit {
   hidePetrol: boolean = false;
   hideGas: boolean = false;
   delConfirmed: boolean = false;
-  
+  errMsg = '';
+  errEOD = '';
+  errDate = '';
+  statusText = '';
+  closedF: boolean = true;
 
   constructor(
     private route:ActivatedRoute, 
@@ -65,75 +48,49 @@ export class LogDetailsComponent implements OnInit {
     private fuelService:FuelService,
     private router:Router,
     ) {
-      this.fuelService.getDieselReceivedInfo(this.id).subscribe(
-        (diesel_rcvd_info) => {
-          this.diesel_received_info = diesel_rcvd_info
-        },
-        err => {
-          console.log(err)
+      this.fuelService.getDieselReceivedInfo(this.id).subscribe({
+        next: (diesel_rcvd_info) => {
+          this.diesel_received_info = diesel_rcvd_info;
         }
-      )
-      this.fuelService.getPetrolReceivedInfo(this.id).subscribe(
-        (petrol_rcvd_info) => {
-          this.petrol_received_info = petrol_rcvd_info
-        },
-        err => {
-          console.log(err)
+      });
+      this.fuelService.getPetrolReceivedInfo(this.id).subscribe({
+        next: (petrol_rcvd_info) => {
+          this.petrol_received_info = petrol_rcvd_info;
         }
-      )
-      this.fuelService.getGasReceivedInfo(this.id).subscribe(
-        (gas_rcvd_info) => {
+      });
+      this.fuelService.getGasReceivedInfo(this.id).subscribe({
+        next: (gas_rcvd_info) => {
           this.gas_received_info = gas_rcvd_info;
-        },
-        err => {
-          console.log(err)
         }
-      )
-     }
+      });
+    }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => this.getLogDetails(params['id']))
     this.id = this.route.snapshot.params['id'];
-    // this.route.params.subscribe(params => this.updateLogDetails(params['id']))
-    this.message = '';
-
     this.dieselReceived();
     this.getGasReceived();
     this.getPetrolReceived();
     this.getPetrolReceivedInfo();
-
-    this.fuelService.getFuels().subscribe(
-      (fuels_data) => {
-        console.warn("fuels data:",fuels_data)
+    this.fuelService.getFuels().subscribe({
+      next: (fuels_data) => {
         this.fuels = fuels_data;
-        // Notiflix.Notify.success('Get fuel success')
-      },
-      err => {
-        console.warn(err)
-        // Notiflix.Notify.failure('Fuel get failed')
       }
-    )
-
-    this.form = new FormGroup({
-      date: new FormControl('', [Validators.required]),
-      eod_reading_lts: new FormControl(0, Validators.required),
-      // eod_reading_yesterday: new FormControl(0, [Validators.required]),
-      // total_litres_sold: new FormControl(0, [Validators.required]),
-      // amount_earned_today: new FormControl(0, [Validators.required]),
-      // fuel: new FormControl(0, [Validators.required]),
-      // fuel_name: new FormControl('', [Validators.required]),
-      // logged_by: new FormControl('', [Validators.required]),
-      // user_id: new FormControl(0, [Validators.required]),
     });
-  }
-  
 
+    
+  }
+  openPetrolForm(){
+    this.closedF = false;
+  }
+  closePetrolForm(){
+    this.closedF = true;
+  }
   getLogDetails(id:number){
-    this.logService.getLogDetails(id).subscribe((data) => {
-      this.logs = data
-      console.warn("log details",data)
-      // Notiflix.Notify.success('Get success')
-      this.fuelName = this.logs.fuel_name
+    this.logService.getLogDetails(id).subscribe({
+      next: (data) => {
+        this.logs = data;
+        this.fuelName = this.logs.fuel_name
       
       if (this.fuelName === 'Petrol'){
         this.hideDiesel = true;
@@ -145,59 +102,41 @@ export class LogDetailsComponent implements OnInit {
         this.hideDiesel = true;
         this.hidePetrol = true;
       } 
-    },
-    err => {
-      console.warn(err)
-      // Notiflix.Notify.failure('Something went wrong!')
-    }
-    );
+      }
+    });
   }
-  // updatePosted(status){
-  //   const data = {
-  //     date: this.logs.date,
-  //     fuel: this.logs.fuel,
-  //     fuel_name: this.logs.fuel_name, 
-  //     eod_reading_lts: this.logs.eod_reading_lts, 
-  //     eod_reading_yesterday: this.logs.eod_reading_yesterday, 
-  //     total_litres_sold: this.logs.total_litres_sold, 
-  //     amount_earned_today: this.logs.amount_earned_today, 
-  //     balance: this.logs.balance, 
-  //     updated_balance:this.logs.updated_balance, 
-  //     balance_yesterday: this.logs.balance_yesterday, 
-  //     user_id: this.logs.user_id, 
-  //     logged_by: this.logs.logged_by, 
-  //   };
-  //   this.logService.updateLogDetails(this.logs.id, data).subscribe(
-  //     response => {
-  //       console.log(response);
-  //       Notiflix.Notify.success('Updated!')
-  //     },
-  //     error => {
-  //       console.log(error)
-  //       alert(error)
-  //       Notiflix.Notify.failure('Update failed!')
-  //     }
-  //   );
-  // }
-
-  get f(){
-    return this.form.controls;
-  }
-
-  updateLogDetails(){
-    this.message = '';
-
-    this.logService.updateLogDetails(this.id,this.form.value).subscribe({
+  updateLogDetails(logData){
+    this.logService.updateLogDetails(this.id,logData).subscribe({
         next: (res) => {
           console.log(res);
           Notiflix.Notify.success('updated!');
           // this.message = res.message ? res.message : 'This tutorial was updated successfully!';
           this.closed = true;
+          this.errDate = '';
+          this.errEOD = '';
+          
         },
         error: (e) => {
           console.error(e)
           Notiflix.Notify.failure('Update failed!')
           this.closed = false;
+          this.errMsg = e.error.detail;
+          this.statusText = e.statusText;
+          this.errEOD = e.error.eod_reading_lts;
+          this.errDate = e.error.date;
+          if(this.errMsg && this.statusText){
+            Notiflix.Report.info(
+              this.statusText,
+              this.errMsg,
+              "Okay",
+            )
+          } else if(this.statusText){
+            Notiflix.Report.info(
+              this.statusText,
+              'Please fix the highlighted errors and try again.',
+              "Okay",
+            )
+          }
         } 
       });
   }
@@ -231,61 +170,44 @@ export class LogDetailsComponent implements OnInit {
   toggleUpdateForm(){
     this.closed = true;
   }
+  closeForm(){
+    this.closed = true;
+  }
 
   dieselReceived() {
-    this.fuelService.getDieselReceived(this.id).subscribe(
-      (result) => {
+    this.fuelService.getDieselReceived(this.id).subscribe({
+      next: (result) => {
         this.diesel_received = result;
-      console.warn('result', result);
-      // this.notifService.submitSuccess('success','Diesel received added successfully!')
-      // this.notifService.showSuccess("Data posted successfully !!", "Notification")
-    },
-    err => {
-      
-    }
-    );
+      }
+    });
   }
   
 
   
 
   getPetrolReceived(){
-    this.fuelService.getPetrolReceived(this.id).subscribe(
-      (fuel_received_data) => {
+    this.fuelService.getPetrolReceived(this.id).subscribe({
+      next: (res) => {
+        
+      }, 
+      error: (fuel_received_data) => {
         this.petrol_received = fuel_received_data;
-        console.warn("fuel recvd data:",fuel_received_data);
-        Notiflix.Notify.success('Get fuel rcv success!')
-      },
-      err => {
-        this.message = err 
-        console.warn(err)
-        Notiflix.Notify.failure('Get fuel rcv failed!')
       }
-    )
+    });
   }
   getGasReceived(){
-    this.fuelService.getGasReceived(this.id).subscribe(
-      (gas_received_data) => {
+    this.fuelService.getGasReceived(this.id).subscribe({
+      next: (gas_received_data) => {
         this.gas_received = gas_received_data;
-        console.warn("gas recvd data:",gas_received_data);
-        Notiflix.Notify.success('Get gas rcv success!')
-      },
-      err => {
-        this.message = err 
-        console.warn(err)
-        Notiflix.Notify.failure('Get gas rcv failed!')
       }
-    )
+    });
   }
   getPetrolReceivedInfo(){
-    this.fuelService.getPetrolReceivedInfo(this.id).subscribe(
-      (petrol_rcvd_info) => {
-        this.petrol_received_info = petrol_rcvd_info
-      },
-      err => {
-        console.log(err)
+    this.fuelService.getPetrolReceivedInfo(this.id).subscribe({
+      next: (petrol_rcvd_info) => {
+        this.petrol_received_info = petrol_rcvd_info;
       }
-    )
+    });
   }
   delWarn(){
     Notiflix.Confirm.show(

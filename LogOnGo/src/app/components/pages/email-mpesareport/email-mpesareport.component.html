@@ -1,24 +1,24 @@
 
 <div class="container-fluid">
-    <br><br><br><br>
+    <br><br>
   <div class="container">
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-md-8">
-            <form class="color-two padding rounded shadow" [formGroup]="mpesaReportForm" (ngSubmit)="emailMpesaReport()">
+            <form class="color-two padding rounded shadow" #mpesaReportForm="ngForm" (ngSubmit)="emailMpesaReport(mpesaReportForm.value)">
                 <h3 class="text-center"><i class="fa-solid fa-hand"></i> Please confirm your details</h3> 
             <p class="text-center">We will send an email report to...</p>
                 <div class="row hide">
                     <div class="col">
-                        <input type="date" ngModel formControlName="date" [(ngModel)]="mpesaDetails.date">
-                        <input type="text" ngModel placeholder="transaction_number" formControlName="transaction_number" [(ngModel)]="mpesaDetails.transaction_number" id="tester-today-report">
-                <input type="text" placeholder="customer_name" formControlName="customer_name" ngModel [(ngModel)]="mpesaDetails.customer_name" id="tester-yesterday-report">
-                <input type="number" placeholder="customer_phone_number" formControlName="customer_phone_number" ngModel [(ngModel)]="mpesaDetails.customer_phone_number">
-                <input type="number" placeholder="amount" formControlName="amount" ngModel [(ngModel)]="mpesaDetails.amount">
-                <input type="number" placeholder="amount_transferred_to_bank" formControlName="amount_transferred_to_bank" ngModel [(ngModel)]="mpesaDetails.amount_transferred_to_bank">
-                <input type="number" placeholder="daily_total" ngModel [(ngModel)]="mpesaDetails.daily_total" formControlName="daily_total">
-                <input type="number" placeholder="cumulative_amount" formControlName="cumulative_amount" ngModel [(ngModel)]="mpesaDetails.cumulative_amount">
-                <input type="text" placeholder="logged_by" formControlName="logged_by" ngModel [(ngModel)]="mpesaDetails.logged_by">
+                        <input type="date" ngModel name="date" #date="ngModel" [(ngModel)]="mpesaDetails.date">
+                        <input type="text" ngModel name="transaction_number" #transaction_number="ngModel" [(ngModel)]="mpesaDetails.transaction_number" id="tester-today-report">
+                <input type="text" name="customer_name" #customer_name="ngModel" ngModel [(ngModel)]="mpesaDetails.customer_name" id="tester-yesterday-report">
+                <input type="number" name="customer_phone_number" #customer_phone_number="ngModel" ngModel [(ngModel)]="mpesaDetails.customer_phone_number">
+                <input type="number" name="amount" #amount="ngModel" ngModel [(ngModel)]="mpesaDetails.amount">
+                <input type="number" name="amount_transferred_to_bank" #amount_transferred_to_bank="ngModel" ngModel [(ngModel)]="mpesaDetails.amount_transferred_to_bank">
+                <input type="number" ngModel [(ngModel)]="mpesaDetails.daily_total" #daily_total="ngModel" name="daily_total">
+                <input type="number" placeholder="cumulative_amount" name="cumulative_amount" #cumulative_amount="ngModel" ngModel [(ngModel)]="mpesaDetails.cumulative_amount">
+                <input type="text" placeholder="logged_by" name="logged_by" #logged_by="ngModel" ngModel [(ngModel)]="mpesaDetails.logged_by">
                     </div>
                 </div>
                 
@@ -26,31 +26,35 @@
                     <div class="col-lg-6 rounded padding-2">
                         <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                             <mat-label>Your email</mat-label>
-                            <input matInput placeholder="Your email" formControlName="admin_email" type="email" [(ngModel)]="currentUser.email" required>
+                            <input matInput placeholder="Your email" name="admin_email" #admin_email="ngModel" ngModel type="email" [(ngModel)]="currentUser.email" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
                             <mat-icon matSuffix>email</mat-icon>
-                            <mat-hint>e.g: username@provider.com</mat-hint>
+                            <mat-hint>e.g username@provider.com</mat-hint>
+                            <mat-error *ngIf="admin_email.hasError('pattern')">
+                              Please enter a <strong>valid email address</strong> 
+                            </mat-error>
+                            <mat-error *ngIf="admin_email.hasError('required') || admin_email.pristine">
+                              Your email is <strong>required</strong>
+                            </mat-error>
                           </mat-form-field> 
-                          <div *ngIf="mpesaReportForm.controls['admin_email'].invalid && mpesaReportForm.controls['admin_email'].touched" class="alert alert-danger">
-                            <div *ngIf="mpesaReportForm.controls['admin_email'].errors['required']">
-                              Your email is required.
-                            </div>
-                            <div *ngIf="mpesaReportForm.controls['admin_email'].errors['email']">
-                                Please enter a valid email address.
-                              </div>
-                          </div>
+                          
                     </div>
                     <div class="col-lg-6 rounded padding-2">
                         <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                             <mat-label>Your name</mat-label>
-                            <input matInput placeholder="Your name" formControlName="admin_name" type="text" [(ngModel)]="currentUser.first_name" required>
+                            <input matInput placeholder="Your name" name="admin_name" #admin_name="ngModel" ngModel type="text" [(ngModel)]="currentUser.first_name" required minlength="3" maxlength="25">
                             <mat-icon matSuffix>person</mat-icon>
                             <mat-hint>e.g: John Doe</mat-hint>
+                            <mat-error *ngIf="admin_name.hasError('minlength')">
+                              Your name should be at least <strong>3 characters</strong>.
+                            </mat-error>
+                            <mat-error *ngIf="admin_name.hasError('maxlength')">
+                              Your name cannot be more than <strong>25 characters</strong>.
+                            </mat-error>
+                            <mat-error *ngIf="admin_name.hasError('required') || admin_name.pristine">
+                              Your name is <strong>required</strong>
+                            </mat-error>
                           </mat-form-field> 
-                          <div *ngIf="mpesaReportForm.controls['admin_name'].invalid && mpesaReportForm.controls['admin_name'].touched" class="alert alert-danger">
-                            <div *ngIf="mpesaReportForm.controls['admin_name'].errors['required']">
-                              Your email is required.
-                            </div>
-                          </div>
+                         
                     </div>
                 </div>
                 <div class="form-group text-center">
@@ -64,3 +68,5 @@
   </div>  
     
 </div>
+
+<app-footer></app-footer>

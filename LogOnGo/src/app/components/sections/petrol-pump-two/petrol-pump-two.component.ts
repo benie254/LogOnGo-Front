@@ -19,6 +19,9 @@ export class PetrolPumpTwoComponent implements OnInit {
   info: Fuel;
   pumpTwo: Pump;
   closed: boolean;
+  notFound: boolean = false;
+  status: number;
+  id: number;
 
   constructor(
     private logService:LogService,
@@ -27,13 +30,13 @@ export class PetrolPumpTwoComponent implements OnInit {
     private pumpService:PumpService,
   ) {
     this.pumpService.getPumpTwoInfo().subscribe(
-      (pump_one_data) => {
-        this.pumpTwo = pump_one_data;
-      }, 
-      err => {
-        console.warn("pump one get error:",err)
+      (pump_two_data) => {
+        this.pumpTwo = pump_two_data;
       }
     )
+    this.fuelService.getPetrolInfo().subscribe((data) => {
+      this.info = data;
+    });
    }
 
   ngOnInit(): void {
@@ -41,23 +44,28 @@ export class PetrolPumpTwoComponent implements OnInit {
   }
 
   getPetrolLogs2(id:number): void{
-    this.fuelService.getPetrolInfo().subscribe((data) => {
-      this.info = data
-      console.warn("data",data)
-    });
-    this.logService.getFuelLogs2(id).subscribe(
-      data => {
-      this.logs = data
-      // this.ngOnInit();
-      console.warn('petrol_info_today:',data)
-      
-    },
-    error => {
-      console.log(error)
-    });
+    
+    this.logService.getFuelLogs2(id).subscribe({
+      next: (data) => {
+        this.logs = data
+        console.warn('petrol_logs_2_today:',data)
+        
+      },
+      error: (e) => {
+        console.error('petrol_logs_2_today error:',e)
+        this.status = e.status;
+        if(this.status === 404){
+          this.notFound = true;
+        }
+      }
+    }
+      );
   }
   toggleLog(){
     this.closed = true;
+  }
+  closeP2(){
+    this.closed = false;
   }
 
 }

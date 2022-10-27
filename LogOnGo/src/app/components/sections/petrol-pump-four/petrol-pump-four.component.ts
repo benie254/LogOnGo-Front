@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NumberValueAccessor } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
@@ -19,6 +20,8 @@ export class PetrolPumpFourComponent implements OnInit {
   info: Fuel;
   pumpFour: Pump;
   closed: boolean;
+  status: number;
+  notFound: boolean = false;
 
   constructor(
     private logService:LogService,
@@ -45,19 +48,23 @@ export class PetrolPumpFourComponent implements OnInit {
       this.info = data
       console.warn("data",data)
     });
-    this.logService.getFuelLogs4(id).subscribe(
-      data => {
-      this.logs = data
-      // this.ngOnInit();
-      console.warn('petrol_info_today:',data)
-      
-    },
-    error => {
-      console.log(error)
+    this.logService.getFuelLogs4(id).subscribe({
+      next: (data) => {
+        this.logs = data
+      },
+      error: (e) => {
+        this.status = e.status;
+        if(this.status === 404){
+          this.notFound = true;
+        }
+      }
     });
   }
   toggleLog(){
     this.closed = true;
+  }
+  closeP4(){
+    this.closed = false;
   }
 
 }

@@ -52,9 +52,7 @@ export class CreditCardService {
   }
 
   updateCreditCardDetails(id,data): Observable<CreditCard>{
-    return this.http.put<CreditCard>(this.apiCreditCardLogDetails + id, data).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.put<CreditCard>(this.apiCreditCardLogDetails + id, data)
   }
   deleteCard(logData): Observable<any>{
     return this.http.post<any>(this.apiDelCard, logData)

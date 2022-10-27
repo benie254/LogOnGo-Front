@@ -19,7 +19,7 @@
                 <tbody *ngFor="let logs of logs | paginate: { id:'generalPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
                   <tr>
                     <td>{{logs.id}}</td>
-                    <td>{{logs.date}}</td>
+                    <td>{{logs.date | date: 'dd/MM/yyyy'}}</td>
                       <td class="tester-today3">{{logs.eod_reading_lts}}</td>
                       <td class="tester-yesterday3">{{logs.eod_reading_yesterday}}</td>
                     <td id="">{{logs.total_litres_sold}}</td>

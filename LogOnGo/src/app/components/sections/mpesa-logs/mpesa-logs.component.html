@@ -46,13 +46,6 @@
 <div *ngIf="noMpesa">
   <div class="bg-light shadow rounded padding-2">
       <div class="row">
-          <div class="col-sm-5"></div>
-          <div class="col-sm-5">
-              <span (click)="close()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
-          </div>
-          <div class="col-sm-2"></div>
-      </div>
-      <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
           <div class="card color-one">
@@ -68,7 +61,9 @@
         
         
         <div *ngIf="show">
-            
+         
+                <span (click)="close()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+           
           <app-no-mpesalogs></app-no-mpesalogs>
         </div>
       

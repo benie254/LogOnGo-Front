@@ -10,7 +10,7 @@
                     <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let user_logs of user_logs | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+                <tbody *ngFor="let user_logs of user_logs | paginate: { id:'profileLogsPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
                   <tr>
                     <td>{{user_logs.date | date: 'dd/MM/yyyy'}}</td>
                       <td class="tester-today3">{{user_logs.eod_reading_lts}}</td>
@@ -21,6 +21,7 @@
               </table>
               <div class="d-flex justify-content-center">
                 <pagination-controls
+                id="profileLogsPage"
                   previousLabel="Prev"
                   nextLabel="Next"
                   (pageChange)="onTableDataChange($event)"

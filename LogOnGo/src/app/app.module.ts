@@ -181,6 +181,7 @@ import { AddGasCreditFormComponent } from './components/forms/add-gas-credit-for
 import { DeleteLogComponent } from './components/sections-b/delete-log/delete-log.component';
 import { DeleteMpesaComponent } from './components/sections-b/delete-mpesa/delete-mpesa.component';
 import { DeleteCardComponent } from './components/sections-b/delete-card/delete-card.component';
+import { DecimalRegexDirective } from './directives/decimal-regex/decimal-regex.directive';
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -331,6 +332,7 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     DeleteLogComponent,
     DeleteMpesaComponent,
     DeleteCardComponent,
+    DecimalRegexDirective,
   ],
   imports: [
     NgxPaginationModule,

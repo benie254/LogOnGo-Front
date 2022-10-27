@@ -16,12 +16,14 @@
                 
                 
                 <div class="row mt-5" *ngIf="eOD">
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <div class="title" name="title"><h6>Did you exit the search filter?</h6></div>
-                            <p>If you were not done searching, you can hit <button (click)="refresh()">this button</button> to reset</p>
+                  <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <div class="card center padding-2">
+                            <div class="title" name="title"><h6>You exited the filter</h6></div>
+                            <p>If you were not done searching, you can hit <button (click)="refresh()" class="btn btn-sm btn-dark btn-outline-info">this button</button> to reset</p>
                         </div>
                     </div>
+                    <div class="col-lg-4"></div>
                   </div>
             </form>
             <br>
@@ -134,7 +136,7 @@
                     <mat-label>Date</mat-label>
                     <input matInput type="date" (mousemove)="onKey($event);" (mouseover)="onKey($event)" (keydown)="onKey($event);" (mousedown)="onKey($event)" (keyup)="onKey($event)" (mouseleave)="onKey($event)" placeholder="Select date" aria-label="Search" required>
                     <mat-icon matSuffix>date</mat-icon>
-                    <mat-hint>e.g: 13/10/2022</mat-hint>
+                    <mat-hint>e.g: 10/13/2022</mat-hint>
                   </mat-form-field>
                 <div>
                     

@@ -16,7 +16,7 @@
             <mat-hint></mat-hint>
             <mat-hint><span *ngIf="!errUser">Min <strong>4 char</strong> | Max <strong>15 char</strong></span> <span *ngIf="errUser" class="alert alert-danger rounded bold">{{errUser}}</span></mat-hint>
             <mat-error *ngIf="username.hasError('minlength')">
-              Username must be at least <strong>4 characters</strong>.
+              Username should be at least <strong>4 characters</strong>.
             </mat-error>
             <mat-error *ngIf="username.hasError('maxlength')">
               Username cannot be more than <strong>15 characters</strong>.
@@ -33,7 +33,7 @@
             <mat-icon matSuffix>person</mat-icon>
             <mat-hint>Min <strong>3 char</strong> | <strong>Max: 25 char</strong></mat-hint>
             <mat-error *ngIf="first_name.hasError('minlength')">
-              First name must be at least <strong>3 characters</strong>.
+              First name should be at least <strong>3 characters</strong>.
             </mat-error>
             <mat-error *ngIf="first_name.hasError('maxlength')">
               First name cannot be more than <strong>25 characters</strong>.
@@ -50,7 +50,7 @@
             <mat-icon matSuffix>person</mat-icon>
             <mat-hint>Min <strong>3 char</strong> | Max <strong>20 char</strong></mat-hint>
             <mat-error *ngIf="last_name.hasError('minlength')">
-              Last name must be at least <strong>3 characters</strong>.
+              Last name should be at least <strong>3 characters</strong>.
             </mat-error>
             <mat-error *ngIf="last_name.hasError('maxlength')">
               Last name cannot be more than <strong>25 characters</strong>.
@@ -116,7 +116,7 @@
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-hint>Password must be <strong>valid</strong></mat-hint>
+            <mat-hint>Password should be <strong>valid</strong></mat-hint>
             <mat-error *ngIf="password.hasError('required') || password.pristine">
               Password is <strong>required</strong>
             </mat-error>

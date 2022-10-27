@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LogService } from 'src/app/services/log/log.service';
 import { ReportService } from 'src/app/services/report/report.service';
+import { MyErrorStateMatcher } from '../../auth/login/login.component';
+
 
 @Component({
   selector: 'app-email-report',
@@ -19,18 +22,11 @@ export class EmailReportComponent implements OnInit {
   user: any; 
   // emailReport: any;
   currentUser = this.authService.currentUserValue;
+  matcher = new MyErrorStateMatcher();
+  errMsg = '';
+  statusText = '';
+  error: any;
 
-  emailReportForm = this.fb.group({
-    date:'',
-    eod_reading_yesterday: 0,
-    eod_reading_lts: 0,
-    litres_sold_today: 0,
-    amount_earned_today: 0,
-    balance: 0,
-    logged_by: '',
-    admin_name: ['', [Validators.required]],
-    admin_email: ['', [Validators.required], [Validators.email]]
- });
 
   constructor(
     private route:ActivatedRoute,
@@ -57,9 +53,9 @@ export class EmailReportComponent implements OnInit {
     );
   }
 
-  emailReport(){
+  emailReport(reportData){
     Notiflix.Loading.hourglass('Sending...')
-    this.reportService.emailLogReport(this.emailReportForm.value).subscribe(
+    this.reportService.emailLogReport(reportData).subscribe(
       (report_data) => {
       Notiflix.Loading.remove()
       Notiflix.Report.success(
@@ -67,19 +63,31 @@ export class EmailReportComponent implements OnInit {
         '"The requested log report has been delivered to your email"',
         'Okay',
       );
-        console.warn("email report data:", report_data)
-        Notiflix.Notify.success('Email report sent to your email!');
-        // Notiflix.Report.success()
       }, 
       err => {
+        console.error(err)
         Notiflix.Loading.remove()
-        Notiflix.Report.failure(
-          'Sending failed!',
-          '"Something went wrong as we attempted to send your email report"',
-          'Okay',
-        );
-        Notiflix.Notify.failure('Something went wrong!');
-        Notiflix.Notify.warning('Please try again.');
+        this.errMsg = err.error.detail; 
+        this.statusText = err.statusText;
+        if(this.errMsg && this.statusText){
+          Notiflix.Report.failure(
+            this.statusText,
+            this.errMsg,
+            'Okay',
+          );
+        } else if(this.statusText){
+          Notiflix.Report.failure(
+            this.statusText,
+            'Something went wrong as we attempted to send your email report. Please try again.',
+            'Okay',
+          );
+        } else {
+          Notiflix.Report.failure(
+            'Sending failed!',
+            'Something went wrong as we attempted to send your email report. Please try again.',
+            'Okay',
+          );
+        }
       }
     )
   }

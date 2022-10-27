@@ -21,6 +21,12 @@ export class AddGasCreditFormComponent implements OnInit {
   error: any; 
   message = '';
   show: boolean;
+  errMsg = '';
+  errName = '';
+  errNo = '';
+  errAmount = '';
+  errDate = '';
+  statusText = '';
   
   
 
@@ -51,18 +57,41 @@ export class AddGasCreditFormComponent implements OnInit {
       user: 0
     });
   }
-  addCreditCardLog() {
-    this.creditCardService.addCreditCardLog(this.creditCardForm.value).subscribe((result) => {
-      console.warn('result', result);
-      Notiflix.Notify.success('CreditCard log added successful!');
-      this.ngOnInit();
-      location.reload();
-    }, 
-    err => {
-      this.error = err;
-      this.message = this.error.statusText;
-      Notiflix.Notify.failure(this.message);
-      Notiflix.Notify.warning('Please try again.');
+  addCreditCardLog(cardData) {
+    this.creditCardService.addCreditCardLog(cardData).subscribe({
+      next: (result) => {
+        console.warn('result', result);
+        Notiflix.Notify.success('CreditCard log added successful!');
+        location.reload();
+        this.errMsg = '';
+            this.errDate = '';
+            this.errAmount = '';
+            this.errName = '';
+            this.errNo = '';
+      }, 
+      error: (e) => {
+        this.error = e;
+        this.message = this.error.statusText;
+        this.errMsg = e.error.detail;
+            this.statusText = e.statusText;
+            this.errDate = e.error.date;
+            this.errName = e.error.card_name;
+            this.errNo = e.error.card_number;
+            this.errAmount = e.error.amount;
+            if(this.errMsg && this.statusText){
+              Notiflix.Report.failure(
+                this.statusText,
+                this.errMsg,
+                'Okay',
+              )
+            } else if(this.statusText){
+              Notiflix.Report.failure(
+                this.statusText,
+                'Please fix the highlighted errors and try again.',
+                'Okay',
+              )
+            }
+        }
     });
   }
 

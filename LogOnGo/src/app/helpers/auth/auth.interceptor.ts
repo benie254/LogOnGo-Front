@@ -17,6 +17,7 @@ const tokenHeaderKey = 'Authorization';
 export class AuthInterceptor implements HttpInterceptor {
   currentUser: any;
   token: string;
+  errMsg = '';
   
 
   constructor(private authService:AuthService) {

@@ -1,85 +1,77 @@
-<form [formGroup]="creditCardForm" (submit)="addCreditCardLog()" class="bg-light padding color-two rounded shadow">
-  <h6>Add Diesel C/C</h6>    
-  <div class="row">
+<form #dCreditCardForm="ngForm" (submit)="addCreditCardLog(dCreditCardForm.value)" class="bg-light padding color-two rounded shadow">
+  <h6>Add Petrol C/C</h6>
+      <div class="row">
         <div class="col hide">
-          <input type="number" formControlName="fuel" id="fuel" [(ngModel)]="dieselInfo.id" placeholder="fuel id">
+          <input type="number" name="fuel" #fuel="ngModel" ngModel id="fuel" [(ngModel)]="dieselInfo.id" placeholder="fuel id">
         </div>
           <div class="col-lg-6 rounded padding-2 rounded">
               <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                   <mat-label>Date</mat-label>
-                  <input matInput placeholder="Enter date" formControlName="date" type="date" required>
+                  <input matInput placeholder="Enter date" name="date" #date="ngModel" ngModel type="date" required>
                   <mat-icon matSuffix>date</mat-icon>
-                  <mat-hint>e.g 13/10/2022</mat-hint>
+                  <mat-hint><span *ngIf="!errDate">e.g <strong>02/22/2022</strong></span> <span *ngIf="errDate" class="alert alert-danger rounded">{{errDate}}</span></mat-hint>
+                  <mat-error *ngIf="date.hasError('required') || date.pristine">
+                    Date is <strong>required</strong>
+                  </mat-error>
                 </mat-form-field>        
-                <div *ngIf="creditCardForm.controls['date'].invalid && creditCardForm.controls['date'].touched" class="alert alert-danger">
-                  <div *ngIf="creditCardForm.controls['date'].errors['required']">
-                    Date is required.
-                  </div>
-                </div>
           </div>
           <div class="col-lg-6 padding-2 rounded">
               <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                   <mat-label>Card name</mat-label>
-                  <input matInput placeholder="Enter card name" formControlName="card_name" type="text" required>
-                  <mat-hint>e.g JOHN ALEXA DOE</mat-hint>
+                  <input matInput placeholder="Enter card name" name="card_name" #card_name="ngModel" ngModel type="text" required>
+                  <mat-hint><span *ngIf="!errName">e.g <strong>JOHN KURIA DOE</strong></span> <span *ngIf="errName" class="alert alert-danger">{{errName}}</span></mat-hint>
+                  <mat-error *ngIf="card_name.hasError('required') || card_name.pristine">
+                    Card name is <strong>required</strong>
+                  </mat-error>
                 </mat-form-field>        
-                <div *ngIf="creditCardForm.controls['card_name'].invalid && creditCardForm.controls['card_name'].touched" class="alert alert-danger">
-                  <div *ngIf="creditCardForm.controls['card_name'].errors['required']">
-                    Card name is required.
-                  </div>
-                </div>
           </div>
       </div>
-  
       <div class="row">
-          <div class="col-lg-6 padding-2 rounded">
-              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
-                  <mat-label>Card number</mat-label>
-                  <input matInput placeholder="Enter card number" formControlName="card_number" type="number" minlength="16" maxlength="16" required>
-                  <mat-hint>e.g 1111 2222 3333 4444</mat-hint>
-                </mat-form-field>  
-                <div *ngIf="creditCardForm.controls['card_number'].invalid && creditCardForm.controls['card_number'].touched" class="alert alert-danger">
-                  <div *ngIf="creditCardForm.controls['card_number'].errors['required']">
-                    Credit card number is required.
-                  </div>
-                  <div *ngIf="creditCardForm.controls['card_number'].errors['min']">
-                    Card number must be at least 16 digits.
-                  </div>
-                  <div *ngIf="creditCardForm.controls['card_number'].errors['max']">
-                    Card number cannot be more than 16 digits.
-                  </div>
-                </div>
-          </div>
-          <div class="col-lg-6 padding-2 rounded">
-              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
-                  <mat-label>Amount</mat-label>
-                  <input matInput placeholder="Enter amount" formControlName="amount" type="number" required>
-                  <mat-hint>e.g 1200</mat-hint>
-                </mat-form-field>        
-                <div *ngIf="creditCardForm.controls['amount'].invalid && creditCardForm.controls['amount'].touched" class="alert alert-danger">
-                  <div *ngIf="creditCardForm.controls['amount'].errors['required']">
-                    Amount is required.
-                  </div>
-                </div>
-          </div>
-      </div>
+        <div class="col-lg-6 padding-2 rounded">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                <mat-label>Card number</mat-label>
+                <input matInput placeholder="Enter card number" name="card_number" #card_number="ngModel" ngModel type="number" min="999999999999999" max="10000000000000000" required>
+                <mat-hint><span *ngIf="!errNo">e.g <strong>1111 2222 3333 4444</strong></span> <span *ngIf="errNo" class="alert alert-danger">{{errNo}}</span></mat-hint>
+                <mat-error *ngIf="card_number.hasError('min')">
+                  Card number should be at least <strong>16 digits</strong>
+                </mat-error>
+                <mat-error *ngIf="card_number.hasError('max')">
+                  Card number cannot be more than <strong>16 digits</strong>
+                </mat-error>
+                <mat-error *ngIf="card_number.hasError('required') || card_number.pristine">
+                  Card number is <strong>required</strong>
+                </mat-error> 
+              </mat-form-field>  
+        </div>
+        <div class="col-lg-6 padding-2 rounded">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                <mat-label>Amount</mat-label>
+                <input matInput placeholder="Enter amount" name="amount" #amount="ngModel" ngModel type="number" required>
+                <mat-hint><span *ngIf="!errAmount">e.g <strong>1200</strong></span> <span *ngIf="errAmount" class="alert alert-danger">{{errAmount}}</span></mat-hint>
+                <mat-error *ngIf="amount.hasError('required') || amount.pristine">
+                  Amount is <strong>required</strong>
+                </mat-error> 
+              </mat-form-field>  
+        </div>
+    </div>
+  
       <div class="row hide">
           <div class="col-lg-6 padding-2 rounded">
               <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                   <mat-label>Logged by</mat-label>
-                  <input matInput formControlName="logged_by" type="text" [(ngModel)]="currentUser.username">
+                  <input matInput name="logged_by" #logged_by="ngModel" ngModel type="text" [(ngModel)]="currentUser.username">
                 </mat-form-field>   
           </div>
           <div class="col-lg-6 padding-2 rounded">
               <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                   <mat-label>User id</mat-label>
-                  <input matInput formControlName="user" type="number" [(ngModel)]="currentUser.id">
+                  <input matInput name="user" #user="ngModel" ngModel type="number" [(ngModel)]="currentUser.id">
                 </mat-form-field>   
           </div>
           
       </div>
   
       <div class="form-group">
-          <input class="btn margin btn-sm btn-outline-info btn-dark" type="submit" value="Log creditCard">
+          <input class="btn margin btn-lg btn-outline-success btn-light" type="submit" value="Log" [disabled]="dCreditCardForm.invalid">
       </div>
   </form>

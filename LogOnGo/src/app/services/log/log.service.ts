@@ -70,9 +70,7 @@ export class LogService {
     return this.http.get<Log>(this.apiURLlogDetails + id);
   }
   updateLogDetails(id,data): Observable<Log>{
-    return this.http.put<Log>(this.apiURLlogDetails + id, data).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.put<Log>(this.apiURLlogDetails + id, data);
   }
   getPetrolLogDetails(id: number): Observable<Log>{
     return this.http.get<Log>(this.apiURLpetrolLogDetails + id);

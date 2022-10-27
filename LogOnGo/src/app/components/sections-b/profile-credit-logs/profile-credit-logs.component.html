@@ -10,7 +10,7 @@
                     <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let creditCard of creditCard_logs | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+                <tbody *ngFor="let creditCard of creditCard_logs | paginate: { id:'profileCardPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
                   <tr>
                     <td>{{creditCard.date | date: 'dd/MM/yyyy'}}</td>
                       <td>{{creditCard.card_name}}</td>
@@ -21,6 +21,7 @@
               </table>
               <div class="d-flex justify-content-center">
                 <pagination-controls
+                id="profileCardPage"
                   previousLabel="Prev"
                   nextLabel="Next"
                   (pageChange)="onTableDataChange($event)"

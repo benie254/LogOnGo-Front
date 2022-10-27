@@ -19,6 +19,8 @@ export class DieselPumpThreeComponent implements OnInit {
   info: Fuel;
   pumpThree: Pump;
   closed: boolean;
+  status: number;
+  notFound: boolean = false;
 
   constructor(
     private logService:LogService,
@@ -45,20 +47,24 @@ export class DieselPumpThreeComponent implements OnInit {
       this.info = data
       console.warn("data",data)
     });
-    this.logService.getFuelLogs3(id).subscribe(
-      data => {
-      this.logs = data
-      // this.ngOnInit();
-      console.warn('diesel_info_today:',data)
-      
-    },
-    error => {
-      console.log(error)
+    this.logService.getFuelLogs3(id).subscribe({
+      next: (data) => {
+        this.logs = data
+      },
+      error: (e) => {
+        this.status = e.status;
+        if(this.status === 404){
+          this.notFound = true;
+        }
+      }
     });
   }
 
   toggleLog(){
     this.closed = true;
+  }
+  closeD3(){
+    this.closed = false;
   }
 
 }

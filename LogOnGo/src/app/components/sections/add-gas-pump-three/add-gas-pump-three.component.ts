@@ -16,12 +16,11 @@ export class AddGasPumpThreeComponent implements OnInit {
   pumpThree: Pump;
   info: Fuel;
   closed: boolean;
-  logForm = this.fb.group({
-    date: ['', [Validators.required]],
-    fuel: 0,
-    pump: 0,
-    eod_reading_lts: [0, [Validators.required]],
- });
+  errMsg = '';
+  errDate = '';
+  errEOD = '';
+  statusText = '';
+  
 
   constructor(
     private pumpService:PumpService,
@@ -29,42 +28,65 @@ export class AddGasPumpThreeComponent implements OnInit {
     private logService:LogService,
     private fb:FormBuilder,
   ) { 
-    this.fuelService.getGasInfo().subscribe((data) => {
+    this.fuelService.getGasInfo().subscribe({
+      next: (data) => {
       this.info = data
       console.warn("data",data)
-    });
-    
-    this.pumpService.getPumpThreeInfo().subscribe(
-      (data) => {
-        this.pumpThree = data;
-      }, 
-      err => {
-        console.warn("pump three get error:",err)
       }
-    )
-   }
+    });
+    this.pumpService.getPumpThreeInfo().subscribe({
+      next: (data) => {
+        this.pumpThree = data;
+      }
+    })
+  }
 
   ngOnInit(): void {
   }
 
-  addLog() {
-    this.logService.addLog(this.logForm.value).subscribe((result) => {
-      console.warn('result', result);
-      Notiflix.Notify.success('Gas log added successful!');
-      this.ngOnInit();
+  addLog(logData) {
+    this.logService.addLog(logData).subscribe({
+      next: (result) => {
+        Notiflix.Notify.success('Gas log added successful!');
+        this.ngOnInit();
       if (this.closed === true){
         this.closed = false;
       } else {
         this.closed = true;
       }
       location.reload();
-    }, 
-    err => {
-      Notiflix.Notify.failure('Something went wrong!');
-      Notiflix.Notify.warning('Please try again.');
+      }, 
+      error: (err) => {
+        this.errMsg = err.error.detail;
+        this.statusText = err.statusText;
+        this.errEOD = err.error.eod_reading_lts;
+        this.errDate = err.error.date;
+        if(this.errMsg && this.statusText){
+          Notiflix.Report.failure(
+            this.statusText,
+            this.errMsg,
+            'Okay',
+          )
+        } else if(this.statusText && this.errEOD || this.errDate){
+          Notiflix.Report.failure(
+            this.statusText,
+            'Please fix the highlighted errors and try again.',
+            'Okay',
+          )
+        } else if(this.statusText) {
+          Notiflix.Report.failure(
+            this.statusText,
+            'Something went wrong as we attempted to add your log record. Please try again.',
+            'Okay',
+          )
+        } else {
+          Notiflix.Notify.failure('Failed to add log.')
+          Notiflix.Notify.warning('Please try again!')
+        }
+        
+      }
     });
   }
-
   toggleLog(){
     this.closed = true;
   }
@@ -75,5 +97,6 @@ export class AddGasPumpThreeComponent implements OnInit {
       this.closed = true;
     }
   }
+
 
 }

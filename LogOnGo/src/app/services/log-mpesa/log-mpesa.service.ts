@@ -51,9 +51,7 @@ export class LogMpesaService {
   }
 
   updateMpesaDetails(id,data): Observable<LogMpesa>{
-    return this.http.put<LogMpesa>(this.apiMpesaLogDetails + id, data).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.put<LogMpesa>(this.apiMpesaLogDetails + id, data)
   }
   deleteMpesa(logData): Observable<any>{
     return this.http.post<any>(this.apiDelMpesa, logData)

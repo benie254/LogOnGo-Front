@@ -13,58 +13,87 @@ import { PumpService } from 'src/app/services/pump/pump.service';
   styleUrls: ['./add-petrol-pump-two.component.css']
 })
 export class AddPetrolPumpTwoComponent implements OnInit {
-  pumpTwo: Pump; 
+  pumpTwo: Pump;
   info: Fuel;
   closed: boolean;
-  minimized: boolean;
-  logForm = this.fb.group({
-    date: ['', [Validators.required]],
-    fuel: 0,
-    pump: 0,
-    eod_reading_lts: [0, [Validators.required]],
- });
+  errMsg = '';
+  errDate = '';
+  errEOD = '';
+  statusText = '';
+  
+  
 
   constructor(
     private pumpService:PumpService,
     private fuelService:FuelService,
     private logService:LogService,
     private fb:FormBuilder,
-  ) {
-    this.fuelService.getPetrolInfo().subscribe((data) => {
+  ) { 
+    this.fuelService.getPetrolInfo().subscribe({
+      next: (data) => {
       this.info = data
       console.warn("data",data)
-    });
-    this.pumpService.getPumpTwoInfo().subscribe(
-      (data) => {
-        this.pumpTwo = data;
-      }, 
-      err => {
-        console.warn("pump two get error:",err)
       }
-    )
-   }
+    });
+    this.pumpService.getPumpTwoInfo().subscribe({
+      next: (res) => {
+        this.pumpTwo = res;
+        console.warn("pump two info:",res)
+        Notiflix.Notify.success('got pump 2')
+      },
+      error: (err) => {
+        console.warn("pump two get error:",err)
+        Notiflix.Notify.failure('couldnt get pump 2')
+      }
+    })
+  }
 
   ngOnInit(): void {
   }
 
-  addLog() {
-    this.logService.addLog(this.logForm.value).subscribe((result) => {
-      console.warn('result', result);
-      Notiflix.Notify.success('Petrol log added successful!');
-      this.ngOnInit();
+  addLog(logData) {
+    this.logService.addLog(logData).subscribe({
+      next: (result) => {
+        Notiflix.Notify.success('Petrol log added successful!');
+        this.ngOnInit();
       if (this.closed === true){
         this.closed = false;
       } else {
         this.closed = true;
       }
       location.reload();
-    }, 
-    err => {
-      Notiflix.Notify.failure('Something went wrong!');
-      Notiflix.Notify.warning('Please try again.');
+      }, 
+      error: (err) => {
+        this.errMsg = err.error.detail;
+        this.statusText = err.statusText;
+        this.errEOD = err.error.eod_reading_lts;
+        this.errDate = err.error.date;
+        if(this.errMsg && this.statusText){
+          Notiflix.Report.failure(
+            this.statusText,
+            this.errMsg,
+            'Okay',
+          )
+        } else if(this.statusText && this.errEOD || this.errDate){
+          Notiflix.Report.failure(
+            this.statusText,
+            'Please fix the highlighted errors and try again.',
+            'Okay',
+          )
+        } else if(this.statusText) {
+          Notiflix.Report.failure(
+            this.statusText,
+            'Something went wrong as we attempted to add your log record. Please try again.',
+            'Okay',
+          )
+        } else {
+          Notiflix.Notify.failure('Failed to add log.')
+          Notiflix.Notify.warning('Please try again!')
+        }
+        
+      }
     });
   }
-
   toggleLog(){
     this.closed = true;
   }
@@ -75,8 +104,7 @@ export class AddPetrolPumpTwoComponent implements OnInit {
       this.closed = true;
     }
   }
-  minimize(){
-    this.minimized = true;
-  }
+ 
+
 
 }

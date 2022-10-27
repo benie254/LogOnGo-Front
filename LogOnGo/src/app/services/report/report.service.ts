@@ -8,17 +8,21 @@ const apiURL = 'http://127.0.0.1:8000/api/';
   providedIn: 'root'
 })
 export class ReportService {
-  apiURLlogReport = apiURL + 'email-report/';
+  apiLogReport = apiURL + 'email-report/';
   apiMpesaReport = apiURL + 'email-mpesa-report/';
+  apiCardReport = apiURL + 'email-card-report/';
 
   constructor(
     private http:HttpClient,
   ) { }
 
   emailLogReport(report_info: any) {
-    return this.http.post(this.apiURLlogReport, report_info);
+    return this.http.post(this.apiLogReport, report_info);
   }
   emailMpesaReport(report_info: any) {
     return this.http.post(this.apiMpesaReport, report_info);
+  }
+  emailCardReport(report_info: any) {
+    return this.http.post(this.apiCardReport, report_info);
   }
 }
