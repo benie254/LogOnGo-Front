@@ -4,6 +4,7 @@ import { Injectable, Input } from '@angular/core';
 import { catchError, Observable, shareReplay, throwError } from 'rxjs';
 import { LogMpesa } from 'src/app/classes/log-mpesa/log-mpesa';
 import { Log } from 'src/app/classes/log/log';
+import { RequestHandlerService } from 'src/app/helpers/requests/request-handler.service';
 
 // const apiURL = 'https://logongo.herokuapp.com/api/';
 const apiURL = 'http://127.0.0.1:8000/api/';
@@ -14,7 +15,7 @@ const apiURL = 'http://127.0.0.1:8000/api/';
 export class LogService {
   apiURLtodayLogs = apiURL + 'logs-today/';
   apiURLuserLogs = apiURL + 'user-logs/';
-  apiURLallLogs = apiURL + 'all-logs/';
+  apiURLallLogs = apiURL + 'logs/all/';
   apiURLpetrolLogDetails = apiURL + 'petrol-log-details/';
   apiURLlogDetails = apiURL + 'log-details/';
   apiFuelLogs = apiURL + 'fuel-logs-today/';
@@ -29,71 +30,57 @@ export class LogService {
 
   constructor(
     private http:HttpClient,
+    private handler:RequestHandlerService,
     ) { }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
-    }
-    // Return an observable with a user-facing error message.
-    return throwError(() => new Error('Something bad happened; please try again later.'));
-  }
 
   getAllLogs(): Observable<any>{
-    return this.http.get<any>(this.apiURLallLogs);
+    return this.handler.handleGET(this.apiURLallLogs);
   }
   getUserLogs(id: any): Observable<any>{
-    return this.http.get<any>(this.apiURLuserLogs + id);
+    return this.handler.handleGET(this.apiURLuserLogs + id);
   }
   getFuelLogs(id:any): Observable<Log>{
-    return this.http.get<Log>(this.apiFuelLogs + id);
+    return this.handler.handleGET(this.apiFuelLogs + id);
   }
   getFuelLogs2(id:any): Observable<Log>{
-    return this.http.get<Log>(this.apiFuelLogs2 + id);
+    return this.handler.handleGET(this.apiFuelLogs2 + id);
   }
   getFuelLogs3(id:any): Observable<Log>{
-    return this.http.get<Log>(this.apiFuelLogs3 + id);
+    return this.handler.handleGET(this.apiFuelLogs3 + id);
   }
   getFuelLogs4(id:any): Observable<Log>{
-    return this.http.get<Log>(this.apiFuelLogs4 + id);
+    return this.handler.handleGET(this.apiFuelLogs4 + id);
   }
   getMpesaLogs(): Observable<LogMpesa>{
-    return this.http.get<LogMpesa>(this.apiURLmpesaLogs);
+    return this.handler.handleGET(this.apiURLmpesaLogs);
   }
   getLogDetails(id: number): Observable<Log>{
-    return this.http.get<Log>(this.apiURLlogDetails + id);
+    return this.handler.handleGET(this.apiURLlogDetails + id);
   }
   updateLogDetails(id,data): Observable<Log>{
-    return this.http.put<Log>(this.apiURLlogDetails + id, data);
+    return this.handler.handlePUT(this.apiURLlogDetails + id, data);
   }
   getPetrolLogDetails(id: number): Observable<Log>{
-    return this.http.get<Log>(this.apiURLpetrolLogDetails + id);
+    return this.handler.handleGET(this.apiURLpetrolLogDetails + id);
   }
 
 
   addLog(log_info: any) {
-    return this.http.post(this.apiURLtodayLogs, log_info);
+    return this.handler.handlePOST(this.apiURLtodayLogs, log_info);
   }
 
   updateLogInfo(log_info:Log): Observable<Log>{
-    return this.http.put<Log>(this.apiURLtodayLogs, log_info).pipe(
-      catchError(this.handleError)
-    );
+    return this.handler.handlePUT(this.apiURLtodayLogs, log_info)
   }
 
   searchLog(): Observable<Log>{
-    return this.http.get<Log>(this.apiURLallLogs)
+    return this.handler.handleGET(this.apiURLallLogs)
   }
   searchByDate(logDate:string): Observable<Log>{
-    return this.http.get<Log>(this.apiSearch + logDate)
+    return this.handler.handleGET(this.apiSearch + logDate)
   }
   deleteLog(logData): Observable<any>{
-    return this.http.post<any>(this.apiDelLog, logData)
+    return this.handler.handlePOST(this.apiDelLog, logData)
   }
 }

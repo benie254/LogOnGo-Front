@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { LogService } from 'src/app/services/log/log.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class AllLogsCardComponent implements OnInit {
 
   constructor(
     private logService:LogService,
+    private title:Title,
     ) { 
     
   }
@@ -24,6 +26,7 @@ export class AllLogsCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllLogs();
+    this.title.setTitle("All Logs") 
   }
   getAllLogs(){
     this.logService.getAllLogs().subscribe((data) => {
@@ -40,6 +43,9 @@ export class AllLogsCardComponent implements OnInit {
     this.page = 1;
     this.getAllLogs();
   }
+  trackByKey = (index: number, object): string => {
+    return object.key;
+  };
   
   
 

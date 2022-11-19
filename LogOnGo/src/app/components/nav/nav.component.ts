@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
-import { Emitters } from '../auth/emitters/emitters';
 
 
 
@@ -109,11 +108,11 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     
-    Emitters.authEmitter.subscribe(
-      (auth: boolean) => {
-        this.isLoggedIn = auth;
-      }
-    );
+    // Emitters.authEmitter.subscribe(
+    //   (auth: boolean) => {
+    //     this.isLoggedIn = auth;
+    //   }
+    // );
     this.searchEverything();
   
     // this.route.params.subscribe(params => this.getByDate(params['id']))

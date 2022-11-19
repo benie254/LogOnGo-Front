@@ -97,7 +97,7 @@ export class AddPetrolPumpTwoComponent implements OnInit {
   toggleLog(){
     this.closed = true;
   }
-  closeForm(){
+  closeP2(){
     if (this.closed === true){
       this.closed = false;
     } else {

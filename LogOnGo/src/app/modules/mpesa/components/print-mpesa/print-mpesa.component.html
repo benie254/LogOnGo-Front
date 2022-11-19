@@ -1,0 +1,72 @@
+
+<div class="container-fluid center padding rounded" id="printMpesaContainer">
+    <div class="full-height center rounded padding-2">
+      <div class="container print">
+        <a type="button" class="btn btn-lg btn-light btn-outline-primary" onclick="printMpesaData();togglePrintMpesaData();" id=""><i class="fa-solid fa-print"></i> Print <span></span></a>
+        <div id="printMpesaData" class="printMpesaData">
+          <br>
+            <h3 class="print printMpesaData"><a routerLink="/mpesa-details/{{mpesaDetails.id}}">Go back</a> or <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="printMpesaData();togglePrintMpesaData();">Print another</a></h3>
+          </div>
+      </div>
+    
+              
+                <!-- <h2 class="text-center">General</h2> -->
+                <div class="card print">
+                  
+                    <h4 class="card-header print margin-top text-center">{{mpesaDetails.date}} </h4>
+                    
+                    <div class="card-body print">
+                        <div class="table-responsive print" id="table" name="table">
+                            <table class="table print">
+                              <thead class="table print">
+                                <tr>
+                                  <th scope="col" class="print">Transaction no.</th>
+                                  <th scope="col" class="print">Customer name</th>
+                                  <th scope="col" class="print">Customer phone number</th>
+                                  <th scope="col" class="print">Amount</th>
+                                  <th scope="col" class="print">Bank amount</th>
+                                  <th scope="col" class="print">Daily total</th>
+                                  <th scope="col" class="print">Cumulative amount</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                    <td class="print">{{mpesaDetails.transaction_number}}</td>
+                                    <td class="print">{{mpesaDetails.customer_name}}</td>
+                                    <td class="print">{{mpesaDetails.customer_phone_number}}</td>
+                                    <td class="print">{{mpesaDetails.amount}}</td>
+                                    <td class="print">{{mpesaDetails.amount_transferred_to_bank}}</td>
+                                    <td class="print">{{mpesaDetails.daily_total}}</td>
+                                    <td class="print">{{mpesaDetails.cumulative_amount}}</td>
+                                </tr>
+                              </tbody>
+                              </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <small class="print">First logged by {{mpesaDetails.logged_by}} on {{mpesaDetails.first_logged | date: 'medium'}} | <small class="print" *ngIf="mpesaDetails.first_logged != mpesaDetails.last_edited"> >>> Last edited on {{mpesaDetails.last_edited | date: 'medium' }}</small></small>
+                    </div>
+                    <p></p>
+                </div>
+                
+              
+           
+                
+                
+              
+                
+                
+                    
+               
+            </div>
+            <div class="container print">
+              <a type="button" class="btn btn-lg btn-light btn-outline-primary" onclick="printMpesaData();togglePrintMpesaData2();" id="print"><i class="fa-solid fa-print"></i>Print <span></span></a>
+              <div id="printMpesaData2" class="printMpesaData">
+                <br>
+                <h3 class="print printMpesaData"><a routerLink="/mpesa-details/{{mpesaDetails.id}}">Go back</a> or <a type="button" class="btn btn-sm btn-dark btn-outline-info" onclick="printMpesaData();togglePrintMpesaData2();">Print another</a></h3>
+              </div>
+            </div>
+    
+    
+   
+  </div>

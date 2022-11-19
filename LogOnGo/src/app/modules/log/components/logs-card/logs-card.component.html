@@ -1,0 +1,40 @@
+<div class="card bg-light">
+    
+  <div class="card-body">
+    <h4 class="card-title text-center"> 
+      General <i class="fa-regular fa-file-lines"></i>
+    </h4>
+      <div class="table-responsive rounded color-two">
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col"><i class="fa-solid fa-hashtag"></i></th>
+                  <th scope="col">Date</th>
+                  <th scope="col">EOD Reading Today</th>
+                  <th scope="col">EOD Reading Yesterday</th>
+                  <th scope="col">Total litres sold</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let logs of logs | paginate: { id:'generalPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+                <tr>
+                  <td>{{logs.id}}</td>
+                  <td>{{logs.date | date: 'dd/MM/yyyy'}}</td>
+                    <td class="tester-today3">{{logs.eod_reading_lts}}</td>
+                    <td class="tester-yesterday3">{{logs.eod_reading_yesterday}}</td>
+                  <td id="">{{logs.total_litres_sold}}</td>
+                  <td><button routerLink="/logs/details/{{logs.id}}" class="btn btn-sm btn-dark btn-outline-info">Details</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+              <pagination-controls
+                id="generalPage"
+                previousLabel="Prev"
+                nextLabel="Next"
+                (pageChange)="onTableDataChange($event)"
+              >
+              </pagination-controls>
+      </div>
+  </div>
+</div>

@@ -11,6 +11,7 @@ import { LogService } from 'src/app/services/log/log.service';
 })
 export class GasReceivedFormComponent implements OnInit {
   gasInfo: any;
+  closed: boolean = false;
   gasForm = this.fb.group({
     fuel:0,
     litres_received: [0, [Validators.required]],
@@ -47,6 +48,12 @@ export class GasReceivedFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  openGasForm(){
+    this.closed = true;
+  }
+  closeGasForm(){
+    this.closed = false;
   }
 
 }

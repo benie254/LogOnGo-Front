@@ -111,7 +111,7 @@
         <div class="col col-lg-3">
           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
             <mat-label><mat-icon matSuffix>security</mat-icon> Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Start typing..." [NgPasswordValidator]="options" name="password" ngModel #password="ngModel" required (valid)="isValid($event)" (mousedown)="onKeyOne($event)" (keydown)="onKeyOne($event)" (keyup)="onKeyOne($event)" (keypress)="onKeyOne($event)" (mousemove)="onKeyOne($event)" (mouseleave)="onKeyOne($event)">
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Start typing..." name="password" ngModel #password="ngModel" required (valid)="isValid($event)" (mousedown)="onKeyOne($event)" (keydown)="onKeyOne($event)" (keyup)="onKeyOne($event)" (keypress)="onKeyOne($event)" (mousemove)="onKeyOne($event)" (mouseleave)="onKeyOne($event)">
             <h6 id="pass1" class="hide">{{value}}</h6>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

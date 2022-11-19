@@ -16,7 +16,7 @@
                     <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let logs of logs | paginate: { id:'generalPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+                <tbody *ngFor="let logs of logs; trackBy:trackByKey | paginate: { id:'generalPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
                   <tr>
                     <td>{{logs.id}}</td>
                     <td>{{logs.date | date: 'dd/MM/yyyy'}}</td>

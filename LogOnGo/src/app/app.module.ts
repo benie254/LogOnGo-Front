@@ -18,8 +18,6 @@ import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FuelComponent } from './forms/fuel/fuel.component';
 import { AddLogComponent } from './components/forms/add-log/add-log.component';
-import { InitialAmountComponent } from './components/sections/initial-amount/initial-amount.component';
-import { NewBalComponent } from './components/sections/new-bal/new-bal.component';
 import { LogCardComponent } from './components/sections/log-card/log-card.component';
 import { PricePerlitreComponent } from './components/sections/price-perlitre/price-perlitre.component';
 import { NoLogsComponent } from './components/sections/no-logs/no-logs.component';
@@ -31,9 +29,6 @@ import { ProfileComponent } from './components/pages/profile/profile.component';
 import { AllLogsComponent } from './components/pages/all-logs/all-logs.component';
 import { DieselLogsComponent } from './components/pages/diesel-logs/diesel-logs.component';
 import { GasLogsComponent } from './components/pages/gas-logs/gas-logs.component';
-import { DieselDetailsComponent } from './components/pages/diesel-details/diesel-details.component';
-import { PetrolDetailsComponent } from './components/pages/petrol-details/petrol-details.component';
-import { GasDetailsComponent } from './components/pages/gas-details/gas-details.component';
 import { EmailReportComponent } from './components/pages/email-report/email-report.component';
 import { EmailMpesareportComponent } from './components/pages/email-mpesareport/email-mpesareport.component';
 import { IncidentComponent } from './components/pages/incident/incident.component';
@@ -42,7 +37,6 @@ import { MpesaLogdetailsComponent } from './components/pages/mpesa-logdetails/mp
 import { PrintMpesaComponent } from './components/pages/print-mpesa/print-mpesa.component';
 import { PrintLogsComponent } from './components/pages/print-logs/print-logs.component';
 import { SearchResultsComponent } from './components/pages/search-results/search-results.component';
-import { ProfileSidebarComponent } from './components/sections/profile-sidebar/profile-sidebar.component';
 import { ProfileAnnouncementsComponent } from './components/sections/profile-announcements/profile-announcements.component';
 import { ProfileNoannouncementsComponent } from './components/sections/profile-noannouncements/profile-noannouncements.component';
 import { ProfileLogcardComponent } from './components/sections/profile-logcard/profile-logcard.component';
@@ -57,30 +51,20 @@ import { AddGasLogformComponent } from './components/forms/add-gas-logform/add-g
 import { LogdetailsLogcardComponent } from './components/sections/logdetails-logcard/logdetails-logcard.component';
 import { DieselReceivedComponent } from './components/sections/diesel-received/diesel-received.component';
 import { FuelReceivedInfoComponent } from './components/sections/fuel-received-info/fuel-received-info.component';
-import { UpdateLogDetailsComponent } from './components/forms/update-log-details/update-log-details.component';
 import { GasReceivedComponent } from './components/sections/gas-received/gas-received.component';
 import { EmailMpesareportFormComponent } from './components/forms/email-mpesareport-form/email-mpesareport-form.component';
 import { IncidentFormComponent } from './components/forms/incident-form/incident-form.component';
 import { IncidentReportingInstructionsComponent } from './components/sections/incident-reporting-instructions/incident-reporting-instructions.component';
-import { PriceperlitreUpdateFormComponent } from './components/forms/priceperlitre-update-form/priceperlitre-update-form.component';
-import { BalFormComponent } from './components/forms/bal-form/bal-form.component';
 import { LogService } from './services/log/log.service';
 import { FuelService } from './services/fuel/fuel.service';
 import { ProfileService } from './services/profile/profile.service';
-import { PumpsUpdateFormComponent } from './components/forms/pumps-update-form/pumps-update-form.component';
 import { ContactFormComponent } from './components/forms/contact-form/contact-form.component';
-import { AddComponent } from './add/add.component';
-import { UserComponent } from './components/auth/user/user.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { AdminComponent } from './components/auth/admin/admin.component';
-import { ModeratorComponent } from './components/auth/moderator/moderator.component';
-import { UsersComponent } from './components/auth/users/users.component';
 import { AuthInterceptor } from './helpers/auth/auth.interceptor';
 
 import * as Notiflix from 'notiflix';
 import { NgPasswordValidatorModule, NgPasswordValidatorOptions } from 'ng-password-validator';
-import { AuthBgComponent } from './components/auth/auth-bg/auth-bg.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { RouterModule } from '@angular/router';
 import { PetrolLogsComponent } from './components/pages/petrol-logs/petrol-logs.component';
@@ -140,10 +124,8 @@ import { AddMpesaLogpageComponent } from './components/pages/add-mpesa-logpage/a
 import { AddMpesaLogComponent } from './components/sections/add-mpesa-log/add-mpesa-log.component';
 import { MpesaLoggingInstructionsComponent } from './components/sections/mpesa-logging-instructions/mpesa-logging-instructions.component';
 import { AllLogsCardComponent } from './components/sections/all-logs-card/all-logs-card.component';
-import { DetailsBtnComponent } from './components/sections/details-btn/details-btn.component';
 import { AllMpesaCardComponent } from './components/sections/all-mpesa-card/all-mpesa-card.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
-import { FooterComponent } from './components/sections/footer/footer.component';
 import { AboutComponent } from './components/sections-b/about/about/about.component';
 import { UsingComponent } from './components/sections-b/using/using/using.component';
 import { SettingComponent } from './components/sections-b/setting/setting/setting.component';
@@ -169,7 +151,6 @@ import { CreditDetailsComponent } from './components/sections-b/credit-details/c
 import { PrintCreditCardComponent } from './components/sections-b/print-credit-card/print-credit-card.component';
 import { EmailCreditCardComponent } from './components/sections-b/email-credit-card/email-credit-card.component';
 import { ChangePasswordComponent } from './components/pages/change-password/change-password.component';
-import { NewLoginComponent } from './components/auth/new-login/new-login.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { ResetConfirmedComponent } from './components/auth/reset-confirmed/reset-confirmed.component';
 import { AllCreditLogsComponent } from './components/sections-b/all-credit-logs/all-credit-logs.component';
@@ -181,22 +162,13 @@ import { AddGasCreditFormComponent } from './components/forms/add-gas-credit-for
 import { DeleteLogComponent } from './components/sections-b/delete-log/delete-log.component';
 import { DeleteMpesaComponent } from './components/sections-b/delete-mpesa/delete-mpesa.component';
 import { DeleteCardComponent } from './components/sections-b/delete-card/delete-card.component';
-import { DecimalRegexDirective } from './directives/decimal-regex/decimal-regex.directive';
+import { FooterComponent } from './components/sections/footer/footer.component';
+import { ErrorsModule } from './modules/errors/errors.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { ServicesModule } from './modules/services/services.module';
+import { AllFormsModule } from './modules/all-forms/all-forms.module';
 
-export const MyDefaultOptions: NgPasswordValidatorOptions = {
-  placement: "right",
-  rules: {
-      'password': {
-          'type': "number",
-          'min': 6,
-          'max': 15,
-      },
-      "include-symbol": true,
-      "include-number": true,
-      "include-lowercase-characters": true,
-      "include-uppercase-characters": true,
-  }
-};
+
 
 @NgModule({
   declarations: [
@@ -205,8 +177,6 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     NavComponent,
     FuelComponent,
     AddLogComponent,
-    InitialAmountComponent,
-    NewBalComponent,
     LogCardComponent,
     PricePerlitreComponent,
     NoLogsComponent,
@@ -218,9 +188,6 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     AllLogsComponent,
     DieselLogsComponent,
     GasLogsComponent,
-    DieselDetailsComponent,
-    PetrolDetailsComponent,
-    GasDetailsComponent,
     EmailReportComponent,
     EmailMpesareportComponent,
     IncidentComponent,
@@ -229,7 +196,6 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     PrintMpesaComponent,
     PrintLogsComponent,
     SearchResultsComponent,
-    ProfileSidebarComponent,
     ProfileAnnouncementsComponent,
     ProfileNoannouncementsComponent,
     ProfileLogcardComponent,
@@ -244,23 +210,13 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     LogdetailsLogcardComponent,
     DieselReceivedComponent,
     FuelReceivedInfoComponent,
-    UpdateLogDetailsComponent,
     GasReceivedComponent,
     EmailMpesareportFormComponent,
     IncidentFormComponent,
     IncidentReportingInstructionsComponent,
-    PriceperlitreUpdateFormComponent,
-    BalFormComponent,
-    PumpsUpdateFormComponent,
     ContactFormComponent,
-    AddComponent,
-    UserComponent,
     LoginComponent,
     RegisterComponent,
-    AdminComponent,
-    ModeratorComponent,
-    UsersComponent,
-    AuthBgComponent,
     LandingComponent,
     PetrolLogsComponent,
     LogDetailsComponent,
@@ -293,10 +249,8 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     AddMpesaLogComponent,
     MpesaLoggingInstructionsComponent,
     AllLogsCardComponent,
-    DetailsBtnComponent,
     AllMpesaCardComponent,
     ContactComponent,
-    FooterComponent,
     AboutComponent,
     UsingComponent,
     SettingComponent,
@@ -320,7 +274,6 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     PrintCreditCardComponent,
     EmailCreditCardComponent,
     ChangePasswordComponent,
-    NewLoginComponent,
     ResetPasswordComponent,
     ResetConfirmedComponent,
     AllCreditLogsComponent,
@@ -332,7 +285,8 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     DeleteLogComponent,
     DeleteMpesaComponent,
     DeleteCardComponent,
-    DecimalRegexDirective,
+    FooterComponent,
+    MpesaLoggingInstructionsComponent,
   ],
   imports: [
     NgxPaginationModule,
@@ -345,7 +299,8 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     ReactiveFormsModule,
     CommonModule,
     NoopAnimationsModule,
-    NgPasswordValidatorModule.forRoot(MyDefaultOptions as NgPasswordValidatorOptions),
+    ErrorsModule,
+    AuthModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
@@ -372,7 +327,15 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
       MatExpansionModule,
       MatPaginatorModule,
       MatProgressBarModule,
+      ServicesModule,
+      AllFormsModule,
 
+  ],
+  exports:[
+    FooterComponent,
+    MpesaLoggingInstructionsComponent,
+    LandingComponent,
+    FormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS,  useClass: AuthInterceptor, multi: true }

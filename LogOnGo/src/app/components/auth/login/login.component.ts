@@ -6,6 +6,7 @@ import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { first } from 'rxjs/operators';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { MessageService } from 'src/app/modules/errors/services/message/message.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService:AuthService,
+    private messageS:MessageService,
   ) {
     if (this.authService.currentUserValue) {
       this.authenticated = true;
@@ -46,6 +48,7 @@ export class LoginComponent implements OnInit {
   
   submit(userData): void {
     this.loading = true;
+    
     Notiflix.Loading.hourglass('Processing, please wait...');
     this.authService.login(userData).pipe(
       first()
@@ -58,7 +61,9 @@ export class LoginComponent implements OnInit {
                   this.authenticated = true;
                 },
                 error => {
+                  
                   Notiflix.Loading.remove();
+                  this.messageS.add(error.error.detail)
                   this.loading = false;
                   console.warn("login error:",error)
                   this.err = error

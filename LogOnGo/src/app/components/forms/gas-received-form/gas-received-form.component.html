@@ -1,6 +1,8 @@
-<div id="gasReceived">
-    <br><br>
+<button class="btn btn-sm btn-dark btn-outline-info" (click)="openGasForm()">Add now?</button>
+<div *ngIf="closed">
+  <br>
   <form [formGroup]="gasForm" class="padding shadow" (ngSubmit)="gasReceived()">
+    <span style="float:right;" (click)="closGasForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
     <h5 class="text-center">Add gas received</h5>
     <div class="row">
         <div class="col">

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { isThisSecond } from 'date-fns';
+import * as Notiflix from 'notiflix';
 import { AuthService } from './services/auth/auth.service';
 import { TokenStorageService } from './services/token/token-storage.service';
 import { UserService } from './services/user/user.service';
@@ -25,20 +27,11 @@ export class AppComponent implements OnInit {
     private authService:AuthService,
     private router:Router,
     private userService:UserService,
-    ) {
-    
-    if(this.authService.currentUserValue){
-      this.authenticated = true;
-      console.warn('token:',this.authService.currentUserValue)
-    } else {
-      this.authenticated = false; 
-      this.authService.logout();
-      this.router.navigate(['login'])
-    }
-  }
+    private meta:Meta,
+    ) { }
 
   ngOnInit(): void {
-    this.checkUser();
+    // this.checkUser();
     // this.isLoggedIn = !!this.tokenStorage.getToken();
     // if (this.isLoggedIn) {
     //   const user = this.tokenStorage.getUser();
@@ -46,6 +39,18 @@ export class AppComponent implements OnInit {
     //   this.showAdmin = this.roles.includes('ROLE_ADMIN');
     //   this.username = user.username
     // }
+    this.meta.updateTag({name: 'title', content: 'AppRoot'}) 
+    this.meta.updateTag({name: 'description', content: 'Petrol Station Management'}) 
+    this.meta.updateTag({name: 'image', content: ''}) 
+    this.meta.updateTag({name: 'site', content: 'LogOnGo'}) 
+    if(this.authService.currentUserValue){
+      this.authenticated = true;
+      console.warn('token:',this.authService.currentUserValue)
+    } else {
+      this.authenticated = false; 
+      this.authService.logout();
+      this.router.navigate(['/auth'])
+    }
   }
   // logout(): void {
   //   this.tokenStorage.logout();
@@ -60,7 +65,12 @@ export class AppComponent implements OnInit {
         this.errMsg = err.statusText;
         if(this.errMsg = 'Unauthorized'){
           this.authService.logout();
-          this.router.navigate(['/login'])
+          Notiflix.Report.warning(
+            "Session Expired!",
+            'Seems you are not logged in, or your session expired. Please login to continue.',
+            'Okay',
+          )
+          this.router.navigate(['auth'])
         }
       }
     })

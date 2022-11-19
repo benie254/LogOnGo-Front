@@ -1,8 +1,10 @@
 
+<p class="card-text"><a class="btn btn-sm btn-light btn-outline-primary" type="button" (click)="toggleLog()"><i class="fa-regular fa-square-plus"></i> Pump 4</a></p>
 
-<div id="" class="rounded"><br>
-    
-  <form #petrolP4LogForm="ngForm" class="form padding rounded color-two bg-light shadow" (ngSubmit)="addLog(petrolP4LogForm.value)">
+<div id="" *ngIf="closed" class="rounded">
+    <br>
+  <form #petrolP4LogForm="ngForm"  class="form padding rounded color-two bg-light shadow" (ngSubmit)="addLog(petrolP4LogForm.value)">
+    <span (click)="closeP4()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
       <h2 class="text-center margin-top">{{pumpFour.pump_name}} </h2>
       <h6 class="text-center">Add Petrol Log details</h6>
       <div class="row hide">

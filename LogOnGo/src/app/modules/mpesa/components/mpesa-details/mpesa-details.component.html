@@ -1,0 +1,148 @@
+<div class="container-fluid rounded">
+    <div class="row padding">
+      <div class="col-sm-1"></div>
+        <div class="full-height bg-light col-lg-10 center color-four rounded black padding-2">
+            <h2>Mpesa Details </h2>
+            <h6></h6>
+            <div class="card color-two">
+                <h5 class="card-header"><span class="" style="float:left;"><a routerLink="/mpesa-report/{{mpesaDetails.id}}"><button class=" margin-top btn btn-sm btn-light btn-outline-primary">Print <i class="fa-solid fa-print"></i></button></a></span> {{mpesaDetails.date}} <span style="float:right;"><a routerLink="/email-mpesa-report/{{mpesaDetails.id}}" type="button" class="btn btn-sm btn-light btn-outline-primary"> <i class="fa-solid fa-paper-plane"></i> email</a></span></h5>
+                
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Transaction no.</th>
+                                <th scope="col">Customer name</th>
+                                <th scope="col">Customer phone number</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Bank amount</th>
+                                <th scope="col">Daily total</th>
+                                <th scope="col">Cumulative amount</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{mpesaDetails.id}}</td>
+                                <td>{{mpesaDetails.transaction_number}}</td>
+                                <td>{{mpesaDetails.customer_name}}</td>
+                                <td>{{mpesaDetails.customer_phone_number}}</td>
+                                <td>{{mpesaDetails.amount}}</td>
+                                <td>{{mpesaDetails.amount_transferred_to_bank}}</td>
+                                <td>{{mpesaDetails.daily_total}}</td>
+                                <td>{{mpesaDetails.cumulative_amount}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                    <div class="card-footer">
+                        <small class=""><span><button class="btn btn-sm btn-light btn-outline-danger" type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> Delete</button></span> >>> First logged by {{mpesaDetails.logged_by}} on {{mpesaDetails.first_logged | date: 'medium'}} </small>
+                    </div>
+                    <p class="margin-top"><a type="button" class="btn btn-sm btn-dark btn-outline-warning" (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> details </a> <span *ngIf="mpesaDetails.first_logged != mpesaDetails.last_edited"><small> >>> Last edited on {{mpesaDetails.last_edited | date: 'medium'}}</small></span></p>
+                </div>
+                
+                <div *ngIf="!closed">
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-md-8 rounded">
+                            
+                            <form class="rounded bg-light padding-2 shadow margin" *ngIf="updateConfirmed" #updateForm="ngForm" (ngSubmit)="updateMpesaDetails(updateForm.value)">
+                                <h6 class="margin-top">Mpesa Update Form <span style="float:right;" (click)="toggleUpdateForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span></h6>
+                                <div class="row">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-lg-4 rounded padding-2">
+                                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                            <mat-label>Date</mat-label>
+                                            <input matInput placeholder="Date" name="date" #date="ngModel" ngModel type="text" [(ngModel)]="mpesaDetails.date" required>
+                                            <mat-icon matSuffix>date</mat-icon>
+                                            <mat-hint><span *ngIf="!errDate">e.g <strong>2022-02-22</strong></span> <span *ngIf="errDate" class="bold" style="color:red;">{{errDate}}</span></mat-hint>
+                                            <mat-error *ngIf="date.hasError('required') || date.pristine">
+                                              Date is <strong>required</strong>
+                                            </mat-error>
+                                          </mat-form-field> 
+                                          
+                                    </div>
+                                    <div class="col-lg-4 rounded padding-2">
+                                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                            <mat-label>Transaction number</mat-label>
+                                            <input matInput placeholder="Transaction number" name="transaction_number" ngModel #transaction_number="ngModel" type="text" [(ngModel)]="mpesaDetails.transaction_number" required>
+                                            <mat-hint><span *ngIf="!errTrans">e.g <strong>QWUAKAL182</strong></span> <span *ngIf="errTrans" class="alert alert-danger rounded">{{errTrans}}</span></mat-hint>
+                                            <mat-error *ngIf="transaction_number.hasError('required') || transaction_number.pristine">
+                                              Transaction number is <strong>required</strong>
+                                            </mat-error>
+                                          </mat-form-field> 
+                                          
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-lg-4 rounded padding-2">
+                                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                            <mat-label>Customer name</mat-label>
+                                            <input matInput placeholder="Customer name" name="customer_name" #customer_name="ngModel" ngModel type="text" [(ngModel)]="mpesaDetails.customer_name" required>
+                                            <mat-icon matSuffix>person</mat-icon>
+                                            <mat-hint><span *ngIf="!errName">e.g <strong>John Doe</strong></span> <span *ngIf="errName" class="alert alert-danger rounded">{{errName}}</span></mat-hint>
+                                            <mat-error *ngIf="customer_name.hasError('required') || customer_name.pristine">
+                                              Customer name is <strong>required</strong>
+                                            </mat-error>
+                                          </mat-form-field> 
+                                          
+                                    </div>
+                                    <div class="col-lg-4 rounded padding-2">
+                                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                            <mat-label>Customer phone no.</mat-label>
+                                            <input matInput placeholder="Customer phone number" name="customer_phone_number" #customer_phone_number="ngModel" ngModel type="number" [(ngModel)]="mpesaDetails.customer_phone_number" required>
+                                            <mat-icon matSuffix>contact_phone</mat-icon>
+                                            <mat-hint><span *ngIf="!errPhone">e.g <strong>0712345678</strong></span>  <span *ngIf="errPhone" class="alert alert-danger rounded">{{errPhone}}</span></mat-hint>
+                                            <mat-error *ngIf="customer_phone_number.hasError('required') || customer_phone_number.pristine">
+                                              Customer phone number is <strong>required</strong>
+                                            </mat-error>
+                                          </mat-form-field> 
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-lg-4 rounded padding-2">
+                                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                            <mat-label>Amount</mat-label>
+                                            <input matInput placeholder="Amount" name="amount" #amount="ngModel" ngModel type="number" [(ngModel)]="mpesaDetails.amount" required>
+                                            <mat-hint><span *ngIf="!errAmount">e.g <strong>1000</strong></span> <span *ngIf="errAmount" class="alert alert-danger rounded">{{errAmount}}</span></mat-hint>
+                                            <mat-error *ngIf="amount.hasError('required') || amount.pristine">
+                                              Amount is <strong>required</strong>
+                                            </mat-error>
+                                          </mat-form-field> 
+                                    </div>
+                                    <div class="col-lg-4 rounded padding-2">
+                                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                                            <mat-label>Bank amount</mat-label>
+                                            <input matInput placeholder="Amount transferred to bank" name="amount_transferred_to_bank" #amount_transferred_to_bank="ngModel" ngModel type="number" [(ngModel)]="mpesaDetails.amount_transferred_to_bank" required>
+                                            <mat-icon matSuffix>local_atm</mat-icon>
+                                            <mat-hint><span *ngIf="!errBank">e.g <strong>2000</strong></span> <span *ngIf="errBank" class="alert alert-danger rounded">{{errBank}}</span></mat-hint>
+                                            <mat-error *ngIf="amount_transferred_to_bank.hasError('required') || amount_transferred_to_bank.pristine">
+                                              Amount transferred to bank is <strong>required</strong>
+                                            </mat-error>
+                                          </mat-form-field> 
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <button class="btn margin btn-sm btn-outline-success btn-light" type="submit" [disabled]="updateForm.invalid">Update</button>
+                                </div> 
+                            </form> 
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>  
+    
+</div>
+<br><br><br><br><br> 
+<!-- <app-footer></app-footer> -->

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './components/auth/admin/admin.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
-import { NewLoginComponent } from './components/auth/new-login/new-login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { ResetConfirmedComponent } from './components/auth/reset-confirmed/reset-confirmed.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
@@ -42,16 +40,15 @@ const routes: Routes = [
   { path: 'log-details/:id', component: LogDetailsComponent },
   { path: 'mpesa-details/:id', component: MpesaLogdetailsComponent },
   { path: 'credit-card-details/:id', component: CreditDetailsComponent },
-  { path: 'logs', component: AllLogsComponent },
+  // { path: 'logs', component: AllLogsComponent },
   { path: 'add-log', component: AddLogpageComponent },
   { path: 'add-mpesa', component: AddMpesaLogpageComponent },
-  { path: 'add-credit-card', component: AddCreditLogpageComponent },
+  // { path: 'add-credit-card', component: AddCreditLogpageComponent },
   { path: 'incident', component: IncidentComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile/:id', component: ProfileComponent },
-  { path: 'admin', component: AdminComponent },
   { path: 'print-report/:id', component: PrintLogsComponent },
   { path: 'email-report/:id', component: EmailReportComponent },
   { path: 'mpesa-report/:id', component: PrintMpesaComponent },
@@ -65,10 +62,26 @@ const routes: Routes = [
   { path: 'delete-log/:id', component: DeleteLogComponent },
   { path: 'delete-card/:id', component: DeleteCardComponent },
   { path: 'delete-mpesa/:id', component: DeleteMpesaComponent },
+  { path: 'errors', loadChildren: () => import('./modules/errors/errors.module').then(m => m.ErrorsModule) },
+  { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
+  { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
+  { path: 'root', loadChildren: () => import('./modules/root/root.module').then(m => m.RootModule) },
+  { path: 'navigation', loadChildren: () => import('./modules/navigation/navigation.module').then(m => m.NavigationModule) },
+  { path: 'services', loadChildren: () => import('./modules/services/services.module').then(m => m.ServicesModule) },
+  { path: 'cards', loadChildren: () => import('./modules/card/card.module').then(m => m.CardModule) },
+  { path: 'logs', loadChildren: () => import('./modules/log/log.module').then(m => m.LogModule) },
+  { path: 'mpesa', loadChildren: () => import('./modules/mpesa/mpesa.module').then(m => m.MpesaModule) },
+  { path: 'fuel', loadChildren: () => import('./modules/fuel/fuel.module').then(m => m.FuelModule) },
+  { path: 'user', loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule) },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(
+    routes,
+    {
+      preloadingStrategy: PreloadAllModules
+    }
+    )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

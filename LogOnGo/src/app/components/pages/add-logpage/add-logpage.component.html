@@ -27,26 +27,39 @@
                 <div id="" class="rounded text-center padding-2 col-lg-4">
                     <div class="color-two rounded padding">
                         <h2 class="text-center margin-top">Add Petrol Log details</h2> 
-                    <app-add-log></app-add-log>
-                    <button class="btn btn-sm btn-dark margin btn-outline-info" onclick="togglePumpOne()">Pump One</button><button class="btn margin btn-sm btn-dark btn-outline-info" onclick="togglePumpTwo()">Pump Two</button> <br>
-            <button class="btn btn-sm btn-dark margin btn-outline-info" onclick="togglePumpThree()">Pump Three</button><button class="btn margin btn-sm btn-dark btn-outline-info" onclick="togglePumpFour()">Pump Four</button>
+                        <div class="hide" id="petrolPs">
+                            {{petrolInfo.pumps}}
+                        </div>
+                        <div *ngIf="!hideP1">
+                            <app-add-petrol-pump-one></app-add-petrol-pump-one><br>
+                        </div>
+                        <div *ngIf="!hideP2">
+                            <app-add-petrol-pump-one></app-add-petrol-pump-one><br>
+                            <app-add-petrol-pump-two></app-add-petrol-pump-two><br>
+                        </div>
+                        <div *ngIf="!hideP3">
+                            <app-add-petrol-pump-one></app-add-petrol-pump-one><br>
+                            <app-add-petrol-pump-two></app-add-petrol-pump-two><br>
+                            <app-add-petrol-pump-three></app-add-petrol-pump-three><br>
+                        </div>
+                        <div *ngIf="!hideP4">
+                            <app-add-petrol-pump-one></app-add-petrol-pump-one><br>
+                            <app-add-petrol-pump-two></app-add-petrol-pump-two><br>
+                            <app-add-petrol-pump-three></app-add-petrol-pump-three><br>
+                            <app-add-petrol-pump-four></app-add-petrol-pump-four>
+                        </div>
+                    
+                
+                    
+                
+                    
+                
+                    
+                    
                     </div>
                     
-            <div>
-                <div id="petrolPumpOne">
-                    <app-add-petrol-pump-one></app-add-petrol-pump-one>
-                </div>
-                <div id="petrolPumpTwo">
-                    <app-add-petrol-pump-two></app-add-petrol-pump-two>
-                </div>
-                <div id="petrolPumpThree">
-                    <app-add-petrol-pump-three></app-add-petrol-pump-three>
-                </div>
-                <div id="petrolPumpFour">
-                    <app-add-petrol-pump-four></app-add-petrol-pump-four>
-                </div>
-            </div>
-                </div>
+                    
+                
             
                 <div id="" class="rounded text-center padding-2 col-lg-4">
                     <div class="color-two rounded padding">
@@ -105,4 +118,4 @@
         
 </div>
 <br><br><br><br><br><br><br>
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->

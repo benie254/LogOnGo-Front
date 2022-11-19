@@ -1,0 +1,134 @@
+
+<div class="container-fluid logInstructions height-lg">
+    <br><br><br> <br>
+    <div class="container padding-2 rounded bg-light">
+        <h1 class="text-center">Delete Request</h1>
+        <div class="row">
+            <div class="col-md-6">
+              <br>
+                <div class="shadow text-center bg-light">
+            
+                    <h6><i class="fa-solid fa-person-circle-question"></i></h6>
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="panelOpenState = true"
+                        (closed)="panelOpenState = false">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="fa-solid fa-person-circle-question"></i> Why Request?
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              Here's why...
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <p>Only Admins have the permissions to delete logs, since deleting is an action you can't undo.</p>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel (opened)="panelOpenState = true"
+                        (closed)="panelOpenState = false">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="fa-solid fa-person-circle-question"></i> How to...
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              Send a request?
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <p>Click the <button class="btn btn-sm btn-light btn-outline-danger" disabled type="submit"><i class="fa-solid fa-paper-plane"></i> Delete Request</button> button on the right half of this page.</p>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel (opened)="panelOpenState = true"
+                        (closed)="panelOpenState = false">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="fa-solid fa-person-circle-question"></i> What happens...
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              After sending a request?
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <p>The Admin will check out your request. If they validate it and agree to proceed, they will complete the action from the Admin panel.</p>
+                        </mat-expansion-panel>
+                        </mat-accordion>
+                        </div>
+            </div>
+            <div class="col-md-6">
+              <br>
+                <div class="padding color-two rounded">
+                    <form #delMpesaForm="ngForm" (ngSubmit)="delRequest(delMpesaForm.value)">
+                        <div class="row hide">
+                          <div class="col col-lg-4 padding-2">
+                            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                              <mat-label>Date</mat-label>
+                              <input matInput name="date" ngModel #date="ngModel" type="text" [(ngModel)]="mpesa.formatted_date">
+                            </mat-form-field>        
+                          </div>
+                          <div class="col col-lg-4 padding-2">
+                            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                                <mat-label>Date requested</mat-label>
+                                <input matInput name="date_requested" ngModel #date_requested="ngModel" type="text" [(ngModel)]="today">
+                              </mat-form-field>     
+                          </div>
+                          <div class="col col-lg-4 rounded padding-2">
+                            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                                <mat-label>Log id</mat-label>
+                                <input matInput name="log_id" ngModel #log_id="ngModel" type="number" [(ngModel)]="mpesa.id">
+                              </mat-form-field>  
+                          </div>
+                        </div>
+                        <div class="row hide">
+                            <div class="col col-lg-4 padding-2">
+                              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                                <mat-label>Transaction no.</mat-label>
+                                <input matInput name="transaction_number" ngModel #transaction_number="ngModel" type="text" [(ngModel)]="mpesa.transaction_number">
+                              </mat-form-field>        
+                            </div>
+                            <div class="col col-lg-4 padding-2">
+                              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                                  <mat-label>Customer name</mat-label>
+                                  <input matInput name="customer_name" ngModel #customer_name="ngModel" type="number" [(ngModel)]="mpesa.customer_name">
+                                </mat-form-field> 
+                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                                    <mat-label>Customer no.</mat-label>
+                                    <input matInput name="customer_phone_number" ngModel #customer_phone_number="ngModel" type="number" [(ngModel)]="mpesa.customer_phone_number">
+                                  </mat-form-field>     
+                            </div>
+                            <div class="col col-lg-4 rounded padding-2">
+                              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                                  <mat-label>Bank amount</mat-label>
+                                  <input matInput name="amount_transferred_to_bank" ngModel #amount_transferred_to_bank="ngModel" type="number" [(ngModel)]="mpesa.amount_transferred_to_bank">
+                                </mat-form-field>  
+                            </div>
+                          </div>
+                          <div class="row hide">
+                            <div class="col col-lg-4 padding-2">
+                              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                                <mat-label>Amount</mat-label>
+                                <input matInput name="amount" ngModel #amount="ngModel" type="number" [(ngModel)]="mpesa.amount_earned_today">
+                              </mat-form-field>        
+                            </div>
+                            <div class="col col-lg-4 padding-2">
+                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                                    <mat-label>Requested by</mat-label>
+                                    <input matInput name="requested_by" ngModel #requested_by="ngModel" type="text" [(ngModel)]="currentUser.username">
+                                  </mat-form-field>   
+                            </div>
+                            <div class="col col-lg-4 rounded padding-2">
+                              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                                  <mat-label>Logged by</mat-label>
+                                  <input matInput name="logged_by" ngModel #logged_by="ngModel" type="text" [(ngModel)]="mpesa.logged_by">
+                                </mat-form-field>  
+                            </div>
+                          </div>
+                          
+                        <br>
+                          <div class="form-group padding-bottom text-center">
+                            <button class="margin-top btn w-100 btn-lg btn-light btn-outline-danger" type="submit"><span><i class="fa-solid fa-paper-plane"></i></span> Delete Request</button><br><br>
+                          </div>
+                      </form>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+
+    </div>
+</div>

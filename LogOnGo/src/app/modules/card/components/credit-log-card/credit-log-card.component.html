@@ -1,0 +1,35 @@
+<div class="card margin-top bg-light">
+  <div class="card-body" >
+    <h4 class="card-title text-center"> Credit Card <i class="fa-solid fa-credit-card"></i></h4>
+      <div class="table-responsive color-two rounded">
+          <table class="table">
+              <thead>
+                  <tr>
+                    <th scope="col"><i class="fa-solid fa-hashtag"></i></th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Card name</th>
+                    <th scope="col">Card number</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let cards of cards | paginate: { id:'creditPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+                  <tr>
+                    <td>{{cards.id}}</td>
+                    <td>{{cards.date | date: 'dd/MM/yyyy'}}</td>
+                      <td>{{cards.card_name}}</td>
+                    <td>{{cards.card_number}}</td>
+                    <td><a type="button" class="btn btn-dark btn-outline-info btn-sm" routerLink="/credit-card-details/{{cards.id}}">Details</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            <div class="d-flex justify-content-center">
+              <pagination-controls
+                  id="creditPage"
+                previousLabel="Prev"
+                nextLabel="Next"
+                (pageChange)="onTableDataChange($event)"
+              >
+              </pagination-controls>
+      </div>
+      </div>
+</div>

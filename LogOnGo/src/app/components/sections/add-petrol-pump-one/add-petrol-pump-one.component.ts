@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Pump } from 'src/app/classes/pump/pump';
-import { DecimalRegexDirective } from 'src/app/directives/decimal-regex/decimal-regex.directive';
 import { FuelService } from 'src/app/services/fuel/fuel.service';
 import { LogService } from 'src/app/services/log/log.service';
 import { PumpService } from 'src/app/services/pump/pump.service';
@@ -92,7 +91,7 @@ export class AddPetrolPumpOneComponent implements OnInit {
   toggleLog(){
     this.closed = true;
   }
-  closeForm(){
+  closeP1(){
     if (this.closed === true){
       this.closed = false;
     } else {

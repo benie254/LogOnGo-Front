@@ -15,7 +15,7 @@ import { PumpService } from 'src/app/services/pump/pump.service';
 export class AddPetrolPumpFourComponent implements OnInit {
   pumpFour: Pump;
   info: Fuel;
-  closed: boolean;
+  closed: boolean = false;
   errMsg = '';
   errDate = '';
   errEOD = '';
@@ -90,7 +90,7 @@ export class AddPetrolPumpFourComponent implements OnInit {
   toggleLog(){
     this.closed = true;
   }
-  closeForm(){
+  closeP4(){
     if (this.closed === true){
       this.closed = false;
     } else {

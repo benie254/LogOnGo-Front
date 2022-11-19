@@ -1,8 +1,8 @@
 <button class="btn btn-sm btn-dark btn-outline-info" (click)="openPetrolForm()">Add now?</button>
 
-<div>
+<div *ngIf="closed">
   <br>
-  <form #petrolReceivedForm="ngForm" *ngIf="closed" class="padding shadow" (ngSubmit)="addPetrolReceived(petrolReceivedForm.value)">
+  <form #petrolReceivedForm="ngForm"  class="padding shadow" (ngSubmit)="addPetrolReceived(petrolReceivedForm.value)">
     <span style="float:right;" (click)="closePetrolForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
     <h5 class="text-center">Add petrol received</h5>
     <div class="row hide">

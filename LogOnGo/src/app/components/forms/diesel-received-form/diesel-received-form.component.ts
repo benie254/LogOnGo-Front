@@ -11,6 +11,7 @@ import { LogService } from 'src/app/services/log/log.service';
 })
 export class DieselReceivedFormComponent implements OnInit {
   dieselInfo: any;
+  closed: boolean = false;
   dieselForm = this.fb.group({
     fuel:0,
     litres_received: [0, [Validators.required]],
@@ -46,6 +47,12 @@ export class DieselReceivedFormComponent implements OnInit {
       Notiflix.Loading.remove();
     }
     );
+  }
+  openDieselForm(){
+    this.closed = true;
+  }
+  closeDieselForm(){
+    this.closed = false;
   }
 
 }
