@@ -19,7 +19,7 @@ export class AuthService {
   public currentUser: Observable<User>;
   apiLogin = authAPI + "login";
   apiReg = authAPI + "register";
-  apiLogout = authAPI + "logout";
+  apiLogout = authAPI + "logout/";
   apiUserProfile = apiURL + "user/profile/";
   apiChangePass = apiURL + 'password/change/';
   apiPassResetReq = apiURL + 'password/reset/request/';
@@ -70,10 +70,10 @@ export class AuthService {
     ));
   }
   logout() {
-    return this.http.get<any>(this.apiLogout);
+    // return this.http.get<any>(this.apiLogout);
       // remove user from local storage to log user out
-      // localStorage.removeItem('currentUser');
-      // this.currentUserSubject.next(null);
+      localStorage.removeItem('currentUser');
+      this.currentUserSubject.next(null);
   }
   changePassword(passData, id:number): Observable<any>{
     return this.handler.handlePUT<any>(this.apiChangePass + id, passData)

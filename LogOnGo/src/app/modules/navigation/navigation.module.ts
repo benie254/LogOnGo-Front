@@ -12,6 +12,9 @@ import { FuelSummaryComponent } from './fuel-summary/fuel-summary.component';
 import { SettingUpComponent } from './setting-up/setting-up.component';
 import { UsingLogongoComponent } from './using-logongo/using-logongo.component';
 import { MatIconModule } from '@angular/material/icon';
+import { DieselSummaryComponent } from './diesel-summary/diesel-summary.component';
+import { GasSummaryComponent } from './gas-summary/gas-summary.component';
+import { PetrolSummaryComponent } from './petrol-summary/petrol-summary.component';
 
 
 @NgModule({
@@ -24,12 +27,18 @@ import { MatIconModule } from '@angular/material/icon';
     AboutComponent,
     FuelSummaryComponent,
     SettingUpComponent,
-    UsingLogongoComponent
+    UsingLogongoComponent,
+    DieselSummaryComponent,
+    GasSummaryComponent,
+    PetrolSummaryComponent
   ],
   imports: [
     CommonModule,
     NavigationRoutingModule,
     MatIconModule,
+  ],
+  exports: [
+    NavbarComponent,
   ]
 })
 export class NavigationModule { }

@@ -56,14 +56,13 @@ export class NavbarComponent implements OnInit {
       if(this.isSuper == true){
         this.isStaff = false;
       }
-      this.ngOnInit()
     } else {
       this.authenticated = false;
-      this.ngOnInit()
     }
+    this.getFuels();
   }
 
-  getFuelInfo(){
+  getFuels(){
     this.fuelService.getFuels().subscribe({
       next:  (data) => {
         this.fuels = data

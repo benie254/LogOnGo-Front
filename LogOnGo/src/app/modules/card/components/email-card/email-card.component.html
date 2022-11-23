@@ -5,58 +5,7 @@
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-md-8">
-            <form class="color-two padding rounded shadow" #cardReportForm="ngForm" (ngSubmit)="emailCardReport(cardReportForm.value)">
-                <h3 class="text-center"><i class="fa-solid fa-hand"></i> Please confirm your details</h3> 
-            <p class="text-center">We will send an email report to...</p>
-                <div class="row hide">
-                    <div class="col">
-                        <input type="date" ngModel name="date" #date="ngModel" [(ngModel)]="cardDetails.date">
-                        <input type="text" ngModel name="card_number" #card_number="ngModel" [(ngModel)]="cardDetails.card_number">
-                <input type="text"name="card_name" ngModel #card_name="ngModel" [(ngModel)]="cardDetails.card_name">
-                <input type="number" name="amount" #amount="ngModel" ngModel [(ngModel)]="cardDetails.amount">
-                <input type="number" ngModel [(ngModel)]="cardDetails.daily_total" name="daily_total">
-                <input type="number" placeholder="cumulative_amount" name="cumulative_amount" ngModel [(ngModel)]="cardDetails.cumulative_amount">
-                <input type="text" placeholder="logged_by" name="logged_by" #logged_by="ngModel" ngModel [(ngModel)]="cardDetails.logged_by">
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-lg-6 rounded padding-2">
-                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
-                            <mat-label>Your email</mat-label>
-                            <input matInput placeholder="Your email" name="admin_email" #admin_email="ngModel" type="email" [(ngModel)]="currentUser.email" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
-                            <mat-icon matSuffix>email</mat-icon>
-                            <mat-hint>e.g: username@provider.com</mat-hint>
-                            <mat-error *ngIf="admin_email.hasError('pattern')">
-                                Please enter a <strong>valid email address</strong> 
-                              </mat-error>
-                              <mat-error *ngIf="admin_email.hasError('required') || admin_email.pristine">
-                                Email is <strong>required</strong>
-                              </mat-error>
-                          </mat-form-field> 
-                    </div>
-                    <div class="col-lg-6 rounded padding-2">
-                        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
-                            <mat-label>Your name</mat-label>
-                            <input matInput placeholder="Your name" name="admin_name" #admin_name="ngModel" type="text" [(ngModel)]="currentUser.first_name" required minlength="3" maxlength="25">
-                            <mat-icon matSuffix>person</mat-icon>
-                            <mat-hint>e.g: John Doe</mat-hint>
-                            <mat-error *ngIf="admin_name.hasError('minlength')">
-                                Your name should be at least <strong>3 characters</strong>.
-                              </mat-error>
-                              <mat-error *ngIf="admin_name.hasError('maxlength')">
-                                Your name cannot be more than <strong>25 characters</strong>.
-                              </mat-error>
-                              <mat-error *ngIf="admin_name.hasError('required') || admin_name.pristine">
-                                Your name is <strong>required</strong>
-                              </mat-error>
-                          </mat-form-field> 
-                    </div>
-                </div>
-                <div class="form-group text-center">
-                    <button type="submit" class="btn margin-top2 btn-lg btn-outline-primary btn-light" [disabled]="cardReportForm.invalid"><i class="fa-solid fa-paper-plane"></i> Send</button>
-                </div>
-            </form>
+            <app-card-report-form></app-card-report-form>
         </div>
         <div class="col-sm-2"></div>
     </div>

@@ -10,12 +10,12 @@ import { RequestHandlerService } from 'src/app/helpers/requests/request-handler.
 const apiURL = 'http://127.0.0.1:8000/api/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class LogService {
   apiURLtodayLogs = apiURL + 'logs-today/';
   apiURLuserLogs = apiURL + 'user-logs/';
-  apiURLallLogs = apiURL + 'logs/all/';
+  apiURLallLogs = apiURL + '';
   apiURLpetrolLogDetails = apiURL + 'petrol-log-details/';
   apiURLlogDetails = apiURL + 'log-details/';
   apiFuelLogs = apiURL + 'fuel-logs-today/';

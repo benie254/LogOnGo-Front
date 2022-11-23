@@ -1,0 +1,65 @@
+<form #delCardForm="ngForm" (ngSubmit)="delRequest(delCardForm.value)">
+    <div class="row hide">
+      <div class="col col-lg-4 padding-2">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+          <mat-label>Date</mat-label>
+          <input matInput name="date" ngModel #date="ngModel" type="text" [(ngModel)]="card.formatted_date">
+        </mat-form-field>        
+      </div>
+      <div class="col col-lg-4 padding-2">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-label>Date requested</mat-label>
+            <input matInput name="date_requested" ngModel #date_requested="ngModel" type="text" [(ngModel)]="today">
+          </mat-form-field>     
+      </div>
+      <div class="col col-lg-4 rounded padding-2">
+        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-label>Log id</mat-label>
+            <input matInput name="log_id" ngModel #log_id="ngModel" type="number" [(ngModel)]="card.id">
+          </mat-form-field>  
+      </div>
+    </div>
+    <div class="row hide">
+        <div class="col col-lg-4 padding-2">
+          <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-label>Card no.</mat-label>
+            <input matInput name="card_number" ngModel #card_number="ngModel" type="text" [(ngModel)]="card.card_number">
+          </mat-form-field>        
+        </div>
+        <div class="col col-lg-4 padding-2">
+          <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+              <mat-label>Card name</mat-label>
+              <input matInput name="card_name" ngModel #card_name="ngModel" type="number" [(ngModel)]="card.card_name">
+            </mat-form-field> 
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                <mat-label>Customer no.</mat-label>
+                <input matInput name="customer_phone_number" ngModel #customer_phone_number="ngModel" type="number" [(ngModel)]="card.customer_phone_number">
+              </mat-form-field>     
+        </div>
+      </div>
+      <div class="row hide">
+        <div class="col col-lg-4 padding-2">
+          <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+            <mat-label>Amount</mat-label>
+            <input matInput name="amount" ngModel #amount="ngModel" type="number" [(ngModel)]="card.amount_earned_today">
+          </mat-form-field>        
+        </div>
+        <div class="col col-lg-4 padding-2">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+                <mat-label>Requested by</mat-label>
+                <input matInput name="requested_by" ngModel #requested_by="ngModel" type="text" [(ngModel)]="currentUser.username">
+              </mat-form-field>   
+        </div>
+        <div class="col col-lg-4 rounded padding-2">
+          <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+              <mat-label>Logged by</mat-label>
+              <input matInput name="logged_by" ngModel #logged_by="ngModel" type="text" [(ngModel)]="card.logged_by">
+            </mat-form-field>  
+        </div>
+      </div>
+      
+    <br>
+      <div class="form-group padding-bottom text-center">
+        <button class="margin-top btn w-100 btn-lg btn-light btn-outline-danger" type="submit"><span><i class="fa-solid fa-paper-plane"></i></span> Delete Request</button><br><br>
+      </div>
+  </form>

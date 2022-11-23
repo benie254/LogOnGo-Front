@@ -23,6 +23,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { DeleteCardFormComponent } from './forms/delete-card-form/delete-card-form.component';
+import { CardReportFormComponent } from './forms/card-report-form/card-report-form.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ProfileCardLogsComponent,
     SearchComponent,
     CardInstructionsComponent,
-    AddCardComponent
+    AddCardComponent,
+    DeleteCardFormComponent,
+    CardReportFormComponent
   ],
   imports: [
     CommonModule,

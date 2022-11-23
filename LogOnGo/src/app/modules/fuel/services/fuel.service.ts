@@ -12,6 +12,9 @@ const apiURL = 'http://127.0.0.1:8000/api/';
 export class FuelService {
   apiAllFuels = apiURL + 'fuels/all/';
   apiFuelInfo = apiURL + 'fuel/info/';
+  apiPetrolInfo = apiURL + 'petrol/info/';
+  apiDieselInfo = apiURL + 'diesel/info/';
+  apiGasInfo = apiURL + 'gas/info/';
   apiFuelSummary = apiURL + 'fuel/summary/today/';
   apiAllFuelReceived = apiURL + 'fuel/received/today/all/';
   apiFuelReceivedInfo = apiURL + 'fuel/received/today/info/';
@@ -30,11 +33,17 @@ export class FuelService {
   addFuelReceived(data, id:number): Observable<Fuel>{
     return this.handler.handlePOST<Fuel>(this.apiAllFuelReceived + id, data);
   }
-  getFuelInfo(id:number): Observable<Fuel>{
-    return this.handler.handleGET<Fuel>(this.apiFuelInfo + id)
+  getPetrolInfo(): Observable<Fuel>{
+    return this.handler.handleGET<Fuel>(this.apiPetrolInfo)
+  }
+  getDieselInfo(): Observable<Fuel>{
+    return this.handler.handleGET<Fuel>(this.apiDieselInfo)
+  }
+  getGasInfo(): Observable<Fuel>{
+    return this.handler.handleGET<Fuel>(this.apiGasInfo)
   }
   getFuelSummary(id:number): Observable<any>{
-    return this.handler.handleGET<any>(this.apiFuelSummary)
+    return this.handler.handleGET<any>(this.apiFuelSummary + id)
   }
   getAllFuelReceived(): Observable<any>{
     return this.handler.handleGET<any>(this.apiAllFuelReceived)
@@ -45,7 +54,7 @@ export class FuelService {
   getTotalFuelReceived(id: number): Observable<any>{
     return this.handler.handleGET<any>(this.apiTotalFuelReceived + id)
   }
-  updateFuelInfo(data:Fuel, id:number): Observable<Fuel>{
-    return this.handler.handlePUT<Fuel>(this.apiFuelInfo + id, data)
+  updateFuelInfo(data:any, id:number): Observable<any>{
+    return this.handler.handlePUT<any>(this.apiFuelInfo + id, data)
   }
 }

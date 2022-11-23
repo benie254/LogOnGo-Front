@@ -1,8 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { User } from 'src/app/classes/user/user';
 import { AuthHandlerService } from 'src/app/modules/auth/services/requests/auth-handler.service';
 import { MessageService } from 'src/app/modules/errors/services/message/message.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -12,6 +14,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class RequestHandlerService {
   error = '';
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
 
   
 
@@ -45,12 +49,16 @@ export class RequestHandlerService {
           error.error.detail,
           'Okay',
         ) 
+        this.logout();
+        this.router.navigate[('/auth')];
       } else {
         Notiflix.Report.warning(
           error.statusText,
           'Seems you are not logged in, or your session expired. Please login to continue',
           'Okay',
         )
+        this.logout();
+        this.router.navigate[('/auth')];
       }
     } else if (error.status === 403){
       Notiflix.Report.warning(
@@ -59,11 +67,7 @@ export class RequestHandlerService {
         'Okay',
       )
     } else if (error.status === 404){
-      Notiflix.Report.warning(
-        error.statusText,
-        'Seems you are not logged in, or your session expired. Please login to continue',
-        'Okay',
-      )
+      
     }  else if (error.status === 408 || 504){
       Notiflix.Report.warning(
         error.statusText,
@@ -97,7 +101,10 @@ export class RequestHandlerService {
     private http:HttpClient,
     private messageS:MessageService,
     private authHandler:AuthHandlerService,
-  ) { }
+    private router:Router,
+  ) { 
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+  }
 
   handleGET<T>(apiURL: string, options?): Observable<any>{
     return this.http.get<T>(apiURL, options).pipe(
@@ -123,4 +130,9 @@ export class RequestHandlerService {
       )
     )
   }
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+}
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Announcement } from 'src/app/classes/announcement/announcement';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-profile-announcements',
@@ -6,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-announcements.component.css']
 })
 export class ProfileAnnouncementsComponent implements OnInit {
-
-  constructor() { }
+  date: any; 
+  announcements: any;
+  
+  constructor(
+    private profileService:ProfileService,
+  ) {
+    this.profileService.getAnnouncements().subscribe((data) => {
+      this.announcements = data 
+      console.warn("ann:",data)
+    })
+   }
 
   ngOnInit(): void {
   }

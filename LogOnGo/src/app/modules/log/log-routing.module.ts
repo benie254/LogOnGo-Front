@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'all', component: AllLogsComponent },
   { path: 'delete/:id', component: DeleteLogComponent },
   { path: 'email/:id', component: EmailReportComponent },
-  { path: 'fuel/:id', component: FuelLogsComponent },
+  { path: 'today/fuel/:id', component: FuelLogsComponent },
   { path: 'details/:id', component: LogDetailsComponent },
   { path: 'print/:id', component: PrintLogsComponent },
 ];

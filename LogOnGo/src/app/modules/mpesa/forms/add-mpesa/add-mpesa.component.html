@@ -1,1 +1,57 @@
-<p>add-mpesa works!</p>
+<div id="mpesaForm" class="border color-two margin padding"><br>
+    <h2 class="text-center">Add Mpesa logs</h2>
+    <h6 class="text-center"><span class="bg-danger padding-2 rounded">Remember to update your daily total!</span></h6>
+    <form #mpesaForm="ngForm" (ngSubmit)="addMpesaLog(mpesaForm.value)">
+        <div class="row">
+            <div class="col">
+                <label for="date">Date</label>
+                <input type="date" class="Aj-M form-control" ngModel #date="ngModel" name="date" placeholder="Date">
+                <div [hidden]="transaction_number.valid || transaction_number.pristine" class="alert margin-top2p5 alert-danger">
+                    <p>Date required</p>
+                </div>
+            </div>
+            <div class="col">
+                <label for="transaction_number">Transaction number</label>
+                <input type="number" ngModel #transaction_number="ngModel" id="transaction_number" class="Aj-M form-control" name="transaction_number" placeholder="Transaction number" required>
+                <div [hidden]="transaction_number.valid || transaction_number.pristine" class="alert margin-top2p5 alert-danger">
+                    <p>Transaction number required</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="customer_name">Customer name</label>
+                <input type="text" id="customer_name" ngModel #customer_name="ngModel" class="Aj-M form-control" name="customer_name" placeholder="Customer name" required>
+                <div [hidden]="customer_name.valid || customer_name.pristine" class="alert margin-top2p5 alert-danger">
+                    <p>Customer name required</p>
+                </div>
+            </div>
+            <div class="col">
+                <label for="customer_phone_number">Customer phone number</label>
+                <input type="number" id="customer_phone_number" ngModel #customer_phone_number="ngModel" class="Aj-M form-control" name="customer_phone_number" placeholder="Customer phone number" required>
+                <div [hidden]="customer_phone_number.valid || customer_phone_number.pristine" class="alert margin-top2p5 alert-danger">
+                    <p>Customer phone number required</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="amount">Amount</label>
+                <input type="number" ngModel class="Aj-M form-control" id="amount" name="amount" placeholder="Amount">
+            </div>
+            <div class="col">
+                <label for="amount_transferred_to_bank">Transferred to bank</label>
+                <input type="number" ngModel #amount_transferred_to_bank="ngModel" id="amount_transferred_to_bank" class="Aj-M form-control" name="amount_transferred_to_bank" placeholder="Amount transferred to bank">
+            </div>
+            <div class="col hide">
+                <input type="number" ngModel id="user" #user="ngModel" value="1" class="hide" name="user" placeholder="Your user id">
+                <input  type="text" ngModel id="logged_by" #logged_by="ngModel" value="user" class="hide" name="logged_by" placeholder="Your name">
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Log mpesa">
+        </div>
+    </form>
+</div>

@@ -7,9 +7,11 @@ import { DeleteCardComponent } from './components/delete-card/delete-card.compon
 import { EmailCardComponent } from './components/email-card/email-card.component';
 import { FuelCardLogsComponent } from './components/fuel-card-logs/fuel-card-logs.component';
 import { PrintCardComponent } from './components/print-card/print-card.component';
+import { AddCardComponent } from './forms/add-card/add-card.component';
 
 const routes: Routes = [
   { path: '', component: CardComponent },
+  { path: 'add', component: AddCardComponent },
   { path: 'all', component: AllCardLogsComponent },
   { path: 'details/:id', component: CardDetailsComponent },
   { path: 'delete/:id', component: DeleteCardComponent },

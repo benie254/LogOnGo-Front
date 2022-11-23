@@ -81,18 +81,18 @@
             <a class="nav-link active" style="font-family:'Carter One',cursive;font-size:20px;" aria-current="page" routerLink="home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="logs" style="font-size:20px;">All Logs</a>
+            <a class="nav-link" routerLink="/logs/all" style="font-size:20px;">All Logs</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:20px;">
               LogsToday
             </a>
             <ul class="dropdown-menu">
-              <li *ngFor="let info of fuels"><a class="dropdown-item" routerLink="/{{info.fuel_name|undercase}}/{{info.id}}">{{info.fuel_name}}</a></li>
+              <li *ngFor="let info of fuels"><a class="dropdown-item" routerLink="/logs/today/fuel/{{info.id}}">{{info.fuel_type}}</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" routerLink="/add-log">Add Log</a></li>
-              <li><a class="dropdown-item" routerLink="/add-mpesa">Add Mpesa</a></li>
-              <li><a class="dropdown-item" routerLink="/add-credit-card">Add CreditCard</a></li>
+              <li><a class="dropdown-item" routerLink="/logs/add">Add Log</a></li>
+              <li><a class="dropdown-item" routerLink="/mpesa/add">Add Mpesa</a></li>
+              <li><a class="dropdown-item" routerLink="/cards/add">Add CreditCard</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -100,13 +100,13 @@
               {{currentUser.username}}
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/profile/{{currentUser.id}}">Profile</a></li>
+              <li><a class="dropdown-item" routerLink="/user/profile/{{currentUser.id}}">Profile</a></li>
               <!-- <li *ngIf="isStaff"><a class="dropdown-item" href="{{backURL}}">Admin</a></li>
               <li *ngIf="isSuper"><a class="dropdown-item" href="{{backURL}}">SuperUser</a></li> -->
               <li><a class="dropdown-item" routerLink="admin">Admin</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" routerLink="/incident">Report Incident</a></li>
-              <li><a class="dropdown-item" routerLink="/contact">Contact Admin</a></li>
+              <li><a class="dropdown-item" routerLink="/user/report/incident">Report Incident</a></li>
+              <li><a class="dropdown-item" routerLink="/user/contact/admin">Contact Admin</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" type="button" (click)="logout();">Logout</a></li>
             </ul>
