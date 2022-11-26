@@ -15,10 +15,12 @@ export class LogService {
   apiAllLogs = apiURL + 'logs/all/';
   apiLogsToday = apiURL + 'logs/today/';
   apiUserLogs = apiURL + 'logs/user/';
-  apiPumpFuelLogs = apiURL + 'logs/today/fuel/';
-  apiPumpFuelLogsII = apiURL + '/pump/';
+  apiFuelLogs = apiURL + 'logs/today/fuel/';
+  apiLogsYesterday = apiURL + 'logs/yesterday/fuel/';
   apiLogDetails = apiURL + 'log/details/';
   apiPastLogs = apiURL + 'logs/past/';
+  apiLogReport = apiURL + 'log/email/report/';
+  apiDelLog = apiURL + 'log/delete/request/';
   
   constructor(
     private handler:RequestHandlerService,
@@ -30,8 +32,11 @@ export class LogService {
   getUserLogs(id: any): Observable<any>{
     return this.handler.handleGET<any>(this.apiUserLogs + id);
   }
-  getPumpFuelLogs(pumpId:number, fuelId:number): Observable<Log>{
-    return this.handler.handleGET<any>(this.apiPumpFuelLogs + fuelId + this.apiPumpFuelLogsII + pumpId);
+  getFuelLogs(fuelId:number): Observable<Log>{
+    return this.handler.handleGET<any>(this.apiFuelLogs + fuelId);
+  }
+  getYesterdayLogs(fuelId:number): Observable<Log>{
+    return this.handler.handleGET<any>(this.apiLogsYesterday + fuelId);
   }
   getLogDetails(id: number): Observable<Log>{
     return this.handler.handleGET<any>(this.apiLogDetails + id);
@@ -47,5 +52,11 @@ export class LogService {
   }
   searchByDate(logDate:string): Observable<Log>{
     return this.handler.handleGET<any>(this.apiPastLogs + logDate)
+  }
+  emailLogReport(logReport: any): Observable<any>{
+    return this.handler.handlePOST<any>(this.apiLogReport, logReport);
+  }
+  deleteLog(logData): Observable<any>{
+    return this.handler.handlePOST<any>(this.apiDelLog, logData)
   }
 }

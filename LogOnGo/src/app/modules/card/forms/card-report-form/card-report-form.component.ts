@@ -4,7 +4,6 @@ import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { MyErrorStateMatcher } from 'src/app/modules/auth/services/matcher/matcher.service';
 import { CardService } from '../../services/card/card.service';
-import { EmailService } from '../../services/email/email.service';
 
 @Component({
   selector: 'app-card-report-form',
@@ -22,7 +21,6 @@ export class CardReportFormComponent implements OnInit {
   statusText = '';
 
   constructor(
-    private emailService:EmailService,
     private cardService:CardService,
     private route:ActivatedRoute,
     private authService:AuthService,
@@ -34,7 +32,7 @@ export class CardReportFormComponent implements OnInit {
   emailCardReport(cardData) {
     Notiflix.Loading.hourglass('Sending... please wait.')
     // Notiflix.Block.arrows('Please wait')
-    this.emailService.emailCardReport(cardData).subscribe((result) => {
+    this.cardService.emailCardReport(cardData).subscribe((result) => {
       console.warn('result', result);
       Notiflix.Loading.remove()
       Notiflix.Report.success(

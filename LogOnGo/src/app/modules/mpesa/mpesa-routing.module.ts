@@ -6,18 +6,14 @@ import { AllMpesaLogsComponent } from './components/all-mpesa-logs/all-mpesa-log
 import { DeleteMpesaComponent } from './components/delete-mpesa/delete-mpesa.component';
 import { EmailMpesaComponent } from './components/email-mpesa/email-mpesa.component';
 import { MpesaDetailsComponent } from './components/mpesa-details/mpesa-details.component';
-import { PrintMpesaComponent } from './components/print-mpesa/print-mpesa.component';
-import { MpesaComponent } from './mpesa.component';
 
 const routes: Routes = [
-  { path: '', component: MpesaComponent },
   { path: 'add', component: AddMpesaLogpageComponent },
   { path: 'all', component: AllMpesaLogsComponent },
-  { path: 'delete/:id', component: DeleteMpesaComponent },
-  { path: 'email/:id', component: EmailMpesaComponent },
+  { path: 'delete/request/:id', component: DeleteMpesaComponent },
+  { path: 'email/report/:id', component: EmailMpesaComponent },
   { path: 'fuel/:id', component: FuelLogsComponent },
   { path: 'details/:id', component: MpesaDetailsComponent },
-  { path: 'print/:id', component: PrintMpesaComponent },
 ];
 
 @NgModule({

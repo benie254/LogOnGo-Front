@@ -43,7 +43,7 @@
                                 <mat-label>Your email</mat-label>
                                 <input matInput placeholder="Your email" name="admin_email" #admin_email="ngModel" ngModel type="email" [(ngModel)]="currentUser.email" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
                                 <mat-icon matSuffix>email</mat-icon>
-                                <mat-hint>e.g username@provider.com</mat-hint>
+                                <mat-hint>e.g <strong>username@provider.com</strong></mat-hint>
                                 <mat-error *ngIf="admin_email.hasError('pattern')">
                                     Please enter a <strong>valid email address</strong> 
                                   </mat-error>
@@ -58,7 +58,7 @@
                                 <mat-label>Your name</mat-label>
                                 <input matInput placeholder="Your name" name="admin_name" #admin_name="ngModel" ngModel type="text" [(ngModel)]="currentUser.first_name" required minlength="3" maxlength="25">
                                 <mat-icon matSuffix>person</mat-icon>
-                                <mat-hint>e.g janja kip</mat-hint>
+                                <mat-hint>e.g <strong>janja kip</strong></mat-hint>
                                 <mat-error *ngIf="admin_name.hasError('minlength')">
                                     Your name should be at least <strong>3 characters</strong>.
                                   </mat-error>
@@ -80,7 +80,7 @@
                         <div class="col"></div>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn margin-top2 btn-lg btn-outline-primary btn-light" [disabled]="emailReportForm.invalid"><i class="fa-solid fa-paper-plane"></i> Send</button>
+                        <button type="submit" class="btn margin-top2 btn-md w-75 btn-outline-success btn-light" [disabled]="emailReportForm.invalid"><i class="fa-solid fa-paper-plane"></i> Send</button>
                     </div>
                 </form>
             </div>

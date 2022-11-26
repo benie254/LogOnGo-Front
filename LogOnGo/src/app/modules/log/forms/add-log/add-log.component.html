@@ -14,32 +14,17 @@
 
   <!-- <p class="card-text"><a class="btn btn-sm btn-light btn-outline-primary" type="button" (click)="toggleLog()"><i class="fa-regular fa-square-plus"></i> </a></p> -->
 
-  <div class="rounded">
-      <br>
-    <form #fuelLogForm="ngForm"  class="form padding rounded color-two bg-light shadow" (ngSubmit)="addLog(fuelLogForm.value)">
+    <form id="addLogForm" #fuelLogForm="ngForm"  class="form padding-2 rounded color-two bg-light shadow" (ngSubmit)="addLog(fuelLogForm.value)">
       <!-- <span (click)="closeP1()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span> -->
-        <h2 class="text-center margin-top"> </h2>
-        <h6 class="text-center">Add Petrol Log details</h6>
-        <div class="row">
-            <div class="col-lg-6 rounded padding-2">
-                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
-                    <mat-label>Fuel</mat-label>
-                    <mat-select name="fuel" ngModel #petrol_station="ngModel" required>
-                        <mat-option>-- Select Fuel --</mat-option>
-                        <mat-optgroup *ngFor="let fuel of fuels" [label]="fuel.fuel_name" value="{{fuel.fuel_id}}" name="fuel" ngModel #fuel="ngModel" type="number" required>
-                            <mat-option *ngFor="let pump of pumps" value="{{pump.id}}" name="pump" ngModel #pump="ngModel">{{pump.pump_name}}</mat-option>
-                        </mat-optgroup>
-                      </mat-select>
-                  </mat-form-field> 
+        <h6 class="text-center">Add {{fuelInfo.fuel_type}} Log details</h6>
+        <div class="row hide">
+            <div class="col rounded padding-2">
+              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                <mat-label>Fuel</mat-label>
+                <input matInput ngModel name="fuel" type="number" [(ngModel)]="fuelInfo.id" required #newLog>
+              </mat-form-field> 
                   
             </div>
-            <!-- <div class="col-lg-6 rounded padding-2">
-                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
-                    <mat-label>Pump</mat-label>
-                    <input matInput name="pump" #pump="ngModel" ngModel type="number" [(ngModel)]="pumpOne.id" required>
-                  </mat-form-field> 
-                  
-            </div> -->
             <div class="col">
             </div>
         </div>
@@ -47,13 +32,19 @@
             <div class="col-lg-6 rounded padding-2">
                 <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                     <mat-label>Date</mat-label>
-                    <input matInput placeholder="Date" name="date" #date="ngModel" ngModel type="date" required>
+                    <input matInput placeholder="Date" name="date" #date="ngModel" ngModel type="date" [(ngModel)]="today" required min="{{today}}" max="{{today}}">
                     <mat-icon matSuffix>date</mat-icon>
                     <mat-hint>e.g <strong>02/22/2022</strong></mat-hint>
                     <mat-error *ngIf="date.hasError('required') || date.pristine">
                       Date is <strong>required</strong>
                     </mat-error>
                   </mat-form-field> 
+                  <div class="hide">
+                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                      <mat-label>Formatted Date</mat-label>
+                      <input matInput name="formatted_date" ngModel [(ngModel)]="tdate" type="text">
+                    </mat-form-field> 
+                  </div>   
             </div>
             
             <div class="col-lg-6 rounded padding-2">
@@ -67,8 +58,30 @@
                   </mat-form-field> 
             </div>
         </div>
-        <div class="form-group">
-            <button class="btn margin btn-sm btn-outline-success btn-light" type="submit" onclick="toggleLogForm()" [disabled]="fuelLogForm.invalid">Log</button>
+        <div *ngIf="!yesterday" class="row">
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4 rounded padding-2">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+              <mat-label>EOD Yesterday</mat-label>
+              <input matInput placeholder="End of day reading Yesterday" #eod_reading_yesterday="ngModel" ngModel name="eod_reading_yesterday" type="number" required>
+              <mat-hint>e.g <strong>11223344.25</strong></mat-hint>
+              <mat-error *ngIf="eod_reading_yesterday.hasError('required') || eod_reading_yesterday.pristine">
+                Yesterday EOD reading is <strong>required</strong>
+              </mat-error>
+            </mat-form-field> 
+          </div>
+          <div class="col-lg-4 hide">
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+              <mat-label>Logged by</mat-label>
+              <input matInput ngModel name="logged_by" type="text" [(ngModel)]="currentUser.username" required>
+            </mat-form-field> 
+            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+              <mat-label>User</mat-label>
+              <input matInput ngModel name="user" type="number" [(ngModel)]="currentUser.id" required>
+            </mat-form-field> 
+          </div>
+        </div>
+        <div class="form-group text-center">
+            <button class="btn margin btn-lg w-100 btn-outline-success btn-light" type="submit" [disabled]="fuelLogForm.invalid">Add Log</button>
         </div> 
     </form> 
-  </div>

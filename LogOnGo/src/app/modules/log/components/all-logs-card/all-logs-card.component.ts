@@ -10,7 +10,7 @@ export class AllLogsCardComponent implements OnInit {
   allLogs: any;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 8;
+  tableSize: number = 6;
   tableSizes: any = [2, 5, 10, 15];
 
   constructor(

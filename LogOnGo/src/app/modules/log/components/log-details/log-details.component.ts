@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Log } from 'src/app/classes/log/log';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
+import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
 import { LogService } from '../../services/log/log.service';
 
 @Component({
@@ -38,23 +39,30 @@ export class LogDetailsComponent implements OnInit {
   errDate = '';
   statusText = '';
   closedF: boolean = true;
+  fuelId: number;
+  fuelType: any; 
+  fuelReceived: any; 
+  fuelTotal: any;
 
   constructor(
     private route:ActivatedRoute, 
     private logService:LogService,
     private router:Router,
     private authService:AuthService,
+    private fuel:FuelService,
     ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => this.getLogDetails(params['id']))
     this.logId = this.route.snapshot.params['id'];
+    
   }
   getLogDetails = (id:number): void => {
     this.logService.getLogDetails(id).subscribe({
       next: (data) => {
         this.logs = data;
-        this.fuelName = this.logs.fuel_name
+        this.fuelId = this.logs.fuel
+        this.fuelType = this.logs.fuel_type
       }
     });
   }
@@ -62,7 +70,8 @@ export class LogDetailsComponent implements OnInit {
     this.logService.updateLogInfo(this.logId,logData).subscribe({
         next: (res) => {
           console.log(res);
-          Notiflix.Notify.success('updated!');
+          Notiflix.Notify.success('updated!')
+          this.closed = true;
         }
       });
   }
@@ -85,7 +94,7 @@ export class LogDetailsComponent implements OnInit {
       () => {
         Notiflix.Report.success(
           "Aborted!",
-          "",
+          "You have cancelled the edit request. In case you did so by mistake, please make a new request.",
           'Great',
         )
         this.updateConfirmed = false;
@@ -111,17 +120,34 @@ export class LogDetailsComponent implements OnInit {
           "Okay",
         )
         this.delConfirmed = true;
-        this.router.navigate(['/delete-log/' + this.logId])
+        this.router.navigate(['/logs/delete/request/' + this.logId])
       },
       () => {
         Notiflix.Report.success(
           "Aborted!",
-          "",
+          "You have canceled the delete request. In case you did so by mistake, please make a new request.",
           'Great',
         )
         this.delConfirmed = false;
       }
     )
+  }
+  getFuelReceived(){
+    this.fuel.getFuelReceivedInfo(this.fuelId).subscribe(
+      data => {
+        this.fuelReceived = data;
+      }
+    )
+  }
+  getTotalFuelReceived(){
+    this.fuel.getTotalFuelReceived(this.fuelId).subscribe(
+      data => {
+        this.fuelTotal = data;
+      }
+    )
+  }
+  printLog(){
+    window.print();
   }
 }
 

@@ -1,57 +1,99 @@
-<div id="mpesaForm" class="border color-two margin padding"><br>
-    <h2 class="text-center">Add Mpesa logs</h2>
-    <h6 class="text-center"><span class="bg-danger padding-2 rounded">Remember to update your daily total!</span></h6>
+<div class="border color-two margin padding rounded">
+    <h6 class="text-center">Add {{fuelInfo.fuel_type}} Mpesa Logs</h6>
     <form #mpesaForm="ngForm" (ngSubmit)="addMpesaLog(mpesaForm.value)">
         <div class="row">
             <div class="col">
-                <label for="date">Date</label>
-                <input type="date" class="Aj-M form-control" ngModel #date="ngModel" name="date" placeholder="Date">
-                <div [hidden]="transaction_number.valid || transaction_number.pristine" class="alert margin-top2p5 alert-danger">
-                    <p>Date required</p>
-                </div>
+                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>Date</mat-label>
+                    <input matInput placeholder="Date" name="date" #date="ngModel" ngModel type="date" [(ngModel)]="today" required min="{{today}}" max="{{today}}">
+                    <mat-icon matSuffix>date</mat-icon>
+                    <mat-hint>e.g <strong>02/22/2022</strong></mat-hint>
+                    <mat-error *ngIf="date.hasError('required') || date.pristine">
+                      Date is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> 
+                  <div class="hide">
+                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                      <mat-label>Formatted Date</mat-label>
+                      <input matInput name="formatted_date" ngModel [(ngModel)]="tdate" type="text">
+                    </mat-form-field> 
+                  </div>   
             </div>
             <div class="col">
-                <label for="transaction_number">Transaction number</label>
-                <input type="number" ngModel #transaction_number="ngModel" id="transaction_number" class="Aj-M form-control" name="transaction_number" placeholder="Transaction number" required>
-                <div [hidden]="transaction_number.valid || transaction_number.pristine" class="alert margin-top2p5 alert-danger">
-                    <p>Transaction number required</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <label for="customer_name">Customer name</label>
-                <input type="text" id="customer_name" ngModel #customer_name="ngModel" class="Aj-M form-control" name="customer_name" placeholder="Customer name" required>
-                <div [hidden]="customer_name.valid || customer_name.pristine" class="alert margin-top2p5 alert-danger">
-                    <p>Customer name required</p>
-                </div>
-            </div>
-            <div class="col">
-                <label for="customer_phone_number">Customer phone number</label>
-                <input type="number" id="customer_phone_number" ngModel #customer_phone_number="ngModel" class="Aj-M form-control" name="customer_phone_number" placeholder="Customer phone number" required>
-                <div [hidden]="customer_phone_number.valid || customer_phone_number.pristine" class="alert margin-top2p5 alert-danger">
-                    <p>Customer phone number required</p>
-                </div>
+                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>Transaction Number</mat-label>
+                    <input matInput placeholder="Transaction Number" name="transaction_number" #transaction_number="ngModel" ngModel type="text" required>
+                    <mat-icon matSuffix></mat-icon>
+                    <mat-hint>e.g <strong>QWYQUAK1283</strong></mat-hint>
+                    <mat-error *ngIf="transaction_number.hasError('required') || transaction_number.pristine">
+                      Transaction number is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> 
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-                <label for="amount">Amount</label>
-                <input type="number" ngModel class="Aj-M form-control" id="amount" name="amount" placeholder="Amount">
+                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>Customer Name</mat-label>
+                    <input matInput placeholder="Customer Name" name="customer_name" #customer_name="ngModel" ngModel type="text" required>
+                    <mat-icon matSuffix></mat-icon>
+                    <mat-hint>e.g <strong>John Anko Doe</strong></mat-hint>
+                    <mat-error *ngIf="customer_name.hasError('required') || customer_name.pristine">
+                      Customer name is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> 
             </div>
             <div class="col">
-                <label for="amount_transferred_to_bank">Transferred to bank</label>
-                <input type="number" ngModel #amount_transferred_to_bank="ngModel" id="amount_transferred_to_bank" class="Aj-M form-control" name="amount_transferred_to_bank" placeholder="Amount transferred to bank">
+                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>Customer Phone No.</mat-label>
+                    <input matInput placeholder="Customer Phone No." name="customer_phone_number" #customer_phone_number="ngModel" ngModel type="number" required min="99999999" max="999999999">
+                    <mat-icon matSuffix></mat-icon>
+                    <mat-hint>e.g <strong>712345678</strong></mat-hint>
+                    <mat-error *ngIf="customer_phone_number.hasError('min')">
+                        Phone number should be <strong>at least 9 digits</strong>
+                    </mat-error>
+                    <mat-error *ngIf="customer_phone_number.hasError('max')">
+                        Phone number should <strong>not exceed 9 digits</strong>
+                    </mat-error>
+                    <mat-error *ngIf="customer_phone_number.hasError('required') || customer_phone_number.pristine">
+                      Customer phone number is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>Amount</mat-label>
+                    <input matInput placeholder="Amount" name="amount" #amount="ngModel" ngModel type="number" required>
+                    <mat-icon matSuffix></mat-icon>
+                    <mat-hint>e.g <strong>1200</strong></mat-hint>
+                    <mat-error *ngIf="customer_phone_number.hasError('required') || customer_phone_number.pristine">
+                      Customer phone number is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> 
+            </div>
+            <div class="col">
+                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>Bank Amount</mat-label>
+                    <input matInput placeholder="Bank Amount" [(ngModel)]="default" name="amount_transferred_to_bank" #amount_transferred_to_bank="ngModel" ngModel type="number" required>
+                    <mat-icon matSuffix></mat-icon>
+                    <mat-hint>e.g <strong>1200</strong></mat-hint>
+                    <mat-error *ngIf="amount_transferred_to_bank.hasError('required') || amount_transferred_to_bank.pristine">
+                      Bank amount is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> 
             </div>
             <div class="col hide">
-                <input type="number" ngModel id="user" #user="ngModel" value="1" class="hide" name="user" placeholder="Your user id">
-                <input  type="text" ngModel id="logged_by" #logged_by="ngModel" value="user" class="hide" name="logged_by" placeholder="Your name">
+                <input type="number" ngModel [(ngModel)]="fuelInfo.id" name="fuel">
+                <input type="number" ngModel id="user" #user="ngModel" [(ngModel)]="currentUser.id" class="" name="user">
+                <input  type="text" ngModel id="logged_by" #logged_by="ngModel" [(ngModel)]="currentUser.username" class="" name="logged_by">
             </div>
         </div>
-        <div class="form-group">
-            <input class="btn margin btn-sm btn-outline-primary btn-dark" type="submit" value="Log mpesa">
+        <div class="form-group text-center">
+            <button class="btn margin btn-lg w-100 btn-outline-success btn-light" type="submit" [disabled]="mpesaForm.invalid">Add Mpesa</button>
         </div>
     </form>
 </div>

@@ -57,7 +57,7 @@
                           <div class="col col-lg-4 padding-2">
                             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                               <mat-label>Date</mat-label>
-                              <input matInput name="date" ngModel #date="ngModel" type="text" [(ngModel)]="mpesa.formatted_date">
+                              <input matInput name="date" ngModel #date="ngModel" type="text" [(ngModel)]="mpesa.date">
                             </mat-form-field>        
                           </div>
                           <div class="col col-lg-4 padding-2">
@@ -83,7 +83,7 @@
                             <div class="col col-lg-4 padding-2">
                               <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                                   <mat-label>Customer name</mat-label>
-                                  <input matInput name="customer_name" ngModel #customer_name="ngModel" type="number" [(ngModel)]="mpesa.customer_name">
+                                  <input matInput name="customer_name" ngModel #customer_name="ngModel" type="text" [(ngModel)]="mpesa.customer_name">
                                 </mat-form-field> 
                                 <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                                     <mat-label>Customer no.</mat-label>
@@ -101,7 +101,7 @@
                             <div class="col col-lg-4 padding-2">
                               <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                                 <mat-label>Amount</mat-label>
-                                <input matInput name="amount" ngModel #amount="ngModel" type="number" [(ngModel)]="mpesa.amount_earned_today">
+                                <input matInput name="amount" ngModel #amount="ngModel" type="number" [(ngModel)]="mpesa.amount">
                               </mat-form-field>        
                             </div>
                             <div class="col col-lg-4 padding-2">

@@ -1,118 +1,88 @@
-<div class="container-fluid">
-    <div class="row padding">
-      <div class="col-lg-3">
-        <div class="bg-light shadow rounded bg-light">
-          <p class="aloha font-md text-center">F<span class="font-md-2">uel</span> <i class="fa-solid fa-bolt"></i></p>
-      </div>
-      <div class="shadow padding">
-        <h6><i class="fa-solid fa-gas-pump"></i> {{fuelName}}</h6>
-        <p><i class="fa-solid fa-hand-holding-dollar"></i> Ksh. {{logs.price_per_litre}} P/Lt.</p>
-      </div>
-      </div>
-      <div class="col-lg-9 rounded center bg-light padding-2">
-        <h2> <span> Log Details</span></h2>
-          <div class="card color-two">
-            <h5 class="card-header margin-top"><span class="" style="float:left;"><a routerLink="/print-report/{{logs.id}}"><button class=" margin-top btn btn-sm btn-light btn-outline-primary">Print <span><i class="fa-solid fa-print"></i></span></button></a></span> <i class="fa-regular fa-calendar"></i> {{logs.date}}  <span style="float:right;"><h6><a routerLink="/email-report/{{logs.id}}" type="button" class="btn btn-sm btn-light btn-outline-primary"><span><i class="fa-solid fa-paper-plane"></i></span> email</a></h6></span></h5>
-            <div class="card-body">
-                  <div class="table-responsive" id="table" name="table">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">EOD Reading Today</th>
-                            <th scope="col">EOD Reading Yesterday</th>
-                            <th scope="col">Total litres sold today</th>
-                            <th scope="col">Amount earned today</th>
-                            <th scope="col">Balance (lts)</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>{{logs.id}}</td>
-                              <td id="tester-today2">{{logs.eod_reading_lts}}</td>
-                              
-                              <td id="tester-yesterday2">{{logs.eod_reading_yesterday}}</td>
-                            <td id="total-today2"></td>
-                            <td id="amount-today2"></td>
-                            <td>{{logs.balance}}</td>
-                          </tr>
-                        </tbody>
-                        </table>
-                  </div>
-              </div>
-              <div class="card-footer">
-                  <small><span><button class="btn btn-sm btn-light btn-outline-danger" type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> Delete</button></span> >>> First logged by {{logs.logged_by}} on {{logs.first_logged | date: 'medium'}}</small>
-              </div>
-              <app-fuel-received></app-fuel-received>
-              <p><a type="button" class="btn btn-sm btn-dark btn-outline-warning" type="button" (click)="reportWarn();"><i class="fa-solid fa-pen-to-square"></i> details </a> <small *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited by on {{logs.last_edited | date: 'medium'}}</small></p>
-              <div *ngIf="!closed">
-                <div class="row">
-                  <div class="col-md-12">
-                    <form class="rounded bg-light padding-2 margin shadow" *ngIf="updateConfirmed;" #logUpdateForm="ngForm" (ngSubmit)="updateLogDetails(logUpdateForm.value)">
-                      <h6 class="margin-top">Log Update Form  <span style="float:right;" (click)="toggleUpdateForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span></h6>
-                        <div class="row">
-                            <div class="col-sm-1"></div>
-                            <div class="col-lg-5 rounded padding-2">
-                              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
-                                  <mat-label>Date</mat-label>
-                                  <input matInput placeholder="Date" ngModel name="date" #date="ngModel" type="text" [(ngModel)]="logs.date" required>
-                                  <mat-icon matSuffix>date</mat-icon>
-                                  <mat-hint> <span *ngIf="!errDate">e.g <strong>2022-02-22</strong></span> <span *ngIf="errDate" class="alert w-100 rounded bold" style="color:red">{{errDate}}</span> </mat-hint>
-                                <mat-error *ngIf="date.hasError('required') || date.pristine">
-                                  Date is <strong>required</strong>
-                                </mat-error>
-                                
-                                </mat-form-field> 
-                                
-                          </div>
-                          <div class="col-lg-5 rounded padding-2">
-                            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
-                                <mat-label>EOD reading</mat-label>
-                                <input matInput placeholder="End of day reading" ngModel name="eod_reading_lts" #eod_reading_lts="ngModel" type="number" [(ngModel)]="logs.eod_reading_lts" required>
-                                <mat-hint> <span *ngIf="!errEOD">e.g <strong>111222333</strong></span>  <span *ngIf="errEOD" class="rounded bold" style="color:red">{{errEOD}}</span></mat-hint>
-                                <mat-error *ngIf="eod_reading_lts.hasError('required') || eod_reading_lts.pristine">
-                                  EOD reading is <strong>required</strong>
-                                </mat-error>
-                              </mat-form-field> 
-                              <div class="hide">
-                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
-                                  <mat-label>Edited by</mat-label>
-                                  <input matInput name="edited_by" ngModel #edited_by="ngModel" type="text" [(ngModel)]="currentUser.username">
-                                </mat-form-field> 
-                              </div>
-                        </div>
-                        <div class="col-sm-1"></div>
-                            
-                        </div>
-                        
-                        <div class="form-group">
-                            <button class="btn margin btn-sm btn-outline-success btn-light" type="submit" [disabled]="logUpdateForm.invalid">Update log</button>
-                        </div> 
-                    </form>
-                  </div>
-                </div>
-                
-              </div>
+<div class="container-fluid"> 
+  <div class="row padding">
+    <div class="col-lg-8 rounded text-center padding-2">
+      <div class="card color-two shadow">
+        <h5 class="card-header margin-top"><span class="" style="float:left;"><button class=" margin-top btn btn-sm btn-light btn-outline-primary" (click)="printLog()">Print <span><i class="fa-solid fa-print"></i></span></button></span> <i class="fa-regular fa-calendar"></i> {{logs.date}}  <span style="float:right;"><h6><a routerLink="/logs/email/report/{{logs.id}}" type="button" class="btn btn-sm btn-light btn-outline-primary"><span><i class="fa-solid fa-paper-plane"></i></span> email</a></h6></span></h5>
+        <div class="card-body">
+          <div class="table-responsive" id="table" name="table">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">EOD</th>
+                  <th scope="col">EOD Yesterday</th>
+                  <th scope="col">Litres sold</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Balance (lts)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{logs.id}}</td>
+                  <td id="tester-today2">{{logs.eod_reading_lts}}</td>
+                  <td id="tester-yesterday2">{{logs.eod_reading_yesterday}}</td>
+                  <td id="total-today2">{{logs.total_litres_sold}}</td>
+                  <td id="amount-today2">{{logs.amount_earned_today}}</td>
+                  <td>{{logs.balance}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-              
-          
-          
-          
-          
-  
-            
-            
         </div>
-  
-       
-  
+        <div class="card-footer">
           
+          <small> >>> First logged by {{logs.logged_by}} on {{logs.first_logged | date: 'medium'}}<br>
+           <span *ngIf="logs.first_logged != logs.last_edited"> >>> Last edited by {{logs.edited_by}} on {{logs.last_edited | date: 'medium'}}</span></small>
+        </div>
+        <!-- <app-fuel-received></app-fuel-received> -->
+        
       </div>
-      
+      <div class="bg-light rounded bg-light">
+        <p class="aloha text-center">{{logs.fuel_type}} <i class="fa-solid fa-bolt"></i> &nbsp;|&nbsp; <i class="fa-solid fa-hand-holding-dollar"></i> Ksh. {{logs.price_per_litre}} P/Lt. &nbsp;|&nbsp; General <i class="fa-regular fa-file-lines"></i></p>
+      </div>
     </div>
-   
+    <div class="col-lg-4 padding text-center">
+      <p><a type="button" class="btn btn-md w-100 btn-light btn-outline-warning" type="button" (click)="reportWarn();"><i class="fa-regular fa-pen-to-square"></i> edit </a> </p>
+      <div *ngIf="!closed">
+            <form id="logUpdateForm" class="rounded padding-2 color-two margin shadow" *ngIf="updateConfirmed;" #logUpdateForm="ngForm" (ngSubmit)="updateLogDetails(logUpdateForm.value)">
+              <h6 class="margin-top">  <span style="float:right;" (click)="toggleUpdateForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span> Log Update Form</h6>
+             
+                  <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>Date</mat-label>
+                    <input matInput placeholder="Date" ngModel name="date" #date="ngModel" type="text" [(ngModel)]="logs.date" required>
+                    <mat-icon matSuffix>date</mat-icon>
+                    <mat-hint> <span *ngIf="!errDate">e.g <strong>2022-02-22</strong></span> <span *ngIf="errDate" class="alert w-100 rounded bold" style="color:red">{{errDate}}</span> </mat-hint>
+                    <mat-error *ngIf="date.hasError('required') || date.pristine">
+                      Date is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> 
+                
+                  <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-label>EOD reading</mat-label>
+                    <input matInput placeholder="End of day reading" ngModel name="eod_reading_lts" #eod_reading_lts="ngModel" type="number" [(ngModel)]="logs.eod_reading_lts" required>
+                    <mat-hint> <span *ngIf="!errEOD">e.g <strong>111222333</strong></span>  <span *ngIf="errEOD" class="rounded bold" style="color:red">{{errEOD}}</span></mat-hint>
+                    <mat-error *ngIf="eod_reading_lts.hasError('required') || eod_reading_lts.pristine">
+                      EOD reading is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> 
+                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                      <mat-label>Edited by</mat-label>
+                      <input matInput name="edited_by" ngModel #edited_by="ngModel" type="text" [(ngModel)]="currentUser.username">
+                    </mat-form-field> 
+                  
+              <div class="form-group">
+                <button class="btn margin btn-sm btn-outline-success btn-light" type="submit" [disabled]="logUpdateForm.invalid">Update log</button>
+              </div> 
+            </form>
           
+      </div>  
+      <small><span><button class="btn btn-md w-100 btn-warning btn-outline-danger" type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> Delete</button></span></small>
+      <br><br><hr><br>
+      <app-fuel-received-info [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal" [fuelType]="fuelType" [fuelId]="fuelId"></app-fuel-received-info>
+    </div>
+  </div>
+</div>
      <br><br><br><br><br> 
     <!-- <app-footer></app-footer> -->
     
-    <app-fuel-received-info [logs]="logs"></app-fuel-received-info>
+    

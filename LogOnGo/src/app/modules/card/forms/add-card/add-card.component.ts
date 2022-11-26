@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
-import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
-import { FuelService } from 'src/app/modules/fuel/services/fuel.service';
 import { CardService } from '../../services/card/card.service';
 
 @Component({
@@ -11,84 +9,50 @@ import { CardService } from '../../services/card/card.service';
 })
 export class AddCardComponent implements OnInit {
   closed: boolean;
-  currentUser = this.authService.currentUserValue;
-  petrolInfo: any;
-  today = new Date().toISOString();
-  error: any; 
-  message = '';
+  YYYY = new Date().getFullYear();
+  MM = new Date().getMonth() + 1;
+  DD = new Date().getDate();
+  today = this.YYYY + '-' + this.MM + '-' + this.DD
+  tdate = new Date().toDateString();
   show: boolean;
-  errMsg = '';
-  errName = '';
-  errNo = '';
-  errAmount = '';
-  errDate = '';
-  statusText = '';
-  fuels: any;
+  @Input() currentUser: any;
+  @Input() fuelInfo: any;
+  dateValue = '';
+  dateV = '';
 
   constructor(
-    
     private creditCardService:CardService,
-    private authService:AuthService,
-    private fuelService:FuelService,
   ) { }
    
 
   ngOnInit(): void {
-    this.fuelService.getFuels().subscribe({
-      next: (res) => {
-        this.fuels = res;
-      }
-    })
   }
   addCreditCardLog(cardData) {
+    Notiflix.Loading.hourglass('Adding... please wait')
     this.creditCardService.addCreditCardLog(cardData).subscribe({
       next: (result) => {
-        console.warn('result', result);
-        Notiflix.Notify.success('CreditCard log added successful!');
+        Notiflix.Notify.success('Credit Card log added successfully!');
         location.reload();
-        this.errMsg = '';
-            this.errDate = '';
-            this.errAmount = '';
-            this.errName = '';
-            this.errNo = '';
-      }, 
-      error: (e) => {
-        this.error = e;
-        this.message = this.error.statusText;
-        this.errMsg = e.error.detail;
-            this.statusText = e.statusText;
-            this.errDate = e.error.date;
-            this.errName = e.error.card_name;
-            this.errNo = e.error.card_number;
-            this.errAmount = e.error.amount;
-            if(this.errMsg && this.statusText){
-              Notiflix.Report.failure(
-                this.statusText,
-                this.errMsg,
-                'Okay',
-              )
-            } else if(this.statusText){
-              Notiflix.Report.failure(
-                this.statusText,
-                'Please fix the highlighted errors and try again.',
-                'Okay',
-              )
-            }
-        }
+      }
     });
-  }
-
-  toggleCreditCardLog(){
-    this.closed = true;
-  }
-  closeForm(){
-    this.closed = false;
   }
   toggleCreditCard(){
     this.show = true;
   }
   close(){
     this.show = false;
+  }
+  onKey(event: any){
+    this.dateValue = event.target.value;
+  }
+  checkDate(){
+    
+    
+    
+    // window.alert(dateIn)
+    
+    
+    
   }
 
 }

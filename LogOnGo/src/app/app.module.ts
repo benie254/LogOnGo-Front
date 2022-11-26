@@ -50,7 +50,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BindQueryParamDirective } from './directives/queryParams/bind-query-param.directive';
 import { ErrorsModule } from './modules/errors/errors.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { ServicesModule } from './modules/services/services.module';
 import { AllFormsModule } from './modules/all-forms/all-forms.module';
 import { NavigationModule } from './modules/navigation/navigation.module';
 
@@ -100,7 +99,6 @@ import { NavigationModule } from './modules/navigation/navigation.module';
       MatExpansionModule,
       MatPaginatorModule,
       MatProgressBarModule,
-      ServicesModule,
       AllFormsModule,
       NavigationModule,
 

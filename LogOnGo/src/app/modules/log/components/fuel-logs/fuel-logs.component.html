@@ -1,37 +1,51 @@
 <div class="container-fluid rounded">
     <br>
     <div class="row rounded">
-        <h1 class="text-center">All Petrol Logs for </h1>
+        <h1 class="text-center">All {{fuelInfo.fuel_type}} Logs for {{date | date}}</h1>
         <div class="col-lg-6 rounded padding-2">
-            <div class="bg-light shadow padding-2">
-                <h2 class="text-center">General</h2>
-            <h6 class="text-center"> <span>pumps</span></h6>
-         
-            
-            <!-- <button *ngIf="!pOneHidden" (click)="maximize()" class="btn btn-md btn-dark btn-outline-info margin">Pump One</button><button *ngIf="!pTwoHidden" (click)="maximize2()" class="btn btn-md btn-dark btn-outline-info margin">Pump Two</button> 
-            <button *ngIf="!pThreeHidden" (click)="maximize3()" class="btn btn-md btn-dark btn-outline-info margin">Pump Three</button><button *ngIf="!pFourHidden" (click)="maximize4()" class="btn btn-md btn-dark btn-outline-info margin">Pump Four</button> -->
-            <div>
-                <br>
+            <div *ngIf="fLogs">
                 <div>
-                    <!-- <app-logs-card [logs]="currentItem"></app-logs-card> -->
-                    <br>
+                    <div>
+                        <app-logs-card [logs]="fLogs"></app-logs-card>
+                        <br>
+                    </div>    
                 </div>
-                
-                
-                
-                
-                
-                
-                
             </div>
-            </div>
-            </div>
+            <div *ngIf="!fLogs">
+                <div class="bg-light shadow rounded padding-2">
+                  <div>
+                    <app-no-logs [fuelInfo]="fuelInfo"></app-no-logs>
+                  </div>
+                </div>
+              </div>
+
+        </div>
             
         <div class="col-lg-6 full-height rounded black padding-2">
+            <div *ngIf="fuelMpesa">
+                <app-fuel-mpesa-logs [fuelMpesa]="fuelMpesa"></app-fuel-mpesa-logs>
+            </div>
+            <div *ngIf="!fuelMpesa">
+                <div class="bg-light shadow rounded padding-2">
+                  <div>
+                    <app-no-mpesa [currentUser]="currentUser" [fuelInfo]="fuelInfo"></app-no-mpesa>
+                  </div>
+                </div>
+            </div>
            
-                    <!-- <app-mpesa-logs></app-mpesa-logs> -->
+                    
                     <hr>
-                    <!-- <app-credit-card-logs></app-credit-card-logs> -->
+                    
+                    <div *ngIf="fuelCards">
+                        <app-fuel-card-logs [fuelCards]="fuelCards"></app-fuel-card-logs>
+                    </div>
+                    <div *ngIf="!fuelCards">
+                        <div class="bg-light shadow rounded padding-2">
+                          <div>
+                            <app-no-card [currentUser]="currentUser" [fuelInfo]="fuelInfo"></app-no-card>
+                          </div>
+                        </div>
+                      </div>
                 
         </div>
 

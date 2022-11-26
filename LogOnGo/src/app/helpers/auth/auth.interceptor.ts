@@ -8,8 +8,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TokenStorageService } from 'src/app/services/token/token-storage.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 
 const tokenHeaderKey = 'Authorization'; 
 

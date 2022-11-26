@@ -1,50 +1,5 @@
-<!-- <mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <button mat-icon-button>
-            <mat-icon >menu</mat-icon>
-        </button>
-        <h1>SimpleCRM</h1>
-        <span class="menu-spacer"></span>
-        <div>
-            <a mat-button [routerLink]="'/accounts'"> Accounts </a>
-            <a mat-button [routerLink]="'/create-account'"> Create Account </a>
-            <a mat-button [routerLink]="'/contacts'"> Contacts </a>
-            <a mat-button [routerLink]="'/create-contact'"> Create Contact </a>
-            <a mat-button [routerLink]="'/activities'"> Activities </a>
-            <a mat-button [routerLink]="'/create-activity'"> Create Activity </a>
-        </div>
-    </mat-toolbar-row>
-    <mat-toolbar-row>
-        <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
-    </mat-toolbar-row>
-</mat-toolbar> -->
 
-<!-- <nav class="menu color-two" tabindex="0">
-    <div class="card card-sm padding color-one">
-        
-        <h3 class="">{{currentUser.username}}</h3>
-        <small>{{currentUser.email}}</small>
-        <h5 class="">{{currentUser.petrol_station}}</h5>
-        <p><a class="" href="">Change password</a> <br> <a href="">Reset password</a></p>
-    </div>
-<hr>
-<div class="card card-sm color-one padding rounded">
-<p class="text-c">Add <a routerLink="/add-log">logs?</a>  <br>
-    or <br>
-    Add <a routerLink="/add-mpesa">Mpesa logs</a> </p>
 
-</div>
-<hr>
-<div class="center rounded padding">
-<h6 class="text-c"><a routerLink="/incident" type="button" class="btn btn-info btn-outline-danger">Report Incident</a></h6>
-</div>
-<hr>
-<div class="padding center rounded">
-<button class="margin white text-c btn btn-dark btn-outline-info" onclick="toggleContact()">Contact Admin</button>
-<app-contact-form></app-contact-form>
-</div><br><br><br><br>
-</nav> -->
-<!-- 
 <mat-sidenav-container>
     <mat-sidenav #sidenav id="side-cont">
             
@@ -118,8 +73,8 @@
                             </mat-panel-description>
                           </mat-expansion-panel-header>
                           <p><a routerLink="/add-log">Here</a>, you can record all logs: Petrol, Diesel, or Gas & add their received orders</p>
-                        </mat-expansion-panel> -->
-                        <!-- <mat-expansion-panel (opened)="panelOpenState = true"
+                        </mat-expansion-panel> 
+                        <mat-expansion-panel (opened)="panelOpenState = true"
                                              (closed)="panelOpenState = false">
                           <mat-expansion-panel-header>
                             <mat-panel-title>
@@ -142,8 +97,8 @@
                             </mat-panel-description>
                           </mat-expansion-panel-header>
                           <p><a routerLink="/incident">Here</a>, you can report any station-related incidents. Always try to describe the incident to the best of your ability</p>
-                        </mat-expansion-panel> -->
-                      <!-- </mat-accordion>
+                        </mat-expansion-panel> 
+                      </mat-accordion>
                 </div>
                 
                 
@@ -151,11 +106,11 @@
             </div>
           
             <div class="col-md-6">
-                <div *ngIf="!noAnnouncement">
+                <div *ngIf="foundAnnouncements">
                     <app-profile-announcements></app-profile-announcements>
                 </div>
-                <div *ngIf="noAnnouncement">
-                    <app-profile-noannouncements></app-profile-noannouncements>
+                <div *ngIf="!foundAnnouncements">
+                    <app-profile-no-announcements></app-profile-no-announcements>
                 </div>
            </div>
 </div>
@@ -168,10 +123,10 @@
     
         <div class="row">
             <div class=" col-lg-4 color-one shadow rounded black padding-2">
-                <h2 class="text-center">Your Logs</h2>
+                <h2 class="text-center">Your General Logs</h2>
                 <div>
-                    <div *ngIf="user_logs else noUserLogs">
-                        <app-profile-logcard></app-profile-logcard>
+                    <div *ngIf="userLogs else noUserLogs">
+                        <app-profile-log-card [userLogs]="userLogs"></app-profile-log-card>
                     </div>
                 </div>
                 <div>
@@ -188,13 +143,13 @@
             <div class="col-lg-4 rounded black padding-2 shadow">
                 <h2 class="text-center">Your Credit Card Logs</h2>
                 <div>
-                    <app-profile-credit-logs></app-profile-credit-logs>
+                    <app-profile-card-logs></app-profile-card-logs>
                 </div>
             </div>
             <div class="col-lg-4 black shadow color-one rounded padding-2">
                 <h2 class="text-center">Your Mpesa Logs</h2>
                 <div *ngIf="mpesa_logs else noMpesa">
-                        <app-profile-mpesalogs></app-profile-mpesalogs>
+                        <app-profile-mpesa></app-profile-mpesa>
                 </div>
                 <div>
                     <ng-template #noMpesa> 
@@ -269,4 +224,4 @@
     
   </mat-sidenav-content>
   
-</mat-sidenav-container> -->
+</mat-sidenav-container> 

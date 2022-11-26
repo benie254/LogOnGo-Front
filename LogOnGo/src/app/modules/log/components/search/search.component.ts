@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LogService } from 'src/app/services/log/log.service';
 import * as Notiflix from 'notiflix';
 import { FormBuilder, Validators } from '@angular/forms';
+import { LogService } from '../../services/log/log.service';
 
 @Component({
   selector: 'app-search',

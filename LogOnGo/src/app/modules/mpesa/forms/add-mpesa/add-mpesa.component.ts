@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import * as Notiflix from 'notiflix';
 import { MpesaService } from '../../services/mpesa/mpesa.service';
 
 @Component({
@@ -9,24 +9,32 @@ import { MpesaService } from '../../services/mpesa/mpesa.service';
 })
 export class AddMpesaComponent implements OnInit {
   user: any;
-  mpesaForm: FormGroup
+  default: number = 0;
+  @Input() currentUser: any;
+  @Input() fuelInfo: any;
+  YYYY = new Date().getFullYear();
+  MM = new Date().getMonth() + 1;
+  DD = new Date().getDate();
+  today = this.YYYY + '-' + this.MM + '-' + this.DD
+  tdate = new Date().toDateString();
 
   constructor(
     private mpesaService:MpesaService, 
     ) { }
 
   addMpesaLog(mpesa_info) {
-    this.mpesaService.addMpesaLog(mpesa_info).subscribe((result) => {
-      console.warn('result', result);
-      // this.notifService.submitSuccess('success','Mpesa log added successfully!')
-      // this.notifService.showSuccess("Data posted successfully !!", "Notification")
-    });
+    Notiflix.Loading.hourglass('Adding... please wait.')
+    this.mpesaService.addMpesaLog(mpesa_info).subscribe({
+      next: (result) => {
+      Notiflix.Notify.success('Mpesa Log added successfully!');
+      Notiflix.Loading.remove();
+      location.reload();
+    }});
   }
 
   ngOnInit(): void {
     
   }
 
-  get f() { return this.mpesaForm.controls; }
 
 }

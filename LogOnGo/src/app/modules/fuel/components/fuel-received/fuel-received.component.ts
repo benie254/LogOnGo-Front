@@ -1,7 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import * as Notiflix from 'notiflix';
-import { FuelService } from '../../services/fuel.service';
 
 @Component({
   selector: 'app-fuel-received',
@@ -13,11 +10,12 @@ export class FuelReceivedComponent implements OnInit {
   showInfo: boolean;
   @Input() fuelInfo: any;
   @Input() fuelTotal: any;
-  @Input() getFuelReceived: (id: number) => void;
-  @Input() getTotalFuelReceived: (id: number) => void;
+  @Input() logs: any;
+  @Input() fuelReceived: any;
+  @Input() fuelType: any; 
+  @Input() fuelId: number;
 
   constructor(
-    private route:ActivatedRoute,
   ) { }
 
   ngOnInit(): void {

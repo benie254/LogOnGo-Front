@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
-import { FuelService } from '../../fuel/services/fuel.service';
+import { FuelService } from '../../fuel/services/fuel/fuel.service';
 
 @Component({
   selector: 'app-gas-summary',
@@ -13,6 +13,8 @@ export class GasSummaryComponent implements OnInit {
   ppOpen: boolean = false; 
   initOpen: boolean = false;
   id: number;
+  empty: boolean;
+  gas: any;
 
   constructor(
     private fuelService:FuelService,
@@ -27,11 +29,16 @@ export class GasSummaryComponent implements OnInit {
   getGas(){
     this.fuelService.getGasInfo().subscribe({
       next: (res) => {
+        this.gas = res;
         this.id = res.id
         this.fuelService.getFuelSummary(this.id).subscribe(
           (data) => {
             this.fuelSummary = data;
-            console.warn("gas summary",this.fuelSummary)
+            if(this.fuelSummary.cumulative_litres_sold_today == null || this.fuelSummary == '' || this.fuelSummary.length == undefined){
+              this.empty = true;
+            } else {
+              this.empty = false;
+            }
           }
         )
       }

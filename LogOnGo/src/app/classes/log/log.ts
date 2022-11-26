@@ -7,7 +7,7 @@ export class Log {
     total_litres_sold: number;
     amount_earned_today: number;
     fuel: any;
-    fuel_name: string;
+    fuel_type: string;
     price_per_litre: number;
     pump: number; 
     pump_name: string;

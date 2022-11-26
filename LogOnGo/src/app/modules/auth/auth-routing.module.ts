@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from '../navigation/landing/landing.component';
-import { AuthComponent } from './auth.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ResetConfirmedComponent } from './components/reset-confirmed/reset-confirmed.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -16,10 +18,10 @@ const routes: Routes = [
   {
     path: 'login/success', component: LandingComponent,
   },
-  // { path: 'register', component: RegisterComponent, },
-  // { path: 'change-password/:id', component: ChangePasswordComponent, },
-  // { path: 'request/reset-password/:id', component: ResetPasswordComponent, },
-  // { path: 'reset-password/confirmed/:id', component: ResetConfirmedComponent, },
+  { path: 'register', component: RegisterComponent, },
+  { path: 'change/password/:id', component: ChangePasswordComponent, },
+  { path: 'request/password/reset/:id', component: ResetPasswordComponent, },
+  { path: 'confirmed/password/reset/:id', component: ResetConfirmedComponent, },
 ];
 
 @NgModule({

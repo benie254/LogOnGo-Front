@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
-import { MpesaService } from 'src/app/modules/services/mpesa/mpesa.service';
+import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
+import { MpesaService } from '../../services/mpesa/mpesa.service';
 
 @Component({
   selector: 'app-mpesa-details',
@@ -10,6 +11,10 @@ import { MpesaService } from 'src/app/modules/services/mpesa/mpesa.service';
   styleUrls: ['./mpesa-details.component.css']
 })
 export class MpesaDetailsComponent implements OnInit {
+  fuelReceived: any;
+  fuelTotal: any;
+  fuelType: any;
+  fuelId: any;
   mpesaDetails: any; 
   delConfirmed: boolean = false;
   id: number;
@@ -30,10 +35,11 @@ export class MpesaDetailsComponent implements OnInit {
 
 
   constructor(
-    private mpesaService:MpesaService,
+    private mpesa:MpesaService,
     private route:ActivatedRoute,
     private authService:AuthService,
     private router:Router,
+    private fuel:FuelService,
   ) { }
 
   ngOnInit(): void {
@@ -41,14 +47,16 @@ export class MpesaDetailsComponent implements OnInit {
     this.route.params.subscribe(params => this.getMpesaLogDetails(params['id']))
   }
   getMpesaLogDetails(id:number){
-    this.mpesaService.getMpesaLogDetails(id).subscribe({
+    this.mpesa.getMpesaLogDetails(id).subscribe({
       next: (data) => {
         this.mpesaDetails = data
+        this.fuelId = this.mpesaDetails.fuel 
+        this.fuelType = this.mpesaDetails.fuel_type
       }
     });
   }
   updateMpesaDetails(mpesaData){
-    this.mpesaService.updateMpesaDetails(this.id,mpesaData).subscribe({
+    this.mpesa.updateMpesaDetails(this.id,mpesaData).subscribe({
         next: (res) => {
           console.log(res);
           Notiflix.Notify.success('updated!');
@@ -108,7 +116,7 @@ export class MpesaDetailsComponent implements OnInit {
       () => {
         Notiflix.Report.success(
           "Aborted!",
-          "",
+          "You have canceled the edit request. In case you did so by mistake, please make a new request.",
           'Great',
         )
         this.updateConfirmed = false;
@@ -131,17 +139,34 @@ export class MpesaDetailsComponent implements OnInit {
           "Okay",
         )
         this.delConfirmed = true;
-        this.router.navigate(['/delete-card/' + this.id])
+        this.router.navigate(['/mpesa/delete/request/' + this.id])
       },
       () => {
         Notiflix.Report.success(
           "Aborted!",
-          "",
+          "You have canceled the delete request. In case you did so by mistake, please make a new request.",
           'Great',
         )
         this.delConfirmed = false;
       }
     )
+  }
+  getFuelReceived(){
+    this.fuel.getFuelReceivedInfo(this.fuelId).subscribe(
+      data => {
+        this.fuelReceived = data;
+      }
+    )
+  }
+  getTotalFuelReceived(){
+    this.fuel.getTotalFuelReceived(this.fuelId).subscribe(
+      data => {
+        this.fuelTotal = data;
+      }
+    )
+  }
+  printMpesa(){
+    window.print();
   }
 
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CardService } from 'src/app/modules/card/services/card/card.service';
+import { MpesaService } from '../../services/mpesa/mpesa.service';
 
 @Component({
   selector: 'app-fuel-mpesa-logs',
@@ -8,37 +8,18 @@ import { CardService } from 'src/app/modules/card/services/card/card.service';
   styleUrls: ['./fuel-mpesa-logs.component.css']
 })
 export class FuelMpesaLogsComponent implements OnInit {
-  fuelMpesa: any;
-  page: number = 1;
-  count: number = 0;
-  tableSize: number = 2;
-  tableSizes: any = [2, 5, 10, 15];
-  id: number;
+  @Input() fuelMpesa: any;
+  @Input() page: number; 
+  @Input() count: number; 
+  @Input() tableSize: number = 4; 
+  @Input() tableSizes: number; 
+  @Input() getFuelMpesa: (id: number) => void;
+  @Input() onTableDataChange: (event: any) => void;
   
-  constructor(
-    private cardService:CardService,
-    private route:ActivatedRoute,
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id']
-    this.route.params.subscribe(params => this.getFuelMpesa(params['id']))
   }
-  getFuelMpesa = (id: number): void => {
-    this.cardService.getTodayCreditCardLogs(id).subscribe(
-      data => {
-        this.fuelMpesa = data;
-      }
-    )
-  }
-  onTableDataChange = (event: any): void => {
-    this.page = event;
-    this.getFuelMpesa(this.id);
-  }
-  onTableSizeChange = (event: any): void => {
-    this.tableSize = event.target.value;
-    this.page = 1;
-    this.getFuelMpesa(this.id);
-  }
+  
 }
 

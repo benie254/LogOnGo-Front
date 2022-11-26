@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { CardService } from '../../services/card/card.service';
-import { EmailService } from '../../services/email/email.service';
 
 @Component({
   selector: 'app-delete-card-form',
@@ -21,7 +20,6 @@ export class DeleteCardFormComponent implements OnInit {
 
   constructor(
     private cardService:CardService,
-    private emailService:EmailService,
     private route:ActivatedRoute,
     private authService:AuthService,
   ) { }
@@ -45,27 +43,19 @@ export class DeleteCardFormComponent implements OnInit {
     );
   }
   delRequest(cardData){
-    Notiflix.Loading.hourglass('Sending request...')
-    this.emailService.deleteCard(cardData).subscribe(
+    Notiflix.Loading.hourglass('Sending... please wait.')
+    this.cardService.deleteCard(cardData).subscribe(
       {
         next: (res) => {
           Notiflix.Loading.remove();
           console.log(res);
           Notiflix.Report.success(
             "Request sent!",
-            "Your delete request has been delivered to the administration.",
+            "Your delete request has been delivered to the administration. Please check your email for a follow-up.",
             "Okay",
           )
-        },
-        error: (e) => {
-          console.error(e)
-          Notiflix.Loading.remove();
-          Notiflix.Report.failure(
-            "Request failed!",
-            "Something went wrong as we attempted to send your delete request to the administration.",
-            "Okay",
-          )
-        } 
+          history.back();
+        }
       }
     )
   }

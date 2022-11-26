@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
-import { EmailService } from 'src/app/modules/services/email/email.service';
-import { MpesaService } from 'src/app/modules/services/mpesa/mpesa.service';
+import { MpesaService } from '../../services/mpesa/mpesa.service';
 
 @Component({
   selector: 'app-delete-mpesa',
@@ -25,7 +24,6 @@ export class DeleteMpesaComponent implements OnInit {
     private mpesaService:MpesaService,
     private route:ActivatedRoute,
     private authService:AuthService,
-    private emailService:EmailService,
   ) { 
     if(this.authService.currentUserValue){
       this.currentUser = this.authService.currentUserValue;
@@ -48,27 +46,19 @@ export class DeleteMpesaComponent implements OnInit {
     );
   }
   delRequest(mpesaData){
-    Notiflix.Loading.hourglass('Sending request...')
-    this.emailService.deleteMpesa(mpesaData).subscribe(
+    Notiflix.Loading.hourglass('Sending... please wait.')
+    this.mpesaService.deleteMpesa(mpesaData).subscribe(
       {
         next: (res) => {
           Notiflix.Loading.remove();
           console.log(res);
           Notiflix.Report.success(
             "Request sent!",
-            "Your delete request has been delivered to the administration.",
+            "Your delete request has been delivered to the administration. Please check your email for a follow-up.",
             "Okay",
           )
-        },
-        error: (e) => {
-          console.error(e)
-          Notiflix.Loading.remove();
-          Notiflix.Report.failure(
-            "Request failed!",
-            "Something went wrong as we attempted to send your delete request to the administration.",
-            "Okay",
-          )
-        } 
+          history.back();
+        }
       }
     )
   }

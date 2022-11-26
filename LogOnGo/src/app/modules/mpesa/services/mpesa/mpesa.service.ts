@@ -15,6 +15,8 @@ export class MpesaService {
   apiUserMpesa = apiURL + 'logs/mpesa/user/';
   apiMpesaDetails = apiURL + 'log/mpesa/details/';
   apiPastMpesa = apiURL + 'logs/mpesa/past/';
+  apiMpesaReport = apiURL + 'log/mpesa/email/report/';
+  apiDelMpesa = apiURL + 'log/mpesa/delete/request/';
 
   constructor(
     private handler:RequestHandlerService,
@@ -37,5 +39,11 @@ export class MpesaService {
   }
   updateMpesaDetails(id,data): Observable<LogMpesa>{
     return this.handler.handlePUT<LogMpesa>(this.apiMpesaDetails + id, data)
+  }
+  emailMpesaReport(mpesaReport: any): Observable<any>{
+    return this.handler.handlePOST<any>(this.apiMpesaReport, mpesaReport);
+  }
+  deleteMpesa(logData): Observable<any>{
+    return this.handler.handlePOST<any>(this.apiDelMpesa, logData)
   }
 }

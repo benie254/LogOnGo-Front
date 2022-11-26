@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LogService } from '../../services/log/log.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { LogService } from '../../services/log/log.service';
 export class NoLogsComponent implements OnInit {
   closed: boolean;
   show: boolean;
+  @Input() fuelInfo: any;
   
   constructor() { }
    

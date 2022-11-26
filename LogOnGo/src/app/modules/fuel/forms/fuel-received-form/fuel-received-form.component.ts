@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
-import { FuelService } from '../../services/fuel.service';
+import { FuelService } from '../../services/fuel/fuel.service';
 
 @Component({
   selector: 'app-fuel-received-form',
@@ -8,43 +8,42 @@ import { FuelService } from '../../services/fuel.service';
   styleUrls: ['./fuel-received-form.component.css']
 })
 export class FuelReceivedFormComponent implements OnInit {
-  dieselInfo: any;
-  closed: boolean = false;
- 
+  @Input() fuelInfo: any;
+  @Input() fuelType: any; 
+  @Input() fuelId: number;
+  closed: boolean = true;
+  @Input() logs: any;
+  YYYY = new Date().getFullYear();
+  MM = new Date().getMonth() + 1;
+  DD = new Date().getDate();
+  today = this.YYYY + '-' + this.MM + '-' + this.DD;
 
   constructor(
     private fuelService:FuelService, 
     ) {
-      // this.fuelService.getDieselInfo().subscribe(
+      // this.fuelService.getFuelInfo().subscribe(
       //   (data) => {
-      //     this.dieselInfo = data;
+      //     this.fuelInfo = data;
       //   }
       // )
      }
 
 
   ngOnInit(): void { }
-  dieselReceived() {
+  fuelReceived(fuelData) {
     Notiflix.Loading.dots('Processing...')
-    // this.fuelService.addFuelReceived(this.dieselForm.value).subscribe((result) => {
-    //   console.warn('result', result);
-    //   // this.notifService.submitSuccess('success','Diesel received added successfully!')
-    //   // this.notifService.showSuccess("Data posted successfully !!", "Notification")
-    //   Notiflix.Loading.remove();
-    //   Notiflix.Notify.success('Add success!');
-    //   location.reload()
-    // },
-    // err => {
-    //   Notiflix.Notify.failure('Add failed!');
-    //   Notiflix.Loading.remove();
-    // }
-    // );
+    this.fuelService.addFuelReceived(fuelData).subscribe({
+      next: (result) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('Add success!');
+      }
+    })
   }
-  openDieselForm(){
-    this.closed = true;
-  }
-  closeDieselForm(){
+  openFuelForm(){
     this.closed = false;
+  }
+  closeFuelForm(){
+    this.closed = true;
   }
 
 }

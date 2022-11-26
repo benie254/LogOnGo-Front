@@ -1,23 +1,23 @@
 <div>
     <div class="row padding-2">
         <div class="col center padding-2 rounded">
-            <div class="bg-light rounded" *ngIf="fuelInfo">
-                <p class="card-title shadow text-center">Fuel Received This Day: <br> <span><h5>{{fuelTotal.total_fuel_received_today}} <span>Lts.</span></h5></span>  </p>
+            <div class="bg-light rounded" *ngIf="fuelReceived">
+                <p class="card-title shadow text-center">{{fuelType}} Received This Day: <br> <span><h5>{{fuelTotal.total_fuel_received_today}} <span>Lts.</span></h5></span>  </p>
                 <span><a type="button" class="btn btn-sm btn-dark btn-outline-info" (click)="toggleOrderInfo()">order(s) info</a> | <a type="button" class="btn btn-sm btn-dark btn-outline-info" (click)="toggleNewOrder()">new order</a></span> 
                 <br><br>
                 <div *ngIf="showNew">
                     <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" (click)="toggleNewOrder()">X</a></span>
-                    <app-fuel-received-form></app-fuel-received-form>
+                    <app-fuel-received-form [fuelId]="fuelId" [fuelType]="fuelType"></app-fuel-received-form>
                 </div>
                 <ol *ngIf="showInfo" class="shadow rounded padding" style="text-align:left;">
                     <h6>Fuel Receipt Info <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" (click)="toggleOrderInfo()">X</a></span></h6>
-                    <span><p><li *ngFor="let fuel of fuelInfo">{{fuel.litres_received}} Lts. from {{fuel_info.received_from}}</li></p></span>
+                    <span><p><li *ngFor="let fuel of fuelReceived">{{fuel.litres_received}} Lts. from {{fuel_info.received_from}}</li></p></span>
                 </ol>
             </div>
-            <div *ngIf="!fuelInfo">
+            <div *ngIf="!fuelReceived">
                     <div class="shadow bg-light padding">
-                        <h5 class="card-header text-center">No fuel received yet.</h5>
-                    <app-fuel-received-form></app-fuel-received-form>
+                        <h5 class="card-header text-center">No {{fuelType}} received yet.</h5>
+                    <app-fuel-received-form [fuelId]="fuelId" [fuelType]="fuelType"></app-fuel-received-form>
                     </div>
                 
             </div>

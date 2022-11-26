@@ -8,14 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CreditLogCardComponent implements OnInit {
   @Input() cards: any;
   @Input() userCards: any;
-  @Input() fuelCards: any;
   @Input() page: number; 
   @Input() count: number; 
   @Input() tableSize: number; 
   @Input() tableSizes: number; 
   @Input() getAllCards: () => void;
   @Input() getUserCards: (id: number) => void;
-  @Input() getFuelCards: (id: number) => void;
+  @Input() getFuelCards: () => void;
   @Input() onTableDataChange: (event: any) => void;
 
   constructor() { }

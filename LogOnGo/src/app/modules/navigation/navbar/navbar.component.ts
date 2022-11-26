@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
 import { Profile } from 'src/app/classes/profile/profile';
 import { AuthService } from '../../auth/services/auth/auth.service';
-import { FuelService } from '../../fuel/services/fuel.service';
-import { LogService } from '../../services/log/log.service';
+import { FuelService } from '../../fuel/services/fuel/fuel.service';
 
 @Component({
   selector: 'app-navbar',
@@ -44,8 +42,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private fuelService:FuelService,
     private authService:AuthService,
-    private logService:LogService,
-    private route:ActivatedRoute,
+    private detector:ChangeDetectorRef,
     ) { }
 
   ngOnInit(): void {
@@ -60,6 +57,7 @@ export class NavbarComponent implements OnInit {
       this.authenticated = false;
     }
     this.getFuels();
+    this.detector.detectChanges();
   }
 
   getFuels(){
@@ -97,7 +95,6 @@ export class NavbarComponent implements OnInit {
   dateValue(eod: any){
     this.eOD = eod;
   }
-
 
   
 

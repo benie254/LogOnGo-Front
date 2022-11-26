@@ -745,7 +745,7 @@ footer {
   column-gap:2px;
 }
 @media print {
-  .btn, .navbar,.printData,.printMpesaData,.printCardData {
+  .btn, .navbar,.printData,.printMpesaData,.printCardData,.hPrint,footer,hr {
     display: none;
   }
   .print-container{

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MpesaService } from 'src/app/modules/services/mpesa/mpesa.service';
+import { MpesaService } from '../../services/mpesa/mpesa.service';
 
 @Component({
   selector: 'app-profile-mpesa',
@@ -16,7 +16,7 @@ export class ProfileMpesaComponent implements OnInit {
   id: number;
 
   constructor(
-    private mpesaService:MpesaService,
+    private mpesa:MpesaService,
     private route:ActivatedRoute,
   ) { }
 
@@ -25,7 +25,7 @@ export class ProfileMpesaComponent implements OnInit {
     this.route.params.subscribe(params => this.getUserMpesa(params['id']))
   }
   getUserMpesa = (id: number): void => {
-    this.mpesaService.getUserMpesaLogs(id).subscribe(
+    this.mpesa.getUserMpesaLogs(id).subscribe(
       data => {
         this.userMpesa = data;
       }

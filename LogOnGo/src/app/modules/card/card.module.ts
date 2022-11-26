@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CardRoutingModule } from './card-routing.module';
-import { CardComponent } from './card.component';
 import { AddCardPageComponent } from './components/add-card-page/add-card-page.component';
 import { AllCardLogsComponent } from './components/all-card-logs/all-card-logs.component';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -12,7 +11,6 @@ import { CreditLogCardComponent } from './components/credit-log-card/credit-log-
 import { DeleteCardComponent } from './components/delete-card/delete-card.component';
 import { EmailCardComponent } from './components/email-card/email-card.component';
 import { NoCardComponent } from './components/no-card/no-card.component';
-import { PrintCardComponent } from './components/print-card/print-card.component';
 import { ProfileCardLogsComponent } from './components/profile-card-logs/profile-card-logs.component';
 import { SearchComponent } from './components/search/search.component';
 import { CardInstructionsComponent } from './components/card-instructions/card-instructions.component';
@@ -25,11 +23,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DeleteCardFormComponent } from './forms/delete-card-form/delete-card-form.component';
 import { CardReportFormComponent } from './forms/card-report-form/card-report-form.component';
+import { FuelModule } from '../fuel/fuel.module';
 
 
 @NgModule({
   declarations: [
-    CardComponent,
     AddCardPageComponent,
     AllCardLogsComponent,
     FuelCardLogsComponent,
@@ -38,7 +36,6 @@ import { CardReportFormComponent } from './forms/card-report-form/card-report-fo
     DeleteCardComponent,
     EmailCardComponent,
     NoCardComponent,
-    PrintCardComponent,
     ProfileCardLogsComponent,
     SearchComponent,
     CardInstructionsComponent,
@@ -56,9 +53,13 @@ import { CardReportFormComponent } from './forms/card-report-form/card-report-fo
     MatSelectModule,
     MatDatepickerModule,
     MatExpansionModule,
+    FuelModule,
   ],
   exports: [
     AllCardLogsComponent,
+    FuelCardLogsComponent,
+    NoCardComponent,
+    ProfileCardLogsComponent,
   ]
 })
 export class CardModule { }

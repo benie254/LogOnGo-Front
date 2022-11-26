@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as Notiflix from 'notiflix';
-import { FuelService } from '../../fuel/services/fuel.service';
 
 @Component({
   selector: 'app-fuel-summary',

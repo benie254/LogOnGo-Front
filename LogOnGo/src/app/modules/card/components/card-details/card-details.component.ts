@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
+import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
 import { CardService } from '../../services/card/card.service';
 
 @Component({
@@ -16,20 +17,17 @@ export class CardDetailsComponent implements OnInit {
   closed: boolean = false;
   updateConfirmed: boolean = false;
   date = '';
-  error: any;
-  message = '';
-  errMsg = '';
-  errName = '';
-  errNo = '';
-  errAmount = '';
-  errDate = '';
-  statusText = '';
+  fuelReceived: any; 
+  fuelTotal: any;
+  fuelId: number; 
+  fuelType: any;
 
   constructor(
     private cardService:CardService,
     private route:ActivatedRoute,
     private authService:AuthService,
     private router:Router,
+    private fuel:FuelService,
   ) { 
 
     
@@ -45,6 +43,8 @@ export class CardDetailsComponent implements OnInit {
       next: (data) => {
         this.creditCardDetails = data
         this.date = this.creditCardDetails.date
+        this.fuelId = this.creditCardDetails.fuel 
+        this.fuelType = this.creditCardDetails.fuel_type
       }
     });
   }
@@ -54,37 +54,7 @@ export class CardDetailsComponent implements OnInit {
           console.log(res);
           Notiflix.Notify.success('updated!');
           this.closed = true;
-          this.errMsg = '';
-          this.errDate = '';
-          this.errAmount = '';
-          this.errName = '';
-          this.errNo = '';
-        },
-        error: (e) => {
-          console.error(e)
-          Notiflix.Notify.failure('Update failed!')
-          this.closed = false;
-          this.errMsg = e.error.detail;
-          this.statusText = e.statusText;
-          this.errDate = e.error.date;
-          this.errName = e.error.card_name;
-          this.errNo = e.error.card_number;
-          this.errAmount = e.error.amount;
-          if(this.errMsg && this.statusText){
-            Notiflix.Report.failure(
-              this.statusText,
-              this.errMsg,
-              'Okay',
-            )
-          } else if(this.statusText){
-            Notiflix.Report.failure(
-              this.statusText,
-              'Please fix the highlighted errors and try again.',
-              'Okay',
-            )
-          }
-        } 
-      });
+        }});
   }
   reportWarn(){
     Notiflix.Confirm.show(
@@ -104,7 +74,7 @@ export class CardDetailsComponent implements OnInit {
       () => {
         Notiflix.Report.success(
           "Aborted!",
-          "",
+          "You have canceled the edit request. In case you did so by mistake, please make a new request.",
           'Great',
         )
         this.updateConfirmed = false;
@@ -126,16 +96,33 @@ export class CardDetailsComponent implements OnInit {
           "We will send this request to the administration.",
           "Okay",
         )
-        this.router.navigate(['/delete-card/' + this.id])
+        this.router.navigate(['/cards/delete/request/' + this.id])
       },
       () => {
         Notiflix.Report.success(
           "Aborted!",
-          "",
+          "You have canceled the delete request. In case you did so by mistake, please make a new request.",
           'Great',
         )
       }
     )
+  }
+  getFuelReceived(){
+    this.fuel.getFuelReceivedInfo(this.fuelId).subscribe(
+      data => {
+        this.fuelReceived = data;
+      }
+    )
+  }
+  getTotalFuelReceived(){
+    this.fuel.getTotalFuelReceived(this.fuelId).subscribe(
+      data => {
+        this.fuelTotal = data;
+      }
+    )
+  }
+  printCard(){
+    window.print();
   }
 
 }

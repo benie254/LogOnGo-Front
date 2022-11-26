@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FuelComponent } from './fuel.component';
 
-const routes: Routes = [{ path: '', component: FuelComponent }];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { CardService } from '../../services/card/card.service';
@@ -9,36 +9,18 @@ import { CardService } from '../../services/card/card.service';
   styleUrls: ['./fuel-card-logs.component.css']
 })
 export class FuelCardLogsComponent implements OnInit {
-  fuelCards: any;
+  @Input() fuelCards: any;
+  @Input() onTableDataChange: (event: any) => void;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 2;
+  tableSize: number = 4;
   tableSizes: any = [2, 5, 10, 15];
   id: number;
+
   
-  constructor(
-    private cardService:CardService,
-    private route:ActivatedRoute,
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id']
-    this.route.params.subscribe(params => this.getFuelCards(params['id']))
   }
-  getFuelCards = (id: number): void => {
-    this.cardService.getTodayCreditCardLogs(id).subscribe(
-      data => {
-        this.fuelCards = data;
-      }
-    )
-  }
-  onTableDataChange = (event: any): void => {
-    this.page = event;
-    this.getFuelCards(this.id);
-  }
-  onTableSizeChange = (event: any): void => {
-    this.tableSize = event.target.value;
-    this.page = 1;
-    this.getFuelCards(this.id);
-  }
+  
 }

@@ -5,9 +5,8 @@ import * as Notiflix from 'notiflix';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { User } from 'src/app/classes/user/user';
-import { AuthHandlerService } from 'src/app/modules/auth/services/requests/auth-handler.service';
 import { MessageService } from 'src/app/modules/errors/services/message/message.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { ErrorsService } from '../errors/errors.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +19,13 @@ export class RequestHandlerService {
   
 
   private handleError(error: HttpErrorResponse) {
+    Notiflix.Loading.remove();
     
-    this.authHandler.authErrors(error);
+    this.errorHandler.allErrors(error);
     setTimeout(() => {
-      this.messageS.clear();
+      this.messages.clear();
     }, 20000)
+
 
 
 
@@ -44,21 +45,9 @@ export class RequestHandlerService {
       )
     }  else if (error.status === 401){
       if (error.error.detail){
-        Notiflix.Report.warning(
-          error.statusText,
-          error.error.detail,
-          'Okay',
-        ) 
         this.logout();
-        this.router.navigate[('/auth')];
       } else {
-        Notiflix.Report.warning(
-          error.statusText,
-          'Seems you are not logged in, or your session expired. Please login to continue',
-          'Okay',
-        )
         this.logout();
-        this.router.navigate[('/auth')];
       }
     } else if (error.status === 403){
       Notiflix.Report.warning(
@@ -67,11 +56,11 @@ export class RequestHandlerService {
         'Okay',
       )
     } else if (error.status === 404){
-      
+     
     }  else if (error.status === 408 || 504){
       Notiflix.Report.warning(
         error.statusText,
-        "Don't worry, we will reload this page to resend your request",
+        "Don't worry, this has nothing to do with you. Please give it another try.",
         'Okay',
       )
       // location.reload();
@@ -81,6 +70,8 @@ export class RequestHandlerService {
         'Sorry, we ran into a problem while processing your request. Please try again',
         'Okay',
       )
+    } else if (error.error.detail == 'Invalid token.') {
+      this.logout();
     } else {
       
       // The backend returned an unsuccessful response code.
@@ -99,8 +90,8 @@ export class RequestHandlerService {
 
   constructor(
     private http:HttpClient,
-    private messageS:MessageService,
-    private authHandler:AuthHandlerService,
+    private messages:MessageService,
+    private errorHandler:ErrorsService,
     private router:Router,
   ) { 
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -134,5 +125,6 @@ export class RequestHandlerService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    this.router.navigate[('/auth')];
 }
 }

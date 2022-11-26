@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Editor } from 'ngx-editor';
 import * as Notiflix from 'notiflix';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { EmailService } from 'src/app/services/email/email.service';
+import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -25,7 +25,7 @@ export class ContactFormComponent implements OnInit {
 
 
   constructor(
-    private emailService:EmailService,
+    private user:UserService,
     private authService:AuthService,
     private fb:FormBuilder,
     ) { }
@@ -33,25 +33,17 @@ export class ContactFormComponent implements OnInit {
   contactAdmin(message: any) {
     console.warn(message);
     Notiflix.Loading.hourglass("Sending, please wait...")
-    this.emailService.contactAdmin(message).subscribe((result) => {
-      console.warn('result', result);
-      Notiflix.Loading.remove()
-      Notiflix.Report.success(
-        'Message sent!',
-        'Your message has been delivered to the admin',
-        'Okay',
-      );
-        // Notiflix.Report.success()
-      }, 
-      err => {
+    this.user.contactAdmin(message).subscribe({
+      next: (result) => {
+        console.warn('result', result);
         Notiflix.Loading.remove()
-        Notiflix.Report.failure(
-          'Sending failed!',
-          '"Something went wrong as we attempted to send your message"',
+        Notiflix.Report.success(
+          'Message sent!',
+          'Your message has been delivered to the admin',
           'Okay',
         );
-        Notiflix.Notify.warning('Please try again.');
-      });
+      }
+    });
   }
 
   ngOnInit(): void {

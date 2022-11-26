@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Announcement } from 'src/app/classes/announcement/announcement';
-import { ProfileService } from 'src/app/services/profile/profile.service';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-profile-announcements',
@@ -12,14 +12,12 @@ export class ProfileAnnouncementsComponent implements OnInit {
   announcements: any;
   
   constructor(
-    private profileService:ProfileService,
+    private user:UserService,
   ) {
-    this.profileService.getAnnouncements().subscribe((data) => {
+    this.user.getLatestAnnouncements().subscribe((data) => {
       this.announcements = data 
-      console.warn("ann:",data)
     })
    }
-
   ngOnInit(): void {
   }
 

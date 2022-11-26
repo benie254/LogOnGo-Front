@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Log } from 'src/app/classes/log/log';
 import { Pump } from 'src/app/classes/pump/pump';
-import { CardService } from 'src/app/modules/card/services/card/card.service';
-import { FuelService } from 'src/app/modules/fuel/services/fuel.service';
-import { LogService } from 'src/app/modules/services/log/log.service';
-import { PumpService } from 'src/app/services/pump/pump.service';
+import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
+import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
+import { LogService } from '../../services/log/log.service';
 
 @Component({
   selector: 'app-add-log',
@@ -15,6 +14,8 @@ import { PumpService } from 'src/app/services/pump/pump.service';
   styleUrls: ['./add-log.component.css']
 })
 export class AddLogComponent implements OnInit {
+  @Input() fuelInfo: any;
+  currentUser = this.auth.currentUserValue;
   logs: Log;
   info: Fuel;
   pumpOne: Pump;
@@ -23,44 +24,25 @@ export class AddLogComponent implements OnInit {
   notFound: boolean = false;
   fuels: any;
   pumps: any;
+  id: number; 
+  yesterday: any;
+  YYYY = new Date().getFullYear();
+  MM = new Date().getMonth() + 1;
+  DD = new Date().getDate();
+  today = this.YYYY + '-' + this.MM + '-' + this.DD
+  tdate = new Date().toDateString();
 
   constructor(
-    private logService:LogService,
+    private log:LogService,
+    private fuel:FuelService,
     private route:ActivatedRoute,
-    private fuelService:FuelService,
-    private pumpService:PumpService,
-  ) {
-    this.pumpService.getPumpOneInfo().subscribe(
-      (pump_one_data) => {
-        this.pumpOne = pump_one_data;
-      }, 
-      err => {
-        console.warn("pump one get error:",err)
-      }
-    )
-    // this.fuelService.getPetrolInfo().subscribe((data) => {
-    //   this.info = data
-    //   console.warn("data",data)
-    // });
-   }
+    private auth:AuthService,
+  ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.getPetrolLogs(params['id']))
+    this.route.params.subscribe(params => this.yesterdayLogs(params['id']))
   }
-
-  getPetrolLogs(id:number): void{
-    // this.logService.getFuelLogs(id).subscribe({
-    //   next: (data) => {
-    //     this.logs = data
-    //   },
-    //   error: (e) => {
-    //     this.status = e.status;
-    //     if(this.status === 404){
-    //       this.notFound = true;
-    //     }
-    //   }
-    // });
-  }
+  
   toggleLog(){
     this.closed = true;
   }
@@ -68,24 +50,29 @@ export class AddLogComponent implements OnInit {
     this.closed = false;
   }
   getFuels(){
-    this.fuelService.getFuels().subscribe({
+    this.fuel.getFuels().subscribe({
       next: (res) => {
         this.fuels = res;
       }
     })
   }
   addLog(logData) {
-    this.logService.addLog(logData).subscribe({
+    Notiflix.Loading.hourglass('Adding... please wait.')
+    this.log.addLog(logData).subscribe({
       next: (result) => {
-        Notiflix.Notify.success('Petrol log added successful!');
-      if (this.closed === true){
-        this.closed = false;
-      } else {
-        this.closed = true;
-      }
-      location.reload();
+        Notiflix.Notify.success('Log added successful!');
+        Notiflix.Loading.remove();
+        location.reload();
       }
     });
   }
+  yesterdayLogs(id){
+    this.log.getYesterdayLogs(id).subscribe({
+      next: (res) => {
+        this.yesterday = res;
+      }
+    })
+  }
+  
 
 }

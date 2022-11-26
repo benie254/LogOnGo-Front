@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { EmailService } from 'src/app/services/email/email.service';
-import { Editor, Validators } from 'ngx-editor';
-import { FormBuilder } from '@angular/forms';
+import { Editor } from 'ngx-editor';
+import { UserService } from '../../services/user/user.service';
+import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 
 @Component({
   selector: 'app-incident-form',
@@ -20,43 +19,26 @@ export class IncidentFormComponent implements OnInit {
   html: '';
   today = new Date();
 
-  incidentForm = this.fb.group({
-    incident_date: ['', [Validators.required]],
-    your_name: ['', [Validators.required]],
-    your_email: ['', [Validators.required]],
-    nature: ['', [Validators.required]],
-    description: ['', [Validators.required]],
- });
-
 
   constructor(
-    private emailService:EmailService,
+    private user:UserService,
     private authService:AuthService,
-    private fb:FormBuilder,
     ) { }
 
-  incidentReport(incident_report: any) {
-    console.warn(incident_report);
+  incidentReport(incident: any) {
+    console.warn(incident);
     Notiflix.Loading.hourglass("Reporting, please wait...")
-    this.emailService.emailIncidentReport(incident_report).subscribe((result) => {
-      console.warn('result', result);
-      Notiflix.Loading.remove()
-      Notiflix.Report.success(
-        'Incident report sent!',
-        '"The reported incident has been delivered to the admin"',
-        'Okay',
-      );
-        // Notiflix.Report.success()
-      }, 
-      err => {
+    this.user.reportIncident(incident).subscribe({
+      next: (result) => {
+        console.warn('result', result);
         Notiflix.Loading.remove()
-        Notiflix.Report.failure(
-          'Sending failed!',
-          '"Something went wrong as we attempted to send your incident report"',
+        Notiflix.Report.success(
+          'Incident report sent!',
+          '"The reported incident has been delivered to the admin"',
           'Okay',
         );
-        Notiflix.Notify.warning('Please try again.');
-      });
+      }
+    });
   }
   ngOnInit(): void {
     this.editor = new Editor();
