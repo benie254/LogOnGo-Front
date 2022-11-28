@@ -1,7 +1,7 @@
 
 
 <mat-sidenav-container>
-    <mat-sidenav #sidenav id="side-cont">
+    <mat-sidenav #sidenav id="side-cont" class="color-two">
             
             
         
@@ -12,10 +12,14 @@
             <a disabled mat-list-item > {{currentUser.username}} </a>
             <a disabled mat-list-item [routerLink]="'/accounts'"> {{currentUser.email}} </a>
             <a disabled mat-list-item [routerLink]="'/accounts'"> {{currentUser.petrol_station}} </a>
+            <br>
             <hr>
-            <a class="bg-light" mat-list-item routerLink='/change-password/{{currentUser.id}}'> Change password </a>
-            <a class="bg-light" mat-list-item routerLink='/reset-password/{{currentUser.id}}'> Reset password </a>
-            <a class="bg-light" mat-list-item (click)="sidenav.toggle()" mat-list-item>Close</a>
+            <br>
+            <a mat-list-item (click)="changeWarn()"> <h5>Change password</h5> </a>
+            <a  mat-list-item (click)="resetWarn()"> <h5>Reset password</h5> </a>
+            <br>
+            <hr><br>
+            <a mat-list-item (click)="sidenav.toggle()" mat-list-item><h5><i class="fa-solid fa-rectangle-xmark"></i> Close</h5></a>
         </mat-nav-list>
     </mat-sidenav>
 <mat-sidenav-content>
@@ -122,8 +126,10 @@
         
     
         <div class="row">
+            <h2 class="text-center">
+                Your Logs
+            </h2>
             <div class=" col-lg-4 color-one shadow rounded black padding-2">
-                <h2 class="text-center">Your General Logs</h2>
                 <div>
                     <div *ngIf="userLogs else noUserLogs">
                         <app-profile-log-card [userLogs]="userLogs"></app-profile-log-card>
@@ -133,23 +139,25 @@
                     <ng-template #noUserLogs>
                         <div class="card color-two">
                             <div class="card-body">
-                                <p class="card-text">Your logs will appear here.</p>
-                                <p class="card-text"><a class="btn btn-sm btn-info btn-outline-dark" type="button" routerLink="/add-log">Record logs now?</a></p>
+                                <p class="card-text">Your General logs will appear here.</p>
                             </div>
                         </div>
                     </ng-template>
                 </div>
             </div>
             <div class="col-lg-4 rounded black padding-2 shadow">
-                <h2 class="text-center">Your Credit Card Logs</h2>
-                <div>
-                    <app-profile-card-logs></app-profile-card-logs>
+                <div *ngIf="userCards">
+                    <app-profile-card-logs [userCards]="userCards"></app-profile-card-logs>
+                </div>
+                <div class="card color-two" *ngIf="!userCards">
+                    <div class="card-body">
+                        <p class="card-text">Your Credit Card logs will appear here.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 black shadow color-one rounded padding-2">
-                <h2 class="text-center">Your Mpesa Logs</h2>
-                <div *ngIf="mpesa_logs else noMpesa">
-                        <app-profile-mpesa></app-profile-mpesa>
+                <div *ngIf="userMpesa else noMpesa">
+                        <app-profile-mpesa [userMpesa]="userMpesa"></app-profile-mpesa>
                 </div>
                 <div>
                     <ng-template #noMpesa> 

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
 
 @Component({
@@ -13,10 +14,16 @@ export class AddLogPageComponent implements OnInit {
   fuelId: number;
   fuelReceived: any;
   fuelTotal: any;
+  openG: boolean = false;
+  openC: boolean = false;
+  openM: boolean = false;
+  currentUser = this.auth.currentUserValue;
+  noFuel: boolean = false;
 
   constructor(
     private fuel:FuelService,
     private route:ActivatedRoute,
+    private auth:AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -32,10 +39,15 @@ export class AddLogPageComponent implements OnInit {
       }
     })
   }
-  getFuelReceived = (id): void => {
+  getFuelReceived(id){
     this.fuel.getFuelReceivedInfo(id).subscribe(
       data => {
         this.fuelReceived = data;
+        if (this.fuelReceived && this.fuelReceived.length == 0 || this.fuelReceived == undefined || this.fuelReceived.litres_received == null){
+          this.noFuel = true;
+        } else {
+          this.noFuel = false;
+        }
       }
     )
   }
@@ -45,6 +57,38 @@ export class AddLogPageComponent implements OnInit {
         this.fuelTotal = data;
       }
     )
+  }
+  addGen(){
+    if(this.openG == false){
+      this.openG = true;
+      this.openC = false;
+      this.openM = false;
+    } else{
+      this.openG = false;
+    }
+  }
+  close(){
+    this.openG = false;
+    this.openC = false;
+    this.openM = false;
+  }
+  addCard(){
+    if(this.openC == false){
+      this.openC = true;
+      this.openG = false;
+      this.openM = false;
+    } else{
+      this.openC = false;
+    }
+  }
+  addMpesa(){
+    if(this.openM == false){
+      this.openM = true;
+      this.openC = false;
+      this.openG = false;
+    } else{
+      this.openM = false;
+    }
   }
 
 }

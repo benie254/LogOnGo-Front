@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { CardService } from '../../services/card/card.service';
@@ -13,32 +13,12 @@ export class ProfileCardLogsComponent implements OnInit {
   count: number = 0;
   tableSize: number = 2;
   tableSizes: any = [2, 5, 10, 15];
-  userCards: any;
   id: number;
+  @Input() userCards: any;
 
-  constructor(
-    private cardService:CardService,
-    private route:ActivatedRoute,
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id']
-    this.route.params.subscribe(params => this.getUserCards(params['id']))
   }
-  getUserCards = (id: number): void => {
-    this.cardService.getUserCreditCardLogs(id).subscribe(
-      data => {
-        this.userCards = data;
-      }
-    )
-  }
-  onTableDataChange = (event: any): void => {
-    this.page = event;
-    this.getUserCards(this.id);
-  }
-  onTableSizeChange = (event: any): void => {
-    this.tableSize = event.target.value;
-    this.page = 1;
-    this.getUserCards(this.id);
-  }
+  
 }

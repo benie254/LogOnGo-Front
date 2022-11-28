@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="padding-2">
+        <div class="shadow padding-2 bg-light">
+            <h5>Edit Contact <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span></h5>  <br>
+            <p class="text-success">{{details.id}}. {{details.your_name}} &nbsp;&nbsp; | &nbsp;&nbsp; {{details.your_email}} &nbsp;&nbsp; | &nbsp;&nbsp; {{details.date}}</p>
+            <p class="padding-2">"{{details.message}}"</p> 
+            <button type="button" mat-flat-button color="warn" (click)="delWarn()">Delete</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<form class="form shadow bg-light padding-2" id="f1">
+    <h5 class="text-center">Search Filter</h5>
+        <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width">
+            <mat-label>Month or Day</mat-label>
+            <input matInput placeholder="Enter Month or Day" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
+            <datalist id="datalistOptions">
+                <option value="Oct" *ngFor="let log of searchResults" [value]="log.formatted_date">  
+            </datalist>
+            <mat-icon matSuffix>date</mat-icon>
+            <mat-hint>e.g: Oct or Mon</mat-hint>
+          </mat-form-field>  
+        
+        
+        <!-- <div class="row mt-5" *ngIf="eOD">
+          <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <div class="card center padding-2">
+                    <div class="title" name="title"><h6>You exited the filter</h6></div>
+                    <p>If you were not done searching, you can hit <button (click)="refresh()" class="btn btn-sm btn-dark btn-outline-info">this button</button> to reset</p>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+          </div> -->
+    </form>
+  <app-logs-card [logs]="searchResults" [searchText]="searchText" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-logs-card>

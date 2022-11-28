@@ -14,6 +14,7 @@ export class ChangePassFormComponent implements OnInit {
   value = '';
   noMatch: boolean;
   id: number;
+  currentUser = this.authService.currentUserValue;
 
   constructor(
     private authService:AuthService,

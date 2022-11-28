@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
 import * as Notiflix from 'notiflix';
 import { Log } from 'src/app/classes/log/log';
@@ -23,8 +23,9 @@ export class ProfileComponent implements OnInit {
   
   
   date = new Date();
-  mpesa_logs: any;
+  userMpesa: any;
   userLogs: Log; 
+  userCards: any;
   announcements: any;
   page: number = 1;
   count: number = 0;
@@ -56,7 +57,9 @@ export class ProfileComponent implements OnInit {
   isExpanded: boolean = false;
   panelOpenState = false;
   id: number;
-  foundAnnouncements: boolean = false;
+  foundAnnouncements: boolean;
+  changeConfirmed: boolean = false;
+  resetConfirmed: boolean = false;
 
   constructor(
     private auth:AuthService,
@@ -64,17 +67,19 @@ export class ProfileComponent implements OnInit {
     private mpesa:MpesaService,
     private user:UserService,
     private route:ActivatedRoute,
+    private router:Router,
     ) { 
 
     
     }
 
   ngOnInit(): void {
-    
-    this.route.params.subscribe(params => this.getUserMpesaLogs(params['id']))
-    this.route.params.subscribe(params => this.getUserLogs(params['id']))
-    this.id = this.route.snapshot.params['id']
     this.getAnnouncements();
+    this.route.params.subscribe(params => this.getUserMpesaLogs(params['id']));
+    this.route.params.subscribe(params => this.getUserLogs(params['id']));
+    this.id = this.route.snapshot.params['id'];
+    this.route.params.subscribe(params => this.getUserCardLogs(params['id']))
+    
     
     // this.currentUser = this.tokenStorage.getUser();
   }
@@ -87,13 +92,12 @@ export class ProfileComponent implements OnInit {
     this.user.getLatestAnnouncements().subscribe({
       next: (data) => {
         this.announcements = data 
-        console.warn(this.announcements)
-        this.foundAnnouncements = true;
-        // if(!this.announcements || this.announcements == undefined || this.announcements && this.announcements == 0){
-        //   this.noAnnouncement = true;
-        // } else {
-        //   this.noAnnouncement = false;
-        // }
+        // this.foundAnnouncements = true;
+        if(!this.announcements || this.announcements == undefined || this.announcements && this.announcements == 0){
+          this.foundAnnouncements = false;
+        } else {
+          this.foundAnnouncements = true;
+        }
       }
     })
   }
@@ -131,8 +135,14 @@ export class ProfileComponent implements OnInit {
   getUserMpesaLogs(id:number): void{
     this.mpesa.getUserMpesaLogs(id).subscribe({
       next: (data) => {
-        this.mpesa_logs = data
-        console.warn('user_mpesa_logs:',data)
+        this.userMpesa = data
+      }
+    });
+  }
+  getUserCardLogs(id): void{
+    this.log.getUserLogs(id).subscribe({
+      next: (data) => {
+        this.userCards = data
       }
     });
   }
@@ -147,5 +157,55 @@ export class ProfileComponent implements OnInit {
     if (x){
       x.scrollIntoView();
     }
+  }
+  changeWarn(){
+    Notiflix.Confirm.show(
+      'Confirm update',
+      "Are you sure you want to change your password?",
+      "I'm sure",
+      "Take me back",
+      () => {
+        Notiflix.Report.warning(
+          "Please note",
+          "After updating your password, we will log you out so that you can log in with your new password.",
+          "Proceed",
+        )
+        this.changeConfirmed = true;
+        this.router.navigate(['/auth/change/password/' + this.currentUser.id])
+      },
+      () => {
+        Notiflix.Report.success(
+          "Aborted!",
+          "You have canceled a password change request. If you didn't mean to, please make a new request.",
+          'Great',
+        )
+        this.changeConfirmed = false;
+      }
+    )
+  }
+  resetWarn(){
+    Notiflix.Confirm.show(
+      'Confirm reset',
+      "Are you sure you want to reset your password?",
+      "I'm sure",
+      "Take me back",
+      () => {
+        Notiflix.Report.info(
+          "Please note",
+          "Click the button that will appear next to receive a password reset link in your email.",
+          "Okay",
+        )
+        this.resetConfirmed = true;
+        this.router.navigate(['/auth/reset/password/request/' + this.currentUser.id]);
+      },
+      () => {
+        Notiflix.Report.success(
+          "Aborted!",
+          "You have canceled a password reset request. If you didn't mean to, please make a new request.",
+          'Great',
+        )
+        this.resetConfirmed = false;
+      }
+    )
   }
 }

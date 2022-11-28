@@ -16,12 +16,6 @@ export class ContactFormComponent implements OnInit {
   currentUser = this.authService.currentUserValue;
   editor: Editor;
   html: '';
-  contactForm = this.fb.group({
-    your_name: ['', [Validators.required]],
-    your_email: ['', [Validators.required]],
-    subject: ['', [Validators.required]],
-    message: ['', [Validators.required]],
- });
 
 
   constructor(
@@ -39,9 +33,10 @@ export class ContactFormComponent implements OnInit {
         Notiflix.Loading.remove()
         Notiflix.Report.success(
           'Message sent!',
-          'Your message has been delivered to the admin',
-          'Okay',
+          'Thank you for contacting the administration. We have delivered your message.',
+          'Great',
         );
+        history.back();
       }
     });
   }

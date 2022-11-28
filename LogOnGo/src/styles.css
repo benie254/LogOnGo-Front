@@ -81,7 +81,7 @@ p, form {
 p{
   font-size:18px;
 }
-input::placeholder  {
+input::placeholder, textarea::placeholder  {
   font-family: 'Julee', cursive;
 }
 
@@ -569,10 +569,10 @@ footer {
   background-repeat: no-repeat;
 }
 #side-cont{
-  background-image: url('https://res.cloudinary.com/benie/image/upload/v1664422982/Waimakariri_ptk1ul.svg');
+  /* background-image: url('https://res.cloudinary.com/benie/image/upload/v1664422982/Waimakariri_ptk1ul.svg');
   background-position: cover;
   background-size:cover;
-  background-repeat: repeat;
+  background-repeat: repeat; */
 }
 .height-lg{
   height:90vh;
@@ -767,4 +767,15 @@ footer {
 .bold-red{
   color:red;
   font-weight:bold;
+}
+span::after {
+  padding-left: 5px;
+}
+
+#incidentIn:invalid + span::after {
+  content: "✖";
+}
+
+#incidentIn:valid + span::after {
+  content: "✓";
 }

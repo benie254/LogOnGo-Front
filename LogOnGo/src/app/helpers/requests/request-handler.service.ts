@@ -43,6 +43,7 @@ export class RequestHandlerService {
         'Please fix the highlighted errors and try again',
         'Okay',
       )
+      console.warn(error)
     }  else if (error.status === 401){
       if (error.error.detail){
         this.logout();
@@ -70,8 +71,6 @@ export class RequestHandlerService {
         'Sorry, we ran into a problem while processing your request. Please try again',
         'Okay',
       )
-    } else if (error.error.detail == 'Invalid token.') {
-      this.logout();
     } else {
       
       // The backend returned an unsuccessful response code.
@@ -83,9 +82,12 @@ export class RequestHandlerService {
       )
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
+        console.warn(error)
     }
+    
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
+    
   }
 
   constructor(

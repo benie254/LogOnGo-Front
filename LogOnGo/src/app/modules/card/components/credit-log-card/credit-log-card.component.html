@@ -12,7 +12,7 @@
                     <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let cards of cards | paginate: { id:'creditPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+                <tbody *ngFor="let cards of cards | filter:searchText | paginate: { id:'creditPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
                   <tr>
                     <td>{{cards.id}}</td>
                     <td>{{cards.date | date: 'dd/MM/yyyy'}}</td>

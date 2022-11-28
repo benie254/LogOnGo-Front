@@ -58,5 +58,8 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     MatSelectModule,
     NgPasswordValidatorModule.forRoot(MyDefaultOptions as NgPasswordValidatorOptions),
   ],
+  exports: [
+    ChangePasswordComponent,
+  ]
 })
 export class AuthModule { }

@@ -38,7 +38,7 @@ export class ResetRequestFormComponent implements OnInit {
           Notiflix.Report.success(
             'Reset Link sent!',
             'We have sent a password reset link to your email with further instructions. Please check it out.',
-            'Okay',
+            'Thanks',
           );
           this.back();
         }

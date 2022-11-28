@@ -11,10 +11,36 @@
 
     <div class="row">
         <div class="col-sm-7">
-            <app-add-log [fuelInfo]="fuelInfo"></app-add-log>
+            <br>
+            <ul class="nav nav-tabs justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link disabled">Add</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" type="button" (click)="addGen()">General Logs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" type="button" (click)="addCard()">Card Logs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" type="button" (click)="addMpesa()">Mpesa Logs</a>
+                </li>
+              </ul>
+            <div *ngIf="openG">
+                <span class="float-right"><button class="btn btn-danger" type="button" (click)="close()"><i class="fa-solid fa-rectangle-xmark"></i></button></span>
+                <app-add-log [fuelInfo]="fuelInfo"></app-add-log><br>
+            </div>
+            <div *ngIf="openC">
+                <span class="float-right"><button class="btn btn-danger" type="button" (click)="close()"><i class="fa-solid fa-rectangle-xmark"></i></button></span>
+                <app-add-card [fuelInfo]="fuelInfo" [currentUser]="currentUser"></app-add-card><br>
+            </div>
+            <div *ngIf="openM">
+                <span class="float-right"><button class="btn btn-danger" type="button" (click)="close()"><i class="fa-solid fa-rectangle-xmark"></i></button></span>
+                <app-add-mpesa [fuelInfo]="fuelInfo" [currentUser]="currentUser"></app-add-mpesa><br>
+            </div>
         </div>
         <div class="col-md-5">
-            <app-fuel-received [fuelType]="fuelType" [fuelId]="fuelId" [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal"></app-fuel-received>
+            <app-fuel-received [noFuel]="noFuel" [fuelType]="fuelType" [fuelId]="fuelId" [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal"></app-fuel-received>
         </div>
     </div>
    

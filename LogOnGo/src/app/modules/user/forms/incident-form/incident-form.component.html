@@ -1,62 +1,55 @@
-<!-- <form [formGroup]="incidentForm" (ngSubmit)="incidentReport(incidentForm.value)">
-    <h2 class="text-center">Report an incident</h2>
-      <div class="form-group hide">
-          <input type="text" class="" formControlName="your_name" placeholder="Your name" [(ngModel)]="currentUser.username">
-          <input type="email" formControlName="your_email" placeholder="your email" [(ngModel)]="currentUser.email">
-      </div>
-      <div class="row">
-          <div class="col-md-6 padding">
-                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
-                  <mat-label> Select Nature </mat-label>
-                  
-                  <mat-select formControlName="nature" required>
-                    <mat-option value="emergency" formControlName="emergency" type="text">EMERGENCY</mat-option>
-                    <mat-option value="injury" formControlName="injury" type="text">Physical Injury</mat-option>
-                    <mat-option value="equipment" formControlName="equipment" type="text">Equipment Failure</mat-option>
-                  </mat-select>
-                  <mat-hint>e.g.: EMERGENCY</mat-hint>
-                </mat-form-field>
-                <div *ngIf="incidentForm.controls['nature'].invalid && incidentForm.controls['nature'].touched" class="alert alert-danger">
-                  <div *ngIf="incidentForm.controls['nature'].errors['required']">
-                    Incident nature is required.
-                  </div>
-                </div>
-                           
-          </div>
-          <div class="col-md-6 padding">
-              
-  
+<form #incidentForm="ngForm" (ngSubmit)="incidentReport(incidentForm.value)">
+  <h2 class="text-center">Report an incident</h2>
+  <div class="form-group hide">
+    <input type="text" class="" name="your_name" ngModel [(ngModel)]="currentUser.username">
+    <input type="email" name="your_email" ngModel [(ngModel)]="currentUser.email">
+  </div>
+  <div class="row">
+    <div class="col-md-6 padding">
       <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
-          <mat-label>Date</mat-label>
-          <input matInput placeholder="Incident date" formControlName="incident_date" type="date" required>
-          <mat-icon matSuffix>date</mat-icon>
-        </mat-form-field> 
-        <div *ngIf="incidentForm.controls['incident_date'].invalid && incidentForm.controls['incident_date'].touched" class="alert alert-danger">
-          <div *ngIf="incidentForm.controls['incident_date'].errors['required']">
-            Date is required.
-          </div>
-        </div>   
-          </div>
+        <mat-label> Select Nature </mat-label>
+        <mat-select name="nature" ngModel #nature="ngModel" required>
+          <mat-option value="emergency" ngModel name="emergency" type="text">EMERGENCY</mat-option>
+          <mat-option value="injury" ngModel name="injury" type="text">Physical Injury</mat-option>
+          <mat-option value="equipment" ngModel name="equipment" type="text">Equipment Failure</mat-option>
+        </mat-select>
+        <mat-hint>e.g.: EMERGENCY</mat-hint>
+        <mat-error *ngIf="nature.hasError('required') || nature.pristine">
+          Nature is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 padding">
+      <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+        <mat-label>Date</mat-label>
+        <input matInput placeholder="Incident date" name="incident_date" #incident_date="ngModel" ngModel type="date" required>
+        <mat-icon matSuffix>date</mat-icon>
+        <mat-hint>e.g.: EMERGENCY</mat-hint>
+        <mat-error *ngIf="incident_date.hasError('required') || incident_date.pristine">
+          Incident date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field> 
+    </div>   
+  </div>
+  <br>
+  <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+    <mat-label>Description</mat-label>
+    <textarea placeholder="Describe the incident here..." matInput name="description" ngModel #description="ngModel" minlength="16" maxlength="5000" required></textarea>
+    <mat-icon matSuffix>mail</mat-icon>
+    <mat-hint>e.g: Inquiry</mat-hint>
+    <mat-error *ngIf="description.hasError('required') || description.pristine">
+      Description is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="description.hasError('minlength')">
+      Description should be <strong>at least 16 characters</strong> 
+    </mat-error>
+    <mat-error *ngIf="description.hasError('maxlength')">
+      Description should <strong>not exceed 5000 characters</strong> 
+    </mat-error>
+  </mat-form-field> 
+  <br><br>
+  <div class="form-group text-center">
+    <button class="btn margin-top btn-lg w-50 btn-outline-primary btn-light" type="submit" [disabled]="incidentForm.invalid"><i class="fa-solid fa-flag"></i> Report</button>
+  </div>
+</form>
   
-      </div>
-      
-      <div class="form-group">
-          <label for="description" class="shadow padding-2 bg-light">Description:</label>
-          <div class="NgxEditor__Wrapper">
-              <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-              <ngx-editor
-                [editor]="editor"
-                [ngModel]="html"
-                [disabled]="false"
-                [placeholder]="'Type here...'"
-                formControlName="description"
-              ></ngx-editor>
-            </div>
-      </div>
-      
-      <div class="form-group">
-          <input class="btn margin-top btn-sm btn-outline-primary btn-dark" type="submit" value="Report">
-      </div>
-      
-              </form>
-   -->

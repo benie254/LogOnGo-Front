@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   { path: 'register', component: RegisterComponent, },
   { path: 'change/password/:id', component: ChangePasswordComponent, },
-  { path: 'request/password/reset/:id', component: ResetPasswordComponent, },
+  { path: 'reset/password/request/:id', component: ResetPasswordComponent, },
   { path: 'confirmed/password/reset/:id', component: ResetConfirmedComponent, },
 ];
 

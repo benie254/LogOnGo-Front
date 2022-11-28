@@ -21,6 +21,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FuelModule } from '../fuel/fuel.module';
+import { SearchMpesaComponent } from './components/search-mpesa/search-mpesa.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { FuelModule } from '../fuel/fuel.module';
     DeleteMpesaComponent,
     MpesaLogCardComponent,
     AllMpesaLogsComponent,
-    AddMpesaComponent
+    AddMpesaComponent,
+    SearchMpesaComponent
   ],
   imports: [
     CommonModule,
@@ -48,12 +51,15 @@ import { FuelModule } from '../fuel/fuel.module';
     FormsModule,
     MatExpansionModule,
     FuelModule,
+    Ng2SearchPipeModule,
   ],
   exports: [
     AllMpesaLogsComponent,
     FuelMpesaLogsComponent,
     NoMpesaComponent,
     ProfileMpesaComponent,
+    AddMpesaComponent,
+    MpesaLogCardComponent,
   ]
 })
 export class MpesaModule { }

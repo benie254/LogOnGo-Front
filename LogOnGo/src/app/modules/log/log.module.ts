@@ -26,6 +26,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatIconModule } from '@angular/material/icon';
+import { SearchLogComponent } from './components/search-log/search-log.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { MatIconModule } from '@angular/material/icon';
     ProfileLogCardComponent,
     DeleteLogComponent,
     AddLogComponent,
+    SearchLogComponent,
   ],
   imports: [
     CommonModule,

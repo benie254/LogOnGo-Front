@@ -47,7 +47,7 @@
       <div class="col"></div>
       <div class="col padding-bottom center">
         <button class="margin-top btn btn-lg btn-light btn-outline-primary" type="submit" [disabled]="changePassForm.invalid || noMatch"><span><i class="fa-solid fa-user-check"></i></span> Update</button><br><br>
-        <a routerLink="/register"><p class="small">or <strong>Reset Password</strong></p></a>
+        <a routerLink="/auth/reset/password/request/{{currentUser.id}}"><p class="small">or <strong>Reset Password</strong></p></a>
       </div>
       <div class="col"></div>
     </div>

@@ -6,6 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./credit-log-card.component.css']
 })
 export class CreditLogCardComponent implements OnInit {
+  @Input() searchText: any;
   @Input() cards: any;
   @Input() userCards: any;
   @Input() page: number; 

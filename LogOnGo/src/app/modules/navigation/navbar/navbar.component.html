@@ -1,5 +1,5 @@
 
-  <nav class="navbar navbar-expand-lg color-two opacity sticky-top">
+  <nav class="navbar navbar-expand-lg color-two opacity sticky-top" *ngIf="!showAdmin">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
         <img src="https://res.cloudinary.com/benie/image/upload/v1662909278/icons8-petrol-station-66_inmt3m.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
@@ -50,7 +50,7 @@
               <li><a class="dropdown-item" routerLink="/user/profile/{{currentUser.id}}">Profile</a></li>
               <!-- <li *ngIf="isStaff"><a class="dropdown-item" href="{{backURL}}">Admin</a></li>
               <li *ngIf="isSuper"><a class="dropdown-item" href="{{backURL}}">SuperUser</a></li> -->
-              <li><a class="dropdown-item" routerLink="admin">Admin</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/logongo" (click)="toggleAdmin()">Admin</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" routerLink="/user/report/incident">Report Incident</a></li>
               <li><a class="dropdown-item" routerLink="/user/contact/admin">Contact Admin</a></li>
@@ -60,7 +60,7 @@
           </li>
         </ul>
         <div>
-          <a type="button" routerLink="/search" class="btn btn-md btn-light btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
+          <a type="button" routerLink="/logs/search" class="btn btn-md btn-light btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
         </div>
         
     

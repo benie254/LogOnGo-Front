@@ -21,42 +21,20 @@ export class ChangePasswordComponent implements OnInit {
   value = '';
   noMatch: boolean;
   updateConfirmed: boolean;
+  currentUser: any;
 
   constructor(
     private authService:AuthService,
   ) { }
 
   ngOnInit(): void {
-    this.reportWarn();
     if (this.authService.currentUserValue) {
       this.authenticated = true;
+      
+    } else {
+      this.authenticated = false;
     }
   }
-  reportWarn(){
-    Notiflix.Confirm.show(
-      'Confirm update',
-      "Are you sure you want to change your password?",
-      "I'm sure",
-      "Take me back",
-      () => {
-        Notiflix.Report.warning(
-          "Please note",
-          "<p>After updating your password, we will log you out so that you can log in with your new password.</p>",
-          "Proceed",
-        )
-        this.updateConfirmed = true;
-        // this.closed = false;
-      },
-      () => {
-        Notiflix.Report.success(
-          "Aborted!",
-          "",
-          'Great',
-        )
-        this.updateConfirmed = false;
-        history.back();
-      }
-    )
-  }
+  
 
 }

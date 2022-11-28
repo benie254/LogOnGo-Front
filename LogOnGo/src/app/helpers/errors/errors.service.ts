@@ -1,14 +1,28 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from 'src/app/classes/user/user';
 import { MessageService } from 'src/app/modules/errors/services/message/message.service';
 
 @Injectable({
   providedIn: 'any'
 })
 export class ErrorsService {
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
+
   public allErrors(error: HttpErrorResponse){
     if(error.error.detail){
       this.messages.add(error.error.detail);
+      // if(error.error.detail ===)
+      setTimeout(() => {
+        this.messages.clear();
+      }, 20000)
+    }
+    if (error.error.detail === 'Invalid token.') {
+      this.logout();
+      location.reload();
     }
     if(error.error.email){
       this.messages.add(error.error.email);
@@ -19,8 +33,8 @@ export class ErrorsService {
     if(error.error.password){
       this.messages.add(error.error.password);
     }
-    if(error.error.old_password){
-      this.messages.add(error.error.old_password);
+    if(error.error.old_password.old_password){
+      this.messages.add(error.error.old_password.old_password);
     }
     if(error.error.password2){
       this.messages.add(error.error.password2);
@@ -128,6 +142,16 @@ export class ErrorsService {
   
   constructor(
     private messages: MessageService,
-    ) { }
+    private router:Router,
+    ) { 
+      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    }
+
+    logout() {
+      // remove user from local storage to log user out
+      localStorage.removeItem('currentUser');
+      this.currentUserSubject.next(null);
+      this.router.navigate[('/auth')];
+  }
 }
 

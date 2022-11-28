@@ -4,7 +4,7 @@
         <img src="https://res.cloudinary.com/benie/image/upload/v1662828646/icons8-user-rights-50_sgvyxm.png" height="55" width="55" alt="">
       </div>
       <h1 class="text-center">Reset Password</h1>
-      <div class="row">
+      <div class="row hide">
           <div class="col rounded padding-2">
               <mat-form-field appearance="outline" class="color-one padding-2 rounded shadow full-width">
                 <mat-label>Username</mat-label>
@@ -22,7 +22,7 @@
         <div class="col"></div>
         <div class="col padding-bottom center">
           <button class="margin-top btn btn-lg btn-light btn-outline-primary" type="submit"><span><i class="fa-solid fa-user-check"></i></span> Send me the <strong>Link</strong></button><br><br>
-          <a routerLink="/register"><p class="small">or <strong>Change Password</strong></p></a>
+          <a routerLink="/auth/change/password/{{currentUser.id}}"><p class="small">or <strong>Change Password</strong></p></a>
         </div>
         <div class="col"></div>
       </div>

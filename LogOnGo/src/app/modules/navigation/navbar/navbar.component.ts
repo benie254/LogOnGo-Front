@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
 import { Profile } from 'src/app/classes/profile/profile';
 import { AuthService } from '../../auth/services/auth/auth.service';
@@ -10,6 +10,7 @@ import { FuelService } from '../../fuel/services/fuel/fuel.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  public hideNav: boolean = false;
   isCollapsed: boolean = true;
   isLoggedIn: boolean = false;
   authenticated: boolean;
@@ -19,6 +20,7 @@ export class NavbarComponent implements OnInit {
   fetchLogSuccess: boolean = false; 
   noLog: boolean = false;
   log: any;
+  navAdmin: boolean = false;
 
   isLoading: boolean = false;
   year = new Date().getFullYear()
@@ -38,6 +40,11 @@ export class NavbarComponent implements OnInit {
   isSuper: boolean = false;
   // backURL = 'https://logongo.herokuapp.com/admin/';
   backURL = 'http://127.0.0.1:8000/admin/'
+  siteNav: boolean;
+  saved: any; 
+  switchAdmin: any;
+  @Input() toggleAdmin: () => void;
+  @Input() showAdmin: boolean;
 
   constructor(
     private fuelService:FuelService,
@@ -58,6 +65,7 @@ export class NavbarComponent implements OnInit {
     }
     this.getFuels();
     this.detector.detectChanges();
+    this.saveValue();
   }
 
   getFuels(){
@@ -66,6 +74,27 @@ export class NavbarComponent implements OnInit {
         this.fuels = data
       }
     })
+  }
+  goToAdmin(){
+    this.siteNav = false;
+  }
+  
+  saveValue(){
+    this.copy(true)
+    this.saved = this.switchAdmin;
+  }
+  exitAdmin(){
+    if(this.siteNav = false){
+      this.siteNav = this.saved;
+    }else{
+      this.siteNav = this.saved;
+    }
+    
+  }
+  copy = (text: any): void => {
+    localStorage.setItem('mySavedItem',text);
+    this.switchAdmin = localStorage.getItem('mySavedItem')
+    console.warn(this.switchAdmin,"saved")
   }
 
   
@@ -95,7 +124,6 @@ export class NavbarComponent implements OnInit {
   dateValue(eod: any){
     this.eOD = eod;
   }
-
   
 
 }

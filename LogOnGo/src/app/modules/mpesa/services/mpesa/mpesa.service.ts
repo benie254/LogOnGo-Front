@@ -46,4 +46,7 @@ export class MpesaService {
   deleteMpesa(logData): Observable<any>{
     return this.handler.handlePOST<any>(this.apiDelMpesa, logData)
   }
+  searchByDate(logDate:string): Observable<LogMpesa>{
+    return this.handler.handleGET<any>(this.apiPastMpesa + logDate)
+  }
 }

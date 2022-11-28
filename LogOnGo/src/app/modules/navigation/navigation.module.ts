@@ -17,6 +17,8 @@ import { PetrolSummaryComponent } from './petrol-summary/petrol-summary.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AdminNavigationComponent } from './admin-navigation/admin-navigation.component';
+import { AdminModule } from '../admin/admin.module';
 
 
 
@@ -32,7 +34,8 @@ import { MatInputModule } from '@angular/material/input';
     UsingLogongoComponent,
     DieselSummaryComponent,
     GasSummaryComponent,
-    PetrolSummaryComponent
+    PetrolSummaryComponent,
+    AdminNavigationComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +45,7 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    AdminModule,
   ],
   exports: [
     NavbarComponent,

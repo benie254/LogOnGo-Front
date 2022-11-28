@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LogService } from '../../services/log/log.service';
+import { CardService } from 'src/app/modules/card/services/card/card.service';
+import { MpesaService } from 'src/app/modules/mpesa/services/mpesa/mpesa.service';
 
 @Component({
   selector: 'app-search',
@@ -12,57 +14,53 @@ export class SearchComponent implements OnInit {
   panelOpenState = false;
   cleared: boolean;
   hidden: boolean;
-  searched_logs: any; 
-  searched_date: any;
   searchResults: any;
   logDate: any;
   searchText: any;
   eOD: any;
-  dateResults: any;
+  foundLogs: any;
+  foundCards: any;
+  foundMpesa: any;
   id: number;
   values = '';
-  mValue: any;
-  noInput: boolean = true;
   fetchLogSuccess: boolean = false; 
   noLog: boolean = false;
-  log: any;
+  noMpesa: boolean = false; 
+  noCards: boolean = false;
   isLoading: boolean = false;
-  error: any;
-  message = '';
   empty: boolean;
   noResults: boolean;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 5;
+  tableSize: number = 3;
   tableSizes: any = [2, 5, 10, 15];
-
-  searchForm = this.fb.group({
-    search: ['', [Validators.pattern]]
- });
+  mpesaResults: any;
+  cardResults: any;
+  showM: boolean = false;
+  showC: boolean = false; 
+  showL: boolean = false;
+  hideRes: boolean = false;
 
   constructor(
     private logService:LogService,
-    private fb:FormBuilder,
-  ) { 
+    private card:CardService,
+    private mpesa:MpesaService,
+  ) { }
+
+  ngOnInit(): void {
+    this.allLogs();
+    this.allCards();
+    this.allMpesa();
     if(this.searchResults && this.searchResults.length == 0){
       this.noResults = true;
     } else {
       this.noResults = false;
     }
   }
-
-  ngOnInit(): void {
-    this.searchEverything();
-  }
   onKey(event: any){
     this.values = event.target.value; 
     this.fetchLogSuccess = false;
     this.noLog = false;
-    // if (this.values == ''){
-    //   this.noInput = true;
-    // } else {
-    //   this.noInput = false;
-    // }
   }
   clearValues(){
     document.forms["searchForm"].reset();
@@ -75,7 +73,6 @@ export class SearchComponent implements OnInit {
   hide(){
     this.hidden = true;
   }
-
   search(logDate: string): void{
     this.fetchLogSuccess = false;
     this.noLog = false;
@@ -84,25 +81,17 @@ export class SearchComponent implements OnInit {
     this.logService.searchByDate(logDate);
     this.isLoading= true;
     this.getByDate(logDate);
+    this.cardByDate(logDate);
+    this.mpesaByDate(logDate);
   }
   getByDate(logDate): void{
-    console.log("log date:",logDate)
-    Notiflix.Loading.hourglass('Searching...')
     this.logService.searchByDate(logDate).subscribe( data => {
-        this.dateResults = data;
-        Notiflix.Loading.remove();
-        Notiflix.Notify.success('Search success')
-        if (this.log == undefined || this.log && this.log.length == 0){
+        this.foundLogs = data;
+        if (this.foundLogs == undefined || this.foundLogs && this.foundLogs.length == 0){
           this.noLog = true;
         } else {
           this.noLog = false;
         }
-      },
-      err => {
-        Notiflix.Loading.remove();
-        this.error = err;
-        this.message = this.error.statusText;
-        Notiflix.Notify.failure(this.message)
       }
     );
     setTimeout(
@@ -117,32 +106,110 @@ export class SearchComponent implements OnInit {
       }.bind(this),1000
     );
   }
-
-  searchEverything(){
+  cardByDate(logDate): void{
+    this.card.searchByDate(logDate).subscribe( data => {
+        this.foundCards = data;
+        if (this.foundCards == undefined || this.foundCards && this.foundCards.length == 0){
+          this.noCards = true;
+        } else {
+          this.noCards = false;
+        }
+      }
+    );
+    setTimeout(
+      function(){
+        this.isLoading= false;
+        this.fetchLogSuccess = true;
+        if(this.fetchLogSuccess = true && this.foundCards.length == 0){
+          this.empty = true;
+        } else {
+          this.empty = false;
+        }
+      }.bind(this),1000
+    );
+  }
+  mpesaByDate(logDate): void{
+    this.card.searchByDate(logDate).subscribe( data => {
+        this.foundMpesa = data;
+        if (this.foundMpesa == undefined || this.foundMpesa && this.foundMpesa.length == 0){
+          this.noMpesa = true;
+        } else {
+          this.noMpesa = false;
+        }
+      }
+    );
+    setTimeout(
+      function(){
+        this.isLoading= false;
+        this.fetchLogSuccess = true;
+        if(this.fetchLogSuccess = true && this.foundMpesa.length == 0){
+          this.empty = true;
+        } else {
+          this.empty = false;
+        }
+      }.bind(this),1000
+    );
+  }
+  allLogs(){
     this.logService.searchLog().subscribe(
       (data) => {
         this.searchResults = data;
-      },
-      err => {
-        Notiflix.Notify.failure('search failed!')
+      }
+    )
+  }
+  allCards(){
+    this.card.getAllCreditCardLogs().subscribe(
+      (data) => {
+        this.cardResults = data;
+      }
+    )
+  }
+  allMpesa(){
+    this.mpesa.getAllMpesaLogs().subscribe(
+      (data) => {
+        this.mpesaResults = data;
       }
     )
   }
   onTableDataChange(event: any) {
     this.page = event;
-    this.searchEverything();
+    this.allLogs();
+    this.allCards();
+    this.allMpesa();
   }
   onTableSizeChange(event: any): void {
     this.tableSize = event.target.value;
     this.page = 1;
-    this.searchEverything();
+    this.allLogs();
+    this.allCards();
+    this.allMpesa();
   }
   dateValue(eod: any){
     this.eOD = eod;
   }
-  refresh(){
-    location.reload();
-    }
-
+  openC(){
+    this.showC = true; 
+    this.showM = false; 
+    this.showL = false;
+  }
+  openM(){
+    this.showM = true; 
+    this.showC = false; 
+    this.showL = false;
+  }
+  openL(){
+    this.showL = true;
+    this.showM = false; 
+    this.showC = false;
+  }
+  close(){
+    this.showL = false; 
+    this.showC = false; 
+    this.showM = false;
+  }
+  hideR(){
+    this.hideRes = true;
+  }
 }
+
 

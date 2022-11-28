@@ -7,13 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FuelReceivedComponent implements OnInit {
   showNew: boolean;
-  showInfo: boolean;
+  showInfo: boolean = false;
   @Input() fuelInfo: any;
   @Input() fuelTotal: any;
-  @Input() logs: any;
   @Input() fuelReceived: any;
   @Input() fuelType: any; 
   @Input() fuelId: number;
+  @Input() noFuel: boolean = false;
 
   constructor(
   ) { }
@@ -21,18 +21,10 @@ export class FuelReceivedComponent implements OnInit {
   ngOnInit(): void {
   }
   toggleOrderInfo(){
-    if (this.showInfo = false){
-      this.showInfo = true;
-    } else {
-      this.showInfo = false;
-    }
+    this.showInfo = true;
   }
   toggleNewOrder(){
-    if (this.showNew = false){
-      this.showNew = true;
-    } else {
-      this.showNew = false;
-    }
+    this.showNew = true;
   }
 
 }

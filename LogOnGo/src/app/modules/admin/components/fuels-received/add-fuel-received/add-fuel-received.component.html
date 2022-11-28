@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="padding-2">
+        <form #fuelRcvdForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="addFuelReceived(fuelRcvdForm.value)" id="fuelRcvdForm">
+            <h5>Add Fuel Received</h5><br>
+            <mat-form-field appearance="outline">
+                <mat-label>Fuel Type </mat-label>
+                <mat-select name="fuel_type" ngModel #fuel_type="ngModel" required>
+                  <mat-option *ngFor="let f of allFuels" value="{{f.id}}" name="fuel_type" ngModel #fuel_type="ngModel" type="text">{{f.fuel_type}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="fuel_type.hasError('required') || fuel_type.pristine">
+                    Fuel type is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="outline">
+                <mat-label>Litres Received </mat-label>
+                  <input matInput type="number" name="litres_received" #litres_received="ngModel" ngModel required>
+                  <mat-error *ngIf="litres_received.hasError('required') || litres_received.pristine">
+                    Litres received is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="outline">
+                <mat-label>Received From </mat-label>
+                  <input matInput type="text" name="received_from" #received_from="ngModel" ngModel required>
+                  <mat-error *ngIf="received_from.hasError('required') || received_from.pristine">
+                    Received from value is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field><br>
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Date Received </mat-label>
+                  <input matInput type="date" name="date_received" #date_received="ngModel" ngModel required>
+                  <mat-error *ngIf="date_received.hasError('required') || date_received.pristine">
+                    Date Received is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+           
+              
+              <div class="form-group bg-light">
+                <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" [disabled]="fuelRcvdForm.invalid" (click)="reload()">Save</button> &nbsp;&nbsp; <button type="submit" (click)="reset();" style="margin-top:1%;" mat-flat-button color="accent" [disabled]="fuelRcvdForm.invalid">Save and add another</button>
+            </div>
+              
+        </form>
+    </div>
+</div>

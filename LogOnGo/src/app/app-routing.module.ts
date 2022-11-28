@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'mpesa', loadChildren: () => import('./modules/mpesa/mpesa.module').then(m => m.MpesaModule) },
   { path: 'fuel', loadChildren: () => import('./modules/fuel/fuel.module').then(m => m.FuelModule) },
   { path: 'user', loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule) },
+  { path: 'admin/logongo', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
 ];
 
 @NgModule({

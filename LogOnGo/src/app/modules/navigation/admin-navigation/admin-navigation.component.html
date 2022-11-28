@@ -1,0 +1,8 @@
+<div>
+<div *ngIf="!showAdmin else show">
+    <app-navbar [toggleAdmin]="toggleAdmin" [showAdmin]="showAdmin"></app-navbar>
+</div>
+<ng-template #show>
+    <app-admin [toggleAdmin]="toggleAdmin" [showAdmin]="showAdmin"></app-admin>
+</ng-template>
+</div>

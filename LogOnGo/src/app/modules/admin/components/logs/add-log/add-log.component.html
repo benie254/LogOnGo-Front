@@ -1,0 +1,61 @@
+<form  #addLogForm="ngForm" (submit)="addLog(addLogForm.value)" id="addLogForm" class="padding-2 bg-light rounded shadow">
+    <h5 class="">Add Log Details</h5><br>
+    <mat-form-field appearance="outline">
+        <mat-label>Fuel Type </mat-label>
+        <mat-select name="fuel_type" ngModel #fuel_type="ngModel" required>
+          <mat-option *ngFor="let f of fuels" value="{{f.id}}" name="fuel_type" ngModel #fuel_type="ngModel" type="text">{{f.fuel_type}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="fuel_type.hasError('required') || fuel_type.pristine">
+            Fuel type is <strong>required</strong>
+        </mat-error>
+      </mat-form-field><br>
+                  
+            
+                <mat-form-field appearance="outline">
+                    <mat-label>Date</mat-label>
+                    <input matInput placeholder="Date" name="date" #date="ngModel" ngModel type="date" required>
+                    <mat-error *ngIf="date.hasError('required') || date.pristine">
+                      Date is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> &nbsp;&nbsp;&nbsp;
+                    <mat-form-field appearance="outline">
+                      <mat-label>Formatted Date</mat-label>
+                      <input matInput name="formatted_date" ngModel [(ngModel)]="tdate" type="text" #formatted_date="ngModel" required>
+                      <mat-hint>e.g Mon Nov 28 2022</mat-hint>
+                      <mat-error *ngIf="formatted_date.hasError('required') || formatted_date.pristine">
+                        Formatted date is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field> <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>EOD reading</mat-label>
+                    <input matInput placeholder="End of day reading" #eod_reading_lts="ngModel" ngModel name="eod_reading_lts" type="number" required>
+                    <mat-error *ngIf="eod_reading_lts.hasError('required') || eod_reading_lts.pristine">
+                      End Of Day reading is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> &nbsp;&nbsp;&nbsp;
+          
+            <mat-form-field appearance="outline">
+              <mat-label>EOD Yesterday</mat-label>
+                <input  matInput placeholder="End of day reading Yesterday" #eod_reading_yesterday="ngModel" ngModel name="eod_reading_yesterday" type="number" required>
+              <mat-error *ngIf="eod_reading_yesterday.hasError('required') || eod_reading_yesterday.pristine">
+                Yesterday EOD reading is <strong>required</strong>
+              </mat-error>
+            </mat-form-field> <br>
+            <mat-form-field appearance="outline">
+              <mat-label>Logged by</mat-label>
+              <input matInput ngModel name="logged_by" type="text" [(ngModel)]="currentUser.username">
+            </mat-form-field> &nbsp;&nbsp;&nbsp;
+            <mat-form-field appearance="outline">
+                <mat-label>Select Your User Id </mat-label>
+                
+                <mat-select name="user_id" ngModel #user_id="ngModel" >
+                  <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user_id" ngModel #user_id="ngModel" type="number">{{a.username}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+    
+           
+    
+        <div class="form-group">
+            <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" [disabled]="addLogForm.invalid" (click)="reload()">Save</button> &nbsp;&nbsp; <button type="submit" (click)="reset();" style="margin-top:1%;" mat-flat-button color="accent" [disabled]="addLogForm.invalid">Save and add another</button>
+        </div>
+    </form>

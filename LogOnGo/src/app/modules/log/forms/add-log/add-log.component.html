@@ -14,7 +14,7 @@
 
   <!-- <p class="card-text"><a class="btn btn-sm btn-light btn-outline-primary" type="button" (click)="toggleLog()"><i class="fa-regular fa-square-plus"></i> </a></p> -->
 
-    <form id="addLogForm" #fuelLogForm="ngForm"  class="form padding-2 rounded color-two bg-light shadow" (ngSubmit)="addLog(fuelLogForm.value)">
+    <form id="addLogForm" #fuelLogForm="ngForm"  class="form margin-top padding-2 rounded color-two bg-light shadow" (ngSubmit)="addLog(fuelLogForm.value)">
       <!-- <span (click)="closeP1()" style="float:right;" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span> -->
         <h6 class="text-center">Add {{fuelInfo.fuel_type}} Log details</h6>
         <div class="row hide">
@@ -82,6 +82,6 @@
           </div>
         </div>
         <div class="form-group text-center">
-            <button class="btn margin btn-lg w-100 btn-outline-success btn-light" type="submit" [disabled]="fuelLogForm.invalid">Add Log</button>
+            <button class="btn margin btn-lg w-75 btn-outline-success btn-light" type="submit" [disabled]="fuelLogForm.invalid">Add Log</button>
         </div> 
     </form> 

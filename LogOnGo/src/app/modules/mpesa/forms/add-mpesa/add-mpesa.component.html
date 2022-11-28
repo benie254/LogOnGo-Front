@@ -1,4 +1,4 @@
-<div class="border color-two margin padding rounded">
+<div class="color-two margin-top padding-2 rounded">
     <h6 class="text-center">Add {{fuelInfo.fuel_type}} Mpesa Logs</h6>
     <form #mpesaForm="ngForm" (ngSubmit)="addMpesaLog(mpesaForm.value)">
         <div class="row">
@@ -93,7 +93,7 @@
             </div>
         </div>
         <div class="form-group text-center">
-            <button class="btn margin btn-lg w-100 btn-outline-success btn-light" type="submit" [disabled]="mpesaForm.invalid">Add Mpesa</button>
+            <button class="btn margin btn-lg w-75 btn-outline-success btn-light" type="submit" [disabled]="mpesaForm.invalid">Add Mpesa</button>
         </div>
     </form>
 </div>

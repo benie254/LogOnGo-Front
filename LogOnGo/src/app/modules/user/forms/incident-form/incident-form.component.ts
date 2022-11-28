@@ -3,6 +3,8 @@ import * as Notiflix from 'notiflix';
 import { Editor } from 'ngx-editor';
 import { UserService } from '../../services/user/user.service';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
+import { FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-incident-form',
@@ -10,6 +12,12 @@ import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
   styleUrls: ['./incident-form.component.css']
 })
 export class IncidentFormComponent implements OnInit {
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+  }
+
   EMERGENCY: any; 
   Equipment_Failure: any;
   Physical_Injury: any;
@@ -17,7 +25,11 @@ export class IncidentFormComponent implements OnInit {
   currentUser = this.authService.currentUserValue;
   editor: Editor;
   html: '';
-  today = new Date();
+  YYYY = new Date().getFullYear();
+  MM = new Date().getMonth() + 1;
+  DD = new Date().getDate();
+  today = this.YYYY + '-' + this.MM + '-' + this.DD
+  tdate = new Date().toDateString();
 
 
   constructor(

@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="padding-2">
+        <form #editFuelRcvdForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="editItem(editFuelRcvdForm.value)" id="editFuelRcvdForm">
+            <h5>Edit {{details.fuel_type}} Received Details <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span></h5>  
+            <div class="hide">
+                <mat-form-field appearance="outline">
+                    <mat-label>Fuel Type </mat-label>
+                    <input type="text" ngModel matInput name="fuel_type" [(ngModel)]="details.fuel_type">
+                  </mat-form-field>
+            </div><br>
+           
+              <mat-form-field appearance="outline">
+                <mat-label>Price Per Litre </mat-label>
+                  <input matInput type="number" name="price_per_litre" #price_per_litre="ngModel" ngModel required [ngModel]="details.price_per_litre">
+                  <mat-error *ngIf="price_per_litre.hasError('required') || price_per_litre.pristine">
+                    Price per litre is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="outline">
+                <mat-label>Pumps </mat-label>
+                  <input matInput type="number" name="pumps" #pumps="ngModel" ngModel required [ngModel]="details.pumps">
+                  <mat-error *ngIf="pumps.hasError('required') || pumps.pristine">
+                    Pumps value is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field><br>
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Initial Litres in Tank </mat-label>
+                  <input matInput type="number" name="initial_litres_in_tank" #initial_litres_in_tank="ngModel" ngModel required [ngModel]="details.initial_litres_in_tank">
+                  <mat-error *ngIf="initial_litres_in_tank.hasError('required') || initial_litres_in_tank.pristine">
+                    Initial tank quantity is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+           
+              
+              <div class="form-group bg-light">
+                <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" [disabled]="editFuelRcvdForm.invalid" (click)="reload()"> Save</button> &nbsp;&nbsp;<button style="margin-top:1%;" type="submit" mat-flat-button color="accent" [disabled]="editFuelRcvdForm.invalid">Save and continue editing</button> &nbsp;&nbsp; <button style="margin-top:1%;" type="submit" mat-flat-button color="accent"  [disabled]="editFuelRcvdForm.invalid" (click)="redirect()">Save and add another</button> <button style="margin-top:1%;" class="float-right" type="button" mat-flat-button color="warn"  (click)="delWarn()">Delete</button>
+            </div>
+              
+        </form>
+    </div>
+</div>

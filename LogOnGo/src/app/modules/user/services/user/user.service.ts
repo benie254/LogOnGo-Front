@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RequestHandlerService } from 'src/app/helpers/requests/request-handler.service';
 
-const apiURL = 'http:127.0.0.1:8000/api/'
+const apiURL = 'http://127.0.0.1:8000/api/'
 
 @Injectable({
   providedIn: 'any'

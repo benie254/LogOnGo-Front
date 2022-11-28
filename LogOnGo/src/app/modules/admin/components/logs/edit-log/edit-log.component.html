@@ -1,0 +1,58 @@
+<form  #editLogForm="ngForm" (submit)="editItem(editLogForm.value)" class="padding-2 bg-light rounded shadow">
+    <h5>Edit {{details.fuel_type}} Log Details <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span></h5>  
+    <div class="hide">
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Fuel Type </mat-label>
+            <input matInput name="fuel" ngModel [(ngModel)]="details.fuel" type="number">
+          </mat-form-field>
+    </div>
+    <br>
+                  
+            
+                <mat-form-field appearance="outline">
+                    <mat-label>Date</mat-label>
+                    <input matInput placeholder="Date" name="date" #date="ngModel" ngModel type="date" required [(ngModel)]="details.date">
+                    <mat-error *ngIf="date.hasError('required') || date.pristine">
+                      Date is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> &nbsp;&nbsp;&nbsp;
+                    <mat-form-field appearance="outline">
+                      <mat-label>Formatted Date</mat-label>
+                      <input matInput name="formatted_date" ngModel [(ngModel)]="details.formatted_date" #formatted_date="ngModel" type="text" required>
+                      <mat-hint>e.g Mon Nov 28 2022</mat-hint>
+                      <mat-error *ngIf="formatted_date.hasError('required') || formatted_date.pristine">
+                        Formatted date is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field> <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>EOD reading</mat-label>
+                    <input matInput placeholder="End of day reading" #eod_reading_lts="ngModel" ngModel name="eod_reading_lts" type="number" [(ngModel)]="details.eod_reading_lts" required>
+                    <mat-error *ngIf="eod_reading_lts.hasError('required') || eod_reading_lts.pristine">
+                      End Of Day reading is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field> &nbsp;&nbsp;&nbsp;
+          
+            <mat-form-field appearance="outline">
+              <mat-label>EOD Yesterday</mat-label>
+                <input  matInput placeholder="End of day reading Yesterday" #eod_reading_yesterday="ngModel" ngModel name="eod_reading_yesterday" [(ngModel)]="details.eod_reading_yesterday" type="number" required>
+              <mat-error *ngIf="eod_reading_yesterday.hasError('required') || eod_reading_yesterday.pristine">
+                Yesterday EOD reading is <strong>required</strong>
+              </mat-error>
+            </mat-form-field> <br>
+            <mat-form-field appearance="outline">
+              <mat-label>Logged by</mat-label>
+              <input matInput ngModel name="logged_by" type="text" [(ngModel)]="currentUser.username">
+            </mat-form-field>&nbsp;&nbsp;&nbsp;
+            <mat-form-field appearance="outline">
+                <mat-label>Select Your User Id </mat-label>
+                
+                <mat-select name="user_id" ngModel #user_id="ngModel" >
+                  <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user_id" ngModel #user_id="ngModel" type="number">{{a.username}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+    
+        <div class="form-group">
+            <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" [disabled]="editLogForm.invalid" (click)="reload()"> Save</button> &nbsp;&nbsp;<button style="margin-top:1%;" type="submit" mat-flat-button color="accent" [disabled]="editLogForm.invalid">Save and continue editing</button> &nbsp;&nbsp; <button style="margin-top:1%;" type="submit" mat-flat-button color="accent"  [disabled]="editLogForm.invalid" (click)="redirect()">Save and add another</button> <button style="margin-top:1%;" class="float-right" type="button" mat-flat-button color="warn"  (click)="delWarn()">Delete</button>
+        </div>
+    </form>

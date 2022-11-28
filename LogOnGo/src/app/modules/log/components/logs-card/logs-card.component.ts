@@ -7,6 +7,7 @@ import { Log } from 'src/app/classes/log/log';
   styleUrls: ['./logs-card.component.css']
 })
 export class LogsCardComponent implements OnInit {
+  @Input() searchText: any;
   @Input() logs: any;
   @Input() userLogs: any;
   @Input() currentUser: any;

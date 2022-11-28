@@ -52,6 +52,7 @@ import { ErrorsModule } from './modules/errors/errors.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AllFormsModule } from './modules/all-forms/all-forms.module';
 import { NavigationModule } from './modules/navigation/navigation.module';
+import { SearchCardComponent } from './modules/cards/components/search-card/search-card.component';
 
 
 
@@ -59,6 +60,7 @@ import { NavigationModule } from './modules/navigation/navigation.module';
   declarations: [
     AppComponent,
     BindQueryParamDirective,
+    SearchCardComponent,
   ],
   imports: [
     NgxPaginationModule,

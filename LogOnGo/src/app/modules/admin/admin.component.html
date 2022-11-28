@@ -1,0 +1,19 @@
+<app-admin-nav [showAdmin]="showAdmin" [toggleAdmin]="toggleAdmin"></app-admin-nav>
+<div class="container-fluid" id="adminCont" style="height:100vh;">
+    <mat-tab-group>
+        <mat-tab label="Summary"> <app-summary [fuels]="allFuels" [logS]="logS"></app-summary> </mat-tab>
+        <mat-tab label="Announcements"><app-all-announcements [reload]="reload" [admins]="admins" [id]="selected" [copy]="copy"></app-all-announcements></mat-tab>
+        <mat-tab label="Contacts"> <app-all-contacts></app-all-contacts> </mat-tab>
+        <mat-tab label="Incidents"> <app-all-incidents [reload]="reload" [admins]="admins" [id]="selected" [copy]="copy"></app-all-incidents> </mat-tab>
+        <mat-tab label="Fuels"> <app-all-fuels [reload]="reload" [admins]="admins" [id]="selected" [copy]="copy"></app-all-fuels> </mat-tab>
+        <mat-tab label="Fuels Received"> <app-all-fuels-received [reload]="reload" [admins]="admins" [id]="selected" [copy]="copy" [allFuels]="allFuels"></app-all-fuels-received> </mat-tab>
+        <mat-tab label="Logs"> <app-all-logs [reload]="reload" [admins]="admins" [id]="selected" [copy]="copy" [fuels]="allFuels"></app-all-logs> </mat-tab>
+        <mat-tab label="Mpesa Logs"> <app-all-mpesa-logs [reload]="reload" [admins]="admins" [id]="selected" [copy]="copy" [fuels]="allFuels"></app-all-mpesa-logs> </mat-tab>
+        <mat-tab label="Credit Card Logs"> <app-all-credit-card-logs [reload]="reload" [admins]="admins" [id]="selected" [copy]="copy" [fuels]="allFuels"></app-all-credit-card-logs> </mat-tab>
+    </mat-tab-group>
+
+   
+      
+
+
+</div>

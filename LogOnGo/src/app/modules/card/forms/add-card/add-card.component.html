@@ -1,4 +1,4 @@
-<form  #pCreditCardForm="ngForm" (submit)="addCreditCardLog(pCreditCardForm.value)" class="bg-light padding color-two rounded shadow">
+<form  #pCreditCardForm="ngForm" (submit)="addCreditCardLog(pCreditCardForm.value)" class="margin-top padding-2 color-two rounded shadow">
     <h6 class="text-center">Add {{fuelInfo.fuel_type}} Card Logs</h6>
     
         <div class="row">
@@ -79,7 +79,7 @@
             
         </div>
     
-        <div class="form-group">
-          <button class="btn margin btn-lg w-100 btn-outline-success btn-light" type="submit" [disabled]="pCreditCardForm.invalid">Add Card</button>
+        <div class="form-group text-center">
+          <button class="btn margin btn-lg w-75 btn-outline-success btn-light" type="submit" [disabled]="pCreditCardForm.invalid">Add Card</button>
         </div>
     </form>

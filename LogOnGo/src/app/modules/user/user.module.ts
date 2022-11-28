@@ -20,6 +20,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { LogModule } from '../log/log.module';
 import { MpesaModule } from '../mpesa/mpesa.module';
+import { AuthModule } from '../auth/auth.module';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { NgxEditorModule } from 'ngx-editor';
 
 
 @NgModule({
@@ -36,6 +42,11 @@ import { MpesaModule } from '../mpesa/mpesa.module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    NgxEditorModule,
     UserRoutingModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
@@ -47,7 +58,8 @@ import { MpesaModule } from '../mpesa/mpesa.module';
     MatListModule,
     MatIconModule,
     LogModule,
-    MpesaModule
+    MpesaModule,
+    AuthModule,
   ]
 })
 export class UserModule { }

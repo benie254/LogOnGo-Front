@@ -13,7 +13,7 @@
                   <th scope="col"></th>
                 </tr>
               </thead>
-              <tbody *ngFor="let mpesa of mpesa | paginate: { id:'mpesaPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+              <tbody *ngFor="let mpesa of mpesa | filter: searchText | paginate: { id:'mpesaPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
                 <tr>
                   <td>{{mpesa.id}}</td>
                   <td>{{mpesa.date | date: 'dd/MM/yyyy'}}</td>

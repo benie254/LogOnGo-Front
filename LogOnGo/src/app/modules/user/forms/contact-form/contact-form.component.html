@@ -1,9 +1,9 @@
-<!-- 
 
-<form [formGroup]="contactForm" (ngSubmit)="contactAdmin(contactForm.value)">
+
+<form #contactForm="ngForm"  (ngSubmit)="contactAdmin(contactForm.value)">
     <div class="form-group hide">
-        <input type="text" class="" formControlName="your_name" placeholder="Your name" [(ngModel)]="currentUser.username">
-        <input type="email" formControlName="your_email" placeholder="your email" [(ngModel)]="currentUser.email">
+        <input type="text" class="" name="your_name" ngModel [(ngModel)]="currentUser.username">
+        <input type="email" name="your_email" ngModel [(ngModel)]="currentUser.email">
     </div>
     <div class="form-group">
         <div class="row">
@@ -11,37 +11,44 @@
             <div class="col-sm-4">
                 <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                     <mat-label>Subject</mat-label>
-                    <input matInput placeholder="Email subject" formControlName="subject" type="text" required>
+                    <input matInput placeholder="Email subject" name="subject" ngModel #subject="ngModel" type="text" required minlength="6" maxlength="100">
                     <mat-icon matSuffix>mail</mat-icon>
                     <mat-hint>e.g: Inquiry</mat-hint>
+                    <mat-error *ngIf="subject.hasError('required') || subject.pristine">
+                      Subject is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="subject.hasError('minlength')">
+                      Subject should be <strong>at least 6 characters</strong> 
+                    </mat-error>
+                    <mat-error *ngIf="subject.hasError('maxlength')">
+                      Subject should <strong>not exceed 100 characters</strong> 
+                    </mat-error>
                   </mat-form-field> 
-                  <div *ngIf="contactForm.controls['subject'].invalid && contactForm.controls['subject'].touched" class="alert alert-danger">
-                    <div *ngIf="contactForm.controls['subject'].errors['required']">
-                      Subject is required.
-                    </div>
-                  </div>   
             </div>
             <div class="col-sm-4"></div>
         </div>
-        
+    </div>
+    <br>
+      <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
+        <mat-label>Message</mat-label>
+        <textarea placeholder="Type your message here..." matInput name="message" ngModel #message="ngModel" minlength="16" maxlength="5000" required></textarea>
+        <mat-icon matSuffix>mail</mat-icon>
+        <mat-hint>e.g: Inquiry</mat-hint>
+        <mat-error *ngIf="message.hasError('required') || message.pristine">
+          Message is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="message.hasError('minlength')">
+          Message should be <strong>at least 16 characters</strong> 
+        </mat-error>
+        <mat-error *ngIf="message.hasError('maxlength')">
+          Message should <strong>not exceed 5000 characters</strong> 
+        </mat-error>
+      </mat-form-field> 
+      
+            
+    <br><br>
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-md w-50 btn-light btn-outline-primary" [disabled]="contactForm.invalid"><i class="fa-solid fa-paper-plane"></i> Send</button>
     </div>
     
-    <div class="form-group">
-        <label for="description" class="shadow padding-2 bg-light">Message:</label>
-        <div class="NgxEditor__Wrapper">
-            <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-            <ngx-editor
-              [editor]="editor"
-              [ngModel]="html"
-              [disabled]="false"
-              [placeholder]="'Type here...'"
-              formControlName="message"
-            ></ngx-editor>
-          </div>
-    </div>
-    
-    <div class="form-group">
-        <input class="btn margin-top btn-sm btn-outline-primary btn-dark" type="submit" value="Report">
-    </div>
-    
-            </form> -->
+            </form>

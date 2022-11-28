@@ -1,21 +1,40 @@
 <div class="container-fluid">
-    <br>
-    <div class="row">
-        <div class="col-md-6">
-            <form class="form" id="f1">
-            <h1>Search Filter</h1>
+  <div class="row">
+    <h1 class="text-center"> Our Search Tools</h1>
+    
+      <div class="col-md-6">
+        <ul class="nav nav-tabs justify-content-center">
+          <li class="nav-item">
+              <a class="nav-link disabled">Click one to start <i class="fa-regular fa-hand-point-right"></i></a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" type="button" (click)="openL();hideR()">General Logs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" type="button" (click)="openC();hideR()">Card Logs</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" type="button" (click)="openM();hideR()">Mpesa Logs</a>
+          </li>
+        </ul>
+        
+        
+        <div *ngIf="showL">
+          <form class="form shadow bg-light padding-2" id="f1" >
+            <h5 class="text-center">Search Filter <br> <span><small class="font-sm">We will filter your search against all logs</small></span></h5>
+            
                 <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width">
-                    <mat-label>Month or Day</mat-label>
-                    <input matInput placeholder="Enter Month or Day" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
+                    <mat-label>Month/Day/Year/EOD/User</mat-label>
+                    <input matInput placeholder="Enter Month/Day/Year/EOD-reading/Username" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
                     <datalist id="datalistOptions">
-                        <option value="Oct" *ngFor="let log of searchResults" [value]="log.formatted_date">                                  
+                        <option value="Oct" *ngFor="let log of searchResults" [value]="log.formatted_date">  
                     </datalist>
                     <mat-icon matSuffix>date</mat-icon>
                     <mat-hint>e.g: Oct or Mon</mat-hint>
                   </mat-form-field>  
                 
                 
-                <div class="row mt-5" *ngIf="eOD">
+                <!-- <div class="row mt-5" *ngIf="eOD">
                   <div class="col-lg-4"></div>
                     <div class="col-lg-4">
                         <div class="card center padding-2">
@@ -24,263 +43,265 @@
                         </div>
                     </div>
                     <div class="col-lg-4"></div>
-                  </div>
+                  </div> -->
             </form>
-            <br>
-            <div class="shadow text-center bg-light">
-                <h6>Feeling lost? <i class="fa-solid fa-person-circle-question"></i></h6>
-                <mat-accordion>
-            <mat-expansion-panel (opened)="panelOpenState = true"
-                                             (closed)="panelOpenState = false">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <i class="fa-regular fa-circle-question"></i> How to search
-                            </mat-panel-title>
-                            <mat-panel-description>
-                              By Month
-                            </mat-panel-description>
-                          </mat-expansion-panel-header>
-                          <p>Enter a month's abbreviation, e.g. <span><code>Oct</code></span> for all logs of October.</p>
-                        </mat-expansion-panel>
-                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                             (closed)="panelOpenState = false">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <i class="fa-regular fa-circle-question"></i> How to search
-                            </mat-panel-title>
-                            <mat-panel-description>
-                            By Day
-                            </mat-panel-description>
-                          </mat-expansion-panel-header>
-                          <p>Enter a day's abbreviation, e.g. <span><code>Mon</code></span> for all logs of Monday.</p>
-                        </mat-expansion-panel>
-                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                             (closed)="panelOpenState = false">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <i class="fa-solid fa-circle-info"></i> Please note
-                            </mat-panel-title>
-                            <mat-panel-description>
-                              This is an all-inclusive search filter. Read more...
-                            </mat-panel-description>
-                          </mat-expansion-panel-header>
-                          <p>If you search for <span><code>Mon</code>,</span> the server will return all logs recorded on all Mondays, from the first to the last. <br><br> Same case when you search for a month, e.g <span><code>Oct</code></span></p>
-                        </mat-expansion-panel>
-                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                             (closed)="panelOpenState = false">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <i class="fa-solid fa-calendar-day"></i> Specific Date?
-                            </mat-panel-title>
-                            <mat-panel-description>
-                            Use the Specific Search Tool. Read more...
-                            </mat-panel-description>
-                          </mat-expansion-panel-header>
-                          <p>If you want to find logs of a specific date, e.g <span><code>13/10/2022</code>,</span> you should use the <span class="bg-info rounded">Specific Search Tool.</span> <br><br> Unlike this Search Filter, the Specific Search returns all logs of a specific date.</p>
-                        </mat-expansion-panel>
-                        </mat-accordion>
-                        </div>
-           <hr>
-           
-                
-                
-                <div class="card bg-light">
-    
-                    <div class="card-body">
-                      <h4 class="card-title text-center"> 
-                        We will filter your search against all logs <i class="fa-regular fa-file-lines"></i>
-                      </h4>
-                        <div class="table-responsive rounded color-two">
-                            <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th scope="col"><i class="fa-solid fa-hashtag"></i></th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">EOD Reading Today</th>
-                                    <th scope="col">EOD Reading Yesterday</th>
-                                    <th scope="col">Total litres sold</th>
-                                    <th scope="col"></th>
-                                  </tr>
-                                </thead>
-                                <tbody *ngFor="let logs of searchResults | filter:searchText | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
-                                  <tr>
-                                    <td>{{logs.id}}</td>
-                                    <td>{{logs.date | date: 'dd/MM/yyyy'}}</td>
-                                      <td class="tester-today3">{{logs.eod_reading_lts}}</td>
-                                      <td class="tester-yesterday3">{{logs.eod_reading_yesterday}}</td>
-                                    <td id="">{{logs.total_litres_sold}}</td>
-                                    <td><button routerLink="/log-details/{{logs.id}}" class="btn btn-sm btn-dark btn-outline-info">Details</button></td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                              <div class="d-flex justify-content-center">
-                                <pagination-controls
-                                  previousLabel="Prev"
-                                  nextLabel="Next"
-                                  (pageChange)="onTableDataChange($event)"
-                                >
-                                </pagination-controls>
-                                </div>
-                    </div>
-                </div>
-                </div>
-                
-              
-              
-              
+          <app-logs-card [logs]="searchResults" [searchText]="searchText" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-logs-card>
         </div>
-        <div class="col-md-6">
-            <form class="form" role="search" id="searchForm">
-                <h1 class="float-right">Specific Search</h1>
+        <div *ngIf="showC">
+          <form class="form shadow bg-light padding-2" id="f1">
+            <h5 class="text-center">Search Filter <br> <span><small class="font-sm">We will filter your search against all credit card logs</small></span></h5>
                 <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width">
-                    <mat-label>Date</mat-label>
-                    <input matInput type="date" (mousemove)="onKey($event);" (mouseover)="onKey($event)" (keydown)="onKey($event);" (mousedown)="onKey($event)" (keyup)="onKey($event)" (mouseleave)="onKey($event)" placeholder="Select date" aria-label="Search" required>
+                    <mat-label>Month/Day/Card/Amount/User</mat-label>
+                    <input matInput placeholder="Enter Month/Day/Card-Name./Amount/Username" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
+                    <datalist id="datalistOptions">
+                        <option value="Benson" *ngFor="let card of cardResults" [value]="card.formatted_date">  
+                    </datalist>
                     <mat-icon matSuffix>date</mat-icon>
-                    <mat-hint>e.g: 10/13/2022</mat-hint>
-                  </mat-form-field>
-                <div>
-                    
-                </div>
-              </form>
-              <br>
-              <div *ngIf="values">
-                <p>{{values | date: 'fullDate'}} <span>Selected!</span> <span><button class="margin btn btn-light btn-md btn-outline-primary" type="button" (click)="search($event.value);unClear()" [disabled]="!values"><i class="fa-solid fa-magnifying-glass"></i> Now</button></span> | <span><button class="btn btn-md btn-dark btn-outline-info" (click)="clearValues()">Reset</button></span></p>
-              <p>Remember to <strong class="bg-info rounded">always</strong> reset your previous search before starting a new one.</p>
-              </div>
-              
-              
-              <div class="shadow text-center bg-light">
-                <h6>Feeling lost? <i class="fa-solid fa-person-circle-question"></i></h6>
-                <mat-accordion>
-            <mat-expansion-panel (opened)="panelOpenState = true"
-                                             (closed)="panelOpenState = false">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <i class="fa-solid fa-magnifying-glass-arrow-right"></i> About
-                            </mat-panel-title>
-                            <mat-panel-description>
-                              This search tool
-                            </mat-panel-description>
-                          </mat-expansion-panel-header>
-                          <p>This search tool will request the server for all records of a specific date.</p>
-                        </mat-expansion-panel>
-                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                             (closed)="panelOpenState = false">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <i class="fa-regular fa-circle-question"></i> How to search
-                            </mat-panel-title>
-                            <mat-panel-description>
-                            By specific date
-                            </mat-panel-description>
-                          </mat-expansion-panel-header>
-                          <p>To search for a specific date:</p>
-                          <p><mat-icon>check</mat-icon> Click on the date picker icon <span><i class="fa-regular fa-calendar"></i></span> at the far right of the search bar. <mat-icon>check</mat-icon> Pick a date. <mat-icon>check</mat-icon> Hit the <span><button class="margin btn btn-light btn-sm btn-outline-primary" type="button" disabled><i class="fa-solid fa-magnifying-glass"></i> Now</button></span> button to start searching.</p>
-                        </mat-expansion-panel>
-                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                             (closed)="panelOpenState = false">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <i class="fa-solid fa-circle-exclamation"></i> No logs? Errors?
-                            </mat-panel-title>
-                            <mat-panel-description>
-                              What happens? Read more...
-                            </mat-panel-description>
-                          </mat-expansion-panel-header>
-                          <p>If no logs have been posted for the date you searched, the server will return an empty response.</p>
-                          <p>If something goes wrong while attempting to retrive the searched logs, the server will return an error message.</p>
-                        </mat-expansion-panel>
-                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                             (closed)="panelOpenState = false">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                            <i class="fa-solid fa-rotate-left"></i> Start over?
-                            </mat-panel-title>
-                            <mat-panel-description>
-                            How to reset the search & start over
-                            </mat-panel-description>
-                          </mat-expansion-panel-header>
-                          <p>To reset the search and start a new one, click (PC) or tap (mobile) the <button class="btn btn-sm btn-dark btn-outline-primary" disabled>reset button</button> before you can return to the datepicker and select another date.</p>
-                        </mat-expansion-panel>
-                        </mat-accordion>
+                    <mat-hint>e.g: Oct or Mon</mat-hint>
+                  </mat-form-field>  
+                
+                
+                <!-- <div class="row mt-5" *ngIf="eOD">
+                  <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <div class="card center padding-2">
+                            <div class="title" name="title"><h6>You exited the filter</h6></div>
+                            <p>If you were not done searching, you can hit <button (click)="refresh()" class="btn btn-sm btn-dark btn-outline-info">this button</button> to reset</p>
                         </div>
-                        <hr>
-                        <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
-                            <span class="sr-only"> Searching; please wait... </span>
-                        </div>
-                        <div *ngIf="dateResults">
-                          <div *ngIf="!cleared">
-                            <div *ngIf="!empty">
-                               
-                                  <div class="card-body shadow bg-light padding border rounded">
-                                    <h4 class="card-title text-center"> 
-                                       <i class="fa-regular fa-file-lines"></i>  We found the following logs for the date {{values}}
-                                    </h4>
-                                      <div class="table-responsive rounded color-two">
-                                          <table class="table">
-                                              <thead>
-                                                <tr>
-                                                  <th scope="col"><i class="fa-solid fa-hashtag"></i></th>
-                                                  <th scope="col">Date</th>
-                                                  <th scope="col">EOD Reading Today</th>
-                                                  <th scope="col">EOD Reading Yesterday</th>
-                                                  <th scope="col">Total litres sold</th>
-                                                  <th scope="col"></th>
-                                                </tr>
-                                              </thead>
-                                              <tbody *ngFor="let logs of dateResults | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
-                                                <tr>
-                                                  <td>{{logs.id}}</td>
-                                                  <td>{{logs.date | date: 'dd/MM/yyyy'}}</td>
-                                                    <td class="tester-today3">{{logs.eod_reading_lts}}</td>
-                                                    <td class="tester-yesterday3">{{logs.eod_reading_yesterday}}</td>
-                                                  <td id="">{{logs.total_litres_sold}}</td>
-                                                  <td><button routerLink="/log-details/{{logs.id}}" class="btn btn-sm btn-dark btn-outline-info">Details</button></td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <div class="d-flex justify-content-center">
-                                              <pagination-controls
-                                                previousLabel="Prev"
-                                                nextLabel="Next"
-                                                (pageChange)="onTableDataChange($event)"
-                                              >
-                                              </pagination-controls>
-                                              </div>
-                                  </div>
-                            </div>
-                            </div>
-                            
-                            <div *ngIf="empty">
-                                <h1>Sorry, we didn't find any logs for the date {{values | date: 'fullDate'}}</h1>
-                            </div>
-                          </div>
-                          <div *ngIf="cleared">
-                            <h2>Search cleared.</h2>
-                          </div>
-                        </div>
-                        
-                        <div *ngIf="error">
-                          <h1>Sorry, we didn't find any results for the date {{values}}</h1>
-                          <p>The server responded with this message: {{message}}</p>
-                        </div>
-              
+                    </div>
+                    <div class="col-lg-4"></div>
+                  </div> -->
+            </form>
+            <app-credit-log-card [cards]="cardResults" [searchText]="searchText" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-credit-log-card>
         </div>
+        <div *ngIf="showM">
+          <form class="form shadow bg-light padding-2" id="f1">
+            <h5 class="text-center">Search Filter <br> <span><small class="font-sm">We will filter your search against all mpesa logs</small></span></h5>
+                <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width">
+                    <mat-label>Month/Day/Transaction/Amount/User</mat-label>
+                    <input matInput placeholder="Enter Month/Day/Transaction-No./Amount/Bank-Amount/Username" list="mpesaDatalistOptions" id="mpesaDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
+                    <datalist id="mpesaDatalistOptions">
+                        <option value="Nov" *ngFor="let mpesa of mpesaResults" [value]="mpesa.formatted_date">  
+                    </datalist>
+                    <mat-icon matSuffix>date</mat-icon>
+                    <mat-hint>e.g: Oct or Mon</mat-hint>
+                  </mat-form-field>  
+                
+                
+                <!-- <div class="row mt-5" *ngIf="eOD">
+                  <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <div class="card center padding-2">
+                            <div class="title" name="title"><h6>You exited the filter</h6></div>
+                            <p>If you were not done searching, you can hit <button (click)="refresh()" class="btn btn-sm btn-dark btn-outline-info">this button</button> to reset</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4"></div>
+                  </div> -->
+            </form>
+            <app-mpesa-log-card [mpesa]="mpesaResults" [searchText]="searchText" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-mpesa-log-card>
+        </div>
+          <br>
+          <div class="shadow text-center">
+              <h6>Feeling lost? <i class="fa-solid fa-person-circle-question"></i></h6>
+              <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                                           (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                              <i class="fa-regular fa-circle-question"></i> How to search
+                          </mat-panel-title>
+                          <mat-panel-description>
+                            By Month
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>Enter a month's abbreviation, e.g. <span><code>Oct</code></span> for all logs of October.</p>
+                      </mat-expansion-panel>
+                      <mat-expansion-panel (opened)="panelOpenState = true"
+                                           (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                              <i class="fa-regular fa-circle-question"></i> How to search
+                          </mat-panel-title>
+                          <mat-panel-description>
+                          By Day
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>Enter a day's abbreviation, e.g. <span><code>Mon</code></span> for all logs of Monday.</p>
+                      </mat-expansion-panel>
+                      <mat-expansion-panel (opened)="panelOpenState = true"
+                                           (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                              <i class="fa-solid fa-circle-info"></i> Please note
+                          </mat-panel-title>
+                          <mat-panel-description>
+                            This is an all-inclusive search filter. Read more...
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>If you search for <span><code>Mon</code>,</span> the server will return all logs recorded on all Mondays, from the first to the last. <br><br> Same case when you search for a month, e.g <span><code>Oct</code></span></p>
+                      </mat-expansion-panel>
+                      <mat-expansion-panel (opened)="panelOpenState = true"
+                                           (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                              <i class="fa-solid fa-calendar-day"></i> Specific Date?
+                          </mat-panel-title>
+                          <mat-panel-description>
+                          Use the Specific Search Tool. Read more...
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>If you want to find logs of a specific date, e.g <span><code>13/10/2022</code>,</span> you should use the <span class="bg-info rounded">Specific Search Tool.</span> <br><br> Unlike this Search Filter, the Specific Search returns all logs of a specific date.</p>
+                      </mat-expansion-panel>
+                      </mat-accordion>
+                      </div>
+         
+              
+             
+              
+            
+            
+            
+      </div>
+      <div class="col-md-6">
+        <ul class="nav nav-tabs float-right">
+          <li class="nav-item">
+              <a class="nav-link disabled"><i class="fa-solid fa-angle-down"></i> Pick a date to start</a>
+            </li>
+        </ul>
+        <br><br>
+          <div class="shadow padding-2 bg-light">
+            <form class="form" role="search" id="searchForm">
+              <h5 class="text-center">Specific Search <br> <span><small class="font-sm">Choose a date and we will return everything we find</small></span></h5>
+              <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width">
+                  <mat-label>Date</mat-label>
+                  <input matInput type="date" (mousemove)="onKey($event);close();hideR" (mouseover)="onKey($event);close()" (keydown)="onKey($event);close()" (mousedown)="onKey($event);close()" (keyup)="onKey($event);close()" (mouseleave)="onKey($event);close()" placeholder="Select date" aria-label="Search" required>
+                  <mat-icon matSuffix>date</mat-icon>
+                  <mat-hint>e.g: 10/13/2022</mat-hint>
+                </mat-form-field>
+              <div>
+                  
+              </div>
+            </form>
+          </div>
+            <br>
+            <div *ngIf="values">
+              <p>{{values | date: 'fullDate'}} <span>Selected!</span> <span><button class="margin btn btn-light btn-md btn-outline-primary" type="button" (click)="search($event.value);unClear()" [disabled]="!values"><i class="fa-solid fa-magnifying-glass"></i> Now</button></span> | <span><button class="btn btn-md btn-light btn-outline-danger" (click)="clearValues()"><i class="fa-solid fa-trash-can-arrow-up"></i> Reset</button></span></p>
+            <p>Remember to <strong class="bg-info rounded">always</strong> reset your previous search before starting a new one.</p>
+            </div>
+            
+            
+            <div class="shadow text-center bg-light" *ngIf="!foundLogs || !foundCards || !foundMpesa || cleared">
+              <h6>Feeling lost? <i class="fa-solid fa-person-circle-question"></i></h6>
+              <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                                           (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                              <i class="fa-solid fa-magnifying-glass-arrow-right"></i> About
+                          </mat-panel-title>
+                          <mat-panel-description>
+                            This search tool
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>This search tool will request the server for all records of a specific date.</p>
+                      </mat-expansion-panel>
+                      <mat-expansion-panel (opened)="panelOpenState = true"
+                                           (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                              <i class="fa-regular fa-circle-question"></i> How to search
+                          </mat-panel-title>
+                          <mat-panel-description>
+                          By specific date
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>To search for a specific date:</p>
+                        <p><mat-icon>check</mat-icon> Click on the date picker icon <span><i class="fa-regular fa-calendar"></i></span> at the far right of the search bar. <mat-icon>check</mat-icon> Pick a date. <mat-icon>check</mat-icon> Hit the <span><button class="margin btn btn-light btn-sm btn-outline-primary" type="button" disabled><i class="fa-solid fa-magnifying-glass"></i> Now</button></span> button to start searching.</p>
+                      </mat-expansion-panel>
+                      <mat-expansion-panel (opened)="panelOpenState = true"
+                                           (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                              <i class="fa-solid fa-circle-exclamation"></i> No logs? Errors?
+                          </mat-panel-title>
+                          <mat-panel-description>
+                            What happens? Read more...
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>If no logs have been posted for the date you searched, the server will return an empty response.</p>
+                        <p>If something goes wrong while attempting to retrive the searched logs, the server will return an error message.</p>
+                      </mat-expansion-panel>
+                      <mat-expansion-panel (opened)="panelOpenState = true"
+                                           (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                          <i class="fa-solid fa-rotate-left"></i> Start over?
+                          </mat-panel-title>
+                          <mat-panel-description>
+                          How to reset the search & start over
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>To reset the search and start a new one, click (PC) or tap (mobile) the <button class="btn btn-sm btn-dark btn-outline-primary" disabled>reset button</button> before you can return to the datepicker and select another date.</p>
+                      </mat-expansion-panel>
+                      </mat-accordion>
+                      </div>
+                      <hr>
+                      <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
+                        <span class="sr-only"> Searching; please wait... </span>
+                    </div>
+                      <div *ngIf="empty">
+                        <h2>Sorry, we found nothing for the date {{values | date: 'fullDate'}} | <button class="btn btn-md btn-light btn-outline-danger" (click)="clearValues()"><i class="fa-solid fa-trash-can-arrow-up"></i></button></h2>
+                    </div>
+                      <div *ngIf="cleared">
+                        <h2>Search cleared.</h2>
+                      </div>
+                      
+                      
+                      
+                      
+                      <!-- <div *ngIf="error">
+                        <h1>Sorry, we didn't find any results for the date {{values}}</h1>
+                        <p>The server responded with this message: {{message}}</p>
+                      </div> -->
+            
+      </div>
+  </div>
+  
+<div *ngIf="!hideRes" class="container padding">
+  <div *ngIf="foundLogs || foundCards || foundMpesa">
+    <div *ngIf="!cleared">
+      <div *ngIf="!empty">
+         
+            <div class="card-body shadow bg-light padding border rounded">
+              <h4 class="card-title text-center"> 
+                 <i class="fa-regular fa-file-lines"></i>  We found the following logs for the date {{values}} | <button class="btn btn-md btn-light btn-outline-danger" (click)="clearValues()"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
+              </h4>
+                <app-logs-card [logs]="foundLogs" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-logs-card>
+                <app-credit-log-card [cards]="foundCards" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-credit-log-card>
+                <app-mpesa-log-card [mpesa]="foundMpesa" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-mpesa-log-card>
+      </div>
+      </div>
+      
+      
     </div>
+    
+  </div>
+  </div>
 </div>
 
-       
-        
-        
+     
+      
+      
 <br><br><br><br><br><br><br>
 
-        
-        
+      
+      
+
   
-    
 
 
-        
-        
+      
+      
 
-         
+       

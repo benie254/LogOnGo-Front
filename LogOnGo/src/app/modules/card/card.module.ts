@@ -24,6 +24,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { DeleteCardFormComponent } from './forms/delete-card-form/delete-card-form.component';
 import { CardReportFormComponent } from './forms/card-report-form/card-report-form.component';
 import { FuelModule } from '../fuel/fuel.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -54,12 +55,15 @@ import { FuelModule } from '../fuel/fuel.module';
     MatDatepickerModule,
     MatExpansionModule,
     FuelModule,
+    Ng2SearchPipeModule,
   ],
   exports: [
     AllCardLogsComponent,
     FuelCardLogsComponent,
     NoCardComponent,
     ProfileCardLogsComponent,
+    AddCardComponent,
+    CreditLogCardComponent,
   ]
 })
 export class CardModule { }

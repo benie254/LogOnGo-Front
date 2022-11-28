@@ -6,6 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./mpesa-log-card.component.css']
 })
 export class MpesaLogCardComponent implements OnInit {
+  @Input() searchText: any;
   @Input() mpesa: any;
   @Input() fuelMpesa: any;
   @Input() userMpesa: any;

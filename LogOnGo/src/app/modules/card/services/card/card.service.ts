@@ -18,6 +18,7 @@ export class CardService {
   apiFuelPumps = apiURL + 'pumps/fuel/';
   apiCardReport = apiURL + 'log/card/email/report/';
   apiDelCard = apiURL + 'log/card/delete/request/';
+  apiPastCards = apiURL + 'logs/card/past/'
 
   constructor(
     private handler:RequestHandlerService,
@@ -49,5 +50,8 @@ export class CardService {
   }
   deleteCard(logData): Observable<any>{
     return this.handler.handlePOST<any>(this.apiDelCard, logData)
+  }
+  searchByDate(cardDate:string): Observable<any>{
+    return this.handler.handleGET<any>(this.apiPastCards + cardDate)
   }
 }
