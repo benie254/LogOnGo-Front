@@ -1,73 +1,82 @@
-<form  #addCardForm="ngForm" (submit)="addCard(addCardForm.value)" id="addCardForm" class="padding-2 bg-light rounded shadow">
-    <h6 class="">Add Card Log Details</h6><br>
+<div class="container">
+  <form  #addCardForm="ngForm" (submit)="addCard(addCardForm.value)" id="addCardForm" class="padding-2 bg-light rounded shadow">
+    <h6>Add Card Log Details</h6>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Select Fuel Id </mat-label>
+      <mat-select name="fuel" ngModel #fuel="ngModel" required>
+        <mat-option *ngFor="let f of fuels"  value="{{f.id}}" name="fuel" ngModel #fuel="ngModel" type="number" required>{{f.fuel_type}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="fuel.hasError('required') || fuel.pristine">
+        Fuel is <strong>required</strong>
+      </mat-error> 
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput name="amount" #amount="ngModel" ngModel type="number" required>
+      <mat-error *ngIf="amount.hasError('required') || amount.pristine">
+        Amount is <strong>required</strong>
+      </mat-error> 
+    </mat-form-field>
+    <br>
+    <mat-form-field  appearance="outline">
+      <mat-label>Date</mat-label>
+      <input matInput name="date" #date="ngModel" ngModel type="date" required>
+      <mat-error *ngIf="date.hasError('required') || date.pristine">
+        Date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp; 
+    <mat-form-field appearance="outline">
+      <mat-label>Formatted Date</mat-label>
+      <input matInput name="formatted_date" ngModel type="text" #formatted_date="ngModel" [ngModel]="tdate" required>
+      <mat-error *ngIf="formatted_date.hasError('required') || formatted_date.pristine">
+        Formatted date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Card name</mat-label>
+      <input matInput name="card_name" #card_name="ngModel" ngModel type="text" required>
+      <mat-error *ngIf="card_name.hasError('required') || card_name.pristine">
+        Card name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp; 
+    <mat-form-field appearance="outline" >
+      <mat-label>Card number</mat-label>
+      <input matInput name="card_number" #card_number="ngModel" ngModel type="number" min="999999999999999" max="10000000000000000" required>
+      <mat-error *ngIf="card_number.hasError('min')">
+        Card number should be at least <strong>16 digits</strong>
+      </mat-error>
+      <mat-error *ngIf="card_number.hasError('max')">
+        Card number cannot be more than <strong>16 digits</strong>
+      </mat-error>
+      <mat-error *ngIf="card_number.hasError('required') || card_number.pristine">
+        Card number is <strong>required</strong>
+      </mat-error> 
+    </mat-form-field>  
+    <br>
+    <mat-form-field appearance="outline" >
+      <mat-label>Logged by</mat-label>
+      <input matInput name="logged_by" #logged_by="ngModel" ngModel type="text" [(ngModel)]="currentUser.username" required>
+      <mat-error *ngIf="logged_by.hasError('required') || logged_by.pristine">
+        This field is <strong>required</strong>
+      </mat-error> 
+    </mat-form-field>
+    &nbsp;&nbsp;&nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Select Your User Id </mat-label>
+      <mat-select name="user_id" ngModel #user_id="ngModel" >
+        <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user_id" ngModel #user_id="ngModel" type="number">{{a.username}}</mat-option>
+      </mat-select>
+    </mat-form-field>
     
-            <mat-form-field appearance="outline">
-                <mat-label>Select Fuel Id </mat-label>
-                <mat-select name="fuel" ngModel #fuel="ngModel" >
-                  <mat-option *ngFor="let f of fuels"  value="{{f.id}}" name="fuel" ngModel #fuel="ngModel" type="number">{{f.fuel_type}}</mat-option>
-                </mat-select>
-              </mat-form-field>&nbsp;&nbsp;&nbsp;
-              <mat-form-field appearance="outline" >
-                <mat-label>Amount</mat-label>
-                <input matInput placeholder="Enter amount" name="amount" #amount="ngModel" ngModel type="number" required>
-                <mat-hint>e.g <strong>1200</strong></mat-hint>
-                <mat-error *ngIf="amount.hasError('required') || amount.pristine">
-                  Amount is <strong>required</strong>
-                </mat-error> 
-                </mat-form-field><br>
-                <mat-form-field  appearance="outline">
-                    <mat-label>Date</mat-label>
-                    <input matInput placeholder="Enter date" name="date" #date="ngModel" ngModel type="date" required>
-                    <mat-error *ngIf="date.hasError('required') || date.pristine">
-                      Date is <strong>required</strong>
-                    </mat-error>
-                  </mat-form-field>  &nbsp;&nbsp;&nbsp; 
-                    <mat-form-field appearance="outline">
-                      <mat-label>Formatted Date</mat-label>
-                      <input matInput name="formatted_date" ngModel type="text" #formatted_date="ngModel" [ngModel]="tdate" required>
-                      <mat-hint>e.g Mon Nov 28 2022</mat-hint>
-                      <mat-error *ngIf="formatted_date.hasError('required') || formatted_date.pristine">
-                        Formatted date is <strong>required</strong>
-                      </mat-error>
-                    </mat-form-field> <br>
-                <mat-form-field appearance="outline">
-                    <mat-label>Card name</mat-label>
-                    <input matInput placeholder="Enter card name" name="card_name" #card_name="ngModel" ngModel type="text" required>
-                    <mat-hint>e.g <strong>JOHN KURIA DOE</strong></mat-hint>
-                    <mat-error *ngIf="card_name.hasError('required') || card_name.pristine">
-                      Card name is <strong>required</strong>
-                    </mat-error>
-                  </mat-form-field>      &nbsp;&nbsp;&nbsp; 
-              <mat-form-field appearance="outline" >
-                  <mat-label>Card number</mat-label>
-                  <input matInput placeholder="Enter card number" name="card_number" #card_number="ngModel" ngModel type="number" min="999999999999999" max="10000000000000000" required>
-                  <mat-hint>e.g <strong>1111 2222 3333 4444</strong></mat-hint>
-                  <mat-error *ngIf="card_number.hasError('min')">
-                    Card number should be at least <strong>16 digits</strong>
-                  </mat-error>
-                  <mat-error *ngIf="card_number.hasError('max')">
-                    Card number cannot be more than <strong>16 digits</strong>
-                  </mat-error>
-                  <mat-error *ngIf="card_number.hasError('required') || card_number.pristine">
-                    Card number is <strong>required</strong>
-                  </mat-error> 
-                </mat-form-field>  <br>
-        
-              
-                <mat-form-field appearance="outline" >
-                    <mat-label>Logged by</mat-label>
-                    <input matInput name="logged_by" #logged_by="ngModel" ngModel type="text" [(ngModel)]="currentUser.username">
-                  </mat-form-field> &nbsp;&nbsp;&nbsp;
-                  <mat-form-field appearance="outline">
-                    <mat-label>Select Your User Id </mat-label>
-                    
-                    <mat-select name="user_id" ngModel #user_id="ngModel" >
-                      <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user_id" ngModel #user_id="ngModel" type="number">{{a.username}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-          
-    
-        <div class="form-group">
-            <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" [disabled]="addCardForm.invalid" (click)="reload()">Save</button> &nbsp;&nbsp; <button type="submit" (click)="reset();" style="margin-top:1%;" mat-flat-button color="accent" [disabled]="addCardForm.invalid">Save and add another</button>
-        </div>
-    </form>
+    <div class="form-group">
+      <button type="submit" class="margin-top" mat-raised-button color="accent" [disabled]="addCardForm.invalid" (click)="reload()">Save</button>
+      &nbsp;&nbsp;
+      <button type="submit" (click)="reset();" class="margin-top" mat-flat-button color="accent" [disabled]="addCardForm.invalid">Save and add another</button>
+    </div>
+  </form>
+</div>
