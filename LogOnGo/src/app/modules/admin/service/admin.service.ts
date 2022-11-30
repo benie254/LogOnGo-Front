@@ -11,7 +11,8 @@ import { Log } from 'src/app/classes/log/log';
 import { User } from 'src/app/classes/user/user';
 import { RequestHandlerService } from 'src/app/helpers/requests/request-handler.service';
 
-const apiURL = 'http://127.0.0.1:8000/api/'
+// const apiURL = 'http://127.0.0.1:8000/api/'
+const apiURL = 'https://logongo-api-production.up.railway.app/api/'
 
 @Injectable({
   providedIn: 'any'

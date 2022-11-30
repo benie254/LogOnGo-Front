@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "log-on-go",
+    "public": "dist/logongo",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

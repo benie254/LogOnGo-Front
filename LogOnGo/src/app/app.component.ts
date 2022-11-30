@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { isThisSecond } from 'date-fns';
 import * as Notiflix from 'notiflix';
 import { AuthService } from './modules/auth/services/auth/auth.service';
 
@@ -33,15 +32,6 @@ export class AppComponent implements OnInit {
     this.meta.updateTag({name: 'description', content: 'Petrol Station Management'}) 
     this.meta.updateTag({name: 'image', content: ''}) 
     this.meta.updateTag({name: 'site', content: 'LogOnGo'}) 
-    if(this.authService.currentUserValue){
-      this.authenticated = true;
-      console.warn('token:',this.authService.currentUserValue)
-      this.currentUser = this.authService.currentUserValue
-    } else {
-      this.authenticated = false; 
-      this.authService.logout();
-      this.router.navigate(['/auth'])
-    }
     this.detector.detectChanges();
   }
 }
