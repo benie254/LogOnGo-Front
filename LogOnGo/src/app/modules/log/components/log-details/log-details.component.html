@@ -19,11 +19,11 @@
               <tbody>
                 <tr>
                   <td>{{logs.id}}</td>
-                  <td id="tester-today2">{{logs.eod_reading_lts}}</td>
-                  <td id="tester-yesterday2">{{logs.eod_reading_yesterday}}</td>
-                  <td id="total-today2">{{logs.total_litres_sold}}</td>
-                  <td id="amount-today2">{{logs.amount_earned_today}}</td>
-                  <td>{{logs.balance}}</td>
+                  <td id="tester-today2">{{logs.eod_reading}}</td>
+                  <td id="tester-yesterday2">{{logs.eod_yesterday}}</td>
+                  <td id="total-today2">{{logs.litres_sold}}</td>
+                  <td id="amount-today2">{{logs.amount_td}}</td>
+                  <td>{{logs.bal}}</td>
                 </tr>
               </tbody>
             </table>
@@ -38,7 +38,7 @@
         
       </div>
       <div class="bg-light rounded bg-light">
-        <p class="aloha text-center">{{logs.fuel_type}} <i class="fa-solid fa-bolt"></i> &nbsp;|&nbsp; <i class="fa-solid fa-hand-holding-dollar"></i> Ksh. {{logs.price_per_litre}} P/Lt. &nbsp;|&nbsp; General <i class="fa-regular fa-file-lines"></i></p>
+        <p class="aloha text-center">{{logs.fuel_type}} <i class="fa-solid fa-bolt"></i> &nbsp;|&nbsp; <i class="fa-solid fa-hand-holding-dollar"></i> Ksh. {{logs.pp_litre}} P/Lt. &nbsp;|&nbsp; General <i class="fa-regular fa-file-lines"></i></p>
       </div>
     </div>
     <div class="col-lg-4 padding text-center">
@@ -59,9 +59,9 @@
                 
                   <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
                     <mat-label>EOD reading</mat-label>
-                    <input matInput placeholder="End of day reading" ngModel name="eod_reading_lts" #eod_reading_lts="ngModel" type="number" [(ngModel)]="logs.eod_reading_lts" required>
+                    <input matInput placeholder="End of day reading" ngModel name="eod_reading" #eod_reading="ngModel" type="number" [(ngModel)]="logs.eod_reading" required>
                     <mat-hint> <span *ngIf="!errEOD">e.g <strong>111222333</strong></span>  <span *ngIf="errEOD" class="rounded bold" style="color:red">{{errEOD}}</span></mat-hint>
-                    <mat-error *ngIf="eod_reading_lts.hasError('required') || eod_reading_lts.pristine">
+                    <mat-error *ngIf="eod_reading.hasError('required') || eod_reading.pristine">
                       EOD reading is <strong>required</strong>
                     </mat-error>
                   </mat-form-field> 

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
-import { first } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { Pass } from 'src/app/classes/pass/pass';
+import { User } from 'src/app/classes/user/user';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -9,12 +11,13 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: './change-pass-form.component.html',
   styleUrls: ['./change-pass-form.component.css']
 })
-export class ChangePassFormComponent implements OnInit {
+export class ChangePassFormComponent implements OnInit, OnDestroy {
   values = '';
   value = '';
   noMatch: boolean;
   id: number;
-  currentUser = this.authService.currentUserValue;
+  currentUser: User = this.authService.currentUserValue;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private authService:AuthService,
@@ -39,19 +42,14 @@ export class ChangePassFormComponent implements OnInit {
       this.noMatch = true;
     } 
   }
-  changePass(passData){
-    Notiflix.Loading.hourglass('Processing...')
-    console.warn("pass data:",passData)
-    this.authService.changePassword(passData, this.id).pipe(first()).subscribe(
+  changePass(passData: Pass){
+    Notiflix.Loading.hourglass('Processing... please wait')
+    this.authService.changePassword(passData, this.id).pipe(takeUntil(this.unsubscribe$)).subscribe(
       {
         next: (res) => {
+          Notiflix.Notify.success('Password updated!')
           Notiflix.Loading.remove();
           console.log(res);
-          Notiflix.Report.success(
-            'Password updated',
-            '',
-            'Okay',
-          );
           this.reloadAndLogout();
         }
       }
@@ -62,5 +60,9 @@ export class ChangePassFormComponent implements OnInit {
     location.reload();
   }
 
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
 

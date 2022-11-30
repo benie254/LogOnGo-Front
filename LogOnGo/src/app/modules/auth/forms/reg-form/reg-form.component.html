@@ -10,7 +10,6 @@
           <mat-label>Username</mat-label>
           <input matInput placeholder="Enter username..." name="username" ngModel #username="ngModel" type="text" required minlength="4" maxlength="15">
           <mat-icon matSuffix>account_box</mat-icon>
-          <mat-hint></mat-hint>
           <mat-hint>Min <strong>4 char</strong> | Max <strong>15 char</strong></mat-hint>
           <mat-error *ngIf="username.hasError('minlength')">
             Username should be at least <strong>4 characters</strong>.
@@ -142,7 +141,7 @@
     <div class="row">
       <div class="col"></div>
       <div class="col center padding-bottom">
-        <button class="margin-top w-100 btn btn-lg btn-light btn-outline-primary" type="submit" [disabled]="regForm.invalid"><span><i class="fa-solid fa-user-shield"></i></span> Sign up</button>
+        <button class="margin-top w-100" mat-raised-button color="accent" type="submit" [disabled]="regForm.invalid"><span><i class="fa-solid fa-user-shield"></i></span> Sign up</button>
         <br><br>
         <a type="button" routerLink="/login"><p class="small">or <strong>Login here</strong></p></a>
       </div>

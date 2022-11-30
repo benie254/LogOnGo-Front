@@ -10,7 +10,6 @@ import { FuelService } from '../../fuel/services/fuel/fuel.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  public hideNav: boolean = false;
   isCollapsed: boolean = true;
   isLoggedIn: boolean = false;
   authenticated: boolean;
@@ -20,7 +19,6 @@ export class NavbarComponent implements OnInit {
   fetchLogSuccess: boolean = false; 
   noLog: boolean = false;
   log: any;
-  navAdmin: boolean = false;
 
   isLoading: boolean = false;
   year = new Date().getFullYear()
@@ -40,7 +38,7 @@ export class NavbarComponent implements OnInit {
   isSuper: boolean = false;
   // backURL = 'https://logongo.herokuapp.com/admin/';
   backURL = 'http://127.0.0.1:8000/admin/'
-  siteNav: boolean;
+  siteNavbar: boolean;
   saved: any; 
   switchAdmin: any;
   @Input() toggleAdmin: () => void;
@@ -76,7 +74,7 @@ export class NavbarComponent implements OnInit {
     })
   }
   goToAdmin(){
-    this.siteNav = false;
+    this.siteNavbar = false;
   }
   
   saveValue(){
@@ -84,10 +82,10 @@ export class NavbarComponent implements OnInit {
     this.saved = this.switchAdmin;
   }
   exitAdmin(){
-    if(this.siteNav = false){
-      this.siteNav = this.saved;
+    if(this.siteNavbar = false){
+      this.siteNavbar = this.saved;
     }else{
-      this.siteNav = this.saved;
+      this.siteNavbar = this.saved;
     }
     
   }
@@ -112,7 +110,7 @@ export class NavbarComponent implements OnInit {
     // this.ngOnInit()
     this.authService.logout();
     location.reload()
-    // this.router.navigate(['/login']);
+    // this.router.navbarigate(['/login']);
     this.authenticated = false;
   }
   refresh(){

@@ -32,27 +32,7 @@ export class ProfileComponent implements OnInit {
   tableSize: number = 2;
   tableSizes: any = [2, 5, 10, 15];
   currentUser = this.auth.currentUserValue;
-  logs: Log = {
-    id: 0,
-    date: '',
-    formatted_date: '',
-    eod_reading_lts: 0.00,
-    eod_reading_yesterday: 0.00,
-    total_litres_sold: 0.00,
-    amount_earned_today: 0,
-    fuel: 0,
-    fuel_type: '',
-    price_per_litre: 0,
-    pump: 0,
-    pump_name: '',
-    logged_by: '',
-    user_id: 0,
-    balance: 0.00,
-    balance_yesterday: 0.00,
-    updated_balance: 0.00,
-    first_logged: '',
-    last_edited: ''
-  };
+  
   info: any; 
   isExpanded: boolean = false;
   panelOpenState = false;

@@ -5,7 +5,6 @@ import { NavigationRoutingModule } from './navigation-routing.module';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { FuelSummaryComponent } from './fuel-summary/fuel-summary.component';
 import { SettingUpComponent } from './setting-up/setting-up.component';
@@ -19,6 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AdminNavigationComponent } from './admin-navigation/admin-navigation.component';
 import { AdminModule } from '../admin/admin.module';
+import { AppModule } from 'src/app/app.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -27,7 +28,6 @@ import { AdminModule } from '../admin/admin.module';
     FooterComponent,
     HomeComponent,
     LandingComponent,
-    NavbarComponent,
     AboutComponent,
     FuelSummaryComponent,
     SettingUpComponent,
@@ -35,7 +35,8 @@ import { AdminModule } from '../admin/admin.module';
     DieselSummaryComponent,
     GasSummaryComponent,
     PetrolSummaryComponent,
-    AdminNavigationComponent
+    AdminNavigationComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -45,11 +46,10 @@ import { AdminModule } from '../admin/admin.module';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    AdminModule,
   ],
   exports: [
-    NavbarComponent,
     FooterComponent,
+    NavbarComponent
   ]
 })
 export class NavigationModule { }

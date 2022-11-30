@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { isThisQuarter } from 'date-fns';
 import * as Notiflix from 'notiflix';
-import { first } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { Pass } from 'src/app/classes/pass/pass';
+import { User } from 'src/app/classes/user/user';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -10,12 +11,11 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: './reset-request-form.component.html',
   styleUrls: ['./reset-request-form.component.css']
 })
-export class ResetRequestFormComponent implements OnInit {
+export class ResetRequestFormComponent implements OnInit,OnDestroy {
   authenticated: boolean = false;
-  currentUser = this.authService.currentUserValue;
-  procced: boolean;
+  currentUser: User = this.authService.currentUserValue;
   id:number;
-  requestSent: boolean;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private authService:AuthService,
@@ -28,9 +28,9 @@ export class ResetRequestFormComponent implements OnInit {
       this.authenticated = true;
     }
   }
-  requestResetPass(userData){
-    Notiflix.Loading.hourglass('Requesting...')
-    this.authService.requestResetPassword(userData, this.id).pipe(first()).subscribe(
+  requestResetPass(userData: Pass){
+    Notiflix.Loading.hourglass('Requesting... please wait.')
+    this.authService.requestResetPassword(userData, this.id).pipe(takeUntil(this.unsubscribe$)).subscribe(
       {
         next: (res) => {
           Notiflix.Loading.remove();
@@ -40,7 +40,7 @@ export class ResetRequestFormComponent implements OnInit {
             'We have sent a password reset link to your email with further instructions. Please check it out.',
             'Thanks',
           );
-          this.back();
+          history.back();
         }
       }
     )
@@ -49,8 +49,10 @@ export class ResetRequestFormComponent implements OnInit {
     this.authService.logout();
     location.reload();
   }
-  back(){
-    history.back();
+
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
 

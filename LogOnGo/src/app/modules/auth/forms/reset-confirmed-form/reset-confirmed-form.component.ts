@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
-import { first } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { Pass } from 'src/app/classes/pass/pass';
+import { User } from 'src/app/classes/user/user';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -9,25 +11,27 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: './reset-confirmed-form.component.html',
   styleUrls: ['./reset-confirmed-form.component.css']
 })
-export class ResetConfirmedFormComponent implements OnInit {
+export class ResetConfirmedFormComponent implements OnInit, OnDestroy {
   authenticated: boolean = false;
   id: number;
   values = '';
   value = '';
   noMatch: boolean;
   updateConfirmed: boolean;
-  currentUser = this.authService.currentUserValue;
+  currentUser: User = this.authService.currentUserValue;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private authService:AuthService,
     private route:ActivatedRoute,
-    private router:Router,
   ) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     if (this.authService.currentUserValue) {
       this.authenticated = true;
+    } else {
+      this.authenticated = false;
     }
   }
   onKeyOne(event: any){
@@ -45,9 +49,9 @@ export class ResetConfirmedFormComponent implements OnInit {
       this.noMatch = true;
     } 
   }
-  resetPass(passData){
+  resetPass(passData: Pass){
     Notiflix.Loading.hourglass('Processing...')
-    this.authService.resetPassword(passData, this.id).pipe(first()).subscribe(
+    this.authService.resetPassword(passData, this.id).pipe(takeUntil(this.unsubscribe$)).subscribe(
       {
         next: (res) => {
           Notiflix.Loading.remove();
@@ -65,5 +69,10 @@ export class ResetConfirmedFormComponent implements OnInit {
   reloadAndLogout(){
     this.authService.logout();
     location.reload();
+  }
+
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

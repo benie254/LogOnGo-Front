@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
-import { first } from 'rxjs';
+import { first, Subject, takeUntil } from 'rxjs';
+import { User } from 'src/app/classes/user/user';
 import { AuthService } from '../../services/auth/auth.service';
 import { MyErrorStateMatcher } from '../../services/matcher/matcher.service';
 
@@ -10,9 +11,10 @@ import { MyErrorStateMatcher } from '../../services/matcher/matcher.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent implements OnInit, OnDestroy {
   authenticated: boolean = false;
   matcher = new MyErrorStateMatcher();
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private authService:AuthService,
@@ -29,22 +31,23 @@ export class LoginFormComponent implements OnInit {
       this.router.navigate(['/auth'])
     }
   }
-
   isValid(event: boolean): void {
     console.log(event);
   }
-  logIn(userData): void {
-    Notiflix.Loading.hourglass('Processing, please wait...');
-    this.authService.login(userData).pipe(
-      first()
-      ).subscribe(
+  logIn(userData: User): void {
+    Notiflix.Loading.hourglass('Processing... please wait.');
+    this.authService.login(userData).pipe(first()).subscribe(
         data => {
           Notiflix.Loading.remove();
-                  // this.router.navigate(['/']);
                   Notiflix.Notify.success('Login successful! Welcome.');
                   location.reload();
-                  this.router.navigate(['/login/success'])
+                  this.router.navigate(['/auth/login/success'])
                   this.authenticated = true;
                 });
+    }
+  
+    ngOnDestroy(){
+      this.unsubscribe$.next();
+      this.unsubscribe$.complete();
     }
 }

@@ -19,6 +19,9 @@ import { ResetRequestFormComponent } from './forms/reset-request-form/reset-requ
 import { RegisterComponent } from './components/register/register.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ResetConfirmedComponent } from './components/reset-confirmed/reset-confirmed.component';
+import { MatButtonModule } from '@angular/material/button';
+import { NavbarComponent } from '../navigation/navbar/navbar.component';
+import { NavigationModule } from '../navigation/navigation.module';
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -57,6 +60,8 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     MatInputModule,
     MatSelectModule,
     NgPasswordValidatorModule.forRoot(MyDefaultOptions as NgPasswordValidatorOptions),
+    MatButtonModule,
+    NavigationModule
   ],
   exports: [
     ChangePasswordComponent,

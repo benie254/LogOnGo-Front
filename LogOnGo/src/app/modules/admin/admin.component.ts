@@ -9,15 +9,12 @@ import { AdminService } from './service/admin.service';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  hideNav: boolean = false;
   allFuels: any;
   logS: any;
   cardS: any;
   mpesaS: any;
   admins: any;
   selected: any;
-  @Input() showAdmin: boolean; 
-  @Input() toggleAdmin: () => void;
 
   constructor(
     private fuel:FuelService,
@@ -25,7 +22,6 @@ export class AdminComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.hideNav = true;
     this.allAdmins();
     this.getFuels();
     this.logSummary();

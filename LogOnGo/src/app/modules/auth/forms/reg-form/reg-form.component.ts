@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgPasswordValidatorOptions } from 'ng-password-validator';
 import * as Notiflix from 'notiflix';
-import { first } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { User } from 'src/app/classes/user/user';
 import { AuthService } from '../../services/auth/auth.service';
 import { MyErrorStateMatcher } from '../../services/matcher/matcher.service';
 
@@ -11,7 +12,7 @@ import { MyErrorStateMatcher } from '../../services/matcher/matcher.service';
   templateUrl: './reg-form.component.html',
   styleUrls: ['./reg-form.component.css']
 })
-export class RegFormComponent implements OnInit {
+export class RegFormComponent implements OnInit, OnDestroy {
   formValid: boolean = false;
   hide = true;
   noMatch: boolean;
@@ -20,6 +21,7 @@ export class RegFormComponent implements OnInit {
   value = '';
   noPass2: boolean;
   matcher = new MyErrorStateMatcher();
+  private unsubscribe$ = new Subject<void>();
   
   constructor(
     private router:Router,
@@ -66,14 +68,19 @@ export class RegFormComponent implements OnInit {
       this.noMatch = true;
     } 
   }
-  signUp(userData): void {
+  signUp(userData: User): void {
     Notiflix.Loading.hourglass('Processing, please wait...');
-    this.authService.register(userData).pipe(first()).subscribe({
+    this.authService.register(userData).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         Notiflix.Notify.success('Registration successful!');
         this.router.navigate(['/login']);
         Notiflix.Loading.remove();
       }
     });  
+  }
+
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

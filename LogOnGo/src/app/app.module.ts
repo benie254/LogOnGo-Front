@@ -17,6 +17,8 @@ import 'hammerjs';
 import { BindQueryParamDirective } from './directives/queryParams/bind-query-param.directive';
 import { ErrorsModule } from './modules/errors/errors.module';
 import { NavigationModule } from './modules/navigation/navigation.module';
+import { FooterComponent } from './modules/navigation/footer/footer.component';
+import { NavbarComponent } from './modules/navigation/navbar/navbar.component';
 
 
 
@@ -34,7 +36,7 @@ import { NavigationModule } from './modules/navigation/navigation.module';
     CommonModule,
     NoopAnimationsModule,
     ErrorsModule,
-    NavigationModule,
+    NavigationModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS,  useClass: AuthInterceptor, multi: true }

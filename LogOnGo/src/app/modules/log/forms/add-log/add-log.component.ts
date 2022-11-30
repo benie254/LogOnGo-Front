@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Log } from 'src/app/classes/log/log';
-import { Pump } from 'src/app/classes/pump/pump';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
 import { LogService } from '../../services/log/log.service';
@@ -18,7 +17,6 @@ export class AddLogComponent implements OnInit {
   currentUser = this.auth.currentUserValue;
   logs: Log;
   info: Fuel;
-  pumpOne: Pump;
   closed: boolean;
   status: number; 
   notFound: boolean = false;
