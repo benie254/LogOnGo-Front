@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+import { Fuel } from 'src/app/classes/fuel/fuel';
+import { User } from 'src/app/classes/user/user';
 import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
 
 @Component({
@@ -11,12 +14,13 @@ export class AllFuelsReceivedComponent implements OnInit {
   myModel = 'Fuel Received';
   @Input() myList: any;
   @Input() id: any;
-  @Input() admins: any;
+  @Input() admins: User;
   @Input() copy: (text: number) => void;
   showData: boolean = false;
   hideContent: boolean = false;
   showEdit: boolean = false;
-  @Input() allFuels: any;
+  @Input() allFuels: Fuel;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private fuel:FuelService,
@@ -27,7 +31,7 @@ export class AllFuelsReceivedComponent implements OnInit {
   }
   
   allRecords(){
-    this.fuel.getAllFuelReceived().subscribe({
+    this.fuel.getAllFuelReceived().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.myList = res;
       }
@@ -57,6 +61,11 @@ export class AllFuelsReceivedComponent implements OnInit {
   edit(){
     this.showEdit = true;
     this.hideContent = true;
+  }
+
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
 

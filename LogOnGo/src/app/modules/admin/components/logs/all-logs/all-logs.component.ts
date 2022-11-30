@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+import { User } from 'src/app/classes/user/user';
 import { LogService } from 'src/app/modules/log/services/log/log.service';
 
 @Component({
@@ -6,17 +8,18 @@ import { LogService } from 'src/app/modules/log/services/log/log.service';
   templateUrl: './all-logs.component.html',
   styleUrls: ['./all-logs.component.css']
 })
-export class AllLogsComponent implements OnInit {
+export class AllLogsComponent implements OnInit, OnDestroy {
   @Input() reload: () => void;
   myModel = 'Log';
   @Input() myList: any;
   @Input() id: any;
-  @Input() admins: any;
+  @Input() admins: User;
   @Input() copy: (text: number) => void;
   showData: boolean = false;
   hideContent: boolean = false;
   showEdit: boolean = false;
   @Input() fuels: any;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private log:LogService,
@@ -26,7 +29,7 @@ export class AllLogsComponent implements OnInit {
     this.allRecords();
   }
   allRecords(){
-    this.log.getAllLogs().subscribe({
+    this.log.getAllLogs().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.myList = res;
       }
@@ -56,5 +59,10 @@ export class AllLogsComponent implements OnInit {
   edit(){
     this.showEdit = true;
     this.hideContent = true;
+  }
+
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

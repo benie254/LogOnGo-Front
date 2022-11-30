@@ -3,7 +3,7 @@
         <h2>All Contacts</h2> 
         <div *ngIf="contacts">
             <hr>
-            <p *ngFor="let c of contacts" type="button" class="text-primary" (click)="copy(c.id);edit();">{{c.id}}. {{c.your_name}}</p>
+            <p *ngFor="let c of contacts" type="button" class="text-primary" (click)="copy(c.id);edit();">{{c.id}}. {{c.name}}</p>
             <hr>
             <p class="text-muted">{{contacts.length}} contacts. Click a contact to edit it.</p>
         </div>

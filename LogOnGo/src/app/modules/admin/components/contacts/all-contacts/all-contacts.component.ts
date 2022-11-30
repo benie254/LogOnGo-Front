@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from 'src/app/modules/user/services/user/user.service';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject, takeUntil } from 'rxjs';
 import { AdminService } from '../../../service/admin.service';
+import { Contact } from 'src/app/classes/contact/contact';
+import { User } from 'src/app/classes/user/user';
 
 @Component({
   selector: 'app-all-contacts',
   templateUrl: './all-contacts.component.html',
   styleUrls: ['./all-contacts.component.css']
 })
-export class AllContactsComponent implements OnInit {
-  contacts: any;
+export class AllContactsComponent implements OnInit, OnDestroy {
+  contacts: Contact;
   showEdit: boolean = false;
   showContacts: boolean = false;
   hideContent: boolean = false;
-  admins: any;
+  admins: User;
   selected: any;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private service:AdminService,
@@ -25,14 +28,14 @@ export class AllContactsComponent implements OnInit {
     this.allAdmins();
   }
   allAdmins(){
-    this.service.getAllAdmins().subscribe({
+    this.service.getAllAdmins().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.admins = res;
       }
     })
   }
   allContacts(){
-    this.service.getAllContacts().subscribe({
+    this.service.getAllContacts().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.contacts = res;
       }
@@ -65,7 +68,10 @@ export class AllContactsComponent implements OnInit {
     this.showEdit = true;
     this.hideContent = true;
   }
-  
 
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
 

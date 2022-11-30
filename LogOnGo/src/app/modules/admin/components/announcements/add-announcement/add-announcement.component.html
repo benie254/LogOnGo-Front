@@ -36,8 +36,8 @@
     &nbsp;&nbsp; &nbsp;
     <mat-form-field appearance="outline">
       <mat-label>Select Your User Id </mat-label>
-      <mat-select name="user_id" ngModel #user_id="ngModel" >
-        <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user_id" ngModel #user_id="ngModel" type="number">{{a.username}}</mat-option>
+      <mat-select name="user" ngModel #user="ngModel" >
+        <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user" ngModel #user="ngModel" type="number">{{a.username}}</mat-option>
       </mat-select>
     </mat-form-field>
 

@@ -4,7 +4,7 @@
     <br>
     <mat-form-field  appearance="outline">
       <mat-label>Date</mat-label>
-      <input matInput placeholder="Enter date" name="date" #date="ngModel" ngModel type="text" [(ngModel)]="details.date" required>
+      <input matInput name="date" #date="ngModel" ngModel type="text" [(ngModel)]="details.date" required>
       <mat-icon matSuffix>date</mat-icon>
       <mat-error *ngIf="date.hasError('required') || date.pristine">
         Date is <strong>required</strong>
@@ -13,37 +13,37 @@
     &nbsp;&nbsp;&nbsp; 
     <mat-form-field appearance="outline" >
       <mat-label>Formatted Date</mat-label>
-      <input matInput name="formatted_date" ngModel [(ngModel)]="details.formatted_date" type="text" required #formatted_date="ngModel">
-      <mat-error *ngIf="formatted_date.hasError('required') || formatted_date.pristine">
+      <input matInput name="long_date" ngModel [(ngModel)]="details.long_date" type="text" required #long_date="ngModel">
+      <mat-error *ngIf="long_date.hasError('required') || long_date.pristine">
         Formatted date is <strong>required</strong>
       </mat-error>
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline" >
-      <mat-label>Card name</mat-label>
-      <input matInput placeholder="Enter card name" name="card_name" #card_name="ngModel" [(ngModel)]="details.card_name" ngModel type="text" required>
+      <mat-label>Card Name</mat-label>
+      <input matInput name="card_name" #card_name="ngModel" [(ngModel)]="details.card_name" ngModel type="text" required>
       <mat-error *ngIf="card_name.hasError('required') || card_name.pristine">
         Card name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
     &nbsp;&nbsp;&nbsp;    
     <mat-form-field appearance="outline" >
-      <mat-label>Card number</mat-label>
-      <input matInput placeholder="Enter card number" name="card_number" #card_number="ngModel" ngModel [(ngModel)]="details.card_number" type="number" min="999999999999999" max="10000000000000000" required>
-      <mat-error *ngIf="card_number.hasError('min')">
+      <mat-label>Card Number</mat-label>
+      <input matInput name="card_no" #card_no="ngModel" ngModel [(ngModel)]="details.card_no" type="number" min="999999999999999" max="10000000000000000" required>
+      <mat-error *ngIf="card_no.hasError('min')">
         Card number should be at least <strong>16 digits</strong>
       </mat-error>
-      <mat-error *ngIf="card_number.hasError('max')">
+      <mat-error *ngIf="card_no.hasError('max')">
         Card number cannot be more than <strong>16 digits</strong>
       </mat-error>
-      <mat-error *ngIf="card_number.hasError('required') || card_number.pristine">
+      <mat-error *ngIf="card_no.hasError('required') || card_no.pristine">
         Card number is <strong>required</strong>
       </mat-error> 
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline" >
       <mat-label>Amount</mat-label>
-      <input matInput placeholder="Enter amount" name="amount" #amount="ngModel" ngModel type="number" [(ngModel)]="details.amount" required>
+      <input matInput name="amount" #amount="ngModel" ngModel type="number" [(ngModel)]="details.amount" required>
       <mat-error *ngIf="amount.hasError('required') || amount.pristine">
         Amount is <strong>required</strong>
       </mat-error> 
@@ -59,14 +59,20 @@
     &nbsp;&nbsp;&nbsp;
     <mat-form-field appearance="outline">
       <mat-label>Select Your User Id </mat-label>
-      <mat-select name="user_id" ngModel #user_id="ngModel" >
-        <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user_id" ngModel #user_id="ngModel" type="number">{{a.username}}</mat-option>
+      <mat-select name="user" ngModel #user="ngModel" >
+        <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user" ngModel #user="ngModel" type="number">{{a.username}}</mat-option>
       </mat-select>
     </mat-form-field>
     <div class="hide">
       <mat-form-field appearance="outline" >
         <mat-label>Fuel id</mat-label>
-        <input matInput name="fuel" #fuel="ngModel" ngModel type="number" [(ngModel)]="details.fuel.id">
+        <input matInput name="fuel" #fuel="ngModel" ngModel type="number" [(ngModel)]="details.fuel">
+      </mat-form-field> 
+    </div> 
+    <div class="hide">
+      <mat-form-field appearance="outline" >
+        <mat-label>Edited by</mat-label>
+        <input matInput name="edited_by" #edited_by="ngModel" ngModel type="text" [(ngModel)]="currentUser.username">
       </mat-form-field> 
     </div> 
                      

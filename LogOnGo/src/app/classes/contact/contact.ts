@@ -1,4 +1,5 @@
 export class Contact {
+    user: number;
     id?: number;
     date: string;
     subject: string;

@@ -3,7 +3,7 @@
         <h2>All {{myModel}}s <span class="float-right"><button mat-raised-button color="accent" (click)="openForm()"><i class="fa-solid fa-plus"></i> Add</button></span></h2> 
         <div *ngIf="myList">
             <hr>
-            <p *ngFor="let m of myList" type="button" (click)="copy(m.id);edit();" class="text-primary">{{m.id}}. {{m.received_from}} | {{m.date_received}}</p>
+            <p *ngFor="let m of myList" type="button" (click)="copy(m.id);edit();" class="text-primary">{{m.id}}. {{m.in_from}} | {{m.date}}</p>
             <hr>
             <p class="text-muted">{{myList.length}} {{myModel | lowercase}}. Click a {{myModel | lowercase}} to edit it.</p>
         </div>

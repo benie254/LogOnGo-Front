@@ -1,5 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { Subject, takeUntil } from 'rxjs';
+import { FuelReceived } from 'src/app/classes/fuel-received/fuel-received';
+import { Fuel } from 'src/app/classes/fuel/fuel';
+import { User } from 'src/app/classes/user/user';
 import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
 
 @Component({
@@ -7,12 +11,13 @@ import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
   templateUrl: './add-fuel-received.component.html',
   styleUrls: ['./add-fuel-received.component.css']
 })
-export class AddFuelReceivedComponent implements OnInit {
-  @Input() admins: any;
+export class AddFuelReceivedComponent implements OnInit, OnDestroy {
+  @Input() admins: User;
   @Input() reset: () => void;
   @Input() reload: () => void;
   @Input() fuels: any;
-  @Input() allFuels: any;
+  @Input() allFuels: Fuel;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private fuel:FuelService,
@@ -20,11 +25,16 @@ export class AddFuelReceivedComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  addFuelReceived(data){
-    this.fuel.addFuelReceived(data).subscribe({
+  addFuelReceived(data: FuelReceived){
+    this.fuel.addFuelReceived(data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
-        Notiflix.Notify.success('add success');
+        Notiflix.Notify.success('Added!');
       }
     })
+  }
+
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

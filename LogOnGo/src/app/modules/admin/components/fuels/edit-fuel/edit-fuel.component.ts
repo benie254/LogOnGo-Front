@@ -1,5 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { Subject, takeUntil } from 'rxjs';
+import { Fuel } from 'src/app/classes/fuel/fuel';
+import { User } from 'src/app/classes/user/user';
+import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
 import { AdminService } from '../../../service/admin.service';
 
@@ -8,34 +12,42 @@ import { AdminService } from '../../../service/admin.service';
   templateUrl: './edit-fuel.component.html',
   styleUrls: ['./edit-fuel.component.css']
 })
-export class EditFuelComponent implements OnInit {
+export class EditFuelComponent implements OnInit, OnDestroy {
   @Input() id: any;
   @Input() fuels: any;
-  @Input() admins: any;
+  @Input() admins: User;
   @Input() reload: () => void;
   @Input() openForm: () => void;
   @Input() redirect: () => void;
-  details: any;
+  details: Fuel;
   delConfirmed: boolean = false;
   selected: any;
+  currentUser: User;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private service:AdminService,
     private fuel:FuelService,
+    private auth:AuthService,
   ) { }
 
   ngOnInit(): void {
     this.itemDetails();
+    if(this.auth.currentUserValue){
+      this.currentUser = this.auth.currentUserValue;
+    }else{
+      !this.currentUser;
+    }
   }
-  editItem(data){
-    this.fuel.updateFuelInfo(this.id,data).subscribe({
+  editItem(data: Fuel){
+    this.fuel.updateFuelInfo(this.id,data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
-        Notiflix.Notify.success('update successful!');
+        Notiflix.Notify.success('Updated!');
       }
     })
   }
   itemDetails(){
-    this.fuel.getFuelInfo(this.id).subscribe({
+    this.fuel.getFuelInfo(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.details = res;
         this.selected = this.details;
@@ -76,8 +88,10 @@ export class EditFuelComponent implements OnInit {
       }
     )
   }
-
   
-  
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
 

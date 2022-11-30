@@ -1,37 +1,37 @@
 <div class="container">
     <div class="padding-2">
         <form #editFuelRcvdForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="editItem(editFuelRcvdForm.value)" id="editFuelRcvdForm">
-            <h5>Edit {{details.fuel_type}} Received Details <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span></h5>  
+            <h5>Edit {{details.fuel}} Received Details <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span></h5>  
             <div class="hide">
                 <mat-form-field appearance="outline">
                     <mat-label>Fuel Type </mat-label>
-                    <input type="text" ngModel matInput name="fuel_type" [(ngModel)]="details.fuel_type">
+                    <input type="text" ngModel matInput name="fuel" [(ngModel)]="details.fuel">
                   </mat-form-field>
             </div><br>
-           
-              <mat-form-field appearance="outline">
-                <mat-label>Price Per Litre </mat-label>
-                  <input matInput type="number" name="price_per_litre" #price_per_litre="ngModel" ngModel required [ngModel]="details.price_per_litre">
-                  <mat-error *ngIf="price_per_litre.hasError('required') || price_per_litre.pristine">
-                    Price per litre is <strong>required</strong>
-                  </mat-error>
-              </mat-form-field>
-              <br>
-              <mat-form-field appearance="outline">
-                <mat-label>Pumps </mat-label>
-                  <input matInput type="number" name="pumps" #pumps="ngModel" ngModel required [ngModel]="details.pumps">
-                  <mat-error *ngIf="pumps.hasError('required') || pumps.pristine">
-                    Pumps value is <strong>required</strong>
-                  </mat-error>
-              </mat-form-field><br>
-            
+         
             <mat-form-field appearance="outline">
-                <mat-label>Initial Litres in Tank </mat-label>
-                  <input matInput type="number" name="initial_litres_in_tank" #initial_litres_in_tank="ngModel" ngModel required [ngModel]="details.initial_litres_in_tank">
-                  <mat-error *ngIf="initial_litres_in_tank.hasError('required') || initial_litres_in_tank.pristine">
-                    Initial tank quantity is <strong>required</strong>
-                  </mat-error>
-              </mat-form-field>
+              <mat-label>Litres Received </mat-label>
+                <input matInput type="number" name="litres" #litres="ngModel" ngModel required [(ngModel)]="details.litres">
+                <mat-error *ngIf="litres.hasError('required') || litres.pristine">
+                  Litres received is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+              <mat-label>Received From </mat-label>
+                <input matInput type="text" name="in_from" #in_from="ngModel" ngModel required [(ngModel)]="details.in_from">
+                <mat-error *ngIf="in_from.hasError('required') || in_from.pristine">
+                  Received from value is <strong>required</strong>
+                </mat-error>
+            </mat-form-field><br>
+          
+          <mat-form-field appearance="outline">
+              <mat-label>Date Received </mat-label>
+                <input matInput type="date" name="date" #date="ngModel" ngModel required [(ngModel)]="details.date">
+                <mat-error *ngIf="date.hasError('required') || date.pristine">
+                  Date Received is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
            
               
               <div class="form-group bg-light">

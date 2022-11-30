@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { Subject, takeUntil } from 'rxjs';
+import { Log } from 'src/app/classes/log/log';
+import { User } from 'src/app/classes/user/user';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { LogService } from 'src/app/modules/log/services/log/log.service';
 import { AdminService } from '../../../service/admin.service';
@@ -9,16 +12,17 @@ import { AdminService } from '../../../service/admin.service';
   templateUrl: './edit-log.component.html',
   styleUrls: ['./edit-log.component.css']
 })
-export class EditLogComponent implements OnInit {
+export class EditLogComponent implements OnInit, OnDestroy {
   @Input() id: any;
   @Input() fuels: any;
-  @Input() admins: any;
+  @Input() admins: User;
   @Input() reload: () => void;
   @Input() openForm: () => void;
   @Input() redirect: () => void;
-  details: any;
+  details: Log;
   delConfirmed: boolean = false;
-  currentUser: any;
+  currentUser: User;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private service:AdminService,
@@ -34,15 +38,15 @@ export class EditLogComponent implements OnInit {
     }
     this.itemDetails();
   }
-  editItem(data){
-    this.log.updateLogInfo(this.id,data).subscribe({
+  editItem(data: Log){
+    this.log.updateLogInfo(this.id,data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         Notiflix.Notify.success('update successful!');
       }
     })
   }
   itemDetails(){
-    this.log.getLogDetails(this.id).subscribe({
+    this.log.getLogDetails(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.details = res;
       }
@@ -50,7 +54,7 @@ export class EditLogComponent implements OnInit {
   }
   delete(){
     Notiflix.Loading.arrows('Deleting... please wait.')
-    this.service.deleteLog(this.id).subscribe({
+    this.service.deleteLog(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         Notiflix.Report.success(
           "Deleted!",
@@ -83,7 +87,9 @@ export class EditLogComponent implements OnInit {
     )
   }
 
-  
-  
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
 

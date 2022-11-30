@@ -4,34 +4,34 @@
             <h5>Add Fuel Received</h5><br>
             <mat-form-field appearance="outline">
                 <mat-label>Fuel Type </mat-label>
-                <mat-select name="fuel_type" ngModel #fuel_type="ngModel" required>
-                  <mat-option *ngFor="let f of allFuels" value="{{f.id}}" name="fuel_type" ngModel #fuel_type="ngModel" type="text">{{f.fuel_type}}</mat-option>
+                <mat-select name="fuel" ngModel #fuel="ngModel" required>
+                  <mat-option *ngFor="let f of allFuels" value="{{f.id}}" name="fuel" ngModel #fuel="ngModel" type="text">{{f.fuel_type}}</mat-option>
                 </mat-select>
-                <mat-error *ngIf="fuel_type.hasError('required') || fuel_type.pristine">
+                <mat-error *ngIf="fuel.hasError('required') || fuel.pristine">
                     Fuel type is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
               <br>
               <mat-form-field appearance="outline">
                 <mat-label>Litres Received </mat-label>
-                  <input matInput type="number" name="litres_received" #litres_received="ngModel" ngModel required>
-                  <mat-error *ngIf="litres_received.hasError('required') || litres_received.pristine">
+                  <input matInput type="number" name="litres" #litres="ngModel" ngModel required>
+                  <mat-error *ngIf="litres.hasError('required') || litres.pristine">
                     Litres received is <strong>required</strong>
                   </mat-error>
               </mat-form-field>
               <br>
               <mat-form-field appearance="outline">
                 <mat-label>Received From </mat-label>
-                  <input matInput type="text" name="received_from" #received_from="ngModel" ngModel required>
-                  <mat-error *ngIf="received_from.hasError('required') || received_from.pristine">
+                  <input matInput type="text" name="in_from" #in_from="ngModel" ngModel required>
+                  <mat-error *ngIf="in_from.hasError('required') || in_from.pristine">
                     Received from value is <strong>required</strong>
                   </mat-error>
               </mat-form-field><br>
             
             <mat-form-field appearance="outline">
                 <mat-label>Date Received </mat-label>
-                  <input matInput type="date" name="date_received" #date_received="ngModel" ngModel required>
-                  <mat-error *ngIf="date_received.hasError('required') || date_received.pristine">
+                  <input matInput type="date" name="date" #date="ngModel" ngModel required>
+                  <mat-error *ngIf="date.hasError('required') || date.pristine">
                     Date Received is <strong>required</strong>
                   </mat-error>
               </mat-form-field>

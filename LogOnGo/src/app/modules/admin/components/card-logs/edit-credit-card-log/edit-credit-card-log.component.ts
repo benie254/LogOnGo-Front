@@ -1,6 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
 import { Subject, takeUntil } from 'rxjs';
+import { CreditCard } from 'src/app/classes/card/credit-card';
+import { Fuel } from 'src/app/classes/fuel/fuel';
+import { User } from 'src/app/classes/user/user';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { CardService } from 'src/app/modules/card/services/card/card.service';
 import { AdminService } from '../../../service/admin.service';
@@ -10,16 +13,15 @@ import { AdminService } from '../../../service/admin.service';
   templateUrl: './edit-credit-card-log.component.html',
   styleUrls: ['./edit-credit-card-log.component.css']
 })
-export class EditCreditCardLogComponent implements OnInit {
+export class EditCreditCardLogComponent implements OnInit, OnDestroy {
   @Input() id: any;
-  @Input() cards: any;
-  @Input() admins: any;
+  @Input() admins: User;
   @Input() reload: () => void;
   @Input() openForm: () => void;
   @Input() redirect: () => void;
-  details: any;
+  details: CreditCard;
   delConfirmed: boolean = false;
-  currentUser: any;
+  currentUser: User;
   private unsubscribe$ = new Subject<void>();
 
   constructor(
@@ -36,7 +38,7 @@ export class EditCreditCardLogComponent implements OnInit {
     }
     this.itemDetails();
   }
-  editItem(data){
+  editItem(data: CreditCard){
     this.card.updateCreditCardDetails(this.id,data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         Notiflix.Notify.success('Updated!');

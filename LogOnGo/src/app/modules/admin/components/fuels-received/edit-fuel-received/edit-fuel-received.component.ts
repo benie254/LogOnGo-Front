@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { Subject, takeUntil } from 'rxjs';
+import { FuelReceived } from 'src/app/classes/fuel-received/fuel-received';
+import { Fuel } from 'src/app/classes/fuel/fuel';
+import { User } from 'src/app/classes/user/user';
 import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
 import { AdminService } from '../../../service/admin.service';
 
@@ -11,13 +15,14 @@ import { AdminService } from '../../../service/admin.service';
 export class EditFuelReceivedComponent implements OnInit {
   @Input() id: any;
   @Input() fuels: any;
-  @Input() admins: any;
+  @Input() admins: User;
   @Input() reload: () => void;
   @Input() openForm: () => void;
   @Input() redirect: () => void;
-  details: any;
+  details: FuelReceived;
   delConfirmed: boolean = false;
   selected: any;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private service:AdminService,
@@ -26,15 +31,15 @@ export class EditFuelReceivedComponent implements OnInit {
   ngOnInit(): void {
     this.itemDetails();
   }
-  editItem(data){
-    this.service.editFuelReceived(this.id,data).subscribe({
+  editItem(data: FuelReceived){
+    this.service.editFuelReceived(this.id,data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
-        Notiflix.Notify.success('update successful!');
+        Notiflix.Notify.success('Updated!');
       }
     })
   }
   itemDetails(){
-    this.service.getFuelReceivedDetails(this.id).subscribe({
+    this.service.getFuelReceivedDetails(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.details = res;
       }
@@ -42,7 +47,7 @@ export class EditFuelReceivedComponent implements OnInit {
   }
   delete(){
     Notiflix.Loading.arrows('Deleting... please wait.')
-    this.service.deleteFuelReceived(this.id).subscribe({
+    this.service.deleteFuelReceived(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         Notiflix.Report.success(
           "Deleted!",
@@ -75,7 +80,9 @@ export class EditFuelReceivedComponent implements OnInit {
     )
   }
 
-  
-  
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
 

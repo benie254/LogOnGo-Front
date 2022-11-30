@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { Subject, takeUntil } from 'rxjs';
+import { LogMpesa } from 'src/app/classes/log-mpesa/log-mpesa';
+import { User } from 'src/app/classes/user/user';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { MpesaService } from 'src/app/modules/mpesa/services/mpesa/mpesa.service';
 import { AdminService } from '../../../service/admin.service';
@@ -9,16 +12,17 @@ import { AdminService } from '../../../service/admin.service';
   templateUrl: './edit-mpesa-log.component.html',
   styleUrls: ['./edit-mpesa-log.component.css']
 })
-export class EditMpesaLogComponent implements OnInit {
+export class EditMpesaLogComponent implements OnInit, OnDestroy {
   @Input() id: any;
   @Input() fuels: any;
-  @Input() admins: any;
+  @Input() admins: User;
   @Input() reload: () => void;
   @Input() openForm: () => void;
   @Input() redirect: () => void;
-  details: any;
+  details: LogMpesa;
   delConfirmed: boolean = false;
-  currentUser: any;
+  currentUser: User;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private service:AdminService,
@@ -34,15 +38,15 @@ export class EditMpesaLogComponent implements OnInit {
     }
     this.itemDetails();
   }
-  editItem(data){
-    this.mpesa.updateMpesaDetails(this.id,data).subscribe({
+  editItem(data: LogMpesa){
+    this.mpesa.updateMpesaDetails(this.id,data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
-        Notiflix.Notify.success('update successful!');
+        Notiflix.Notify.success('Updated!');
       }
     })
   }
   itemDetails(){
-    this.mpesa.getMpesaLogDetails(this.id).subscribe({
+    this.mpesa.getMpesaLogDetails(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.details = res;
       }
@@ -50,7 +54,7 @@ export class EditMpesaLogComponent implements OnInit {
   }
   delete(){
     Notiflix.Loading.arrows('Deleting... please wait.')
-    this.service.deleteMpesa(this.id).subscribe({
+    this.service.deleteMpesa(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         Notiflix.Report.success(
           "Deleted!",
@@ -83,6 +87,8 @@ export class EditMpesaLogComponent implements OnInit {
     )
   }
 
-  
-  
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }

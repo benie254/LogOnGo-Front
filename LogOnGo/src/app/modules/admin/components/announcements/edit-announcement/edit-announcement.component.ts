@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
 import { Subject, takeUntil } from 'rxjs';
+import { Announcement } from 'src/app/classes/announcement/announcement';
+import { User } from 'src/app/classes/user/user';
 import { AdminService } from '../../../service/admin.service';
 
 @Component({
@@ -10,11 +12,11 @@ import { AdminService } from '../../../service/admin.service';
 })
 export class EditAnnouncementComponent implements OnInit {
   @Input() id: any;
-  @Input() admins: any;
+  @Input() admins: User;
   @Input() reload: () => void;
   @Input() openForm: () => void;
   @Input() redirect: () => void;
-  details: any;
+  details: Announcement;
   delConfirmed: boolean = false;
   private unsubscribe$ = new Subject<void>();
 
@@ -25,7 +27,7 @@ export class EditAnnouncementComponent implements OnInit {
   ngOnInit(): void {
     this.announcementDetails();
   }
-  editAnnouncement(data){
+  editAnnouncement(data: Announcement){
     this.service.editAnnouncement(this.id,data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         Notiflix.Notify.success('Updated!');

@@ -2,10 +2,10 @@
     <h5 class="">Add Log Details</h5><br>
     <mat-form-field appearance="outline">
         <mat-label>Fuel Type </mat-label>
-        <mat-select name="fuel_type" ngModel #fuel_type="ngModel" required>
-          <mat-option *ngFor="let f of fuels" value="{{f.id}}" name="fuel_type" ngModel #fuel_type="ngModel" type="text">{{f.fuel_type}}</mat-option>
+        <mat-select name="fuel" ngModel #fuel="ngModel" required>
+          <mat-option *ngFor="let f of fuels" value="{{f.id}}" name="fuel" ngModel #fuel="ngModel" type="text">{{f.fuel_type}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="fuel_type.hasError('required') || fuel_type.pristine">
+        <mat-error *ngIf="fuel.hasError('required') || fuel.pristine">
             Fuel type is <strong>required</strong>
         </mat-error>
       </mat-form-field><br>
@@ -13,37 +13,40 @@
             
                 <mat-form-field appearance="outline">
                     <mat-label>Date</mat-label>
-                    <input matInput placeholder="Date" name="date" #date="ngModel" ngModel type="date" required>
+                    <input matInput name="date" #date="ngModel" ngModel type="date" required>
                     <mat-error *ngIf="date.hasError('required') || date.pristine">
                       Date is <strong>required</strong>
                     </mat-error>
                   </mat-form-field> &nbsp;&nbsp;&nbsp;
                     <mat-form-field appearance="outline">
                       <mat-label>Formatted Date</mat-label>
-                      <input matInput name="formatted_date" ngModel [(ngModel)]="tdate" type="text" #formatted_date="ngModel" required>
+                      <input matInput name="long_date" ngModel [(ngModel)]="tdate" type="text" #long_date="ngModel" required>
                       <mat-hint>e.g Mon Nov 28 2022</mat-hint>
-                      <mat-error *ngIf="formatted_date.hasError('required') || formatted_date.pristine">
+                      <mat-error *ngIf="long_date.hasError('required') || long_date.pristine">
                         Formatted date is <strong>required</strong>
                       </mat-error>
                     </mat-form-field> <br>
                 <mat-form-field appearance="outline">
                     <mat-label>EOD reading</mat-label>
-                    <input matInput placeholder="End of day reading" #eod_reading_lts="ngModel" ngModel name="eod_reading_lts" type="number" required>
-                    <mat-error *ngIf="eod_reading_lts.hasError('required') || eod_reading_lts.pristine">
+                    <input matInput #eod_reading="ngModel" ngModel name="eod_reading" type="number" required>
+                    <mat-error *ngIf="eod_reading.hasError('required') || eod_reading.pristine">
                       End Of Day reading is <strong>required</strong>
                     </mat-error>
                   </mat-form-field> &nbsp;&nbsp;&nbsp;
           
             <mat-form-field appearance="outline">
               <mat-label>EOD Yesterday</mat-label>
-                <input  matInput placeholder="End of day reading Yesterday" #eod_reading_yesterday="ngModel" ngModel name="eod_reading_yesterday" type="number" required>
-              <mat-error *ngIf="eod_reading_yesterday.hasError('required') || eod_reading_yesterday.pristine">
+                <input  matInput #eod_yesterday="ngModel" ngModel name="eod_yesterday" type="number" required>
+              <mat-error *ngIf="eod_yesterday.hasError('required') || eod_yesterday.pristine">
                 Yesterday EOD reading is <strong>required</strong>
               </mat-error>
             </mat-form-field> <br>
             <mat-form-field appearance="outline">
-              <mat-label>Logged by</mat-label>
-              <input matInput ngModel name="logged_by" type="text" [(ngModel)]="currentUser.username">
+              <mat-label>Logged By</mat-label>
+              <input matInput ngModel name="logged_by" type="text" #logged_by="ngModel" [(ngModel)]="currentUser.username" required>
+              <mat-error *ngIf="logged_by.hasError('required') || logged_by.pristine">
+                This field is <strong>required</strong>
+              </mat-error>
             </mat-form-field> &nbsp;&nbsp;&nbsp;
             <mat-form-field appearance="outline">
                 <mat-label>Select Your User Id </mat-label>

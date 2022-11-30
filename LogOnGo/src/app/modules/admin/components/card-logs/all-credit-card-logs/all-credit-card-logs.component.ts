@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+import { Fuel } from 'src/app/classes/fuel/fuel';
+import { User } from 'src/app/classes/user/user';
 import { CardService } from 'src/app/modules/card/services/card/card.service';
 
 @Component({
@@ -6,17 +9,18 @@ import { CardService } from 'src/app/modules/card/services/card/card.service';
   templateUrl: './all-credit-card-logs.component.html',
   styleUrls: ['./all-credit-card-logs.component.css']
 })
-export class AllCreditCardLogsComponent implements OnInit {
+export class AllCreditCardLogsComponent implements OnInit, OnDestroy {
   @Input() reload: () => void;
   myModel = 'Credit Card Log';
   @Input() myList: any;
   @Input() id: any;
-  @Input() admins: any;
+  @Input() admins: User;
   @Input() copy: (text: number) => void;
   showData: boolean = false;
   hideContent: boolean = false;
   showEdit: boolean = false;
-  @Input() fuels: any;
+  @Input() fuels: Fuel;
+  private unsubscribe$ = new Subject<void>();
 
 
   constructor(
@@ -27,7 +31,7 @@ export class AllCreditCardLogsComponent implements OnInit {
     this.allRecords();
   }
   allRecords(){
-    this.card.getAllCreditCardLogs().subscribe({
+    this.card.getAllCreditCardLogs().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.myList = res;
       }
@@ -57,5 +61,10 @@ export class AllCreditCardLogsComponent implements OnInit {
   edit(){
     this.showEdit = true;
     this.hideContent = true;
+  }
+
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

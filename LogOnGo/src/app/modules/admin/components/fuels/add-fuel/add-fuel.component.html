@@ -3,7 +3,7 @@
         <form #fuelForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="addFuel(fuelForm.value)" id="fuelForm">
           <h5>Add Fuel</h5>  <br>
           <mat-form-field appearance="outline">
-                <mat-label>Fuel Type </mat-label>
+                <mat-label>Fuel Type</mat-label>
                 
                 <mat-select name="fuel_type" ngModel #fuel_type="ngModel" required>
                   <mat-option value="Petrol" name="fuel_type" ngModel #fuel_type="ngModel" type="text">Petrol</mat-option>
@@ -17,8 +17,8 @@
               <br>
               <mat-form-field appearance="outline">
                 <mat-label>Price Per Litre </mat-label>
-                  <input matInput type="number" name="price_per_litre" #price_per_litre="ngModel" ngModel required>
-                  <mat-error *ngIf="price_per_litre.hasError('required') || price_per_litre.pristine">
+                  <input matInput type="number" name="pp_litre" #pp_litre="ngModel" ngModel required>
+                  <mat-error *ngIf="pp_litre.hasError('required') || pp_litre.pristine">
                     Price per litre is <strong>required</strong>
                   </mat-error>
               </mat-form-field>
@@ -33,8 +33,8 @@
             
             <mat-form-field appearance="outline">
                 <mat-label>Initial Litres in Tank </mat-label>
-                  <input matInput type="number" name="initial_litres_in_tank" #initial_litres_in_tank="ngModel" ngModel required>
-                  <mat-error *ngIf="initial_litres_in_tank.hasError('required') || initial_litres_in_tank.pristine">
+                  <input matInput type="number" name="tank_init" #tank_init="ngModel" ngModel required>
+                  <mat-error *ngIf="tank_init.hasError('required') || tank_init.pristine">
                     Initial tank quantity is <strong>required</strong>
                   </mat-error>
               </mat-form-field>

@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
+import { User } from 'src/app/classes/user/user';
 import { UserService } from 'src/app/modules/user/services/user/user.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class AllAnnouncementsComponent implements OnInit, OnDestroy {
   myModel = 'Announcement';
   @Input() myList: any;
   @Input() id: any;
-  @Input() admins: any;
+  @Input() admins: User;
   @Input() copy: (text: number) => void;
   showData: boolean = false;
   hideContent: boolean = false;

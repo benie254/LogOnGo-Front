@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { Subject, takeUntil } from 'rxjs';
+import { Contact } from 'src/app/classes/contact/contact';
+import { User } from 'src/app/classes/user/user';
 import { AdminService } from '../../../service/admin.service';
 
 @Component({
@@ -7,14 +10,15 @@ import { AdminService } from '../../../service/admin.service';
   templateUrl: './edit-contact.component.html',
   styleUrls: ['./edit-contact.component.css']
 })
-export class EditContactComponent implements OnInit {
+export class EditContactComponent implements OnInit, OnDestroy {
   @Input() reset: () => void; 
   @Input() openContact: () => void;
   @Input() reload: () => void; 
   @Input() id: any; 
-  @Input() admins: any;
+  @Input() admins: User;
   delConfirmed: boolean = false;
-  details: any;
+  details: Contact;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private service:AdminService
@@ -24,7 +28,7 @@ export class EditContactComponent implements OnInit {
     this.contactDetails();
   }
   contactDetails(){
-    this.service.getContactDetails(this.id).subscribe({
+    this.service.getContactDetails(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.details = res;
       }
@@ -64,11 +68,14 @@ export class EditContactComponent implements OnInit {
       }
     )
   }
-
   redirect(){
     setTimeout(() => {
       this.openContact();
     }, 250)
   }
 
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }

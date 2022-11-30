@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { AdminService } from '../../../service/admin.service';
 
 @Component({
@@ -6,7 +7,7 @@ import { AdminService } from '../../../service/admin.service';
   templateUrl: './all-incidents.component.html',
   styleUrls: ['./all-incidents.component.css']
 })
-export class AllIncidentsComponent implements OnInit {
+export class AllIncidentsComponent implements OnInit, OnDestroy {
   @Input() reload: () => void;
   myModel = 'Incident';
   @Input() myList: any;
@@ -16,6 +17,7 @@ export class AllIncidentsComponent implements OnInit {
   showData: boolean = false;
   hideContent: boolean = false;
   showEdit: boolean = false;
+  private unsubscribe$ = new Subject<void>();
 
 
   constructor(
@@ -26,7 +28,7 @@ export class AllIncidentsComponent implements OnInit {
     this.allRecords();
   }
   allRecords(){
-    this.service.getIncidentReports().subscribe({
+    this.service.getIncidentReports().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.myList = res;
       }
@@ -39,5 +41,10 @@ export class AllIncidentsComponent implements OnInit {
   edit(){
     this.showEdit = true;
     this.hideContent = true;
+  }
+
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

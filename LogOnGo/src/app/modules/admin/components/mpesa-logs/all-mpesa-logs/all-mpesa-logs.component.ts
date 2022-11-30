@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { MpesaService } from 'src/app/modules/mpesa/services/mpesa/mpesa.service';
 
 @Component({
@@ -6,7 +7,7 @@ import { MpesaService } from 'src/app/modules/mpesa/services/mpesa/mpesa.service
   templateUrl: './all-mpesa-logs.component.html',
   styleUrls: ['./all-mpesa-logs.component.css']
 })
-export class AllMpesaLogsComponent implements OnInit {
+export class AllMpesaLogsComponent implements OnInit, OnDestroy {
   @Input() reload: () => void;
   myModel = 'Log';
   @Input() myList: any;
@@ -17,6 +18,7 @@ export class AllMpesaLogsComponent implements OnInit {
   hideContent: boolean = false;
   showEdit: boolean = false;
   @Input() fuels: any;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private mpesa:MpesaService,
@@ -26,7 +28,7 @@ export class AllMpesaLogsComponent implements OnInit {
     this.allRecords();
   }
   allRecords(){
-    this.mpesa.getAllMpesaLogs().subscribe({
+    this.mpesa.getAllMpesaLogs().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.myList = res;
       }
@@ -56,5 +58,10 @@ export class AllMpesaLogsComponent implements OnInit {
   edit(){
     this.showEdit = true;
     this.hideContent = true;
+  }
+
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
