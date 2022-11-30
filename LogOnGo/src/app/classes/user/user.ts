@@ -1,5 +1,5 @@
 export class User {
-    id: number;
+    id?: number;
     token?: string;
     refreshToken?: string;
     first_name: string;
@@ -11,5 +11,3 @@ export class User {
     password: string; 
     password2: string;
 }
-
-

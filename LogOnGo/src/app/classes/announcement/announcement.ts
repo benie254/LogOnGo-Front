@@ -1,6 +1,6 @@
 export class Announcement {
-    id: number;
-    user_id: number;
+    id?: number;
+    user: number;
     date: string;
     subject: string; 
     announcement: string; 

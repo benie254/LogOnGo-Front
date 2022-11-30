@@ -28,9 +28,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
 .navbar-brand, .font-brand{
-  
   font-family: 'Carter One', cursive;
-
 }
 .nav-link {
   font-family: 'Averia Serif Libre', cursive;
@@ -549,7 +547,10 @@ footer {
   font-size:32px;
 }
 .font-md-2{
-  font-size:20px;
+  font-size:24px;
+}
+.font-md-3{
+  font-size: 20px;
 }
 .font-sm{
   font-size:16px;

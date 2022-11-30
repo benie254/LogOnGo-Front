@@ -1,21 +1,23 @@
 export class Log {
     id?: number;
-    date: string;
-    formatted_date: string;
-    eod_reading_lts: number;
-    eod_reading_yesterday: number;
-    total_litres_sold: number;
-    amount_earned_today: number;
-    fuel: any;
+    user: number;
+    fuel: number;
     fuel_type: string;
-    price_per_litre: number;
-    pump: number; 
-    pump_name: string;
-    logged_by: string;
-    user_id: number;
-    balance: number;
-    balance_yesterday: number;
-    updated_balance: number;
+    pp_litre: number;
+    date: string;
+    long_date: string;
+    eod_reading: number;
+    eod_yesterday: number;
+    litres_sold: number;
+    amount_td: number;
+    bal: number;
+    bal_yesterday: number;
+    updated_bal: number;
+    cumulative_litres_td: number;
+    cumulative_amount_td: number;
+    cumulative_bal_td: number;
     first_logged: string;
+    logged_by: string;
     last_edited: string;
+    edited_by: string;
 }

@@ -1,7 +1,7 @@
 export class Fuel {
-    id: number;
+    id?: number;
     fuel_type: string;
-    price_per_litre: number;
-    initial_litres_in_tank: number;
+    pp_litre: number;
     pumps: number;
+    tank_init: number;
 }

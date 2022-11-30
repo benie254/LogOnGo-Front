@@ -1,9 +1,10 @@
 export class Profile {
-    id: number;
-    username: string;
-    email: string;
+    id?: number;
+    token?: string;
+    refreshToken?: string;
     first_name: string;
     last_name: string;
+    username: string; 
+    email: string;
     petrol_station: string;
-    date_joined: string;
 }

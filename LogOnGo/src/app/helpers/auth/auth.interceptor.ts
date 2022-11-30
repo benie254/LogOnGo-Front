@@ -4,13 +4,10 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HTTP_INTERCEPTORS,
-  HttpHeaders,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 
-const tokenHeaderKey = 'Authorization'; 
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -30,9 +27,6 @@ export class AuthInterceptor implements HttpInterceptor {
   }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = request;
-    // if (request.method == "PUT") {
-    //   return next.handle(this.addAuthTokenAndModifyData(request));
-    // }
     if (this.token != null){
       return next.handle(this.addAuthToken(request));
     }
@@ -48,18 +42,4 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     )
   }
-  // addAuthTokenAndModifyData(request: HttpRequest<any>) {
-  //   return request.clone(
-  //     {
-  //       setHeaders: {
-  //         Authorization: `Basic ${this.token}`
-  //       },
-  //       body: { "data" : "Modified"}
-  //     }
-  //   )
-  // }
 }
-
-// export const authInterceptorProviders = [
-//   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-// ]

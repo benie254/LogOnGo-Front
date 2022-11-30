@@ -15,10 +15,9 @@ export class ErrorsService {
   public allErrors(error: HttpErrorResponse){
     if(error.error.detail){
       this.messages.add(error.error.detail);
-      // if(error.error.detail ===)
       setTimeout(() => {
         this.messages.clear();
-      }, 20000)
+      }, 10000)
     }
     if (error.error.detail === 'Invalid token.') {
       this.logout();
@@ -139,7 +138,6 @@ export class ErrorsService {
       this.messages.add(error.error.balance)
     }
   }
-  
   constructor(
     private messages: MessageService,
     private router:Router,
@@ -147,11 +145,10 @@ export class ErrorsService {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     }
 
-    logout() {
-      // remove user from local storage to log user out
-      localStorage.removeItem('currentUser');
-      this.currentUserSubject.next(null);
-      this.router.navigate[('/auth')];
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+    this.router.navigate[('/auth')];
   }
 }
 

@@ -1,40 +1,35 @@
 
-  <nav class="navbar navbar-expand-lg color-two opacity sticky-top" *ngIf="showAdmin">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-        <img src="https://res.cloudinary.com/benie/image/upload/v1662909278/icons8-petrol-station-66_inmt3m.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-        <span style="font-family:'Carter One',cursive;font-size:24px;">LogOnGo Admin</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!authenticated">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/auth">Login</a>
-          </li> 
-        </ul>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="authenticated">
-          <li class="nav-item">
-            <a class="nav-link active disabled" style="font-family:'Carter One',cursive;font-size:20px;" aria-current="page" routerLink="home">Welcome, {{currentUser.username}}</a>
-          </li>
-        </ul>
-        <div class="nav-item">
-            <a  style="font-family:'Carter One',cursive;font-size:20px;" class="nav-link text-success" routerLink="/home" (click)="toggleAdmin()">View Site</a>
-        </div>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <div class="nav-item">
-            <a style="font-family:'Carter One',cursive;font-size:20px;" class="nav-link text-success" routerLink="/admin/change/password">Change Password</a>
-        </div>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <div class="nav-item">
-            <a style="font-family:'Carter One',cursive;font-size:20px;" type="button" class="nav-link text-success" (click)="logout()">Logout</a>
-        </div>
-        
-        
-    
-      
-      
+<nav class="navbar navbar-expand-lg color-two opacity sticky-top" *gIf="isSuper || isStaff">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img src="https://res.cloudinary.com/benie/image/upload/v1662909278/icons8-petrol-station-66_inmt3m.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      <span class="brand-font font-md-2">LogOnGo Admin</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="!authenticated && isSuper || isStaff">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth">Login</a>
+        </li> 
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="authenticated && isSuper || isStaff">
+        <li class="nav-item">
+          <a class="nav-link active disabled font-md-3 brand-font" aria-current="page" routerLink="home">Welcome, {{currentUser.username}}</a>
+        </li>
+      </ul>
+      <div class="nav-item">
+        <a  class="font-md-3 brand-font nav-link text-success" routerLink="/home" (click)="toggleAdmin()">View Site</a>
+      </div>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <div class="nav-item">
+        <a class="font-md-3 brand-font nav-link text-success" routerLink="/admin/change/password">Change Password</a>
+      </div>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <div class="nav-item">
+        <a type="button" class="nav-link font-md-3 brand-font text-success" (click)="logout()">Logout</a>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>

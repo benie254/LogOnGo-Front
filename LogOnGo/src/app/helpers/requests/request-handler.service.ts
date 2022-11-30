@@ -16,21 +16,14 @@ export class RequestHandlerService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  
-
   private handleError(error: HttpErrorResponse) {
     Notiflix.Loading.remove();
-    
     this.errorHandler.allErrors(error);
     setTimeout(() => {
       this.messages.clear();
-    }, 20000)
-
-
-
+    }, 10000)
 
     if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error);
       Notiflix.Report.failure(
         'Sorry!',
@@ -64,7 +57,6 @@ export class RequestHandlerService {
         "Don't worry, this has nothing to do with you. Please give it another try.",
         'Okay',
       )
-      // location.reload();
     } else if (error.status === 500 || 501 || 503){
       Notiflix.Report.warning(
         error.statusText,
@@ -72,9 +64,6 @@ export class RequestHandlerService {
         'Okay',
       )
     } else {
-      
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
       Notiflix.Report.failure(
         error.statusText,
         'Sorry, we ran into a problem while processing your request. Please try again',
@@ -84,10 +73,7 @@ export class RequestHandlerService {
         `Backend returned code ${error.status}, body was: `, error.error);
         console.warn(error)
     }
-    
-    // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
-    
   }
 
   constructor(
@@ -101,7 +87,7 @@ export class RequestHandlerService {
 
   handleGET<T>(apiURL: string, options?): Observable<any>{
     return this.http.get<T>(apiURL, options).pipe(
-      retry(3), // retry a failed request up to 3 times
+      retry(3), 
       catchError(
       (err) => this.handleError(err)
       ) 
@@ -123,10 +109,17 @@ export class RequestHandlerService {
       )
     )
   }
+  handleDEL<T>(apiURL: string, options?): Observable<any>{
+    return this.http.delete<T>(apiURL, options).pipe(
+      retry(3), 
+      catchError(
+      (err) => this.handleError(err)
+      ) 
+    )
+  }
   logout() {
-    // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     this.router.navigate[('/auth')];
-}
+  }
 }
