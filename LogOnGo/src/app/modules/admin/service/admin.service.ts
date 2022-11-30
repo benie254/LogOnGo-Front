@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Announcement } from 'src/app/classes/announcement/announcement';
@@ -36,7 +35,6 @@ export class AdminService {
 
   constructor(
     private handler:RequestHandlerService,
-    private http:HttpClient,
   ) { }
 
   getLogSummary(): Observable<Log>{

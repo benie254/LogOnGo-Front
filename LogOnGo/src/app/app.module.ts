@@ -50,9 +50,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BindQueryParamDirective } from './directives/queryParams/bind-query-param.directive';
 import { ErrorsModule } from './modules/errors/errors.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { AllFormsModule } from './modules/all-forms/all-forms.module';
 import { NavigationModule } from './modules/navigation/navigation.module';
-import { SearchCardComponent } from './modules/cards/components/search-card/search-card.component';
 
 
 
@@ -60,7 +58,6 @@ import { SearchCardComponent } from './modules/cards/components/search-card/sear
   declarations: [
     AppComponent,
     BindQueryParamDirective,
-    SearchCardComponent,
   ],
   imports: [
     NgxPaginationModule,
@@ -101,7 +98,6 @@ import { SearchCardComponent } from './modules/cards/components/search-card/sear
       MatExpansionModule,
       MatPaginatorModule,
       MatProgressBarModule,
-      AllFormsModule,
       NavigationModule,
 
   ],
