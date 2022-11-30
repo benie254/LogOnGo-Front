@@ -12,16 +12,6 @@ export class AdminNavComponent implements OnInit {
   isSuper: boolean = false; 
   isStaff: boolean = false;
   currentUser: any;
-  @Input() goToAdmin: () => void;
-  @Input() navAdmin: boolean = false;
-  @Input() switchAdmin: boolean = false;
-  @Input() copy2: (text: any) => void;
-  @Input() hideNavbar: boolean = false;
-  @Input() copy3: (text: any) => void;
-  @Input() hiddenNav: any;
-  @Input() switchAdmin2: boolean = false;
-  @Input() toggleAdmin: () => void; 
-  @Input() showAdmin: boolean;
 
   constructor(
     private auth:AuthService,
@@ -40,13 +30,4 @@ export class AdminNavComponent implements OnInit {
       this.router.navigate(['/auth'])
     }
   }
-  goToNav(){
-    this.navAdmin = this.switchAdmin2;
-    this.hideNavbar = this.hiddenNav;
-  }
-  openNav(){
-    this.hideNavbar = false;
-    this.copy3(this.hideNavbar)
-  }
-
 }

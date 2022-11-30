@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { UserService } from 'src/app/modules/user/services/user/user.service';
 
 @Component({
@@ -6,7 +7,7 @@ import { UserService } from 'src/app/modules/user/services/user/user.service';
   templateUrl: './all-announcements.component.html',
   styleUrls: ['./all-announcements.component.css']
 })
-export class AllAnnouncementsComponent implements OnInit {
+export class AllAnnouncementsComponent implements OnInit, OnDestroy {
   @Input() reload: () => void;
   myModel = 'Announcement';
   @Input() myList: any;
@@ -16,6 +17,7 @@ export class AllAnnouncementsComponent implements OnInit {
   showData: boolean = false;
   hideContent: boolean = false;
   showEdit: boolean = false;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private user:UserService,
@@ -24,9 +26,8 @@ export class AllAnnouncementsComponent implements OnInit {
   ngOnInit(): void {
     this.allRecords();
   }
-  
   allRecords(){
-    this.user.getAllAnnouncements().subscribe({
+    this.user.getAllAnnouncements().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.myList = res;
       }
@@ -57,7 +58,9 @@ export class AllAnnouncementsComponent implements OnInit {
     this.showEdit = true;
     this.hideContent = true;
   }
-  
-  
 
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }

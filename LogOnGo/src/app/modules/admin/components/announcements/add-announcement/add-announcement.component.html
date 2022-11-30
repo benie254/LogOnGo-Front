@@ -1,46 +1,52 @@
 <div class="container">
-    <div class="padding-2">
-        <form #announceForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="addAnnouncement(announceForm.value)" id="announceForm">
-          <h5>Add Announcement</h5>  
-          <br>
-            <mat-form-field appearance="outline">
-                <mat-label>Subject </mat-label>
-                  <input matInput type="text" name="subject" #subject="ngModel" ngModel required>
-                  <mat-error *ngIf="subject.hasError('required') || subject.pristine">
-                    Subject is <strong>required</strong>
-                  </mat-error>
-              </mat-form-field><br>
-            <mat-form-field appearance="outline">
-                <mat-label>Announcement </mat-label>
-                  <textarea matInput type="text" name="announcement" #announcement="ngModel" ngModel required></textarea>
-                  <mat-error *ngIf="announcement.hasError('required') || announcement.pristine">
-                    Announcement is <strong>required</strong>
-                  </mat-error>
-              </mat-form-field>
-              <br>
-            <mat-form-field appearance="outline">
-                <mat-label>Date </mat-label>
-                  <input matInput type="date" name="date" #date="ngModel" ngModel required>
-                  <mat-error *ngIf="date.hasError('required') || date.pristine">
-                    Date is <strong>required</strong>
-                  </mat-error>
-              </mat-form-field><br>
-           
-              <mat-form-field appearance="outline">
-                <mat-label>Announced by</mat-label>
-                <input matInput placeholder="Enter email..." name="announced_by" ngModel #announced_by="ngModel" type="email">
-              </mat-form-field>  &nbsp;&nbsp; &nbsp;
-              <mat-form-field appearance="outline">
-                <mat-label>Select Your User Id </mat-label>
-                
-                <mat-select name="user_id" ngModel #user_id="ngModel" >
-                  <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user_id" ngModel #user_id="ngModel" type="number">{{a.username}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <div class="form-group bg-light">
-                <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" [disabled]="announceForm.invalid" (click)="reload()">Save</button> &nbsp;&nbsp; <button type="submit" (click)="reset();" style="margin-top:1%;" mat-flat-button color="accent" [disabled]="announceForm.invalid">Save and add another</button>
-              </div>
-              
-        </form>
-    </div>
+  <div class="padding-2">
+    <form #announceForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="addAnnouncement(announceForm.value)" id="announceForm">
+      <h5>Add Announcement</h5>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Subject</mat-label>
+        <input matInput type="text" name="subject" #subject="ngModel" ngModel required>
+        <mat-error *ngIf="subject.hasError('required') || subject.pristine">
+          Subject is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Announcement </mat-label>
+        <textarea matInput type="text" name="announcement" #announcement="ngModel" ngModel required></textarea>
+        <mat-error *ngIf="announcement.hasError('required') || announcement.pristine">
+          Announcement is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Date </mat-label>
+        <input matInput type="date" name="date" #date="ngModel" ngModel required>
+        <mat-error *ngIf="date.hasError('required') || date.pristine">
+          Date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Announced By</mat-label>
+        <input matInput name="announced_by" ngModel #announced_by="ngModel" type="email" [(ngModel)]="currentUser.username" required>
+        <mat-error *ngIf="announced_by.hasError('required') || announced_by.pristine">
+          This value is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      &nbsp;&nbsp; &nbsp;
+      <mat-form-field appearance="outline">
+        <mat-label>Select Your User Id </mat-label>
+        <mat-select name="user_id" ngModel #user_id="ngModel" >
+          <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user_id" ngModel #user_id="ngModel" type="number">{{a.username}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="form-group bg-light">
+        <button type="submit" class="margin-top" mat-raised-button color="accent" [disabled]="announceForm.invalid" (click)="reload()">Save</button>
+        &nbsp;&nbsp;
+        <button type="submit" (click)="reset();" class="margin-top" mat-flat-button color="accent" [disabled]="announceForm.invalid">Save and add another</button>
+      </div>
+    </form>
+  </div>
 </div>

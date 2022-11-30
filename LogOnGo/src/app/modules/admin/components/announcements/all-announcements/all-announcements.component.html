@@ -12,7 +12,6 @@
         </div>
         <hr>
     </div>
-    
     <div *ngIf="showData">
         <span type="button" (click)="close();"><i class="fa-solid fa-chevron-left"></i> Back</span>
         <app-add-announcement [reset]="reset" [reload]="reload" [admins]="admins"></app-add-announcement>
