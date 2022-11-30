@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { CardService } from 'src/app/modules/card/services/card/card.service';
 import { AdminService } from '../../../service/admin.service';
@@ -19,6 +20,7 @@ export class EditCreditCardLogComponent implements OnInit {
   details: any;
   delConfirmed: boolean = false;
   currentUser: any;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private service:AdminService,
@@ -35,14 +37,14 @@ export class EditCreditCardLogComponent implements OnInit {
     this.itemDetails();
   }
   editItem(data){
-    this.card.updateCreditCardDetails(this.id,data).subscribe({
+    this.card.updateCreditCardDetails(this.id,data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
-        Notiflix.Notify.success('update successful!');
+        Notiflix.Notify.success('Updated!');
       }
     })
   }
   itemDetails(){
-    this.card.getCreditCardLogDetails(this.id).subscribe({
+    this.card.getCreditCardLogDetails(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         this.details = res;
       }
@@ -50,7 +52,7 @@ export class EditCreditCardLogComponent implements OnInit {
   }
   delete(){
     Notiflix.Loading.arrows('Deleting... please wait.')
-    this.service.deleteCard(this.id).subscribe({
+    this.service.deleteCard(this.id).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         Notiflix.Report.success(
           "Deleted!",
@@ -64,7 +66,7 @@ export class EditCreditCardLogComponent implements OnInit {
   delWarn(){
     Notiflix.Confirm.show(
       'Confirm update',
-      "Are you sure you want to delete this credit card log? This action cannot be undone",
+      "Are you sure you want to delete this credit card log? The action cannot be undone",
       "I'm sure",
       "Take me back",
       () => {
@@ -82,8 +84,10 @@ export class EditCreditCardLogComponent implements OnInit {
       }
     )
   }
-
   
-  
+  ngOnDestroy(){
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }
 

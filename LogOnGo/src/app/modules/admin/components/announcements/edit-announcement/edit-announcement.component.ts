@@ -55,7 +55,7 @@ export class EditAnnouncementComponent implements OnInit {
   delWarn(){
     Notiflix.Confirm.show(
       'Confirm update',
-      "Are you sure you want to delete this announcement? This action cannot be undone",
+      "Are you sure you want to delete this announcement? The action cannot be undone",
       "I'm sure",
       "Take me back",
       () => {
