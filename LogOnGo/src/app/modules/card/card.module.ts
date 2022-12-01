@@ -25,6 +25,8 @@ import { DeleteCardFormComponent } from './forms/delete-card-form/delete-card-fo
 import { CardReportFormComponent } from './forms/card-report-form/card-report-form.component';
 import { FuelModule } from '../fuel/fuel.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MatButtonModule } from '@angular/material/button';
+import { NavigationModule } from '../navigation/navigation.module';
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MatExpansionModule,
     FuelModule,
     Ng2SearchPipeModule,
+    MatButtonModule,
+    NavigationModule
   ],
   exports: [
     AllCardLogsComponent,

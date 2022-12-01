@@ -17,10 +17,10 @@
                 <tr>
                   <td>{{mpesa.id}}</td>
                   <td>{{mpesa.date | date: 'dd/MM/yyyy'}}</td>
-                    <td>{{mpesa.transaction_number}}</td>
+                    <td>{{mpesa.transaction_no}}</td>
                   <td>{{mpesa.amount}}</td>
-                  <td>{{mpesa.amount_transferred_to_bank}}</td>
-                  <td><a type="button" class="btn btn-dark btn-outline-info btn-sm" routerLink="/mpesa/details/{{mpesa.id}}">Details</a></td>
+                  <td>{{mpesa.to_bank}}</td>
+                  <td><a type="button" mat-raised-button routerLink="/mpesa/details/{{mpesa.id}}" color="accent"><i class="fa-solid fa-angles-right"></i> <span class="x-small">details</span></a></td>
                 </tr>
               </tbody>
             </table>

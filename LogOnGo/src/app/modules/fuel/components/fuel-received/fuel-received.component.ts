@@ -14,6 +14,7 @@ export class FuelReceivedComponent implements OnInit {
   @Input() fuelType: any; 
   @Input() fuelId: number;
   @Input() noFuel: boolean = false;
+  @Input() noneRcvd: boolean;
 
   constructor(
   ) { }

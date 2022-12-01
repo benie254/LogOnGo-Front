@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Log } from 'src/app/classes/log/log';
+import { User } from 'src/app/classes/user/user';
 
 @Component({
   selector: 'app-logs-card',
@@ -8,9 +9,9 @@ import { Log } from 'src/app/classes/log/log';
 })
 export class LogsCardComponent implements OnInit {
   @Input() searchText: any;
-  @Input() logs: any;
-  @Input() userLogs: any;
-  @Input() currentUser: any;
+  @Input() logs: Log;
+  @Input() userLogs: Log;
+  @Input() currentUser: User;
   @Input() page: number; 
   @Input() count: number; 
   @Input() tableSize: number = 4; 

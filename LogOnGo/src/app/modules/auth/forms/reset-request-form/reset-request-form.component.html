@@ -1,31 +1,42 @@
-<div class="container padding" *ngIf="authenticated">
-    <form *ngIf="!requestSent" #resetPassForm="ngForm" (ngSubmit)="requestResetPass(resetPassForm.value)" class="color-two f-two padding-four rounded shadow">
-      <div class="text-align">
-        <img src="https://res.cloudinary.com/benie/image/upload/v1662828646/icons8-user-rights-50_sgvyxm.png" height="55" width="55" alt="">
-      </div>
-      <h1 class="text-center">Reset Password</h1>
-      <div class="row hide">
-          <div class="col rounded padding-2">
-              <mat-form-field appearance="outline" class="color-one padding-2 rounded shadow full-width">
-                <mat-label>Username</mat-label>
-                <input matInput name="username" ngModel #username="ngModel" type="text" [(ngModel)]="currentUser.username">
-              </mat-form-field>
-          </div>
-          <div class="col rounded padding-2">
-              <mat-form-field appearance="outline" class="color-one padding-2 rounded shadow full-width">
-                <mat-label>Email</mat-label>
-                <input matInput name="email" ngModel #email="ngModel" type="email" [(ngModel)]="currentUser.email">
-              </mat-form-field>
-          </div>
-      </div>
+<div class="container padding">
+    <form *ngIf="!reqSent" #resetPassForm="ngForm" (ngSubmit)="requestResetPass(resetPassForm.value)" class="f-two padding-four">
+      <h1 class="text-center"><i class="fa-solid fa-unlock-keyhole"></i> Reset Password</h1>
+      <p *ngIf="!authenticated" class="text-center small">Please enter the username & email associated with your account. <br> We will send you a link to reset your password.</p>
+      <br>        
       <div class="row">
-        <div class="col"></div>
-        <div class="col padding-bottom center">
-          <button mat-raised-button color="accent" class="margin-top w-100" type="submit"><span><i class="fa-solid fa-user-check"></i></span> Send me the <strong>Link</strong></button><br><br>
-          <a routerLink="/auth/change/password/{{currentUser.id}}"><p class="small">or <strong>Change Password</strong></p></a>
-        </div>
-        <div class="col"></div>
-      </div>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                  <mat-form-field appearance="fill" class="rounded full-width">
+                    <mat-label>Username</mat-label>
+                    <div *ngIf="authenticated">
+                      <input matInput name="username" ngModel #username="ngModel" type="text" [(ngModel)]="currentUser.username">
+                    </div>
+                    <input matInput name="username" ngModel #username="ngModel" type="text" required>
+                    <mat-error *ngIf="username.hasError('required') || username.pristine">
+                      Username is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <br><br>
+             
+                  <mat-form-field appearance="fill" class="rounded full-width">
+                    <mat-label>Email</mat-label>
+                    <div *ngIf="authenticated">
+                      <input matInput name="email" ngModel #email="ngModel" type="email" [(ngModel)]="currentUser.email">
+                    </div>
+                    <input matInput name="email" ngModel #email="ngModel" type="email" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" >
+                    <mat-error *ngIf="email.hasError('required') || email.pristine">
+                      Email is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="email.hasError('pattern')">
+                      Please enter a <strong>valid email address</strong>
+                    </mat-error>
+                  </mat-form-field><br><br>
+          <div class="form-group text-center">
+              <button mat-raised-button color="accent" [disabled]="resetPassForm.invalid" class="margin-top w-100" type="submit"><span><i class="fa-solid fa-paper-plane"></i></span> Send me the link</button><br><br>
+              <a *ngIf="authenticated" routerLink="/auth/change/password"><p class="small">or <strong>Change Password</strong></p></a>
+          </div>
+                </div>
+                <div class="col-lg-3"></div>
+              </div>
     </form>
-    <br><br><br><br><br><br class="breaker"><br class="breaker"><br class="breaker"><br class="breaker"><br class="breaker">
   </div>

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
+import { FuelReceived } from 'src/app/classes/fuel-received/fuel-received';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Log } from 'src/app/classes/log/log';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
@@ -41,8 +42,9 @@ export class LogDetailsComponent implements OnInit {
   closedF: boolean = true;
   fuelId: number;
   fuelType: any; 
-  fuelReceived: any; 
+  fuelReceived: FuelReceived; 
   fuelTotal: any;
+  noneRcvd: boolean = false;
 
   constructor(
     private route:ActivatedRoute, 
@@ -55,7 +57,6 @@ export class LogDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => this.getLogDetails(params['id']))
     this.logId = this.route.snapshot.params['id'];
-    
   }
   getLogDetails = (id:number): void => {
     this.logService.getLogDetails(id).subscribe({
@@ -63,6 +64,8 @@ export class LogDetailsComponent implements OnInit {
         this.logs = data;
         this.fuelId = this.logs.fuel
         this.fuelType = this.logs.fuel_type
+        this.getFuelReceived();
+        this.getTotalFuelReceived();
       }
     });
   }
@@ -136,6 +139,10 @@ export class LogDetailsComponent implements OnInit {
     this.fuel.getFuelReceivedInfo(this.fuelId).subscribe(
       data => {
         this.fuelReceived = data;
+        console.warn("fuel rcvd:",data)
+        if(data == 204){
+          this.noneRcvd = true;
+        }
       }
     )
   }

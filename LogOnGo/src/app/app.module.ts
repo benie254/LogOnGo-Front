@@ -16,10 +16,10 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import { BindQueryParamDirective } from './directives/queryParams/bind-query-param.directive';
 import { ErrorsModule } from './modules/errors/errors.module';
-import { NavigationModule } from './modules/navigation/navigation.module';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { NavigationModule } from './modules/navigation/navigation.module';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 

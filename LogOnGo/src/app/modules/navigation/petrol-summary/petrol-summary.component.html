@@ -4,77 +4,77 @@
 
 <div>
     <p class="bg-light padding-2 rounded">
-        <span>
+        <span *ngIf="petrol.length">
             <div class="row">
                 <div class="col">
-                    <i class="fa-solid fa-water"></i> Initial_litres <span><small><button (click)="toggleInitForm()" class="btn btn-sm btn-light btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button></small></span> <br> <span><h1>{{petrol.initial_litres_in_tank}} <span class="x-small">Lts</span></h1></span>
+                    <i class="fa-solid fa-water"></i> Initial_litres <span><small><button (click)="toggleInitForm()" class="btn btn-sm btn-light btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button></small></span> <br> <span><h1>{{petrol.tank_init}} <span class="x-small">Lts</span></h1></span>
                     <form *ngIf="initOpen" #updatePetrolInitForm="ngForm" (ngSubmit)="updatePetrol(updatePetrolInitForm.value)">
                       <div>
                         <span (click)="closeInitForm()" style="float:right;" type="button" class="btn btn-sm btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
                     </div>
                       <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                           <mat-label>Initial litres in tank</mat-label>
-                          <input matInput placeholder="Start typing..." name="initial_litres_in_tank" ngModel #initial_litres_in_tank="ngModel" type="number" [(ngModel)]="petrol.initial_litres_in_tank" required>
+                          <input matInputname="tank_init" ngModel #tank_init="ngModel" type="number" [(ngModel)]="petrol.tank_init" required>
                                   <mat-hint></mat-hint>
-                                  <mat-error *ngIf="initial_litres_in_tank.hasError('required') || initial_litres_in_tank.touched">
+                                  <mat-error *ngIf="tank_init.hasError('required') || tank_init.touched">
                                     Initial tank value is <strong>required</strong>
                                   </mat-error>
                         </mat-form-field>
                         <div class="hide">
                           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                               <mat-label>Price per litre</mat-label>
-                              <input matInput placeholder="Start typing..." name="price_per_litre" Model #price_per_litre="ngModel" type="number" [(ngModel)]="petrol.price_per_litre">
+                              <input matInputname="pp_litre" Model #pp_litre="ngModel" type="number" [(ngModel)]="petrol.pp_litre">
                               
                             </mat-form-field>
                           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                               <mat-label>Pumps</mat-label>
-                              <input matInput placeholder="Start typing..." name="pumps" ngModel #pumps="ngModel" type="number" [(ngModel)]="petrol.pumps" required>
+                              <input matInputname="pumps" ngModel #pumps="ngModel" type="number" [(ngModel)]="petrol.pumps" required>
                             </mat-form-field>
                           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                               <mat-label>Fuel type</mat-label>
-                              <input matInput placeholder="Start typing..." name="fuel_type" ngModel #fuel_type="ngModel" type="number" [(ngModel)]="petrol.fuel_type">
+                              <input matInputname="fuel_type" ngModel #fuel_type="ngModel" type="number" [(ngModel)]="petrol.fuel_type">
                             </mat-form-field>
                             
                             
                         </div>
                         
                         <div class="col padding-bottom center">
-                          <button class="margin-top btn w-100 btn-sm btn-light btn-outline-primary" type="submit" [disabled]="updatePetrolInitForm.invalid">Update</button><br><br>
+                          <button class="margin-top w-100" color="accent" mat-raised-button type="submit" [disabled]="updatePetrolInitForm.invalid">Update</button><br><br>
                         </div>
                   </form>
                 </div>
                 <div class="col">
-                    <i class="fa-solid fa-hand-holding-dollar"></i> Price per litre <span><small><button (click)="togglePPform()" class="btn btn-sm btn-light btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button></small></span> <br> <span><h1><span class="x-small">Ksh</span> {{petrol.price_per_litre}}</h1></span>
+                    <i class="fa-solid fa-hand-holding-dollar"></i> Price per litre <span><small><button (click)="togglePPform()" class="btn btn-sm btn-light btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button></small></span> <br> <span><h1><span class="x-small">Ksh</span> {{petrol.pp_litre}}</h1></span>
                     <form *ngIf="ppOpen" #updatePetrolPriceForm="ngForm" (ngSubmit)="updatePetrol(updatePetrolPriceForm.value)">
                       <div>
                         <span (click)="closePPform()" style="float:right;" type="button" class="btn btn-sm btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
                     </div>
                       <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                           <mat-label>Price per litre</mat-label>
-                          <input matInput placeholder="Start typing..." name="price_per_litre" ngModel #price_per_litre="ngModel" type="number" [(ngModel)]="petrol.price_per_litre" required>
+                          <input matInputname="pp_litre" ngModel #pp_litre="ngModel" type="number" [(ngModel)]="petrol.pp_litre" required>
                               <mat-hint></mat-hint>
-                              <mat-error *ngIf="price_per_litre.hasError('required') || price_per_litre.pristine">
+                              <mat-error *ngIf="pp_litre.hasError('required') || pp_litre.pristine">
                                 Price per litre is <strong>required</strong>
                               </mat-error>
                         </mat-form-field>
                         <div class="hide">
                           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                               <mat-label>Pumps</mat-label>
-                              <input matInput placeholder="Start typing..." name="pumps" ngModel #pumps="ngModel" type="number" [(ngModel)]="petrol.pumps" required>
+                              <input matInputname="pumps" ngModel #pumps="ngModel" type="number" [(ngModel)]="petrol.pumps" required>
                             </mat-form-field>
                           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                               <mat-label>Fuel type</mat-label>
-                              <input matInput placeholder="Start typing..." name="fuel_type" ngModel #fuel_type="ngModel" type="number" [(ngModel)]="petrol.fuel_type">
+                              <input matInputname="fuel_type" ngModel #fuel_type="ngModel" type="number" [(ngModel)]="petrol.fuel_type">
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                               <mat-label>Initial litres in tank</mat-label>
-                              <input matInput placeholder="Start typing..." name="initial_litres_in_tank" ngModel #initial_litres_in_tank="ngModel" type="number" [(ngModel)]="petrol.initial_litres_in_tank">
+                              <input matInputname="tank_init" ngModel #tank_init="ngModel" type="number" [(ngModel)]="petrol.tank_init">
                             </mat-form-field>
                             
                         </div>
                         
                         <div class="col padding-bottom center">
-                          <button class="margin-top btn w-100 btn-sm btn-light btn-outline-primary" type="submit" [disabled]="updatePetrolPriceForm.invalid">Update</button><br><br>
+                          <button class="margin-top w-100" color="accent" mat-raised-button type="submit" [disabled]="updatePetrolPriceForm.invalid">Update</button><br><br>
                         </div>
                   </form>
                   
@@ -90,7 +90,7 @@
                     </div>
                       <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                           <mat-label>Pumps</mat-label>
-                          <input matInput placeholder="Start typing..." name="pumps" ngModel #pumps="ngModel" type="number" [(ngModel)]="petrol.pumps" required>
+                          <input matInputname="pumps" ngModel #pumps="ngModel" type="number" [(ngModel)]="petrol.pumps" required>
                           <mat-hint></mat-hint>
                           <mat-error *ngIf="pumps.hasError('required') || pumps.pristine">
                             Pumps value is <strong>required</strong>
@@ -99,27 +99,30 @@
                         <div class="hide">
                           <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                               <mat-label>Fuel type</mat-label>
-                              <input matInput placeholder="Start typing..." name="fuel_type" ngModel #fuel_type="ngModel" type="number" [(ngModel)]="petrol.fuel_type">
+                              <input matInputname="fuel_type" ngModel #fuel_type="ngModel" type="number" [(ngModel)]="petrol.fuel_type">
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                               <mat-label>Initial litres in tank</mat-label>
-                              <input matInput placeholder="Start typing..." name="initial_litres_in_tank" ngModel #initial_litres_in_tank="ngModel" type="number" [(ngModel)]="petrol.initial_litres_in_tank">
+                              <input matInputname="tank_init" ngModel #tank_init="ngModel" type="number" [(ngModel)]="petrol.tank_init">
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                               <mat-label>Price per litre</mat-label>
-                              <input matInput placeholder="Start typing..." name="price_per_litre" Model #price_per_litre="ngModel" type="number" [(ngModel)]="petrol.price_per_litre">
+                              <input matInputname="pp_litre" Model #pp_litre="ngModel" type="number" [(ngModel)]="petrol.pp_litre">
                             </mat-form-field>
                         </div>
                         
                         <div class="col padding-bottom center">
-                          <button class="margin-top btn w-100 btn-sm btn-light btn-outline-primary" type="submit" [disabled]="updatePetrolPumpsForm.invali">Update</button><br><br>
+                          <button class="margin-top w-100" color="accent" mat-raised-button type="submit" [disabled]="updatePetrolPumpsForm.invali">Update</button><br><br>
                         </div>
                   </form>
                 </div>
                 <div class="col">
-                    <i class="fa-solid fa-arrow-up-from-ground-water"></i> Balance <br> <span><h1>{{petrol.updated_balance}} <span class="x-small">Lts</span></h1></span>
-                </div>
+                  <i class="fa-solid fa-arrow-up-from-ground-water"></i> Balance <br> <span><h1 *ngIf="petrol.updated_bal">{{petrol.updated_bal}} <span class="x-small">Lts</span></h1> <h1 *ngIf="!petrol.updated_bal">{{petrol.bal}} <span class="x-small">Lts</span></h1></span>
+              </div>
             </div>
+        </span>
+        <span *ngIf="!petrol.length">
+          Petrol details have not been uploaded yet.
         </span>
     </p>
 </div>

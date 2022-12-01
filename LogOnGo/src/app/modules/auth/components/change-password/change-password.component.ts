@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(
     private authService:AuthService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -18,6 +20,7 @@ export class ChangePasswordComponent implements OnInit {
       this.authenticated = true;
     } else {
       this.authenticated = false;
+      this.router.navigate(['/auth'])
     }
   }
   

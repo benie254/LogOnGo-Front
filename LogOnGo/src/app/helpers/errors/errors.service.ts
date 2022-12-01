@@ -17,7 +17,7 @@ export class ErrorsService {
       this.messages.add(error.error.detail);
       setTimeout(() => {
         this.messages.clear();
-      }, 10000)
+      }, 4000)
     }
     if (error.error.detail === 'Invalid token.') {
       this.logout();
@@ -32,7 +32,7 @@ export class ErrorsService {
     if(error.error.password){
       this.messages.add(error.error.password);
     }
-    if(error.error.old_password.old_password){
+    if(error.error.old_password){
       this.messages.add(error.error.old_password.old_password);
     }
     if(error.error.password2){

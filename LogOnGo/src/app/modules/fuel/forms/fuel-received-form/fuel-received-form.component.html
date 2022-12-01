@@ -1,13 +1,13 @@
-<button class="btn btn-md w-75 btn-dark btn-outline-info" (click)="openFuelForm()">Add now</button>
+<button class="w-75" mat-raised-button color="accent" (click)="openFuelForm()">Add now</button>
 
 <div *ngIf="!closed">
   <br>
-  <form #fuelReceivedForm="ngForm" class="padding rounded shadow color-two" (ngSubmit)="fuelReceived(fuelReceivedForm.value)">
-    <span style="float:right;" (click)="closeFuelForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+  <form #fuelReceivedForm="ngForm" class="padding-2 rounded shadow " (ngSubmit)="fuelReceived(fuelReceivedForm.value)">
+    <span style="float:right;" (click)="closeFuelForm()" type="button" mat-raised-button color="warn" ><i class="fa-solid fa-rectangle-xmark"></i></span>
     <h5 class="text-center">Add {{fuelType}} received</h5>
     <div class="row hide">
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+            <mat-form-field appearance="fill" class="padding-2 full-width">
                 <mat-label>Fuel</mat-label>
                 <input matInput name="fuel" type="number" ngModel [(ngModel)]="fuelId">
             </mat-form-field> 
@@ -15,35 +15,43 @@
     </div>
     <div class="row">
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+            <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Litres received</mat-label>
-                <input matInput placeholder="Enter Lts..." name="litres_received" ngModel litres_received="ngModel" type="number" required>
+                <input matInput placeholder="Enter Lts..." name="litres" #litres="ngModel" ngModel litres="ngModel" type="number" required>
                 <mat-icon matSuffix>ev_station</mat-icon>
                 <mat-hint>e.g: 1000</mat-hint>
+                <mat-error *ngIf="litres.hasError('required') || litres.pristine">
+                    Litres received is <strong>required</strong>
+                </mat-error>
               </mat-form-field> 
         </div>
     </div>
         
     <div class="row">
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+            <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Received from</mat-label>
-                <input matInput placeholder="Enter No. Plate..." name="received_from" ngModel #received_from="ngModel" type="text" required>
+                <input matInput placeholder="Enter No. Plate..." name="in_from" ngModel #in_from="ngModel" type="text" required>
                 <mat-icon matSuffix>drive_eta</mat-icon>
                 <mat-hint>e.g: KAA 123 T</mat-hint>
+                <mat-error *ngIf="in_from.hasError('required') || in_from.pristine">
+                    This field is <strong>required</strong>
+                </mat-error>
               </mat-form-field> 
         </div>
         <div class="col">
-            <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+            <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
                 <mat-label>Date received</mat-label>
-                <input matInput placeholder="Enter date..." name="date_received" ngModel #date_received="ngModel" type="date" [(ngModel)]="today" required min="{{today}}" max="{{today}}">
+                <input matInput placeholder="Enter date..." name="date" ngModel #date="ngModel" type="date" [(ngModel)]="today" required min="{{today}}" max="{{today}}">
                 <mat-icon matSuffix>date</mat-icon>
-                <mat-hint>e.g: </mat-hint>
+                <mat-error *ngIf="date.hasError('required') || date.pristine">
+                    Date is <strong>required</strong>
+                </mat-error>
               </mat-form-field> 
         </div>
     </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-lg w-100 margin-top btn-light btn-outline-success" [disabled]="!fuelReceivedForm.valid">Add Fuel</button>
+    <div class="form-group" style="margin-top:2.5%;">
+        <button type="submit" class="w-100 margin-top" mat-raised-button colo="accent" [disabled]="!fuelReceivedForm.valid">Add Fuel</button>
     </div>
 </form>
 </div>

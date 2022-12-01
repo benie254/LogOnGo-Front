@@ -21,6 +21,9 @@ import { AdminModule } from '../admin/admin.module';
 import { AppModule } from 'src/app/app.module';
 import { NavbarComponent } from './navbar/navbar.component';
 
+import * as Notiflix from 'notiflix';
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 @NgModule({
@@ -46,6 +49,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule
   ],
   exports: [
     FooterComponent,

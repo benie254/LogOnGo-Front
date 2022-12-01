@@ -27,6 +27,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchLogComponent } from './components/search-log/search-log.component';
+import { MatButtonModule } from '@angular/material/button';
+import { NavigationModule } from '../navigation/navigation.module';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { SearchLogComponent } from './components/search-log/search-log.component
     MatExpansionModule,
     Ng2SearchPipeModule,
     MatIconModule,
+    MatButtonModule,
+    NavigationModule
   ],
   exports: [
     LogDetailsComponent,

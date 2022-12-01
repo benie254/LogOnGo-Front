@@ -1,5 +1,5 @@
 
-  <nav class="navbar navbar-expand-lg color-two opacity sticky-top" *ngIf="!showAdmin">
+  <nav class="navbar navbar-expand-lg color-two opacity sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
         <img src="https://res.cloudinary.com/benie/image/upload/v1662909278/icons8-petrol-station-66_inmt3m.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
@@ -19,7 +19,7 @@
         </ul>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="authenticated">
           <li class="nav-item">
-            <a class="nav-link active" style="font-family:'Carter One',cursive;font-size:20px;" aria-current="page" routerLink="home">Home</a>
+            <a class="nav-link active" style="font-family:'Carter One',cursive;font-size:20px;" aria-current="page" routerLink="/home">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/logs/all" style="font-size:20px;">All Logs</a>
@@ -48,9 +48,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" routerLink="/user/profile/{{currentUser.id}}">Profile</a></li>
-              <!-- <li *ngIf="isStaff"><a class="dropdown-item" href="{{backURL}}">Admin</a></li>
-              <li *ngIf="isSuper"><a class="dropdown-item" href="{{backURL}}">SuperUser</a></li> -->
-              <li><a class="dropdown-item" routerLink="/admin/logongo" (click)="toggleAdmin()">Admin</a></li>
+              <li><a class="dropdown-item" routerLink="/admin/logongo" >Admin</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" routerLink="/user/report/incident">Report Incident</a></li>
               <li><a class="dropdown-item" routerLink="/user/contact/admin">Contact Admin</a></li>
@@ -59,7 +57,7 @@
             </ul>
           </li>
         </ul>
-        <div>
+        <div *ngIf="authenticated">
           <a type="button" routerLink="/logs/search" class="btn btn-md btn-light btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
         </div>
         

@@ -398,7 +398,7 @@ ul, .align-ul {
 }
 footer {
   /* padding:2%; */
-  position: fixed;
+  position: relative;
   bottom: 0;
   width:100%;
   
@@ -423,7 +423,9 @@ footer {
   }
 }
 
-
+.full-height{
+  height:100vh;
+}
 .bold{
   font-weight:bold;
 }
@@ -556,11 +558,11 @@ footer {
   font-size:16px;
 }
 .reg-cont, .login-cont{
-  background-image: url('https://res.cloudinary.com/benie/image/upload/v1664422910/Vorderrhein_lf1ky6.svg');
+  background-image: url('https://res.cloudinary.com/benie/image/upload/v1664367966/Waiau_kzluos.svg');
   background-position: cover;
   background-size:cover;
   background-repeat: repeat;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .logInstructions{
@@ -584,9 +586,7 @@ footer {
 @media screen and (min-width: 580px) {
   
 }
-.home-container,#landing-bg,#all-logs-container{
-  margin-bottom:8.5%;
-}
+
 
 /* @media screen and (min-width: 500px){
   .breaker,.breaker2,.breaker3,.breaker4{

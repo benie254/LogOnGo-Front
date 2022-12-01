@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { MyErrorStateMatcher } from 'src/app/modules/auth/services/matcher/matcher.service';
@@ -28,10 +28,14 @@ export class EmailReportComponent implements OnInit {
     private route:ActivatedRoute,
     private log:LogService,
     private authService:AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.getLogDetails(params['id']))
+    this.route.params.subscribe(params => this.getLogDetails(params['id']));
+    if(!this.currentUser){
+      this.router.navigate(['/auth'])
+    }
   }
 
   getLogDetails(id:number){

@@ -22,6 +22,7 @@ import { ResetConfirmedComponent } from './components/reset-confirmed/reset-conf
 import { MatButtonModule } from '@angular/material/button';
 import { NavbarComponent } from '../navigation/navbar/navbar.component';
 import { NavigationModule } from '../navigation/navigation.module';
+import { ErrorsModule } from '../errors/errors.module';
 
 export const MyDefaultOptions: NgPasswordValidatorOptions = {
   placement: "right",
@@ -61,7 +62,8 @@ export const MyDefaultOptions: NgPasswordValidatorOptions = {
     MatSelectModule,
     NgPasswordValidatorModule.forRoot(MyDefaultOptions as NgPasswordValidatorOptions),
     MatButtonModule,
-    NavigationModule
+    NavigationModule,
+    ErrorsModule,
   ],
   exports: [
     ChangePasswordComponent,

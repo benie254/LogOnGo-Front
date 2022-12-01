@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as Notiflix from 'notiflix';
 import { MessageService } from './services/message/message.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { MessageService } from './services/message/message.service';
   styleUrls: ['./errors.component.css']
 })
 export class ErrorsComponent implements OnInit {
+  err: any;
 
   constructor(
     public messageS:MessageService,

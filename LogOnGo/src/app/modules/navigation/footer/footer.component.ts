@@ -9,7 +9,6 @@ import { AuthService } from '../../auth/services/auth/auth.service';
 export class FooterComponent implements OnInit {
   currentUser: any;
   authenticated: boolean = false;
-  isSuper: boolean = false;
 
   constructor(
     private auth:AuthService
@@ -19,7 +18,6 @@ export class FooterComponent implements OnInit {
     this.currentUser = this.auth.currentUserValue;
     if(this.currentUser){
       this.authenticated = true;
-      this.isSuper = this.currentUser.is_superuser;
     } else {
       this.authenticated = false;
     }

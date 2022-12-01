@@ -1,6 +1,5 @@
 
-<div *ngIf="messageS.messages.length" >
-    <br>
-    <mat-error *ngFor="let error of messageS.messages" class="alert alert-danger margin margin-top">{{error}}</mat-error>
-    <button type="button" class="clear btn btn-danger" (click)="messageS.clear()">X</button>
+<div *ngIf="messageS.messages.length" class="color-two" >
+    
+    <button *ngFor="let error of messageS.messages" color="warn" mat-raised-button type="button" class="white margin">{{error}}</button>
 </div>

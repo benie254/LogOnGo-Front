@@ -50,11 +50,6 @@ export class EmailMpesaComponent implements OnInit {
       (data) => {
         this.mpesaDetails = data
         console.warn("mpesa log details",data)
-        Notiflix.Notify.success('Get mpesa details success')
-      },
-      err => {
-        console.warn(err)
-        Notiflix.Notify.failure('Something went wrong!')
       }
     );
   }

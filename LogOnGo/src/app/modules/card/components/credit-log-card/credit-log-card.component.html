@@ -17,8 +17,8 @@
                     <td>{{cards.id}}</td>
                     <td>{{cards.date | date: 'dd/MM/yyyy'}}</td>
                       <td>{{cards.card_name}}</td>
-                    <td>{{cards.card_number}}</td>
-                    <td><a type="button" class="btn btn-dark btn-outline-info btn-sm" routerLink="/cards/details/{{cards.id}}">Details</a></td>
+                    <td>{{cards.card_no}}</td>
+                    <td><a type="button" mat-raised-button color="accent" routerLink="/cards/details/{{cards.id}}"><i class="fa-solid fa-angles-right"></i> <span class="x-small">details</span></a></td>
                   </tr>
                 </tbody>
               </table>

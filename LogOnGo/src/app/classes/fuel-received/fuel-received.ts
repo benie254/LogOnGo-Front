@@ -4,4 +4,5 @@ export class FuelReceived {
     date: string;
     litres: number;
     in_from: string;
+    total_td: number;
 }

@@ -23,6 +23,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { FuelModule } from '../fuel/fuel.module';
 import { SearchMpesaComponent } from './components/search-mpesa/search-mpesa.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MatButtonModule } from '@angular/material/button';
+import { NavigationModule } from '../navigation/navigation.module';
 
 
 @NgModule({
@@ -52,6 +54,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MatExpansionModule,
     FuelModule,
     Ng2SearchPipeModule,
+    MatButtonModule,
+    FuelModule,
+    NavigationModule,
   ],
   exports: [
     AllMpesaLogsComponent,

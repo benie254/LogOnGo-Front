@@ -27,7 +27,7 @@
                     <mat-label>Month/Day/Year/EOD/User</mat-label>
                     <input matInput placeholder="Enter Month/Day/Year/EOD-reading/Username" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
                     <datalist id="datalistOptions">
-                        <option value="Oct" *ngFor="let log of searchResults" [value]="log.formatted_date">  
+                        <option value="Oct" *ngFor="let log of searchResults" [value]="log.long_date">  
                     </datalist>
                     <mat-icon matSuffix>date</mat-icon>
                     <mat-hint>e.g: Oct or Mon</mat-hint>
@@ -54,7 +54,7 @@
                     <mat-label>Month/Day/Card/Amount/User</mat-label>
                     <input matInput placeholder="Enter Month/Day/Card-Name./Amount/Username" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
                     <datalist id="datalistOptions">
-                        <option value="Benson" *ngFor="let card of cardResults" [value]="card.formatted_date">  
+                        <option value="Benson" *ngFor="let card of cardResults" [value]="card.long_date">  
                     </datalist>
                     <mat-icon matSuffix>date</mat-icon>
                     <mat-hint>e.g: Oct or Mon</mat-hint>
@@ -81,7 +81,7 @@
                     <mat-label>Month/Day/Transaction/Amount/User</mat-label>
                     <input matInput placeholder="Enter Month/Day/Transaction-No./Amount/Bank-Amount/Username" list="mpesaDatalistOptions" id="mpesaDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
                     <datalist id="mpesaDatalistOptions">
-                        <option value="Nov" *ngFor="let mpesa of mpesaResults" [value]="mpesa.formatted_date">  
+                        <option value="Nov" *ngFor="let mpesa of mpesaResults" [value]="mpesa.long_date">  
                     </datalist>
                     <mat-icon matSuffix>date</mat-icon>
                     <mat-hint>e.g: Oct or Mon</mat-hint>

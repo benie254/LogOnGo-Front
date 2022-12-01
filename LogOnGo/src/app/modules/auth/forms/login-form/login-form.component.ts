@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
-import { first, Subject, takeUntil } from 'rxjs';
+import { first, Subject } from 'rxjs';
 import { User } from 'src/app/classes/user/user';
+import { MessageService } from 'src/app/modules/errors/services/message/message.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { MyErrorStateMatcher } from '../../services/matcher/matcher.service';
 
@@ -11,20 +12,23 @@ import { MyErrorStateMatcher } from '../../services/matcher/matcher.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent implements OnInit, OnDestroy {
+export class LoginFormComponent implements OnInit {
+  company: string = 'Pebo Kenya Ltd'
   authenticated: boolean = false;
   matcher = new MyErrorStateMatcher();
   private unsubscribe$ = new Subject<void>();
+  err: any;
 
   constructor(
     private authService:AuthService,
     private router:Router,
+    private messageS:MessageService,
   ) { }
 
   ngOnInit(): void {
     if(this.authService.currentUserValue){
       this.authenticated = false; 
-      this.router.navigate(['/login/success'])
+      this.router.navigate(['/auth/welcome/' + this.authService.currentUserValue.username])
     } else {
       this.authenticated = false; 
       this.authService.logout();
@@ -41,13 +45,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
           Notiflix.Loading.remove();
                   Notiflix.Notify.success('Login successful! Welcome.');
                   location.reload();
-                  this.router.navigate(['/auth/login/success'])
+                  this.router.navigate(['/auth/welcome/' + this.authService.currentUserValue.username])
                   this.authenticated = true;
                 });
-    }
-  
-    ngOnDestroy(){
-      this.unsubscribe$.next();
-      this.unsubscribe$.complete();
     }
 }

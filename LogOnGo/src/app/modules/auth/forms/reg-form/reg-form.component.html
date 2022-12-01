@@ -1,12 +1,8 @@
-<form #regForm="ngForm" (mousemove)="confirmPass()" (mouseover)="confirmPass()" (mousedown)="confirmPass();" (keydown)="confirmPass();" (keyup)="confirmPass();" (keypress)="confirmPass();" (mouseleave)="confirmPass();" (ngSubmit)="signUp(regForm.value)" class="color-two f-two padding-four rounded shadow">
-    <div class="text-align">
-      <img src="https://res.cloudinary.com/benie/image/upload/v1662528617/icons8-user-64_1_aqgcf9.png" height="65" width="65" alt="">
-    </div>
-    <h1 class="text-center">Sign up to get started</h1>
-  
+<form #regForm="ngForm" (mousemove)="confirmPass()" (mouseover)="confirmPass()" (mousedown)="confirmPass();" (keydown)="confirmPass();" (keyup)="confirmPass();" (keypress)="confirmPass();" (mouseleave)="confirmPass();" (ngSubmit)="signUp(regForm.value)" class="f-two padding-four">
+    <h1 class="text-center"><i class="fa-solid fa-user-plus"></i> Register</h1>
     <div class="row">
       <div class="col col-lg-4">
-        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+        <mat-form-field appearance="fill" class="full-width" style="margin-top:5%;">
           <mat-label>Username</mat-label>
           <input matInput placeholder="Enter username..." name="username" ngModel #username="ngModel" type="text" required minlength="4" maxlength="15">
           <mat-icon matSuffix>account_box</mat-icon>
@@ -23,7 +19,7 @@
         </mat-form-field>  
       </div>
       <div class="col col-lg-4">
-        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+        <mat-form-field appearance="fill" class="rounded full-width" style="margin-top:5%;">
           <mat-label>First name</mat-label>
           <input matInput placeholder="Enter first name..." name="first_name" ngModel #first_name="ngModel" type="text" required minlength="3" maxlength="25">
           <mat-icon matSuffix>person</mat-icon>
@@ -40,7 +36,7 @@
         </mat-form-field>  
       </div>
       <div class="col col-lg-4">
-        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+        <mat-form-field appearance="fill" class="rounded full-width" style="margin-top:5%;">
           <mat-label>Last name</mat-label>
           <input matInput placeholder="Enter last name..." name="last_name" ngModel #last_name="ngModel" type="text" required minlength="3" maxlength="20">
           <mat-icon matSuffix>person</mat-icon>
@@ -61,9 +57,9 @@
   
     <div class="row">
       <div class="col col-lg-4">
-        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+        <mat-form-field appearance="fill" class="rounded full-width" style="margin-top:5%;">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Enter email..." name="email" ngModel #email="ngModel" type="email" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required>
+          <input matInput placeholder="Enter email..." name="email" ngModel #email="ngModel" type="email" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
           <mat-icon matSuffix>email</mat-icon>
           <mat-hint>e.g <strong>your_name@provider.com</strong> </mat-hint>
           <mat-error *ngIf="email.hasError('pattern')">
@@ -75,13 +71,13 @@
         </mat-form-field> 
       </div>
       <div class="col col-lg-4">
-        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+        <mat-form-field appearance="fill" class="rounded full-width" style="margin-top:5%;">
           <mat-label><span><mat-icon>local_gas_station</mat-icon></span> Select Petrol Station </mat-label>
           
           <mat-select name="petrol_station" ngModel #petrol_station="ngModel" required>
-            <mat-option value="Station-Kisii" name="petrol_station" ngModel #petrol_station="ngModel" type="text" required>Station Kisii</mat-option>
-            <mat-option value="Station-Nairobi" name="petrol_station" ngModel #petrol_station="ngModel" type="text">Station Nairobi</mat-option>
-            <mat-option value="Station-Migori" name="petrol_station" ngModel #petrol_station="ngModel" type="text" required>Station Migori</mat-option>
+            <mat-option value="Station-Kisii" name="petrol_station" type="text">Station Kisii</mat-option>
+            <mat-option value="Station-Nairobi" name="petrol_station" type="text">Station Nairobi</mat-option>
+            <mat-option value="Station-Migori" name="petrol_station" type="text">Station Migori</mat-option>
           </mat-select>
           <mat-hint>Select <strong>one</strong></mat-hint>
           <mat-error *ngIf="petrol_station.hasError('required') || petrol_station.pristine">
@@ -90,11 +86,11 @@
         </mat-form-field>
       </div>
       <div class="col col-lg-4">
-        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+        <mat-form-field appearance="fill" class="rounded full-width" style="margin-top:5%;">
           <mat-label>Employee ID</mat-label>
           <input matInput placeholder="Enter employee ID..." name="employee_id" ngModel #employee_id="ngModel" type="number" required>
           <mat-icon matSuffix>assignment_ind</mat-icon>
-          <mat-hint><span class="alert alert-danger rounded">Employees of <strong>Pebo Kenya Ltd</strong></span></mat-hint>
+          <mat-hint><span class="alert alert-danger rounded">Employees of <strong>{{company}}.</strong></span></mat-hint>
           <mat-error *ngIf="employee_id.hasError('required') || employee_id.pristine">
             Employee ID is <strong>required</strong>
           </mat-error>
@@ -105,7 +101,7 @@
     <div class="row">
       <div class="col-lg-3"></div>
       <div class="col col-lg-3">
-        <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+        <mat-form-field appearance="fill" class="rounded full-width" style="margin-top:5%;">
           <mat-label><mat-icon matSuffix>security</mat-icon> Password</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" placeholder="Start typing..." [NgPasswordValidator]="options" name="password" ngModel #password="ngModel" required (valid)="isValid($event)" (mousedown)="onKeyOne($event)" (keydown)="onKeyOne($event)" (keyup)="onKeyOne($event)" (keypress)="onKeyOne($event)" (mousemove)="onKeyOne($event)" (mouseleave)="onKeyOne($event)">
           <h6 id="pass1" class="hide">{{value}}</h6>
@@ -119,7 +115,7 @@
         </mat-form-field>
       </div>
       <div class="col col-lg-3 margin-bottom">
-        <mat-form-field *ngIf="!noPass2" appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+        <mat-form-field *ngIf="!noPass2" appearance="fill" class="rounded full-width" style="margin-top:5%;">
           <mat-label><mat-icon matSuffix>security</mat-icon> Confirm password</mat-label>
           <input matInput id="password2" [type]="hide ? 'password' : 'text'" placeholder="Start typing..." (mousemove)="onKey($event);" (mouseover)="onKey($event);"  (mousedown)="onKey($event);" (keydown)="onKey($event);" (keyup)="onKey($event);" (keypress)="onKey($event);" (mouseleave)="onKey($event);" name="password2" ngModel #password2="ngModel" required>
           <h6 id="pass2" class="hide">{{values}}</h6>
@@ -136,15 +132,11 @@
         </mat-form-field> 
       </div>
       <div class="col-lg-3"></div>
-    </div>
-  
-    <div class="row">
-      <div class="col"></div>
-      <div class="col center padding-bottom">
-        <button class="margin-top w-100" mat-raised-button color="accent" type="submit" [disabled]="regForm.invalid"><span><i class="fa-solid fa-user-shield"></i></span> Sign up</button>
+    </div><br><br>
+      <div class="text-center form-group padding-bottom">
+        <button class="margin-top w-50" mat-raised-button color="accent" type="submit" [disabled]="regForm.invalid"><span><i class="fa-solid fa-user-shield"></i></span> Sign up</button>
         <br><br>
-        <a type="button" routerLink="/login"><p class="small">or <strong>Login here</strong></p></a>
-      </div>
-      <div class="col"></div>
+        <a type="button" routerLink="/auth"><p class="small">or <strong>Login here</strong></p></a>
+      
     </div>
   </form>

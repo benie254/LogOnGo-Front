@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Log } from 'src/app/classes/log/log';
 import { LogService } from '../../services/log/log.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { LogService } from '../../services/log/log.service';
   styleUrls: ['./all-logs-card.component.css']
 })
 export class AllLogsCardComponent implements OnInit {
-  allLogs: any;
+  allLogs: Log;
   page: number = 1;
   count: number = 0;
   tableSize: number = 6;

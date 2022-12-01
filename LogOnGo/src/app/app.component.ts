@@ -3,6 +3,7 @@ import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from './modules/auth/services/auth/auth.service';
+import { MessageService } from './modules/errors/services/message/message.service';
 
 @Component({
   selector: 'app-root',
@@ -11,20 +12,11 @@ import { AuthService } from './modules/auth/services/auth/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'LogOnGo';
-  private roles: string[] = [];
-  isLoggedIn = false; 
-  showAdmin = false; 
-  username: string;
-  authenticated: boolean;
-  userProfile: any;
-  errMsg = '';
-  currentUser: any;
 
   constructor(
-    private authService:AuthService,
-    private router:Router,
     private meta:Meta,
-    private detector:ChangeDetectorRef,
+    private messageS:MessageService
+    // private detector:ChangeDetectorRef,
     ) { }
 
   ngOnInit(): void {
@@ -32,6 +24,8 @@ export class AppComponent implements OnInit {
     this.meta.updateTag({name: 'description', content: 'Petrol Station Management'}) 
     this.meta.updateTag({name: 'image', content: ''}) 
     this.meta.updateTag({name: 'site', content: 'LogOnGo'}) 
-    this.detector.detectChanges();
+    // this.detector.detectChanges();
+    let err: string;
+  
   }
 }

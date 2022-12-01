@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row padding-2">
-    <div class="col-lg-8 padding">
+    <div class="col-lg-8 padding-2">
       <div class="card shadow color-two text-center">
-        <h5 class="card-header"><span class="" style="float:left;"><button class=" margin-top btn btn-sm btn-light btn-outline-primary" (click)="printMpesa()">Print <i class="fa-solid fa-print"></i></button></span> {{mpesaDetails.date}} <span style="float:right;"><a routerLink="/mpesa/email/report/{{mpesaDetails.id}}" type="button" class="btn btn-sm btn-light btn-outline-primary"> <i class="fa-solid fa-paper-plane"></i> email</a></span></h5>
+        <h5 class="card-header"><span class="" style="float:left;"><button class=" margin-top" color="accent" mat-raised-button (click)="printMpesa()">Print <i class="fa-solid fa-print"></i></button></span> {{mpesaDetails.date}} <span style="float:right;"><a routerLink="/mpesa/email/report/{{mpesaDetails.id}}" type="button" class="margin-top" mat-raised-button color="accent"> <i class="fa-solid fa-paper-plane"></i> email</a></span></h5>
         
         <div class="card-body">
             <div class="table-responsive">
@@ -22,12 +22,12 @@
                     <tbody>
                       <tr>
                         <td>{{mpesaDetails.id}}</td>
-                        <td>{{mpesaDetails.transaction_number}}</td>
-                        <td>{{mpesaDetails.customer_name}}</td>
-                        <td>{{mpesaDetails.customer_phone_number}}</td>
+                        <td>{{mpesaDetails.transaction_no}}</td>
+                        <td>{{mpesaDetails.customer}}</td>
+                        <td>{{mpesaDetails.customer_no}}</td>
                         <td>{{mpesaDetails.amount}}</td>
-                        <td>{{mpesaDetails.amount_transferred_to_bank}}</td>
-                        <td>{{mpesaDetails.daily_total}}</td>
+                        <td>{{mpesaDetails.to_bank}}</td>
+                        <td>{{mpesaDetails.total_td}}</td>
                         <td>{{mpesaDetails.cumulative_amount}}</td>
                       </tr>
                     </tbody>
@@ -47,82 +47,83 @@
         
     </div>
     <div class="bg-light bg-light">
-      <p class="text-center aloha">{{mpesaDetails.fuel_type}} <i class="fa-solid fa-bolt"></i> <span> &nbsp;|&nbsp; <i class="fa-solid fa-hand-holding-dollar"></i> Ksh. {{mpesaDetails.price_per_litre}} P/Lt.</span> &nbsp;|&nbsp; Mpesa <i class="fa-solid fa-mobile-button"></i></p>
+      <p class="text-center aloha">{{mpesaDetails.fuel_type}} <i class="fa-solid fa-bolt"></i> <span> &nbsp;|&nbsp; <i class="fa-solid fa-hand-holding-dollar"></i> Ksh. {{mpesaDetails.pp_litre}} P/Lt.</span> &nbsp;|&nbsp; Mpesa <i class="fa-solid fa-mobile-button"></i></p>
     </div>
     <div class="padding">
       <p></p>
     </div>
     </div>
-    <div class="col-lg-4 padding">
-      <p class="margin-top"><a type="button" class="btn btn-md w-100 btn-light btn-outline-warning" (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> details </a> </p>
+    <div class="col-lg-4 padding-2">
+      <br>
+      <p class="margin-top"><a type="button" class="w-100" color="warn" mat-flat-button (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> details </a> </p><br>
       <div *ngIf="!closed">
                     
-        <form class="rounded bg-light padding-2 shadow margin" *ngIf="updateConfirmed" #updateForm="ngForm" (ngSubmit)="updateMpesaDetails(updateForm.value)">
-            <h6 class="margin-top">Mpesa Update Form <span style="float:right;" (click)="toggleUpdateForm()" type="button" class="btn btn-light btn-outline-danger"><i class="fa-solid fa-rectangle-xmark"></i></span></h6>
+        <form class="rounded padding-2 shadow margin" *ngIf="updateConfirmed" #updateForm="ngForm" (ngSubmit)="updateMpesaDetails(updateForm.value)">
+            <h6 class="margin-top">Mpesa Update Form <span style="float:right;" (click)="toggleUpdateForm()" type="button" color="accent" mat-raised-button><i class="fa-solid fa-rectangle-xmark"></i></span></h6>
             
-                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
                         <mat-label>Date</mat-label>
-                        <input matInput placeholder="Date" name="date" #date="ngModel" ngModel type="text" [(ngModel)]="mpesaDetails.date" required>
+                        <input matInput placeholder="Enter date..." name="date" #date="ngModel" ngModel type="text" [(ngModel)]="mpesaDetails.date" required>
                         <mat-icon matSuffix>date</mat-icon>
-                        <mat-hint><span *ngIf="!errDate">e.g <strong>2022-02-22</strong></span> <span *ngIf="errDate" class="bold" style="color:red;">{{errDate}}</span></mat-hint>
+                        <mat-hint>e.g <strong>2022-02-22</strong></mat-hint>
                         <mat-error *ngIf="date.hasError('required') || date.pristine">
                           Date is <strong>required</strong>
                         </mat-error>
                       </mat-form-field> 
-                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
                         <mat-label>Transaction number</mat-label>
-                        <input matInput placeholder="Transaction number" name="transaction_number" ngModel #transaction_number="ngModel" type="text" [(ngModel)]="mpesaDetails.transaction_number" required>
-                        <mat-hint><span *ngIf="!errTrans">e.g <strong>QWUAKAL182</strong></span> <span *ngIf="errTrans" class="alert alert-danger rounded">{{errTrans}}</span></mat-hint>
-                        <mat-error *ngIf="transaction_number.hasError('required') || transaction_number.pristine">
+                        <input matInput placeholder="Enter transaction number..." name="transaction_no" ngModel #transaction_no="ngModel" type="text" [(ngModel)]="mpesaDetails.transaction_no" required>
+                        <mat-hint>e.g <strong>QWUAKAL182</strong></mat-hint>
+                        <mat-error *ngIf="transaction_no.hasError('required') || transaction_no.pristine">
                           Transaction number is <strong>required</strong>
                         </mat-error>
                       </mat-form-field> 
                       
-                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
                         <mat-label>Customer name</mat-label>
-                        <input matInput placeholder="Customer name" name="customer_name" #customer_name="ngModel" ngModel type="text" [(ngModel)]="mpesaDetails.customer_name" required>
+                        <input matInput placeholder="Enter customer name..." name="customer" #customer="ngModel" ngModel type="text" [(ngModel)]="mpesaDetails.customer" required>
                         <mat-icon matSuffix>person</mat-icon>
-                        <mat-hint><span *ngIf="!errName">e.g <strong>John Doe</strong></span> <span *ngIf="errName" class="alert alert-danger rounded">{{errName}}</span></mat-hint>
-                        <mat-error *ngIf="customer_name.hasError('required') || customer_name.pristine">
+                        <mat-hint>e.g <strong>John Doe</strong></mat-hint>
+                        <mat-error *ngIf="customer.hasError('required') || customer.pristine">
                           Customer name is <strong>required</strong>
                         </mat-error>
                       </mat-form-field> 
-                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
                         <mat-label>Customer phone no.</mat-label>
-                        <input matInput placeholder="Customer phone number" name="customer_phone_number" #customer_phone_number="ngModel" ngModel type="number" [(ngModel)]="mpesaDetails.customer_phone_number" required>
+                        <input matInput placeholder="Enter customer phone number..." name="customer_no" #customer_no="ngModel" ngModel type="number" [(ngModel)]="mpesaDetails.customer_no" required>
                         <mat-icon matSuffix>contact_phone</mat-icon>
-                        <mat-hint><span *ngIf="!errPhone">e.g <strong>0712345678</strong></span>  <span *ngIf="errPhone" class="alert alert-danger rounded">{{errPhone}}</span></mat-hint>
-                        <mat-error *ngIf="customer_phone_number.hasError('required') || customer_phone_number.pristine">
+                        <mat-hint>e.g <strong>0712345678</strong></mat-hint>
+                        <mat-error *ngIf="customer_no.hasError('required') || customer_no.pristine">
                           Customer phone number is <strong>required</strong>
                         </mat-error>
                       </mat-form-field> 
-                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
                         <mat-label>Amount</mat-label>
-                        <input matInput placeholder="Amount" name="amount" #amount="ngModel" ngModel type="number" [(ngModel)]="mpesaDetails.amount" required>
-                        <mat-hint><span *ngIf="!errAmount">e.g <strong>1000</strong></span> <span *ngIf="errAmount" class="alert alert-danger rounded">{{errAmount}}</span></mat-hint>
+                        <input matInput placeholder="Enter amount..." name="amount" #amount="ngModel" ngModel type="number" [(ngModel)]="mpesaDetails.amount" required>
+                        <mat-hint>e.g <strong>1000</strong></mat-hint>
                         <mat-error *ngIf="amount.hasError('required') || amount.pristine">
                           Amount is <strong>required</strong>
                         </mat-error>
                       </mat-form-field> 
-                    <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width" style="margin-top:5%;">
+                    <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
                         <mat-label>Bank amount</mat-label>
-                        <input matInput placeholder="Amount transferred to bank" name="amount_transferred_to_bank" #amount_transferred_to_bank="ngModel" ngModel type="number" [(ngModel)]="mpesaDetails.amount_transferred_to_bank" required>
+                        <input matInput placeholder="Enter amount transferred to bank" name="to_bank" #to_bank="ngModel" ngModel type="number" [(ngModel)]="mpesaDetails.to_bank" required>
                         <mat-icon matSuffix>local_atm</mat-icon>
-                        <mat-hint><span *ngIf="!errBank">e.g <strong>2000</strong></span> <span *ngIf="errBank" class="alert alert-danger rounded">{{errBank}}</span></mat-hint>
-                        <mat-error *ngIf="amount_transferred_to_bank.hasError('required') || amount_transferred_to_bank.pristine">
+                        <mat-hint>e.g <strong>2000</strong></mat-hint>
+                        <mat-error *ngIf="to_bank.hasError('required') || to_bank.pristine">
                           Amount transferred to bank is <strong>required</strong>
                         </mat-error>
                       </mat-form-field> 
+                      <br><br> 
             <div class="form-group">
-                <button class="btn margin btn-sm btn-outline-success btn-light" type="submit" [disabled]="updateForm.invalid">Update</button>
+                <button class="margin w-100" color="accent" mat-raised-button type="submit" [disabled]="updateForm.invalid">Update</button>
             </div> 
         </form> 
 
 </div>
-      <small class=""><span><button class="btn btn-md w-100 btn-warning btn-outline-danger" type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> Delete</button></span>  </small>
-      <br><br><hr><br>
+      <small class=""><span><button class="w-100" color="warn" mat-flat-button type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> Delete</button></span>  </small>
+      <br><hr><br>
       <app-fuel-received-info [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal" [fuelType]="fuelType" [fuelId]="fuelId"></app-fuel-received-info>
     </div>
   </div>
 </div>
-<br><br><br><br><br> 

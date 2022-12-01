@@ -16,11 +16,11 @@ const routes: Routes = [
     path: 'login', component: LoginComponent,
   },
   {
-    path: 'login/success', component: LandingComponent,
+    path: 'welcome/:id', component: LandingComponent,
   },
   { path: 'register', component: RegisterComponent, },
   { path: 'change/password/:id', component: ChangePasswordComponent, },
-  { path: 'reset/password/request/:id', component: ResetPasswordComponent, },
+  { path: 'reset/password/request', component: ResetPasswordComponent,},
   { path: 'confirmed/password/reset/:id', component: ResetConfirmedComponent, },
 ];
 
