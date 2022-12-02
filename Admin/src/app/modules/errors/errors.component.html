@@ -1,0 +1,5 @@
+
+<div *ngIf="messageS.messages.length" class="color-two" >
+    
+    <button *ngFor="let error of messageS.messages" color="warn" mat-raised-button type="button" class="white margin">{{error}}</button>
+</div>

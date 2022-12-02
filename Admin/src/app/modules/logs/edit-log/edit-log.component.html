@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-6">
+    <form  #editLogForm="ngForm" (submit)="editItem(editLogForm.value)" class="padding-2 bg-light rounded shadow">
+      <h5>Edit {{details.fuel_type}} Log Details <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span></h5>  
+      <div class="hide">
+      
+          <mat-form-field class="w-75" appearance="fill">
+              <mat-label>Fuel Type </mat-label>
+              <input matInput name="fuel" ngModel [(ngModel)]="details.fuel" type="number">
+            </mat-form-field>
+      </div>
+      <br>
+                    
+              
+                  <mat-form-field class="w-75" appearance="fill">
+                      <mat-label>Date</mat-label>
+                      <input matInput name="date" #date="ngModel" ngModel type="date" required [(ngModel)]="details.date">
+                      <mat-error *ngIf="date.hasError('required') || date.pristine">
+                        Date is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field> &nbsp;&nbsp;&nbsp;
+                      <mat-form-field class="w-75" appearance="fill">
+                        <mat-label>Formatted Date</mat-label>
+                        <input matInput name="long_date" ngModel [(ngModel)]="details.long_date" #long_date="ngModel" type="text" required>
+                        <mat-error *ngIf="long_date.hasError('required') || long_date.pristine">
+                          Formatted date is <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field> <br>
+                  <mat-form-field class="w-75" appearance="fill">
+                      <mat-label>EOD reading</mat-label>
+                      <input matInput #eod_reading="ngModel" ngModel name="eod_reading" type="number" [(ngModel)]="details.eod_reading" required>
+                      <mat-error *ngIf="eod_reading.hasError('required') || eod_reading.pristine">
+                        End Of Day reading is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field> &nbsp;&nbsp;&nbsp;
+            
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>EOD Yesterday</mat-label>
+                  <input  matInput #eod_yesterday="ngModel" ngModel name="eod_yesterday" [(ngModel)]="details.eod_yesterday" type="number" required>
+                <mat-error *ngIf="eod_yesterday.hasError('required') || eod_yesterday.pristine">
+                  Yesterday EOD reading is <strong>required</strong>
+                </mat-error>
+              </mat-form-field> <br>
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Logged By</mat-label>
+                <input matInput ngModel name="logged_by" type="text" [(ngModel)]="currentUser.username" required>
+                <mat-error *ngIf="eod_yesterday.hasError('required') || eod_yesterday.pristine">
+                  Yesterday EOD reading is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>&nbsp;&nbsp;&nbsp;
+              <mat-form-field class="w-75" appearance="fill">
+                  <mat-label>Select Your User Id </mat-label>
+                  
+                  <mat-select name="user" ngModel #user="ngModel" >
+                    <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user" ngModel #user="ngModel" type="number">{{a.username}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+  
+                <div class="hide">
+                  <mat-form-field class="w-75" appearance="fill" >
+                    <mat-label>Edited By</mat-label>
+                    <input matInput name="edited_by" #edited_by="ngModel" ngModel type="text" [(ngModel)]="currentUser.username">
+                  </mat-form-field>
+                </div>
+      
+          <div class="form-group">
+              <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" [disabled]="editLogForm.invalid" (click)="reload()"> Save</button> &nbsp;&nbsp;<button style="margin-top:1%;" type="submit" mat-flat-button color="accent" [disabled]="editLogForm.invalid">Save and continue editing</button> &nbsp;&nbsp; <button style="margin-top:1%;" type="submit" mat-flat-button color="accent"  [disabled]="editLogForm.invalid" (click)="redirect()">Save and add another</button> <button style="margin-top:1%;" class="float-right" type="button" mat-flat-button color="warn"  (click)="delWarn()">Delete</button>
+          </div>
+      </form><br><br>
+  </div>
+  <div class="col-md-6"></div>
+</div>

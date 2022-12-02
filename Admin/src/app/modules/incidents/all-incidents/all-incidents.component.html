@@ -1,0 +1,19 @@
+<div class="container">
+    <div *ngIf="!hideContent">
+        <h2>All {{myModel}}s</h2> 
+        <div *ngIf="myList">
+            <hr>
+            <p *ngFor="let m of myList" type="button" (click)="copy(m.id);edit();" class="text-primary">{{m.id}}. {{m.nature}}</p>
+            <hr>
+            <p class="text-muted">{{myList.length}} {{myModel | lowercase}}(s). Click an {{myModel | lowercase}} to edit it.</p>
+        </div>
+        <div *ngIf="!myList">
+            <p class="text-muted">0 {{myModel | lowercase}}s.</p>
+        </div>
+        <hr>
+    </div>
+    <div *ngIf="showEdit">
+        <span type="button" (click)="close();"><i class="fa-solid fa-chevron-left"></i> Back</span>
+        <app-edit-incident [redirect]="redirect" [openForm]="openForm" [copy]="copy" [reload]="reload" [id]="id" [admins]="admins"></app-edit-incident>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="padding-2">
+        <div class="shadow padding-2 bg-light">
+            <h5>Edit Incident <i class="fa-solid fa-hashtag"></i> {{details.id}}</h5>
+<br>
+            <p class="text-success">{{details.id}}. {{details.nature}} :&nbsp;&nbsp; {{details.date}} &nbsp;&nbsp;|&nbsp;&nbsp; Reported {{details.reported | date: 'medium'}}</p>
+            <p class="padding-2">"{{details.description}}"</p>
+            <p><small>Reported by {{details.name}} | {{details.email}}</small></p> 
+            <button type="button" mat-flat-button color="warn" (click)="delWarn()">Delete</button>
+        </div>
+    </div>
+</div>

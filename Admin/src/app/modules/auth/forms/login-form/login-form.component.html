@@ -1,0 +1,44 @@
+
+<div *ngIf="!authenticated">
+    <form #loginForm="ngForm" (ngSubmit)="logIn(loginForm.value)" class="f-two padding-four">
+        <h1 class="text-center"><i class="fa-solid fa-right-to-bracket"></i> Sign In</h1>
+            <div class="row">
+              <div class="col-lg-4"></div>
+              <div class="col-lg-4">
+                <mat-form-field appearance="fill" class="rounded full-width">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="Start typing..." name="email" ngModel #email="ngModel" type="email" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+                  <mat-error *ngIf="email.hasError('pattern')">
+                    Please enter a <strong>valid email address</strong>
+                  </mat-error>
+                  <mat-error *ngIf="email.hasError('required') || email.pristine">
+                    Email is <strong>required</strong>
+                  </mat-error>
+                  
+                </mat-form-field> <br> <br>      
+                <mat-form-field appearance="fill" class="rounded full-width">
+                  <mat-label>Employee ID</mat-label>
+                  <input matInput placeholder="Start typing..." name="employee_id" ngModel #employee_id="ngModel" type="number" required>
+                  <mat-hint><span class="alert alert-danger rounded">Employees of <strong>{{company}}.</strong></span></mat-hint>
+                  <mat-error *ngIf="employee_id.hasError('required') || employee_id.pristine">
+                    Employee ID is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field><br><br>
+                <mat-form-field appearance="fill" class="rounded full-width">
+                  <mat-label>Password</mat-label>
+                  <input matInput placeholder="Start typing..." name="password" ngModel #password="ngModel" type="password" required>
+                  <mat-error *ngIf="password.hasError('required') || password.pristine">
+                    Password is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+            <br><br>
+              <div class="form-group padding-bottom text-center">
+                <button mat-raised-button color="accent" class="margin-top w-100" type="submit" [disabled]="loginForm.invalid"><span><i class="fa-solid fa-user-check"></i></span> Login</button><br><br>
+                <a routerLink="/auth/register"><p class="small">or <strong>Sign up here</strong></p></a>
+              </div>
+              </div>
+
+              <div class="col-lg-4"></div>
+            </div>
+      </form>
+</div>

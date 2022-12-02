@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-md-6">
+    <form  #addLogForm="ngForm" (submit)="addLog(addLogForm.value)" id="addLogForm" class="padding-2 bg-light rounded shadow">
+      <h5 class="">Add Log Details</h5><br>
+      <mat-form-field class="w-75" appearance="fill">
+          <mat-label>Fuel Type </mat-label>
+          <mat-select name="fuel" ngModel #fuel="ngModel" required>
+            <mat-option *ngFor="let f of fuels" value="{{f.id}}" name="fuel" ngModel #fuel="ngModel" type="text">{{f.fuel_type}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="fuel.hasError('required') || fuel.pristine">
+              Fuel type is <strong>required</strong>
+          </mat-error>
+        </mat-form-field><br>
+                    
+              
+                  <mat-form-field class="w-75" appearance="fill">
+                      <mat-label>Date</mat-label>
+                      <input matInput name="date" #date="ngModel" ngModel type="date" required>
+                      <mat-error *ngIf="date.hasError('required') || date.pristine">
+                        Date is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field> &nbsp;&nbsp;&nbsp;
+                      <mat-form-field class="w-75" appearance="fill">
+                        <mat-label>Formatted Date</mat-label>
+                        <input matInput name="long_date" ngModel [(ngModel)]="tdate" type="text" #long_date="ngModel" required>
+                        <mat-hint>e.g Mon Nov 28 2022</mat-hint>
+                        <mat-error *ngIf="long_date.hasError('required') || long_date.pristine">
+                          Formatted date is <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field> <br>
+                  <mat-form-field class="w-75" appearance="fill">
+                      <mat-label>EOD reading</mat-label>
+                      <input matInput #eod_reading="ngModel" ngModel name="eod_reading" type="number" required>
+                      <mat-error *ngIf="eod_reading.hasError('required') || eod_reading.pristine">
+                        End Of Day reading is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field> &nbsp;&nbsp;&nbsp;
+            
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>EOD Yesterday</mat-label>
+                  <input  matInput #eod_yesterday="ngModel" ngModel name="eod_yesterday" type="number" required>
+                <mat-error *ngIf="eod_yesterday.hasError('required') || eod_yesterday.pristine">
+                  Yesterday EOD reading is <strong>required</strong>
+                </mat-error>
+              </mat-form-field> <br>
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Logged By</mat-label>
+                <input matInput ngModel name="logged_by" type="text" #logged_by="ngModel" [(ngModel)]="currentUser.username" required>
+                <mat-error *ngIf="logged_by.hasError('required') || logged_by.pristine">
+                  This field is <strong>required</strong>
+                </mat-error>
+              </mat-form-field> &nbsp;&nbsp;&nbsp;
+              <mat-form-field class="w-75" appearance="fill">
+                  <mat-label>Select Your User Id </mat-label>
+                  
+                  <mat-select name="user_id" ngModel #user_id="ngModel" >
+                    <mat-option *ngFor="let a of admins"  value="{{a.id}}" name="user_id" ngModel #user_id="ngModel" type="number">{{a.username}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+      
+             
+      
+          <div class="form-group">
+              <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" [disabled]="addLogForm.invalid" (click)="reload()">Save</button> &nbsp;&nbsp; <button type="submit" (click)="reset();" style="margin-top:1%;" mat-flat-button color="accent" [disabled]="addLogForm.invalid">Save and add another</button>
+          </div>
+      </form>
+      <br><br>
+  </div>
+  <div class="col-md-6"></div>
+</div>

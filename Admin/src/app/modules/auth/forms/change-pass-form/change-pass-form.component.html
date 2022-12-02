@@ -1,0 +1,42 @@
+<form #changePassForm="ngForm" (ngSubmit)="changePass(changePassForm.value)" class="f-two padding-four" (mousemove)="checkPass()" (mouseover)="checkPass()" (mousedown)="checkPass();" (keydown)="checkPass();" (keyup)="checkPass();" (keypress)="checkPass();" (mouseleave)="checkPass();">
+    <h1 class="text-center">Change Password</h1>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col col-lg-6 rounded padding-2">
+            <mat-form-field appearance="fill" class="rounded full-width">
+              <mat-label>Old Password</mat-label>
+              <input matInput placeholder="Enter old password..." name="old_password" ngModel #old_password="ngModel" type="password" required>
+              <mat-error *ngIf="old_password.hasError('required') || old_password.pristine">
+                Old password is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="rounded full-width">
+              <mat-label>New Password</mat-label>
+              <input matInput placeholder="Enter new password..." name="password" ngModel #password="ngModel" type="password" minlength="8" required (mousedown)="onKeyOne($event)" (keydown)="onKeyOne($event)" (keyup)="onKeyOne($event)" (keypress)="onKeyOne($event)" (mousemove)="onKeyOne($event)" (mouseleave)="onKeyOne($event)">
+              <h6 id="pass1" class="hide">{{value}}</h6>
+              <mat-error *ngIf="password.hasError('minlength')">
+                Password should be at least <strong>8 characters.</strong>
+              </mat-error>
+              <mat-error *ngIf="password.hasError('required') || password.pristine">
+                New password is <strong>required</strong>
+              </mat-error>
+            </mat-form-field><br>
+        <mat-form-field appearance="fill" class="rounded full-width">
+          <mat-label>Confirm New Password</mat-label>
+          <input matInput placeholder="Enter new password confirmation..." name="password2" ngModel #password2="ngModel" type="password" required (mousedown)="onKey($event)" (keydown)="onKey($event)" (keyup)="onKey($event)" (keypress)="onKey($event)" (mousemove)="onKey($event)" (mouseleave)="onKey($event)">
+          <h6 id="pass2" class="hide">{{values}}</h6>
+          <mat-hint><span class="alert alert-danger rounded" *ngIf="noMatch">Your passwords <strong>don't match</strong> </span> <span *ngIf="!noMatch" class="alert alert-info rounded"> Passwords <strong>match &nbsp;<i class="fa-solid fa-thumbs-up"></i></strong> </span></mat-hint>
+          <mat-error *ngIf="password2.hasError('required') || password2.pristine">
+            Password confirmation is <strong>required</strong>
+          </mat-error>
+        </mat-form-field><br><br>
+      
+      <div class="form-group padding-bottom text-center">
+        <button class="margin-top w-50" mat-raised-button color="accent" type="submit" [disabled]="changePassForm.invalid || noMatch"><span><i class="fa-solid fa-user-check"></i></span> Update</button><br><br>
+        <a routerLink="/auth/user/{{currentUser.username}}/reset/password/request"><p class="small">or <strong>Reset Password</strong></p></a>
+      </div>
+    </div>
+      <div class="col-lg-3"></div>
+    </div>
+  </form>

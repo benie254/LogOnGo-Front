@@ -1,0 +1,31 @@
+<div class="container padding">
+    <form *ngIf="!reqSent" #resetPassForm="ngForm" (ngSubmit)="requestResetPass(resetPassForm.value)" class="f-two padding-four">
+      <h1 class="text-center"><i class="fa-solid fa-unlock-keyhole"></i> Reset Password</h1>
+      <p *ngIf="!authenticated" class="text-center small">Please enter the username & email associated with your account. <br> We will send you a link to reset your password.</p>
+      <p *ngIf="authenticated" class="text-center small">We will send a link to the email associated with your account. <br> Please use the link to reset your password.</p>
+      <br>        
+      <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                  <div class="hide">
+                    <mat-form-field appearance="fill" class="rounded full-width">
+                      <mat-label>Username</mat-label>
+                        <input matInput name="username" ngModel #username="ngModel" type="text" [(ngModel)]="currentUser.username">
+                    </mat-form-field>
+                    <br><br>
+               
+                    <mat-form-field appearance="fill" class="rounded full-width">
+                      <mat-label>Email</mat-label>
+                        <input matInput name="email" ngModel #email="ngModel" type="email" [(ngModel)]="currentUser.email">
+                    </mat-form-field><br><br>
+                  </div>
+          <div class="form-group text-center">
+              <button mat-raised-button color="accent" class="margin-top w-100" type="submit"><span><i class="fa-solid fa-paper-plane"></i></span> Send me the link</button><br><br>
+              <a *ngIf="authenticated" routerLink="/auth/user/{{currentUser.username}}/change/password/{{currentUser.id}}"><p class="small">or <strong>Change Password</strong></p></a>
+          </div>
+                </div>
+                <div class="col-lg-3"></div>
+              </div>
+    </form>
+  </div>
+  <br><br>
