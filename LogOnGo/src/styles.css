@@ -576,6 +576,7 @@ footer {
   background-position: cover;
   background-size:cover;
   background-repeat: repeat; */
+  height:100%;
 }
 .height-lg{
   height:90vh;

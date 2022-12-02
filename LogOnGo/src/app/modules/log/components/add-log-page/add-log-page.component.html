@@ -1,47 +1,42 @@
 <div class="container-fluid">
-    <br>
-    <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-md-6 shadow padding-2 logInstructions">
+    <div class="row color-two">
+        <div class="col-lg-4">
+            <br><br>
+            <app-mpesa-instructions></app-mpesa-instructions>
+        </div>
+        <div class="col-lg-4">
+            <br><br>
                 <app-logging-instructions></app-logging-instructions>
         </div>
-        <div class="col-sm-3"></div>
+        <div class="col-lg-4">
+            <br><br>
+            <app-card-instructions></app-card-instructions>
+        </div>
     </div>
-    <hr>
 
     <div class="row">
         <div class="col-sm-7">
-            <br>
-            <ul class="nav nav-tabs justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link disabled">Add</a>
-                  </li>
-                <li class="nav-item">
-                  <a class="nav-link" type="button" (click)="addGen()">General Logs</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" type="button" (click)="addCard()">Card Logs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" type="button" (click)="addMpesa()">Mpesa Logs</a>
-                </li>
-              </ul>
-            <div *ngIf="openG">
-                <span class="float-right"><button class="btn btn-danger" type="button" (click)="close()"><i class="fa-solid fa-rectangle-xmark"></i></button></span>
-                <app-add-log [fuelInfo]="fuelInfo"></app-add-log><br>
-            </div>
-            <div *ngIf="openC">
-                <span class="float-right"><button class="btn btn-danger" type="button" (click)="close()"><i class="fa-solid fa-rectangle-xmark"></i></button></span>
-                <app-add-card [fuelInfo]="fuelInfo" [currentUser]="currentUser"></app-add-card><br>
-            </div>
-            <div *ngIf="openM">
-                <span class="float-right"><button class="btn btn-danger" type="button" (click)="close()"><i class="fa-solid fa-rectangle-xmark"></i></button></span>
-                <app-add-mpesa [fuelInfo]="fuelInfo" [currentUser]="currentUser"></app-add-mpesa><br>
-            </div>
+            
+            <mat-tab-group>
+                <mat-tab label="Add Log">
+                    <img src="https://res.cloudinary.com/benie/image/upload/v1669948948/undraw_elements_re_25t9_bikar5.svg" height="auto" style="width:70%;" alt=""> 
+                     Click on a tab 
+                    </mat-tab>
+                <mat-tab label="General Logs">
+                    <app-add-log [fuelInfo]="fuelInfo"></app-add-log>
+                </mat-tab>
+                <mat-tab label="Card Logs">
+                <app-add-card [fuelInfo]="fuelInfo" [currentUser]="currentUser"></app-add-card>
+                </mat-tab>
+                <mat-tab label="Mpesa Logs">
+                <app-add-mpesa [fuelInfo]="fuelInfo" [currentUser]="currentUser"></app-add-mpesa>
+                </mat-tab>
+            </mat-tab-group>
+            
         </div>
+        <br><br>
         <div class="col-md-5">
-            <app-fuel-received [noFuel]="noFuel" [fuelType]="fuelType" [fuelId]="fuelId" [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal"></app-fuel-received>
+            <app-fuel-received [noneRcvd]="noneRcvd" [noFuel]="noFuel" [fuelType]="fuelType" [fuelId]="fuelId" [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal"></app-fuel-received>
         </div>
     </div>
    
-<br><br><br><br><br><br><br>

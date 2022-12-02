@@ -1,108 +1,109 @@
-<div class="container-fluid">
+<div class="container-fluid color-two padding-2">
   <div class="row">
     <h1 class="text-center"> Our Search Tools</h1>
     
       <div class="col-md-6">
-        <ul class="nav nav-tabs justify-content-center">
-          <li class="nav-item">
-              <a class="nav-link disabled">Click one to start <i class="fa-regular fa-hand-point-right"></i></a>
-            </li>
-          <li class="nav-item">
-            <a class="nav-link" type="button" (click)="openL();hideR()">General Logs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" type="button" (click)="openC();hideR()">Card Logs</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" type="button" (click)="openM();hideR()">Mpesa Logs</a>
-          </li>
-        </ul>
+        <mat-tab-group>
+          <mat-tab label="Search Logs">
+              <img src="https://res.cloudinary.com/benie/image/upload/v1669958224/undraw_searching_re_3ra9_q8tosm.svg" height="auto" style="width:70%;" alt=""> 
+               Click on a tab 
+              </mat-tab>
+          <mat-tab label="General Logs">
+            <div>
+              <form class="form shadow padding-2" id="f1" >
+                <h5 class="text-center">Search Filter <br> <span><small class="font-sm">We will filter your search against all logs</small></span></h5>
+                
+                    <mat-form-field appearance="fill" class="rounded padding-2 full-width">
+                        <mat-label>Month/Day/Year/EOD/User</mat-label>
+                        <input matInput placeholder="Enter Month/Day/Year/EOD-reading/Username" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
+                        <datalist id="datalistOptions">
+                            <option value="Oct" *ngFor="let log of searchResults" [value]="log.long_date">  
+                        </datalist>
+                        <mat-icon matSuffix>date</mat-icon>
+                        <mat-hint>e.g: Oct or Mon</mat-hint>
+                      </mat-form-field>  
+                    
+                    
+                    <!-- <div class="row mt-5" *ngIf="eOD">
+                      <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                            <div class="card center padding-2">
+                                <div class="title" name="title"><h6>You exited the filter</h6></div>
+                                <p>If you were not done searching, you can hit <button (click)="refresh()" class="btn btn-sm btn-dark btn-fill-info">this button</button> to reset</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4"></div>
+                      </div> -->
+                </form>
+              <app-logs-card [logs]="searchResults" [searchText]="searchText" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-logs-card>
+            </div>
+          </mat-tab>
+          <mat-tab label="Card Logs">
+            <div>
+              <form class="form padding-2" id="f1">
+                <h5 class="text-center">Search Filter <br> <span><small class="font-sm">We will filter your search against all credit card logs</small></span></h5>
+                    <mat-form-field appearance="fill" class="padding-2 full-width">
+                        <mat-label>Month/Day/Card/Amount/User</mat-label>
+                        <input matInput placeholder="Enter Month/Day/Card-Name./Amount/Username" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
+                        <datalist id="datalistOptions">
+                            <option value="Benson" *ngFor="let card of cardResults" [value]="card.long_date">  
+                        </datalist>
+                        <mat-icon matSuffix>date</mat-icon>
+                        <mat-hint>e.g: Oct or Mon</mat-hint>
+                      </mat-form-field>  
+                    
+                    
+                    <!-- <div class="row mt-5" *ngIf="eOD">
+                      <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                            <div class="card center padding-2">
+                                <div class="title" name="title"><h6>You exited the filter</h6></div>
+                                <p>If you were not done searching, you can hit <button (click)="refresh()" class="btn btn-sm btn-dark btn-fill-info">this button</button> to reset</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4"></div>
+                      </div> -->
+                </form>
+                <app-credit-log-card [cards]="cardResults" [searchText]="searchText" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-credit-log-card>
+            </div>
+          </mat-tab>
+          <mat-tab label="Mpesa Logs">
+            <div>
+              <form class="form padding-2" id="f1">
+                <h5 class="text-center">Search Filter <br> <span><small class="font-sm">We will filter your search against all mpesa logs</small></span></h5>
+                    <mat-form-field appearance="fill" class="padding-2 full-width">
+                        <mat-label>Month/Day/Transaction/Amount/User</mat-label>
+                        <input matInput placeholder="Enter Month/Day/Transaction-No./Amount/Bank-Amount/Username" list="mpesaDatalistOptions" id="mpesaDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
+                        <datalist id="mpesaDatalistOptions">
+                            <option value="Nov" *ngFor="let mpesa of mpesaResults" [value]="mpesa.long_date">  
+                        </datalist>
+                        <mat-icon matSuffix>date</mat-icon>
+                        <mat-hint>e.g: Oct or Mon</mat-hint>
+                      </mat-form-field>  
+                    
+                    
+                    <!-- <div class="row mt-5" *ngIf="eOD">
+                      <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                            <div class="card center padding-2">
+                                <div class="title" name="title"><h6>You exited the filter</h6></div>
+                                <p>If you were not done searching, you can hit <button (click)="refresh()" class="btn btn-sm btn-dark btn-fill-info">this button</button> to reset</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4"></div>
+                      </div> -->
+                </form>
+                <app-mpesa-log-card [mpesa]="mpesaResults" [searchText]="searchText" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-mpesa-log-card>
+            </div>
+          </mat-tab>
+      </mat-tab-group>
         
         
-        <div *ngIf="showL">
-          <form class="form shadow bg-light padding-2" id="f1" >
-            <h5 class="text-center">Search Filter <br> <span><small class="font-sm">We will filter your search against all logs</small></span></h5>
-            
-                <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width">
-                    <mat-label>Month/Day/Year/EOD/User</mat-label>
-                    <input matInput placeholder="Enter Month/Day/Year/EOD-reading/Username" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
-                    <datalist id="datalistOptions">
-                        <option value="Oct" *ngFor="let log of searchResults" [value]="log.long_date">  
-                    </datalist>
-                    <mat-icon matSuffix>date</mat-icon>
-                    <mat-hint>e.g: Oct or Mon</mat-hint>
-                  </mat-form-field>  
-                
-                
-                <!-- <div class="row mt-5" *ngIf="eOD">
-                  <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        <div class="card center padding-2">
-                            <div class="title" name="title"><h6>You exited the filter</h6></div>
-                            <p>If you were not done searching, you can hit <button (click)="refresh()" class="btn btn-sm btn-dark btn-outline-info">this button</button> to reset</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4"></div>
-                  </div> -->
-            </form>
-          <app-logs-card [logs]="searchResults" [searchText]="searchText" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-logs-card>
-        </div>
-        <div *ngIf="showC">
-          <form class="form shadow bg-light padding-2" id="f1">
-            <h5 class="text-center">Search Filter <br> <span><small class="font-sm">We will filter your search against all credit card logs</small></span></h5>
-                <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width">
-                    <mat-label>Month/Day/Card/Amount/User</mat-label>
-                    <input matInput placeholder="Enter Month/Day/Card-Name./Amount/Username" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
-                    <datalist id="datalistOptions">
-                        <option value="Benson" *ngFor="let card of cardResults" [value]="card.long_date">  
-                    </datalist>
-                    <mat-icon matSuffix>date</mat-icon>
-                    <mat-hint>e.g: Oct or Mon</mat-hint>
-                  </mat-form-field>  
-                
-                
-                <!-- <div class="row mt-5" *ngIf="eOD">
-                  <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        <div class="card center padding-2">
-                            <div class="title" name="title"><h6>You exited the filter</h6></div>
-                            <p>If you were not done searching, you can hit <button (click)="refresh()" class="btn btn-sm btn-dark btn-outline-info">this button</button> to reset</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4"></div>
-                  </div> -->
-            </form>
-            <app-credit-log-card [cards]="cardResults" [searchText]="searchText" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-credit-log-card>
-        </div>
-        <div *ngIf="showM">
-          <form class="form shadow bg-light padding-2" id="f1">
-            <h5 class="text-center">Search Filter <br> <span><small class="font-sm">We will filter your search against all mpesa logs</small></span></h5>
-                <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width">
-                    <mat-label>Month/Day/Transaction/Amount/User</mat-label>
-                    <input matInput placeholder="Enter Month/Day/Transaction-No./Amount/Bank-Amount/Username" list="mpesaDatalistOptions" id="mpesaDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
-                    <datalist id="mpesaDatalistOptions">
-                        <option value="Nov" *ngFor="let mpesa of mpesaResults" [value]="mpesa.long_date">  
-                    </datalist>
-                    <mat-icon matSuffix>date</mat-icon>
-                    <mat-hint>e.g: Oct or Mon</mat-hint>
-                  </mat-form-field>  
-                
-                
-                <!-- <div class="row mt-5" *ngIf="eOD">
-                  <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        <div class="card center padding-2">
-                            <div class="title" name="title"><h6>You exited the filter</h6></div>
-                            <p>If you were not done searching, you can hit <button (click)="refresh()" class="btn btn-sm btn-dark btn-outline-info">this button</button> to reset</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4"></div>
-                  </div> -->
-            </form>
-            <app-mpesa-log-card [mpesa]="mpesaResults" [searchText]="searchText" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-mpesa-log-card>
-        </div>
-          <br>
-          <div class="shadow text-center">
+        
+        
+        
+          <hr>
+          <div class="shadow text-center bg-light">
               <h6>Feeling lost? <i class="fa-solid fa-person-circle-question"></i></h6>
               <mat-accordion>
           <mat-expansion-panel (opened)="panelOpenState = true"
@@ -170,10 +171,10 @@
             </li>
         </ul>
         <br><br>
-          <div class="shadow padding-2 bg-light">
+          <div class="padding-2">
             <form class="form" role="search" id="searchForm">
               <h5 class="text-center">Specific Search <br> <span><small class="font-sm">Choose a date and we will return everything we find</small></span></h5>
-              <mat-form-field appearance="outline" class="color-two rounded shadow padding-2 full-width">
+              <mat-form-field appearance="fill" class="padding-2 full-width">
                   <mat-label>Date</mat-label>
                   <input matInput type="date" (mousemove)="onKey($event);close();hideR" (mouseover)="onKey($event);close()" (keydown)="onKey($event);close()" (mousedown)="onKey($event);close()" (keyup)="onKey($event);close()" (mouseleave)="onKey($event);close()" placeholder="Select date" aria-label="Search" required>
                   <mat-icon matSuffix>date</mat-icon>
@@ -184,10 +185,13 @@
               </div>
             </form>
           </div>
-            <br>
+            
             <div *ngIf="values">
-              <p>{{values | date: 'fullDate'}} <span>Selected!</span> <span><button class="margin btn btn-light btn-md btn-outline-primary" type="button" (click)="search($event.value);unClear()" [disabled]="!values"><i class="fa-solid fa-magnifying-glass"></i> Now</button></span> | <span><button class="btn btn-md btn-light btn-outline-danger" (click)="clearValues()"><i class="fa-solid fa-trash-can-arrow-up"></i> Reset</button></span></p>
+              <p class="bold">{{values | date: 'fullDate'}} <span>Selected!&nbsp;</span> <span><button class="margin" mat-flat-button color="accent" type="button" (click)="search($event.value);unClear()" [disabled]="!values"><i class="fa-solid fa-magnifying-glass"></i> Search</button></span> | <span><button mat-flat-button color="warn" (click)="clearValues()"><i class="fa-solid fa-trash-can-arrow-up"></i> Reset</button></span></p>
             <p>Remember to <strong class="bg-info rounded">always</strong> reset your previous search before starting a new one.</p>
+            </div>
+            <div class="text-center" *ngIf="!foundLogs || !foundCards || !foundMpesa || cleared">
+              <img src="https://res.cloudinary.com/benie/image/upload/v1669958627/undraw_web_search_re_efla_t2rx0m.svg" height="250px;" alt="">
             </div>
             
             
@@ -217,7 +221,7 @@
                           </mat-panel-description>
                         </mat-expansion-panel-header>
                         <p>To search for a specific date:</p>
-                        <p><mat-icon>check</mat-icon> Click on the date picker icon <span><i class="fa-regular fa-calendar"></i></span> at the far right of the search bar. <mat-icon>check</mat-icon> Pick a date. <mat-icon>check</mat-icon> Hit the <span><button class="margin btn btn-light btn-sm btn-outline-primary" type="button" disabled><i class="fa-solid fa-magnifying-glass"></i> Now</button></span> button to start searching.</p>
+                        <p><mat-icon>check</mat-icon> Click on the date picker icon <span><i class="fa-regular fa-calendar"></i></span> at the far right of the search bar. <mat-icon>check</mat-icon> Pick a date. <mat-icon>check</mat-icon> Hit the <span><button class="margin btn btn-light btn-sm btn-fill-primary" type="button" disabled><i class="fa-solid fa-magnifying-glass"></i> Now</button></span> button to start searching.</p>
                       </mat-expansion-panel>
                       <mat-expansion-panel (opened)="panelOpenState = true"
                                            (closed)="panelOpenState = false">
@@ -242,7 +246,7 @@
                           How to reset the search & start over
                           </mat-panel-description>
                         </mat-expansion-panel-header>
-                        <p>To reset the search and start a new one, click (PC) or tap (mobile) the <button class="btn btn-sm btn-dark btn-outline-primary" disabled>reset button</button> before you can return to the datepicker and select another date.</p>
+                        <p>To reset the search and start a new one, click (PC) or tap (mobile) the <button class="btn btn-sm btn-dark btn-fill-primary" disabled>reset button</button> before you can return to the datepicker and select another date.</p>
                       </mat-expansion-panel>
                       </mat-accordion>
                       </div>
@@ -251,10 +255,31 @@
                         <span class="sr-only"> Searching; please wait... </span>
                     </div>
                       <div *ngIf="empty">
-                        <h2>Sorry, we found nothing for the date {{values | date: 'fullDate'}} | <button class="btn btn-md btn-light btn-outline-danger" (click)="clearValues()"><i class="fa-solid fa-trash-can-arrow-up"></i></button></h2>
+                        <h2>Sorry, we found nothing for {{values | date: 'fullDate'}} | <button mat-flat-button color="warn" (click)="clearValues()"><i class="fa-solid fa-trash-can-arrow-up"></i></button></h2>
                     </div>
                       <div *ngIf="cleared">
                         <h2>Search cleared.</h2>
+                      </div>
+                      <div class="container padding">
+                        <div *ngIf="foundLogs || foundCards || foundMpesa">
+                          <div *ngIf="!cleared">
+                            <div *ngIf="!empty">
+                               
+                                  <div class="card-body">
+                                    <h4 class="card-title text-center"> 
+                                       <i class="fa-regular fa-file-lines"></i>  We found the following logs for {{values}} | <button mat-flat-button color="warn" (click)="clearValues()"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
+                                    </h4>
+                                      <app-logs-card [logs]="foundLogs" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-logs-card>
+                                      <app-credit-log-card [cards]="foundCards" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-credit-log-card>
+                                      <app-mpesa-log-card [mpesa]="foundMpesa" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-mpesa-log-card>
+                            </div>
+                            </div>
+                            
+                            
+                          </div>
+                          
+                        </div>
+                        </div>
                       </div>
                       
                       
@@ -268,32 +293,11 @@
       </div>
   </div>
   
-<div *ngIf="!hideRes" class="container padding">
-  <div *ngIf="foundLogs || foundCards || foundMpesa">
-    <div *ngIf="!cleared">
-      <div *ngIf="!empty">
-         
-            <div class="card-body shadow bg-light padding border rounded">
-              <h4 class="card-title text-center"> 
-                 <i class="fa-regular fa-file-lines"></i>  We found the following logs for the date {{values}} | <button class="btn btn-md btn-light btn-outline-danger" (click)="clearValues()"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
-              </h4>
-                <app-logs-card [logs]="foundLogs" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-logs-card>
-                <app-credit-log-card [cards]="foundCards" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-credit-log-card>
-                <app-mpesa-log-card [mpesa]="foundMpesa" [page]="page" [count]="count" [tableSize]="tableSize" [tableSizes]="tableSizes" [onTableDataChange]="onTableDataChange"></app-mpesa-log-card>
-      </div>
-      </div>
-      
-      
-    </div>
-    
-  </div>
-  </div>
-</div>
+
 
      
       
       
-<br><br><br><br><br><br><br>
 
       
       

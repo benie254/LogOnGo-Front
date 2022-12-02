@@ -44,7 +44,8 @@ export class LogDetailsComponent implements OnInit {
   fuelType: any; 
   fuelReceived: FuelReceived; 
   fuelTotal: any;
-  noneRcvd: boolean = false;
+  noneRcvd: boolean;
+  noTotal: boolean;
 
   constructor(
     private route:ActivatedRoute, 
@@ -140,8 +141,10 @@ export class LogDetailsComponent implements OnInit {
       data => {
         this.fuelReceived = data;
         console.warn("fuel rcvd:",data)
-        if(data == 204){
+        if(data == 204 || !data.length || data.litres == null || data == undefined || data.litres == undefined){
           this.noneRcvd = true;
+        }else if(data.length || data.litres == !null){
+          this.noneRcvd = false;
         }
       }
     )
@@ -150,6 +153,11 @@ export class LogDetailsComponent implements OnInit {
     this.fuel.getTotalFuelReceived(this.fuelId).subscribe(
       data => {
         this.fuelTotal = data;
+        if(data == 204 || !data.length || data.total_td == null || data == undefined || data.total_td == undefined){
+          this.noTotal = true;
+        }else if(data.length || data.total_td == !null){
+          this.noTotal = false;
+        }
       }
     )
   }

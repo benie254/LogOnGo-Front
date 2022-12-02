@@ -36,10 +36,10 @@ export class SearchComponent implements OnInit {
   tableSizes: any = [2, 5, 10, 15];
   mpesaResults: any;
   cardResults: any;
-  showM: boolean = false;
-  showC: boolean = false; 
-  showL: boolean = false;
-  hideRes: boolean = false;
+  showM: boolean = true;
+  showC: boolean = true; 
+  showL: boolean = true;
+  hideRes: boolean = true;
 
   constructor(
     private logService:LogService,
@@ -189,18 +189,12 @@ export class SearchComponent implements OnInit {
   }
   openC(){
     this.showC = true; 
-    this.showM = false; 
-    this.showL = false;
   }
   openM(){
     this.showM = true; 
-    this.showC = false; 
-    this.showL = false;
   }
   openL(){
     this.showL = true;
-    this.showM = false; 
-    this.showC = false;
   }
   close(){
     this.showL = false; 

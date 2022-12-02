@@ -47,18 +47,18 @@
               {{currentUser.username}}
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/user/profile/{{currentUser.id}}">Profile</a></li>
+              <li><a class="dropdown-item" routerLink="/user/{{currentUser.username}}/profile/{{currentUser.id}}">Profile</a></li>
               <li><a class="dropdown-item" routerLink="/admin/logongo" >Admin</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" routerLink="/user/report/incident">Report Incident</a></li>
-              <li><a class="dropdown-item" routerLink="/user/contact/admin">Contact Admin</a></li>
+              <li><a class="dropdown-item" routerLink="/user/{{currentUser.username}}/report/incident">Report Incident</a></li>
+              <li><a class="dropdown-item" routerLink="/user/{{currentUser.username}}/contact/admin">Contact Admin</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" type="button" (click)="logout();">Logout</a></li>
             </ul>
           </li>
         </ul>
         <div *ngIf="authenticated">
-          <a type="button" routerLink="/logs/search" class="btn btn-md btn-light btn-outline-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
+          <a type="button" routerLink="/logs/search" mat-flat-button color="accent"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
         </div>
         
     

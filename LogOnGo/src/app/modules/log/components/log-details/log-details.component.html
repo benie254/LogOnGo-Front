@@ -44,7 +44,7 @@
     
     <div class="col-lg-4 text-center">
       <br><br>
-      <p><a type="button" class="w-100" color="warn" mat-flat-button type="button" (click)="reportWarn();"><i class="fa-regular fa-pen-to-square"></i> edit </a> </p>
+      <p><a type="button" class="w-100" color="warn" mat-flat-button type="button" (click)="reportWarn();"><i class="fa-regular fa-pen-to-square"></i> edit log </a> </p>
       <div *ngIf="!closed">
             <form id="logUpdateForm" class="rounded padding-2 margin shadow" *ngIf="updateConfirmed;" #logUpdateForm="ngForm" (ngSubmit)="updateLogDetails(logUpdateForm.value)">
               <h6 class="margin-top">  <span style="float:right;" (click)="toggleUpdateForm()" type="button" mat-raised-button color="warn"><i class="fa-solid fa-rectangle-xmark"></i></span> Log Update Form</h6>
@@ -81,9 +81,9 @@
             <br>
           
       </div>  
-      <small><span><button class="w-100" color="warn" mat-flat-button type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> Delete</button></span></small>
+      <small><span><button class="w-100" color="warn" mat-flat-button type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> delete log</button></span></small>
       <br><br><hr><br>
-      <app-fuel-received-info [noneRcvd]="noneRcvd" [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal" [fuelType]="fuelType" [fuelId]="fuelId"></app-fuel-received-info>
+      <app-fuel-received-info [noTotal]="noTotal" [noneRcvd]="noneRcvd" [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal" [fuelType]="fuelType" [fuelId]="fuelId"></app-fuel-received-info>
     </div>
   </div>
 </div>

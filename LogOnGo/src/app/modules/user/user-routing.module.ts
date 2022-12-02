@@ -10,9 +10,9 @@ import { UserComponent } from './user.component';
 
 const routes: Routes = [
   { path: '', component: UserComponent },
-  { path: 'profile/:id', component: ProfileComponent },
-  { path: 'report/incident', component: IncidentComponent },
-  { path: 'contact/admin', component: ContactComponent },
+  { path: ':id/profile/:id', component: ProfileComponent },
+  { path: ':id/report/incident', component: IncidentComponent },
+  { path: ':id/contact/admin', component: ContactComponent },
 ];
 
 @NgModule({

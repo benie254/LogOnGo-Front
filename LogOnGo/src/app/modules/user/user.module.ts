@@ -26,6 +26,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxEditorModule } from 'ngx-editor';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { NgxEditorModule } from 'ngx-editor';
     LogModule,
     MpesaModule,
     AuthModule,
+    MatTabsModule,
+    MatButtonModule
   ]
 })
 export class UserModule { }

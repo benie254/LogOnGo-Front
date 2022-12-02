@@ -73,7 +73,7 @@ export class ProfileComponent implements OnInit {
       next: (data) => {
         this.announcements = data 
         // this.foundAnnouncements = true;
-        if(!this.announcements || this.announcements == undefined || this.announcements && this.announcements == 0){
+        if(!data.length || data == undefined || data && data.length == 0 || data.subject == null || data == 204){
           this.foundAnnouncements = false;
         } else {
           this.foundAnnouncements = true;

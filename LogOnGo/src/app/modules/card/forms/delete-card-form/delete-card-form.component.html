@@ -3,7 +3,7 @@
       <div class="col col-lg-4 padding-2">
         <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
           <mat-label>Date</mat-label>
-          <input matInput name="date" ngModel #date="ngModel" type="text" [(ngModel)]="card.formatted_date">
+          <input matInput name="date" ngModel #date="ngModel" type="text" [(ngModel)]="card.long_date">
         </mat-form-field>        
       </div>
       <div class="col col-lg-4 padding-2">
@@ -29,7 +29,7 @@
         <div class="col col-lg-4 padding-2">
             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                 <mat-label>Requested by</mat-label>
-                <input matInput name="requested_by" ngModel #requested_by="ngModel" type="text" [(ngModel)]="currentUser.username">
+                <input matInput name="user" ngModel #user="ngModel" type="text" [(ngModel)]="currentUser.username">
               </mat-form-field>   
         </div>
         <div class="col col-lg-4 rounded padding-2">
@@ -42,6 +42,6 @@
       
     <br>
       <div class="form-group padding-bottom text-center">
-        <button class="margin-top btn w-100 btn-lg btn-light btn-outline-danger" type="submit"><span><i class="fa-solid fa-paper-plane"></i></span> Delete Request</button><br><br>
+        <button class="margin-top w-100" mat-raised-button color="warn" type="submit"><span><i class="fa-solid fa-paper-plane"></i></span> Delete Request</button><br><br>
       </div>
   </form>

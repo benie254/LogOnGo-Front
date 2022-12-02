@@ -21,6 +21,8 @@ export class CardDetailsComponent implements OnInit {
   fuelTotal: any;
   fuelId: number; 
   fuelType: any;
+  noneRcvd: boolean;
+  noTotal: boolean;
 
   constructor(
     private cardService:CardService,
@@ -45,6 +47,8 @@ export class CardDetailsComponent implements OnInit {
         this.date = this.creditCardDetails.date
         this.fuelId = this.creditCardDetails.fuel 
         this.fuelType = this.creditCardDetails.fuel_type
+        this.getFuelReceived();
+        this.getTotalFuelReceived();
       }
     });
   }
@@ -111,6 +115,11 @@ export class CardDetailsComponent implements OnInit {
     this.fuel.getFuelReceivedInfo(this.fuelId).subscribe(
       data => {
         this.fuelReceived = data;
+        if(data == 204 || !data.length || data.litres == null || data == undefined || data.litres == undefined){
+          this.noneRcvd = true;
+        }else if(data.length || data.litres == !null){
+          this.noneRcvd = false;
+        }
       }
     )
   }
@@ -118,6 +127,11 @@ export class CardDetailsComponent implements OnInit {
     this.fuel.getTotalFuelReceived(this.fuelId).subscribe(
       data => {
         this.fuelTotal = data;
+        if(data == 204 || !data.length || data.total_td == null || data == undefined || data.total_td == undefined){
+          this.noTotal = true;
+        }else if(data.length || data.total_td == !null){
+          this.noTotal = false;
+        }
       }
     )
   }

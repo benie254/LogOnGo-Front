@@ -4,7 +4,7 @@
     <h4 class="card-title text-center"> 
       General <i class="fa-regular fa-file-lines"></i>
     </h4>
-      <div class="table-responsive rounded color-two">
+      <div class="table-responsive rounded">
           <table class="table">
               <thead>
                 <tr>
@@ -23,7 +23,7 @@
                     <td>{{logs.eod_reading}}</td>
                     <td>{{logs.eod_yesterday}}</td>
                   <td>{{logs.litres_sold}}</td>
-                  <td><button routerLink="/logs/details/{{logs.id}}" mat-raised-button color="accent"><i class="fa-solid fa-angles-right"></i> <span class="x-small">details</span></button></td>
+                  <td><button routerLink="/logs/details/{{logs.id}}" mat-raised-button color="accent"><i class="fa-solid fa-eye"></i></button></td>
                 </tr>
               </tbody>
             </table>

@@ -1,7 +1,7 @@
 <div class="card margin-top bg-light shadow">
   <div class="card-body" >
     <h4 class="card-title text-center"> Mpesa <i class="fa-solid fa-mobile-button"></i></h4>
-      <div class="table-responsive color-two rounded">
+      <div class="table-responsive rounded">
           <table class="table">
               <thead>
                 <tr>
@@ -20,7 +20,7 @@
                     <td>{{mpesa.transaction_no}}</td>
                   <td>{{mpesa.amount}}</td>
                   <td>{{mpesa.to_bank}}</td>
-                  <td><a type="button" mat-raised-button routerLink="/mpesa/details/{{mpesa.id}}" color="accent"><i class="fa-solid fa-angles-right"></i> <span class="x-small">details</span></a></td>
+                  <td><a type="button" mat-raised-button routerLink="/mpesa/details/{{mpesa.id}}" color="accent"><i class="fa-solid fa-eye"></i></a></td>
                 </tr>
               </tbody>
             </table>

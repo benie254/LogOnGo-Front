@@ -55,7 +55,7 @@
     </div>
     <div class="col-lg-4 padding-2">
       <br>
-      <p class="margin-top"><a type="button" class="w-100" color="warn" mat-flat-button (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> details </a> </p><br>
+      <p class="margin-top"><a type="button" class="w-100" color="warn" mat-flat-button (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> edit mpesa </a> </p><br>
       <div *ngIf="!closed">
                     
         <form class="rounded padding-2 shadow margin" *ngIf="updateConfirmed" #updateForm="ngForm" (ngSubmit)="updateMpesaDetails(updateForm.value)">
@@ -121,9 +121,9 @@
         </form> 
 
 </div>
-      <small class=""><span><button class="w-100" color="warn" mat-flat-button type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> Delete</button></span>  </small>
+      <small class=""><span><button class="w-100" color="warn" mat-flat-button type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> delete mpesa</button></span>  </small>
       <br><hr><br>
-      <app-fuel-received-info [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal" [fuelType]="fuelType" [fuelId]="fuelId"></app-fuel-received-info>
+      <app-fuel-received-info [noTotal]="noTotal" [noneRcvd]="noneRcvd" [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal" [fuelType]="fuelType" [fuelId]="fuelId"></app-fuel-received-info>
     </div>
   </div>
 </div>

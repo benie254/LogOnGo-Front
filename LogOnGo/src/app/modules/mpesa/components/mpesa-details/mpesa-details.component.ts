@@ -32,6 +32,8 @@ export class MpesaDetailsComponent implements OnInit {
   statusText = '';
   error: any;
   message = '';
+  noneRcvd: boolean;
+  noTotal: boolean;
 
 
   constructor(
@@ -52,6 +54,8 @@ export class MpesaDetailsComponent implements OnInit {
         this.mpesaDetails = data
         this.fuelId = this.mpesaDetails.fuel 
         this.fuelType = this.mpesaDetails.fuel_type
+        this.getFuelReceived();
+        this.getTotalFuelReceived();
       }
     });
   }
@@ -155,6 +159,11 @@ export class MpesaDetailsComponent implements OnInit {
     this.fuel.getFuelReceivedInfo(this.fuelId).subscribe(
       data => {
         this.fuelReceived = data;
+        if(data == 204 || !data.length || data.litres == null || data == undefined || data.litres == undefined){
+          this.noneRcvd = true;
+        }else if(data.length || data.litres == !null){
+          this.noneRcvd = false;
+        }
       }
     )
   }
@@ -162,6 +171,11 @@ export class MpesaDetailsComponent implements OnInit {
     this.fuel.getTotalFuelReceived(this.fuelId).subscribe(
       data => {
         this.fuelTotal = data;
+        if(data == 204 || !data.length || data.total_td == null || data == undefined || data.total_td == undefined){
+          this.noTotal = true;
+        }else if(data.length || data.total_td == !null){
+          this.noTotal = false;
+        }
       }
     )
   }

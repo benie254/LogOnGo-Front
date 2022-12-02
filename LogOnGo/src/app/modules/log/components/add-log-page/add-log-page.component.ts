@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
 
@@ -19,16 +19,22 @@ export class AddLogPageComponent implements OnInit {
   openM: boolean = false;
   currentUser = this.auth.currentUserValue;
   noFuel: boolean = false;
+  noneRcvd: boolean;
 
   constructor(
     private fuel:FuelService,
     private route:ActivatedRoute,
     private auth:AuthService,
+    private router:Router,
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => this.getFuelInfo(params['id']))
     this.route.params.subscribe(params => this.getFuelReceived(params['id']))
+    if(!this.currentUser){
+      this.auth.logout();
+      this.router.navigate(['/auth'])
+    }
   }
   getFuelInfo(id){
     this.fuel.getFuelInfo(id).subscribe({
@@ -43,10 +49,10 @@ export class AddLogPageComponent implements OnInit {
     this.fuel.getFuelReceivedInfo(id).subscribe(
       data => {
         this.fuelReceived = data;
-        if (this.fuelReceived && this.fuelReceived.length == 0 || this.fuelReceived == undefined || this.fuelReceived.litres_received == null){
-          this.noFuel = true;
-        } else {
-          this.noFuel = false;
+        if(data == 204 || !data.length || data.litres == null || data == undefined || data.litres == undefined){
+          this.noneRcvd = true;
+        }else if(data.length || data.litres == !null){
+          this.noneRcvd = false;
         }
       }
     )

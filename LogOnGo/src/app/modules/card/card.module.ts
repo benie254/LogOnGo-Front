@@ -68,6 +68,7 @@ import { NavigationModule } from '../navigation/navigation.module';
     ProfileCardLogsComponent,
     AddCardComponent,
     CreditLogCardComponent,
+    CardInstructionsComponent,
   ]
 })
 export class CardModule { }

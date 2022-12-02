@@ -50,7 +50,7 @@
         </div>
         <div class="col-lg-4 padding-2">
           <br>
-          <p class="margin-top"><a type="button" class="w-100" color="warn" mat-flat-button (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> details </a> </p>
+          <p class="margin-top"><a type="button" class="w-100" color="warn" mat-flat-button (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> edit card </a> </p>
           <div *ngIf="!closed">
             <form class="rounded padding shadow margin" *ngIf="updateConfirmed" #creditCardUpdateForm="ngForm" (ngSubmit)="updateCreditCardDetails(creditCardUpdateForm.value)">
               <h6 class="margin-top">Credit Card Update Form <span style="float:right;" (click)="toggleUpdateForm()" type="button" color="accent" mat-raised-button><i class="fa-solid fa-rectangle-xmark"></i></span></h6>
@@ -102,9 +102,9 @@
           <br>
             
           </div>
-          <small><span><button class="w-100" color="warn" mat-flat-button type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> Delete</button></span> </small>
+          <small><span><button class="w-100" color="warn" mat-flat-button type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> delete card</button></span> </small>
           <br><br><hr><br>
-          <app-fuel-received-info [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal" [fuelType]="fuelType" [fuelId]="fuelId"></app-fuel-received-info>
+          <app-fuel-received-info [noTotal]="noTotal" [noneRcvd]="noneRcvd" [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal" [fuelType]="fuelType" [fuelId]="fuelId"></app-fuel-received-info>
         </div>
     </div>  
     

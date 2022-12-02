@@ -65,6 +65,7 @@ import { NavigationModule } from '../navigation/navigation.module';
     ProfileMpesaComponent,
     AddMpesaComponent,
     MpesaLogCardComponent,
+    MpesaInstructionsComponent
   ]
 })
 export class MpesaModule { }

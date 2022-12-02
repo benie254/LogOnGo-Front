@@ -1,7 +1,7 @@
 <div>
     <div class="row padding-2">
         <div class="col center padding-2 rounded">
-            <div class="bg-light rounded" *ngIf="fuelReceived.length">
+            <div class="bg-light rounded" *ngIf="!noneRcvd">
                 <p class="card-title shadow text-center">{{fuelType}} Received This Day: <br> <span><h5>{{fuelTotal.total_td}} <span>Lts.</span></h5></span>  </p>
                 <span><a type="button" class="btn btn-sm btn-dark btn-outline-info" (click)="toggleOrderInfo()">order(s) info</a> | <a type="button" class="btn btn-sm btn-dark btn-outline-info" (click)="toggleNewOrder()">new order</a></span> 
                 <br><br>

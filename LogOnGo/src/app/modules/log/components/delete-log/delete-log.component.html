@@ -1,6 +1,5 @@
 
-<div class="container-fluid logInstructions height-lg">
-    <br><br><br> <br>
+<div class="container-fluid color-two padding">
     <div class="container padding-2 rounded bg-light">
           <h1 class="text-center">Delete Request</h1>
           <div class="row">
@@ -51,7 +50,7 @@
               </div>
               <div class="col-md-6">
                 <br>
-                  <div class="padding color-two rounded">
+                  <div class="padding">
                       <form #delLogForm="ngForm" (ngSubmit)="delRequest(delLogForm.value)">
                           <div class="row hide">
                             <div class="col col-lg-4 padding-2">
@@ -116,7 +115,7 @@
                             
                           <br>
                             <div class="form-group padding-bottom text-center">
-                              <button class="margin-top btn w-100 btn-lg btn-light btn-outline-danger" type="submit"><span><i class="fa-solid fa-paper-plane"></i></span> Delete Request</button><br><br>
+                              <button class="margin-top w-100" color="warn" mat-raised-button type="submit"><span><i class="fa-solid fa-paper-plane"></i></span> Delete Request</button><br><br>
                             </div>
                         </form>
                   </div>
@@ -127,6 +126,10 @@
           
   
       </div>
+      <br><br><br><br>
+    <div class="padding">
+      <app-footer></app-footer>
+    </div>
   </div>
   
   

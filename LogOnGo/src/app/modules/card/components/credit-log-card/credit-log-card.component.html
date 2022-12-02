@@ -1,7 +1,7 @@
 <div class="card margin-top bg-light shadow">
   <div class="card-body" >
     <h4 class="card-title text-center"> Credit Card <i class="fa-solid fa-credit-card"></i></h4>
-      <div class="table-responsive color-two rounded">
+      <div class="table-responsive rounded">
           <table class="table">
               <thead>
                   <tr>
@@ -18,7 +18,7 @@
                     <td>{{cards.date | date: 'dd/MM/yyyy'}}</td>
                       <td>{{cards.card_name}}</td>
                     <td>{{cards.card_no}}</td>
-                    <td><a type="button" mat-raised-button color="accent" routerLink="/cards/details/{{cards.id}}"><i class="fa-solid fa-angles-right"></i> <span class="x-small">details</span></a></td>
+                    <td><a type="button" mat-raised-button color="accent" routerLink="/cards/details/{{cards.id}}"><i class="fa-solid fa-eye"></i></a></td>
                   </tr>
                 </tbody>
               </table>
