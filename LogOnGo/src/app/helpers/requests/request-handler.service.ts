@@ -62,6 +62,7 @@ export class RequestHandlerService {
         'Sorry, you do not have permission to view or modify the requested resource',
         'Okay',
       )
+      console.warn("err",error)
     } else if (error.status === 404){
       Notiflix.Report.warning(
         error.statusText,

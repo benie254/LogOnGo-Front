@@ -41,7 +41,7 @@ export class LoginFormComponent implements OnInit {
   logIn(userData: User): void {
     Notiflix.Loading.hourglass('Processing... please wait.');
     this.authService.login(userData).pipe(first()).subscribe(
-        data => {
+        (data: User) => {
           Notiflix.Loading.remove();
                   Notiflix.Notify.success('Login successful! Welcome.');
                   location.reload();
