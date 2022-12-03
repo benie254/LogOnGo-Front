@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { MyErrorStateMatcher } from 'src/app/modules/auth/services/matcher/matcher.service';
@@ -22,6 +22,7 @@ export class EmailMpesaComponent implements OnInit {
     private mpesa:MpesaService,
     private route:ActivatedRoute,
     private authService:AuthService,
+    private router:Router,
     ) { 
     
   }
@@ -42,6 +43,13 @@ export class EmailMpesaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.authService.currentUserValue){
+      this.currentUser = this.authService.currentUserValue
+    } else {
+      this.currentUser = '';
+      this.authService.logout();
+      this.router.navigate(['/auth'])
+    }
     this.route.params.subscribe(params => this.getMpesaLogDetails(params['id']))
   }
 

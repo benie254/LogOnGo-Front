@@ -32,10 +32,14 @@ export class EmailReportComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => this.getLogDetails(params['id']));
-    if(!this.currentUser){
+    if(this.authService.currentUserValue){
+      this.currentUser = this.authService.currentUserValue
+    } else {
+      this.currentUser = '';
+      this.authService.logout();
       this.router.navigate(['/auth'])
     }
+    this.route.params.subscribe(params => this.getLogDetails(params['id']));
   }
 
   getLogDetails(id:number){

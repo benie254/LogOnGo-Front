@@ -36,6 +36,13 @@ export class CardDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.authService.currentUserValue){
+      this.currentUser = this.authService.currentUserValue
+    } else {
+      this.currentUser = '';
+      this.authService.logout();
+      this.router.navigate(['/auth'])
+    }
     this.id = this.route.snapshot.params['id'];
     this.route.params.subscribe(params => this.getCreditCardLogDetails(params['id']));
     this.getCreditCardLogDetails(this.id)

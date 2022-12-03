@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { LogService } from '../../services/log/log.service';
@@ -23,10 +23,15 @@ export class DeleteLogComponent implements OnInit {
   constructor(
     private log:LogService,
     private route:ActivatedRoute,
-    private auth:AuthService,
+    private authService:AuthService,
+    private router:Router,
   ) { 
-    if(this.auth.currentUserValue){
-      this.currentUser = this.auth.currentUserValue;
+    if(this.authService.currentUserValue){
+      this.currentUser = this.authService.currentUserValue
+    } else {
+      this.currentUser = '';
+      this.authService.logout();
+      this.router.navigate(['/auth'])
     }
   }
 

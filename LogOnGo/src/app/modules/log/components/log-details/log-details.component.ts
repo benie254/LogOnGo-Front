@@ -56,6 +56,13 @@ export class LogDetailsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    if(this.authService.currentUserValue){
+      this.currentUser = this.authService.currentUserValue
+    } else {
+      this.currentUser = '';
+      this.authService.logout();
+      this.router.navigate(['/auth'])
+    }
     this.route.params.subscribe(params => this.getLogDetails(params['id']))
     this.logId = this.route.snapshot.params['id'];
   }
