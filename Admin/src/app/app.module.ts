@@ -22,7 +22,23 @@ import { HomeComponent } from './home/home.component';
 import * as Notiflix from 'notiflix';
 import { UsersModule } from './modules/users/users.module';
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDeG0j_7ZNhPnglcYNbEMepis2CExqMxeg",
+  authDomain: "logongo.firebaseapp.com",
+  projectId: "logongo",
+  storageBucket: "logongo.appspot.com",
+  messagingSenderId: "353755377556",
+  appId: "1:353755377556:web:03e858b68e824a98e16981"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [

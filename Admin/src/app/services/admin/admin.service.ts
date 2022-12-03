@@ -44,6 +44,11 @@ export class AdminService {
   allUsers = apiURL + 'all-users/';
   userDetails = apiURL + 'user/profile/';
   updateUser = apiURL + 'user/update/';
+  addAnnounce = apiURL + 'announcements/add/';
+  delFuel = apiURL + 'fuel/remove/';
+  delLog = apiURL + 'logs/remove/';
+  delMpesa = apiURL + 'logs/mpesa/remove/';
+  delCard = apiURL + 'logs/card/remove/';
 
   constructor(
     private handler:RequestHandlerService,
@@ -124,7 +129,7 @@ export class AdminService {
     return this.handler.handleGET<User>(this.allAdmins)
   }
   addAnnouncement(data: Announcement): Observable<Announcement>{
-    return this.handler.handlePOST<Announcement>(this.announce, data)
+    return this.handler.handlePOST<Announcement>(this.addAnnounce, data)
   }
   editAnnouncement(id: number,data: Announcement): Observable<Announcement>{
     return this.handler.handlePUT<Announcement>(this.editAnnounce + id, data)
@@ -154,10 +159,10 @@ export class AdminService {
     return this.handler.handleDEL<Incident>(this.incidentDetails + id)
   }
   deleteFuel(id: number): Observable<Fuel>{
-    return this.handler.handleDEL<Fuel>(this.fuelDetails + id)
+    return this.handler.handleDEL<Fuel>(this.delFuel + id)
   }
   deleteCard(id: number): Observable<CreditCard>{
-    return this.handler.handleDEL<CreditCard>(this.cardDetails + id)
+    return this.handler.handleDEL<CreditCard>(this.delCard + id)
   }
   getFuelReceivedDetails(id: number): Observable<FuelReceived>{
     return this.handler.handleGET<FuelReceived>(this.fuelRcvdDetails + id)
@@ -175,9 +180,9 @@ export class AdminService {
     return this.handler.handleDEL<FuelReceived>(this.fuelDetails + id)
   }
   deleteMpesa(id: number): Observable<LogMpesa>{
-    return this.handler.handleDEL<LogMpesa>(this.mpesaDetails + id)
+    return this.handler.handleDEL<LogMpesa>(this.delMpesa + id)
   }
   deleteLog(id: number): Observable<Log>{
-    return this.handler.handleDEL<Log>(this.logDetails + id)
+    return this.handler.handleDEL<Log>(this.delLog + id)
   }
 }

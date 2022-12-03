@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ErrorsComponent } from './errors.component';
+import { MatButtonModule } from '@angular/material/button'
 
 
 
@@ -9,7 +10,8 @@ import { ErrorsComponent } from './errors.component';
     ErrorsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule,
   ],
   exports: [
     ErrorsComponent,

@@ -12,14 +12,13 @@ import { MyErrorStateMatcher } from '../../services/matcher/matcher.service';
   templateUrl: './reset-request-form.component.html',
   styleUrls: ['./reset-request-form.component.css']
 })
-export class ResetRequestFormComponent implements OnInit,OnDestroy {
+export class ResetRequestFormComponent implements OnInit {
   authenticated: boolean = false;
   currentUser: any = this.authService.currentUserValue;
   id:number;
   reqSent: boolean = false;
   matcher = new MyErrorStateMatcher();
   resetConfirmed: boolean = false;
-  private unsubscribe$ = new Subject<void>();
   isStaff: boolean = false;
   isSuper: boolean = false;
 
@@ -38,7 +37,7 @@ export class ResetRequestFormComponent implements OnInit,OnDestroy {
   }
   requestResetPass(userData: Pass){
     Notiflix.Loading.hourglass('Requesting... please wait.')
-    this.authService.requestResetPassword(userData).pipe(takeUntil(this.unsubscribe$)).subscribe(
+    this.authService.requestResetPassword(userData).subscribe(
       {
         next: (res) => {
           Notiflix.Loading.remove();
@@ -60,9 +59,6 @@ export class ResetRequestFormComponent implements OnInit,OnDestroy {
   }
   
 
-  ngOnDestroy(){
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
+  
 }
 
