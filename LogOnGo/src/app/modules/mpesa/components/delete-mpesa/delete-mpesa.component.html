@@ -73,40 +73,12 @@
                           </div>
                         </div>
                         <div class="row hide">
-                            <div class="col col-lg-4 padding-2">
-                              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                <mat-label>Transaction no.</mat-label>
-                                <input matInput name="transaction_number" ngModel #transaction_number="ngModel" type="text" [(ngModel)]="mpesa.transaction_number">
-                              </mat-form-field>        
-                            </div>
-                            <div class="col col-lg-4 padding-2">
-                              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                  <mat-label>Customer name</mat-label>
-                                  <input matInput name="customer_name" ngModel #customer_name="ngModel" type="text" [(ngModel)]="mpesa.customer_name">
-                                </mat-form-field> 
-                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                    <mat-label>Customer no.</mat-label>
-                                    <input matInput name="customer_phone_number" ngModel #customer_phone_number="ngModel" type="number" [(ngModel)]="mpesa.customer_phone_number">
-                                  </mat-form-field>     
-                            </div>
-                            <div class="col col-lg-4 rounded padding-2">
-                              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                  <mat-label>Bank amount</mat-label>
-                                  <input matInput name="amount_transferred_to_bank" ngModel #amount_transferred_to_bank="ngModel" type="number" [(ngModel)]="mpesa.amount_transferred_to_bank">
-                                </mat-form-field>  
-                            </div>
-                          </div>
-                          <div class="row hide">
-                            <div class="col col-lg-4 padding-2">
-                              <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                <mat-label>Amount</mat-label>
-                                <input matInput name="amount" ngModel #amount="ngModel" type="number" [(ngModel)]="mpesa.amount">
-                              </mat-form-field>        
-                            </div>
+                           
+                            
                             <div class="col col-lg-4 padding-2">
                                 <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                                     <mat-label>Requested by</mat-label>
-                                    <input matInput name="requested_by" ngModel #requested_by="ngModel" type="text" [(ngModel)]="currentUser.username">
+                                    <input matInput name="user" ngModel #user="ngModel" type="text" [(ngModel)]="currentUser.username">
                                   </mat-form-field>   
                             </div>
                             <div class="col col-lg-4 rounded padding-2">

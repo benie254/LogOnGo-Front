@@ -24,9 +24,14 @@ export class FuelReceivedComponent implements OnInit {
   }
   toggleOrderInfo(){
     this.showInfo = true;
+    this.showNew = false;
+  }
+  closeOrder(){
+    this.showInfo = false;
   }
   toggleNewOrder(){
     this.showNew = true;
+    this.showInfo = false;
   }
 
 }

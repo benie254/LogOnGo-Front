@@ -12,7 +12,7 @@ export class UserService {
   announceURL = apiURL + 'announcements/latest/';
   announceAll = apiURL + 'announcements/all/';
   contactURL = apiURL + 'contact/admin/';
-  incidentURL = apiURL + 'report/incident/';
+  incidentURL = apiURL + 'incident/report/';
 
   constructor(
     private handler:RequestHandlerService,

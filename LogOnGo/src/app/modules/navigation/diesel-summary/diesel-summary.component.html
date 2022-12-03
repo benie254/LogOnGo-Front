@@ -6,7 +6,7 @@
 
 <div>
     <p class="bg-light padding-2 rounded">
-        <span *ngIf="fuel.length">
+        <span *ngIf="!noFuel">
             <div class="row">
                 <div class="col">
                     <i class="fa-solid fa-water"></i> Initial_litres <span><small><button (click)="toggleInitForm()" class="btn btn-sm btn-light btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button></small></span> <br> <span><h1>{{fuel.tank_init}} <span class="x-small">Lts</span></h1></span>
@@ -124,14 +124,19 @@
             </div>
         </span>
         
-        <span *ngIf="!fuel.length" class="bg-light padding-2 rounded">
+        <span *ngIf="noFuel" class="bg-light padding-2 rounded">
           Diesel details have not been uploaded yet.
         </span>
     </p>
 </div>
 <hr>
-<div *ngIf="empty">
-    <p class="bg-light padding-2 rounded">
-        Diesel summary will appear here.
-    </p>
+<div>
+  <p class="bg-light padding-2 rounded" *ngIf="empty">
+      Diesel summary will appear here.
+  </p>
+  <div *ngIf="!empty">
+    <h6>Diesel Summary</h6>
+    <p><strong>{{fuelSummary.cumulative_litres_td}}</strong> Lts sold. <br> <strong>{{fuelSummary.cumulative_amount_td}}</strong> Kes earned. <br> <strong>{{fuelSummary.cumulative_bal_td}}</strong> Lts balance.</p>
+    <hr>
+  </div>
 </div>

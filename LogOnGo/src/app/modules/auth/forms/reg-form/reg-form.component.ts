@@ -74,7 +74,7 @@ export class RegFormComponent implements OnInit {
     this.authService.register(userData).pipe(first()).subscribe({
       next: (res) => {
         Notiflix.Notify.success('Registration successful!');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth']);
         Notiflix.Loading.remove();
       }
     });  

@@ -115,9 +115,9 @@ export class CardDetailsComponent implements OnInit {
     this.fuel.getFuelReceivedInfo(this.fuelId).subscribe(
       data => {
         this.fuelReceived = data;
-        if(data == 204 || !data.length || data.litres == null || data == undefined || data.litres == undefined){
+        if(data == 204 || this.fuelReceived.litres === null || data.length == undefined){
           this.noneRcvd = true;
-        }else if(data.length || data.litres == !null){
+        }else{
           this.noneRcvd = false;
         }
       }
@@ -127,9 +127,9 @@ export class CardDetailsComponent implements OnInit {
     this.fuel.getTotalFuelReceived(this.fuelId).subscribe(
       data => {
         this.fuelTotal = data;
-        if(data == 204 || !data.length || data.total_td == null || data == undefined || data.total_td == undefined){
+        if(data == 204 || this.fuelTotal.total_today === null || data.length == undefined){
           this.noTotal = true;
-        }else if(data.length || data.total_td == !null){
+        }else{
           this.noTotal = false;
         }
       }

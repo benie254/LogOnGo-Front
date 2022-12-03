@@ -10,6 +10,7 @@ export class NoLogsComponent implements OnInit {
   closed: boolean;
   show: boolean;
   @Input() fuelInfo: any;
+  @Input() fuelId: any;
   
   constructor() { }
    

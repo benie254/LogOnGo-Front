@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { Fuel } from 'src/app/classes/fuel/fuel';
 import { Log } from 'src/app/classes/log/log';
@@ -29,12 +29,14 @@ export class AddLogComponent implements OnInit {
   DD = new Date().getDate();
   today = this.YYYY + '-' + this.MM + '-' + this.DD
   tdate = new Date().toDateString();
+  @Input() fuelId: any;
 
   constructor(
     private log:LogService,
     private fuel:FuelService,
     private route:ActivatedRoute,
     private auth:AuthService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -60,14 +62,20 @@ export class AddLogComponent implements OnInit {
       next: (result) => {
         Notiflix.Notify.success('Log added successful!');
         Notiflix.Loading.remove();
-        location.reload();
+        
+        // location.reload();
+        this.router.navigate(['/logs/today/fuel/' + this.fuelInfo.id])
+        setTimeout(() => {
+          location.reload();
+        },500)
       }
     });
   }
-  yesterdayLogs(id){
+  yesterdayLogs(id: number){
     this.log.getYesterdayLogs(id).subscribe({
       next: (res) => {
         this.yesterday = res;
+        console.warn("yes",res)
       }
     })
   }

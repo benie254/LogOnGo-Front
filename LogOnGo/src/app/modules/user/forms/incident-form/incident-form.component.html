@@ -1,8 +1,8 @@
 <form #incidentForm="ngForm" (ngSubmit)="incidentReport(incidentForm.value)">
   <h2 class="text-center">Report an incident</h2>
   <div class="form-group hide">
-    <input type="text" class="" name="your_name" ngModel [(ngModel)]="currentUser.username">
-    <input type="email" name="your_email" ngModel [(ngModel)]="currentUser.email">
+    <input type="text" class="" name="name" ngModel [(ngModel)]="currentUser.username">
+    <input type="email" name="email" ngModel [(ngModel)]="currentUser.email">
   </div>
   <div class="row">
     <div class="col-md-6 padding">

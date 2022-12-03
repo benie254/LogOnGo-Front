@@ -44,8 +44,8 @@
                 <h5 class="text-center">Search Filter <br> <span><small class="font-sm">We will filter your search against all credit card logs</small></span></h5>
                     <mat-form-field appearance="fill" class="padding-2 full-width">
                         <mat-label>Month/Day/Card/Amount/User</mat-label>
-                        <input matInput placeholder="Enter Month/Day/Card-Name./Amount/Username" list="datalistOptions" id="exampleDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
-                        <datalist id="datalistOptions">
+                        <input matInput placeholder="Enter Month/Day/Card-Name./Amount/Username" list="datalistCard" id="cardDataList" (change)="dateValue($any($event.target).value)" name="search" [(ngModel)]="searchText" required>
+                        <datalist id="datalistCard">
                             <option value="Benson" *ngFor="let card of cardResults" [value]="card.long_date">  
                         </datalist>
                         <mat-icon matSuffix>date</mat-icon>
@@ -156,6 +156,7 @@
                       </mat-expansion-panel>
                       </mat-accordion>
                       </div>
+                      <br>
          
               
              
@@ -165,9 +166,10 @@
             
       </div>
       <div class="col-md-6">
+        <hr>
         <ul class="nav nav-tabs float-right">
           <li class="nav-item">
-              <a class="nav-link disabled"><i class="fa-solid fa-angle-down"></i> Pick a date to start</a>
+              <a class="nav-link disabled"><i class="fa-solid fa-angle-down"></i> Pick a specific date</a>
             </li>
         </ul>
         <br><br>

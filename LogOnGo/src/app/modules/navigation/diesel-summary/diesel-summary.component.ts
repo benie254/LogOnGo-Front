@@ -13,8 +13,9 @@ export class DieselSummaryComponent implements OnInit {
   ppOpen: boolean = false; 
   initOpen: boolean = false;
   id: number;
-  empty: boolean;
+  empty: boolean = true;
   fuel: any;
+  noFuel: boolean = true;
 
   constructor(
     private fuelService:FuelService,
@@ -31,19 +32,27 @@ export class DieselSummaryComponent implements OnInit {
       next: (res) => {
         this.fuel = res;
         this.id = res.id
-        this.fuelService.getFuelSummary(this.id).subscribe(
-          (data) => {
-            this.fuelSummary = data;
-            console.warn("diesel summary",this.fuelSummary);
-            if(this.fuelSummary.cumulative_litres_sold_today == null || this.fuelSummary == '' || this.fuelSummary.length == undefined){
-              this.empty = true;
-            } else {
-              this.empty = false;
-            }
-          }
-        )
+        if(!this.fuel || this.fuel.length || this.fuel.pp_litre == undefined || this.fuel.pp_litre == null || this.fuel.pp_litre == ''){
+          this.noFuel = true;
+        }else{
+          this.noFuel = false;
+          this.dieselSummary();
+        }
       }
     });
+  }
+  dieselSummary(){
+    this.fuelService.getFuelSummary(this.id).subscribe(
+      (data) => {
+        this.fuelSummary = data;
+        console.warn("fs",data)
+        if(this.fuelSummary == 204 || !this.fuelSummary || this.fuelSummary.length && this.fuelSummary.cumulative_litres_td == undefined || this.fuelSummary.cumulative_litres_td == null || this.fuelSummary.cumulative_litres_td == ''){
+          this.empty = true;
+        } else {
+          this.empty = false;
+        }
+      }
+    )
   }
   updateDiesel(dieselData){
     this.fuelService.getDieselInfo().subscribe({

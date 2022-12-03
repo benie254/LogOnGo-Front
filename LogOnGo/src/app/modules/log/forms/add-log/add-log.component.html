@@ -70,6 +70,30 @@
               </mat-error>
             </mat-form-field> 
           </div>
+          <div class="col-lg-4"></div>
+          <div class="hide">
+            <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
+              <mat-label>Logged by</mat-label>
+              <input matInput ngModel name="logged_by" type="text" [(ngModel)]="currentUser.username" required>
+            </mat-form-field> 
+            <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
+              <mat-label>User</mat-label>
+              <input matInput ngModel name="user" type="number" [(ngModel)]="currentUser.id" required>
+            </mat-form-field> 
+          </div>
+        </div>
+        <div *ngIf="yesterday" class="row hide">
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4 rounded padding-2">
+            <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
+              <mat-label>EOD Yesterday</mat-label>
+              <input matInput placeholder="End of day reading Yesterday" #eod_yesterday="ngModel" [(ngModel)]="yesterday.eod_reading" ngModel name="eod_yesterday" type="number" required>
+              <mat-hint>e.g <strong>11223344.25</strong></mat-hint>
+              <mat-error *ngIf="eod_yesterday.hasError('required') || eod_yesterday.pristine">
+                Yesterday EOD reading is <strong>required</strong>
+              </mat-error>
+            </mat-form-field> 
+          </div>
           <div class="col-lg-4 hide">
             <mat-form-field appearance="fill" class="padding-2 full-width" style="margin-top:5%;">
               <mat-label>Logged by</mat-label>

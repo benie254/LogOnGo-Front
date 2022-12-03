@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 
 @Component({
   selector: 'app-all-logs',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-logs.component.css']
 })
 export class AllLogsComponent implements OnInit {
+  currentUser: any;
 
-  constructor() { }
+  constructor(
+    private auth:AuthService,
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
+    if(this.auth.currentUserValue){
+      this.currentUser = this.auth.currentUserValue;
+    }else{
+      !this.currentUser;
+      this.auth.logout();
+      this.router.navigate(['/auth'])
+    }
   }
 
 }

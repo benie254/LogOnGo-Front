@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
       this.currentUser = this.auth.currentUserValue;
     }else{
       !this.currentUser;
+      this.auth.logout();
       this.router.navigate(['/auth'])
     }
   }

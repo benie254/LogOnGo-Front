@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { Log } from 'src/app/classes/log/log';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
@@ -27,6 +27,7 @@ export class FuelLogsComponent implements OnInit {
   tableSize: number = 3;
   tableSizes: any = [2, 5, 10, 15];
   currentUser: any;
+  fuelId: any;
 
   constructor(
     private log:LogService,
@@ -35,26 +36,31 @@ export class FuelLogsComponent implements OnInit {
     private mpesa:MpesaService,
     private authService:AuthService,
     private card:CardService,
-    private detector: ChangeDetectorRef
+    private detector: ChangeDetectorRef,
+    private router:Router,
   ) { }
 
   ngOnInit(): void {
+    if(this.authService.currentUserValue){
+      this.currentUser = this.authService.currentUserValue
+    } else {
+      this.currentUser = '';
+      this.authService.logout();
+      this.router.navigate(['/auth'])
+    }
     this.id = this.route.snapshot.params['id'];
     this.route.params.subscribe(params => this.getFuelMpesa(params['id']))
     this.route.params.subscribe(params => this.getFuelInfo(params['id']))
     this.route.params.subscribe(params => this.fuelLogs(params['id']))
     this.route.params.subscribe(params => this.getFuelCards(params['id']))
-    if(this.authService.currentUserValue){
-      this.currentUser = this.authService.currentUserValue
-    } else {
-      this.currentUser = '';
-    }
+    
     this.detector.detectChanges();
   }
   getFuelInfo = (id): void => {
     this.fuel.getFuelInfo(id).subscribe({
       next: (res) => {
         this.fuelInfo = res;
+        this.fuelId = res.id;
       }
     })
   }

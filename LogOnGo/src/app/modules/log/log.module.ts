@@ -69,7 +69,8 @@ import { MatTabsModule } from '@angular/material/tabs';
   ],
   exports: [
     LogDetailsComponent,
-    ProfileLogCardComponent
+    ProfileLogCardComponent,
+    LogsCardComponent
   ]
 })
 export class LogModule { }

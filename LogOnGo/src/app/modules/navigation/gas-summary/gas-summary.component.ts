@@ -13,8 +13,9 @@ export class GasSummaryComponent implements OnInit {
   ppOpen: boolean = false; 
   initOpen: boolean = false;
   id: number;
-  empty: boolean;
+  empty: boolean = true;
   gas: any;
+  noFuel: boolean = true;
 
   constructor(
     private fuelService:FuelService,
@@ -31,18 +32,29 @@ export class GasSummaryComponent implements OnInit {
       next: (res) => {
         this.gas = res;
         this.id = res.id
-        this.fuelService.getFuelSummary(this.id).subscribe(
-          (data) => {
-            this.fuelSummary = data;
-            if(this.fuelSummary.cumulative_litres_sold_today == null || this.fuelSummary == '' || this.fuelSummary.length == undefined){
-              this.empty = true;
-            } else {
-              this.empty = false;
-            }
-          }
-        )
+        console.warn(res)
+        if(!this.gas || this.gas.length && this.gas.pp_litre == undefined || this.gas.pp_litre == null || this.gas.pp_litre == ''){
+          this.noFuel = true;
+        }else{
+          this.noFuel = false;
+          this.getSummary();
+        }
+        
       }
     });
+  }
+  getSummary(){
+    this.fuelService.getFuelSummary(this.id).subscribe(
+      (data) => {
+        this.fuelSummary = data;
+        console.warn()
+        if(!this.fuelSummary || this.fuelSummary.length && this.fuelSummary.cumulative_litres_td == undefined || this.fuelSummary.cumulative_litres_td == null || this.fuelSummary.cumulative_litres_td == ''){
+          this.empty = true;
+        } else {
+          this.empty = false;
+        }
+      }
+    )
   }
   updateGas(gasData){
     this.fuelService.getGasInfo().subscribe({

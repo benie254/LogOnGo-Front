@@ -5,7 +5,7 @@
 
 <div>
     <p class="bg-light padding-2 rounded">
-        <span *ngIf="gas.length">
+        <span *ngIf="!noFuel">
             <div class="row">
                 <div class="col">
                     
@@ -123,14 +123,19 @@
               </div>
             </div>
         </span>
-        <span *ngIf="!gas.length" class="bg-light padding-2 rounded">
+        <span *ngIf="noFuel" class="bg-light padding-2 rounded">
           Gas details have not been uploaded yet.
         </span>
     </p>
 </div>
 <hr>
-<div *ngIf="empty">
-    <p class="bg-light padding-2 rounded">
-        Gas summary will appear here.
-    </p>
+<div>
+  <p class="bg-light padding-2 rounded" *ngIf="empty">
+      Gas summary will appear here.
+  </p>
+  <div *ngIf="!empty">
+    <h6>Gas Summary</h6>
+    <p><strong>{{fuelSummary.cumulative_litres_td}}</strong> Lts sold. <br> <strong>{{fuelSummary.cumulative_amount_td}}</strong> Kes earned. <br> <strong>{{fuelSummary.cumulative_bal_td}}</strong> Lts balance.</p>
+    <hr>
+  </div>
 </div>

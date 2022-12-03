@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { Fuel } from 'src/app/classes/fuel/fuel';
 import { FuelService } from '../../services/fuel/fuel.service';
 
 @Component({
@@ -30,12 +31,13 @@ export class FuelReceivedFormComponent implements OnInit {
 
 
   ngOnInit(): void { }
-  fuelReceived(fuelData) {
+  fuelReceived(fuelData: Fuel) {
     Notiflix.Loading.dots('Processing...')
     this.fuelService.addFuelReceived(fuelData).subscribe({
-      next: (result) => {
+      next: (result: Fuel) => {
         Notiflix.Loading.remove();
         Notiflix.Notify.success('Add success!');
+        location.reload();
       }
     })
   }

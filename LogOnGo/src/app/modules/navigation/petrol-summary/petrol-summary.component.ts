@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { Fuel } from 'src/app/classes/fuel/fuel';
 import { FuelService } from '../../fuel/services/fuel/fuel.service';
 
 @Component({
@@ -14,8 +15,10 @@ export class PetrolSummaryComponent implements OnInit {
   initOpen: boolean = false;
   id: number;
   fuels: any;
-  empty: boolean;
+  empty: boolean = true;
   petrol: any;
+  noFuel: boolean = true;
+  savedId: any;
 
   constructor(
     private fuelService:FuelService,
@@ -29,35 +32,44 @@ export class PetrolSummaryComponent implements OnInit {
       next: (res) => {
         this.petrol = res;
         this.id = res.id
-        this.fuelService.getFuelSummary(this.id).subscribe(
-          (data) => {
-            this.fuelSummary = data;
-            if(this.fuelSummary.cumulative_litres_sold_today == null || this.fuelSummary == '' || this.fuelSummary.length == undefined){
-              this.empty = true;
-            } else {
-              this.empty = false;
-            }
-          }
-        )
+        if(this.petrol.length && this.petrol.pp_litre == undefined || this.petrol.pp_litre == null || this.petrol.pp_litre == ''){
+          this.noFuel = true;
+        }else{
+          this.noFuel = false;
+          this.petrolSummary();
+          this.copy(res.id);
+        }
       }
     });
   }
-  updatePetrol(petrolData){
-    this.fuelService.getPetrolInfo().subscribe({
-      next: (res) => {
-        this.id = res.id;
-        this.fuelService.updateFuelInfo(this.id,petrolData).subscribe({
-          next: (res) => {
-            console.log(res);
-            Notiflix.Notify.success('updated!');
-            this.open = false;
-            this.ppOpen = false;
-            this.initOpen = false;
-          }
+  copy = (text: any): void => {
+    localStorage.setItem('petrolSavedId',text);
+    this.savedId = localStorage.getItem('petrolSavedId')
+  }
+  petrolSummary(){
+    this.fuelService.getFuelSummary(this.id).subscribe(
+      (data) => {
+        this.fuelSummary = data;
+        console.warn("sum:",data)
+        if(!this.fuelSummary || this.fuelSummary.length && this.fuelSummary.cumulative_litres_td == undefined || this.fuelSummary.cumulative_litres_td == null || this.fuelSummary.cumulative_litres_td == ''){
+          this.empty = true;
+        } else {
+          this.empty = false;
         }
-      );
       }
-    })
+    )
+  }
+  updatePetrol(petrolData: Fuel){
+    this.fuelService.updateFuelInfo(this.savedId,petrolData).subscribe({
+      next: (res) => {
+        console.log(res);
+        Notiflix.Notify.success('updated!');
+        this.open = false;
+        this.ppOpen = false;
+        this.initOpen = false;
+      }
+    }
+  );
   }
   togglePumpsForm(){
     this.open = true;

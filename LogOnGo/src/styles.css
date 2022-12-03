@@ -3,18 +3,21 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
-.hide{
-    display:none;
-}
-
-.margin-top{
-    margin-top:1%;
-}
-.margin-top2p5{
-    margin-top:2.5%;
-}
 
 /* recently added */
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Kannada:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Julee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Combo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Charm&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
@@ -26,6 +29,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Philosopher&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+
+.hide{
+  display:none;
+}
+
+.margin-top{
+  margin-top:1%;
+}
+.margin-top2p5{
+  margin-top:2.5%;
+}
 
 .navbar-brand, .font-brand{
   font-family: 'Carter One', cursive;
@@ -73,24 +88,18 @@ h6{
   font-family: 'Combo', cursive;
   font-weight: bold;
 }
-p, form {
+p, form, a {
   font-family: 'Libre Baskerville', serif;
 }
 p{
   font-size:18px;
 }
-input::placeholder, textarea::placeholder  {
+input::placeholder, textarea::placeholder, li  {
   font-family: 'Julee', cursive;
 }
 
 small{
-  font-family: 'Gochi Hand', cursive;
-}
-li{
-  font-family: 'Amita', cursive;
-}
-a{
-  font-family: 'Charm', cursive;
+  font-family: 'Kalam', cursive;
 }
 .btn{
   font-family: 'DynaPuff', cursive;

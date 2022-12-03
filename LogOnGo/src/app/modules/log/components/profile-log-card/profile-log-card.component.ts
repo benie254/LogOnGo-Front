@@ -8,12 +8,12 @@ import { LogService } from '../../services/log/log.service';
   styleUrls: ['./profile-log-card.component.css']
 })
 export class ProfileLogCardComponent implements OnInit {
-  @Input() userLogs: any;
   page: number = 1;
   count: number = 0;
   tableSize: number = 2;
   tableSizes: any = [2, 5, 10, 15];
   id: number;
+  @Input() userLogs: any;
 
   constructor(
     private logService:LogService,

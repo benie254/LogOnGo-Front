@@ -4,6 +4,7 @@ import { CalendarEvent, CalendarView } from 'angular-calendar';
 import * as Notiflix from 'notiflix';
 import { Log } from 'src/app/classes/log/log';
 import { AuthService } from '../../auth/services/auth/auth.service';
+import { CardService } from '../../card/services/card/card.service';
 import { LogService } from '../../log/services/log/log.service';
 import { MpesaService } from '../../mpesa/services/mpesa/mpesa.service';
 import { UserService } from '../services/user/user.service';
@@ -48,18 +49,25 @@ export class ProfileComponent implements OnInit {
     private user:UserService,
     private route:ActivatedRoute,
     private router:Router,
+    private card:CardService
     ) { 
 
     
     }
 
   ngOnInit(): void {
+    if(this.auth.currentUserValue){
+      this.currentUser = this.auth.currentUserValue
+    } else {
+      !this.currentUser;
+      this.auth.logout();
+      this.router.navigate(['/auth'])
+    }
     this.getAnnouncements();
     this.route.params.subscribe(params => this.getUserMpesaLogs(params['id']));
-    this.route.params.subscribe(params => this.getUserLogs(params['id']));
     this.id = this.route.snapshot.params['id'];
     this.route.params.subscribe(params => this.getUserCardLogs(params['id']))
-    
+    this.getUserLogs();
     
     // this.currentUser = this.tokenStorage.getUser();
   }
@@ -104,10 +112,11 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  getUserLogs(id): void{
-    this.log.getUserLogs(id).subscribe({
+  getUserLogs(): void{
+    this.log.getUserLogs(this.currentUser.id).subscribe({
       next: (data) => {
         this.userLogs = data
+
       }
     });
   }
@@ -119,8 +128,8 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  getUserCardLogs(id): void{
-    this.log.getUserLogs(id).subscribe({
+  getUserCardLogs(id: number): void{
+    this.card.getUserCreditCardLogs(id).subscribe({
       next: (data) => {
         this.userCards = data
       }

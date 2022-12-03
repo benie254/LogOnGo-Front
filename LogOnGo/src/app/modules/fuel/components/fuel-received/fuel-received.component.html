@@ -6,17 +6,16 @@
                 <span><a type="button" class="btn btn-sm btn-dark btn-outline-info" (click)="toggleOrderInfo()">order(s) info</a> | <a type="button" class="btn btn-sm btn-dark btn-outline-info" (click)="toggleNewOrder()">new order</a></span> 
                 <br><br>
                 <div *ngIf="showNew">
-                    <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" (click)="toggleNewOrder()">X</a></span>
                     <app-fuel-received-form [fuelId]="fuelId" [fuelType]="fuelType"></app-fuel-received-form>
                 </div>
                 <ol *ngIf="showInfo" class="shadow rounded padding" style="text-align:left;">
-                    <h6>Fuel Receipt Info <span><a type="button" style="float:right;" class="btn btn-sm btn-dark btn-outline-danger" (click)="toggleOrderInfo()">X</a></span></h6>
-                    <span><p><li *ngFor="let fuel of fuelReceived">{{fuel.litres_received}} Lts. from {{fuel_info.received_from}}</li></p></span>
+                    <h6>Fuel Receipt Info <span><a type="button" style="float:right;" mat-raised-button color="warn" (click)="closeOrder()">X</a></span></h6>
+                    <span><p><li *ngFor="let fuel of fuelReceived">{{fuel.litres}} Lts. from {{fuel.in_from}}</li></p></span>
                 </ol>
             </div>
                     <div *ngIf="noneRcvd" class="shadow bg-light padding">
                         <h5 class="card-header text-center">No {{fuelType}} received yet.</h5>
-                    <app-fuel-received-form [fuelId]="fuelId" [fuelType]="fuelType"></app-fuel-received-form>
+                    <app-fuel-received-form class="hPrint" [fuelId]="fuelId" [fuelType]="fuelType"></app-fuel-received-form>
                     </div>
                 
         </div>

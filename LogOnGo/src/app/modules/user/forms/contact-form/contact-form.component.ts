@@ -16,6 +16,11 @@ export class ContactFormComponent implements OnInit {
   currentUser = this.authService.currentUserValue;
   editor: Editor;
   html: '';
+  YYYY = new Date().getFullYear();
+  MM = new Date().getMonth() + 1;
+  DD = new Date().getDate();
+  today = this.YYYY + '-' + this.MM + '-' + this.DD
+  tdate = new Date().toDateString();
 
 
   constructor(

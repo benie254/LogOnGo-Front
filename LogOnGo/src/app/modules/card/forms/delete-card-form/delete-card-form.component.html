@@ -3,7 +3,7 @@
       <div class="col col-lg-4 padding-2">
         <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
           <mat-label>Date</mat-label>
-          <input matInput name="date" ngModel #date="ngModel" type="text" [(ngModel)]="card.long_date">
+          <input matInput name="date" ngModel #date="ngModel" type="text" [(ngModel)]="card.date">
         </mat-form-field>        
       </div>
       <div class="col col-lg-4 padding-2">
@@ -20,12 +20,6 @@
       </div>
     </div>
       <div class="row hide">
-        <div class="col col-lg-4 padding-2">
-          <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-            <mat-label>Amount</mat-label>
-            <input matInput name="amount" ngModel #amount="ngModel" type="number" [(ngModel)]="card.amount_earned_today">
-          </mat-form-field>        
-        </div>
         <div class="col col-lg-4 padding-2">
             <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                 <mat-label>Requested by</mat-label>

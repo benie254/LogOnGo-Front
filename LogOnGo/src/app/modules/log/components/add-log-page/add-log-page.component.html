@@ -23,7 +23,7 @@
                      Click on a tab 
                     </mat-tab>
                 <mat-tab label="General Logs">
-                    <app-add-log [fuelInfo]="fuelInfo"></app-add-log>
+                    <app-add-log [fuelId]="fuelId" [fuelInfo]="fuelInfo"></app-add-log>
                 </mat-tab>
                 <mat-tab label="Card Logs">
                 <app-add-card [fuelInfo]="fuelInfo" [currentUser]="currentUser"></app-add-card>
@@ -39,4 +39,5 @@
             <app-fuel-received [noneRcvd]="noneRcvd" [noFuel]="noFuel" [fuelType]="fuelType" [fuelId]="fuelId" [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal"></app-fuel-received>
         </div>
     </div>
+    <br><br><br>
    

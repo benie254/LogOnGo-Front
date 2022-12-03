@@ -48,7 +48,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" routerLink="/user/{{currentUser.username}}/profile/{{currentUser.id}}">Profile</a></li>
-              <li><a class="dropdown-item" routerLink="/admin/logongo" >Admin</a></li>
+              <li><a class="dropdown-item" href="https://logongo-staff.web.app/" *ngIf="isSuper || isStaff">Admin</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" routerLink="/user/{{currentUser.username}}/report/incident">Report Incident</a></li>
               <li><a class="dropdown-item" routerLink="/user/{{currentUser.username}}/contact/admin">Contact Admin</a></li>

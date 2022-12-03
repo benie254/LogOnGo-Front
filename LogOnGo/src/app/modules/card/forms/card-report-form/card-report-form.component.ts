@@ -40,6 +40,7 @@ export class CardReportFormComponent implements OnInit {
         "The requested card report has been delivered to your email. Remember to check it out!",
         "Okay"
         )
+        history.back();
     },
     err => {
       console.error(err);

@@ -194,7 +194,7 @@
             <div class=" col-lg-4 rounded black">
                 <div>
                     <div *ngIf="userLogs else noUserLogs">
-                        <app-profile-log-card [userLogs]="userLogs"></app-profile-log-card>
+                        <app-logs-card [logs]="userLogs"></app-logs-card>
                     </div>
                 </div>
                 <div>
@@ -226,7 +226,6 @@
                         <div class="card color-two">
                             <div class="card-body">
                                 <p class="card-text">Your MPesa logs will appear here.</p>
-                                <p class="card-text"><a class="btn btn-sm btn-info btn-outline-dark" type="button" routerLink="/add-mpesa">Record Mpesa logs now?</a></p>
                             </div>
                         </div>  
                     </ng-template> 
@@ -264,13 +263,17 @@
                     
                     </div>
                     
+                    
                 </div>
+                
                 
             </div>
             
                 
             <div class="col-md-1"></div>
+            <br><br><br>
         </div>
+        
        
     
     

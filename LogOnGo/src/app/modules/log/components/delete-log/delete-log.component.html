@@ -56,7 +56,7 @@
                             <div class="col col-lg-4 padding-2">
                               <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                                 <mat-label>Date</mat-label>
-                                <input matInput name="date" ngModel #date="ngModel" type="text" [(ngModel)]="logs.formatted_date">
+                                <input matInput name="date" ngModel #date="ngModel" type="text" [(ngModel)]="logs.date">
                               </mat-form-field>        
                             </div>
                             <div class="col col-lg-4 padding-2">
@@ -72,37 +72,13 @@
                                 </mat-form-field>  
                             </div>
                           </div>
-                          <div class="row hide">
-                              <div class="col col-lg-4 padding-2">
-                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                  <mat-label>EOD</mat-label>
-                                  <input matInput name="eod_reading_lts" ngModel #eod_reading_lts="ngModel" type="number" [(ngModel)]="logs.eod_reading_lts">
-                                </mat-form-field>        
-                              </div>
-                              <div class="col col-lg-4 padding-2">
-                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                    <mat-label>EOD yesterday</mat-label>
-                                    <input matInput name="eod_reading_yesterday" ngModel #eod_reading_yesterday="ngModel" type="number" [(ngModel)]="logs.eod_reading_yesterday">
-                                  </mat-form-field>     
-                              </div>
-                              <div class="col col-lg-4 rounded padding-2">
-                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                    <mat-label>Litres sold</mat-label>
-                                    <input matInput name="litres_sold_today" ngModel #litres_sold_today="ngModel" type="number" [(ngModel)]="logs.total_litres_sold">
-                                  </mat-form-field>  
-                              </div>
-                            </div>
+                         
                             <div class="row hide">
-                              <div class="col col-lg-4 padding-2">
-                                <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
-                                  <mat-label>Amount</mat-label>
-                                  <input matInput name="amount" ngModel #amount="ngModel" type="number" [(ngModel)]="logs.amount_earned_today">
-                                </mat-form-field>        
-                              </div>
+                              
                               <div class="col col-lg-4 padding-2">
                                   <mat-form-field appearance="outline" class="color-one rounded shadow padding-2 full-width">
                                       <mat-label>Requested by</mat-label>
-                                      <input matInput name="requested_by" ngModel #requested_by="ngModel" type="text" [(ngModel)]="currentUser.username">
+                                      <input matInput name="user" ngModel #user="ngModel" type="text" [(ngModel)]="currentUser.username">
                                     </mat-form-field>   
                               </div>
                               <div class="col col-lg-4 rounded padding-2">

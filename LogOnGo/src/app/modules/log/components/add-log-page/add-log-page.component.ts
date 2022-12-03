@@ -29,6 +29,13 @@ export class AddLogPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(this.auth.currentUserValue){
+      this.currentUser = this.auth.currentUserValue
+    } else {
+      !this.currentUser;
+      this.auth.logout();
+      this.router.navigate(['/auth'])
+    }
     this.route.params.subscribe(params => this.getFuelInfo(params['id']))
     this.route.params.subscribe(params => this.getFuelReceived(params['id']))
     if(!this.currentUser){

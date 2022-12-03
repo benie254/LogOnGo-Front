@@ -9,15 +9,13 @@ import { User } from 'src/app/classes/user/user';
 })
 export class LogsCardComponent implements OnInit {
   @Input() searchText: any;
-  @Input() logs: Log;
-  @Input() userLogs: Log;
+  @Input() logs: any;
   @Input() currentUser: User;
   @Input() page: number; 
   @Input() count: number; 
   @Input() tableSize: number = 4; 
   @Input() tableSizes: number; 
   @Input() getAllLogs: () => void;
-  @Input() getUserLogs: (id: number) => void;
   @Input() onTableDataChange: (event: any) => void;
 
   constructor() { }

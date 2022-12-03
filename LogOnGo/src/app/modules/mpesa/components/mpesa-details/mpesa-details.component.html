@@ -2,7 +2,7 @@
   <div class="row padding-2">
     <div class="col-lg-8 padding-2">
       <div class="card shadow color-two text-center">
-        <h5 class="card-header"><span class="" style="float:left;"><button class=" margin-top" color="accent" mat-raised-button (click)="printMpesa()">Print <i class="fa-solid fa-print"></i></button></span> {{mpesaDetails.date}} <span style="float:right;"><a routerLink="/mpesa/email/report/{{mpesaDetails.id}}" type="button" class="margin-top" mat-raised-button color="accent"> <i class="fa-solid fa-paper-plane"></i> email</a></span></h5>
+        <h5 class="card-header"><span class="hPrint" style="float:left;"><button class=" margin-top" color="accent" mat-raised-button (click)="printMpesa()">Print <i class="fa-solid fa-print"></i></button></span> {{mpesaDetails.date}} <span class="hPrint" style="float:right;"><a routerLink="/mpesa/email/report/{{mpesaDetails.id}}" type="button" class="margin-top" mat-raised-button color="accent"> <i class="fa-solid fa-paper-plane"></i> email</a></span></h5>
         
         <div class="card-body">
             <div class="table-responsive">
@@ -55,7 +55,7 @@
     </div>
     <div class="col-lg-4 padding-2">
       <br>
-      <p class="margin-top"><a type="button" class="w-100" color="warn" mat-flat-button (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> edit mpesa </a> </p><br>
+      <p class="margin-top hPrint"><a type="button" class="w-100" color="warn" mat-flat-button (click)="reportWarn()"><i class="fa-solid fa-pen-to-square"></i> edit mpesa </a> </p><br>
       <div *ngIf="!closed">
                     
         <form class="rounded padding-2 shadow margin" *ngIf="updateConfirmed" #updateForm="ngForm" (ngSubmit)="updateMpesaDetails(updateForm.value)">
@@ -121,7 +121,7 @@
         </form> 
 
 </div>
-      <small class=""><span><button class="w-100" color="warn" mat-flat-button type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> delete mpesa</button></span>  </small>
+      <small class="hPrint"><span><button class="w-100" color="warn" mat-flat-button type="button" (click)="delWarn()"><span><i class="fa-solid fa-trash-arrow-up"></i></span> delete mpesa</button></span>  </small>
       <br><hr><br>
       <app-fuel-received-info [noTotal]="noTotal" [noneRcvd]="noneRcvd" [fuelReceived]="fuelReceived" [fuelTotal]="fuelTotal" [fuelType]="fuelType" [fuelId]="fuelId"></app-fuel-received-info>
     </div>
