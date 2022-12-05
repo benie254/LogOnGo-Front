@@ -36,10 +36,10 @@
             Password confirmation is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-      
+      <br><br>
       <div class="form-group padding-bottom text-center">
         <button class="margin-top w-50" mat-raised-button color="accent" type="submit" [disabled]="changePassForm.invalid || noMatch"><span><i class="fa-solid fa-user-check"></i></span> Update</button><br><br>
-        <a routerLink="/auth/reset/password/request/{{currentUser.id}}"><p class="small">or <strong>Reset Password</strong></p></a>
+        <a routerLink="/auth/reset/password/request"><p class="small">or <strong>Reset Password</strong></p></a>
       </div>
     </div>
       <div class="col-lg-3"></div>

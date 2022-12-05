@@ -9,6 +9,8 @@ import { AuthService } from '../../auth/services/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
   currentUser: any;
+  isExpanded: boolean = false;
+  panelOpenState = false;
 
   constructor(
     private auth:AuthService,

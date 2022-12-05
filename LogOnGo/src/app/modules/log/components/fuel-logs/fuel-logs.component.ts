@@ -56,7 +56,7 @@ export class FuelLogsComponent implements OnInit {
     
     this.detector.detectChanges();
   }
-  getFuelInfo = (id): void => {
+  getFuelInfo = (id: number): void => {
     this.fuel.getFuelInfo(id).subscribe({
       next: (res) => {
         this.fuelInfo = res;
@@ -65,22 +65,28 @@ export class FuelLogsComponent implements OnInit {
     })
   }
   fuelLogs = (id): void => {
+    Notiflix.Loading.dots('Loading...')
     this.log.getFuelLogs(id).subscribe({
       next: (res) => {
+        Notiflix.Loading.remove();
         this.fLogs = res;
       }
     });
   }
   getFuelMpesa = (id: number): void => {
+    Notiflix.Loading.dots('Loading...')
     this.mpesa.getTodayMpesaLogs(id).subscribe(
       data => {
+        Notiflix.Loading.remove();
         this.fuelMpesa = data;
       }
     )
   }
   getFuelCards = (id): void => {
+    Notiflix.Loading.dots('Loading...')
     this.card.getTodayCreditCardLogs(id).subscribe(
       data => {
+        Notiflix.Loading.remove()
         this.fuelCards = data;
       }
     )

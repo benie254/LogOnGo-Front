@@ -67,8 +67,10 @@ export class LogDetailsComponent implements OnInit {
     this.logId = this.route.snapshot.params['id'];
   }
   getLogDetails = (id:number): void => {
+    Notiflix.Loading.dots('Loading...')
     this.logService.getLogDetails(id).subscribe({
       next: (data) => {
+        Notiflix.Loading.remove();
         this.logs = data;
         this.fuelId = this.logs.fuel
         this.fuelType = this.logs.fuel_type

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as Notiflix from 'notiflix';
 import { MpesaService } from '../../services/mpesa/mpesa.service';
 
 @Component({
@@ -22,7 +23,9 @@ export class AllMpesaLogsComponent implements OnInit {
   }
   
   getAllMpesa = (): void => {
+    Notiflix.Loading.dots('Loading...')
     this.mpesaService.getAllMpesaLogs().subscribe((data) => {
+      Notiflix.Loading.remove();
       this.allMpesa = data
     });
   }

@@ -28,8 +28,10 @@ export class PetrolSummaryComponent implements OnInit {
     this.getPetrol();
   }
   getPetrol(){
+    Notiflix.Loading.dots('Loading content...')
     this.fuelService.getPetrolInfo().subscribe({
       next: (res) => {
+        Notiflix.Loading.remove();
         this.petrol = res;
         this.id = res.id
         if(this.petrol.length && this.petrol.pp_litre == undefined || this.petrol.pp_litre == null || this.petrol.pp_litre == ''){

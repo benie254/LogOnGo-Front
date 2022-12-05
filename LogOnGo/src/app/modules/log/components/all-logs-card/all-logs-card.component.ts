@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as Notiflix from 'notiflix';
 import { Log } from 'src/app/classes/log/log';
 import { LogService } from '../../services/log/log.service';
 
@@ -23,7 +24,9 @@ export class AllLogsCardComponent implements OnInit {
   }
   
   getAllLogs = (): void => {
+    Notiflix.Loading.dots('Loading...')
     this.logService.getAllLogs().subscribe((data) => {
+      Notiflix.Loading.remove();
       this.allLogs = data
     });
   }

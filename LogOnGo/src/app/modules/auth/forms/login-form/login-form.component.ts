@@ -44,8 +44,8 @@ export class LoginFormComponent implements OnInit {
         (data: User) => {
           Notiflix.Loading.remove();
                   Notiflix.Notify.success('Login successful! Welcome.');
+                  this.router.navigate(['/auth/welcome/' + this.authService.currentUserValue.username]);
                   location.reload();
-                  this.router.navigate(['/auth/welcome/' + this.authService.currentUserValue.username])
                   this.authenticated = true;
                 });
     }

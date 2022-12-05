@@ -43,7 +43,9 @@ export class EmailReportComponent implements OnInit {
   }
 
   getLogDetails(id:number){
+    Notiflix.Loading.dots('Loading...');
     this.log.getLogDetails(id).subscribe((data) => {
+      Notiflix.Loading.remove();
       this.log_details = data
       console.warn("log details",data)
     }

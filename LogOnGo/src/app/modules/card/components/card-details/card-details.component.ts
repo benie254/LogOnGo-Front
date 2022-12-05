@@ -48,8 +48,10 @@ export class CardDetailsComponent implements OnInit {
     this.getCreditCardLogDetails(this.id)
   }
   getCreditCardLogDetails(id:number){
+    Notiflix.Loading.dots('Loading...')
     this.cardService.getCreditCardLogDetails(id).subscribe({
       next: (data) => {
+        Notiflix.Loading.remove()
         this.creditCardDetails = data
         this.date = this.creditCardDetails.date
         this.fuelId = this.creditCardDetails.fuel 

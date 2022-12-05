@@ -28,8 +28,10 @@ export class GasSummaryComponent implements OnInit {
     this.getGas();
   }
   getGas(){
+    Notiflix.Loading.dots('Loading content...')
     this.fuelService.getGasInfo().subscribe({
       next: (res) => {
+        Notiflix.Loading.remove();
         this.gas = res;
         this.id = res.id
         console.warn(res)

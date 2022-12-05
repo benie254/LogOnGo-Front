@@ -1,6 +1,6 @@
 
 
-<mat-sidenav-container class="color-two">
+<mat-sidenav-container>
     <mat-sidenav #sidenav id="side-cont" class="color-two">
             
             
@@ -23,11 +23,11 @@
         </mat-nav-list>
     </mat-sidenav>
 <mat-sidenav-content>
-    <div class="container">
+    <div class="container-fluid color-two">
         
         
             
-                <mat-tab-group>
+                <mat-tab-group dynamicHeight>
                     <mat-tab label="Welcome, {{currentUser.username}}">
                        
                         <div *ngIf="foundAnnouncements">
@@ -39,97 +39,8 @@
                         <br>
                    
             </mat-tab>
-                    <mat-tab label="Guide">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="shadow text-center margin-bottom-two bg-light">
-                                    <h6>Feeling lost? <i class="fa-solid fa-person-circle-question"></i></h6>
-                                    <mat-accordion>
-                                        
-                                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                        (closed)="panelOpenState = false">
-                                          <mat-expansion-panel-header>
-                                            <mat-panel-title>
-                                                <i class="fa-solid fa-house-user"></i> Home Page
-                                            </mat-panel-title>
-                                            <mat-panel-description>
-                                              Your summary page
-                                            </mat-panel-description>
-                                          </mat-expansion-panel-header>
-                                          <p><a routerLink="/home">Here</a>, you will find a summary of all fuels and their details.</p>
-                                        </mat-expansion-panel>
-                                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                                             (closed)="panelOpenState = false">
-                                          <mat-expansion-panel-header>
-                                            <mat-panel-title>
-                                                <i class="fa-solid fa-list-check"></i> All Logs
-                                            </mat-panel-title>
-                                            <mat-panel-description>
-                                              Where all logs are
-                                            </mat-panel-description>
-                                          </mat-expansion-panel-header>
-                                          <p><a routerLink="/all-logs">Here,</a> you can view all logs and toggle their details.</p>
-                                        </mat-expansion-panel>
-                                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                                             (closed)="panelOpenState = false">
-                                          <mat-expansion-panel-header>
-                                            <mat-panel-title>
-                                                <i class="fa-solid fa-calendar-day"></i> Logs Today
-                                            </mat-panel-title>
-                                            <mat-panel-description>
-                                              Petrol/Diesel/Gas/Mpesa
-                                            </mat-panel-description>
-                                          </mat-expansion-panel-header>
-                                          <p>Here, you can view and add all logs of <strong> today only.</strong> <span><a routerLink="/petrol">Petrol</a> | <a routerLink="/diesel">Diesel</a> | <a routerLink="/gas">Gas</a> | <a routerLink="/add-mpesa">Mpesa</a></span></p>
-                                        </mat-expansion-panel>
-                                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                                             (closed)="panelOpenState = false">
-                                          <mat-expansion-panel-header>
-                                            <mat-panel-title>
-                                                <i class="fa-regular fa-square-plus"></i> Add Log
-                                            </mat-panel-title>
-                                            <mat-panel-description>
-                                            Where you record logs
-                                            </mat-panel-description>
-                                          </mat-expansion-panel-header>
-                                          <p><a routerLink="/add-log">Here</a>, you can record all logs: Petrol, Diesel, or Gas & add their received orders</p>
-                                        </mat-expansion-panel> 
-                                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                                             (closed)="panelOpenState = false">
-                                          <mat-expansion-panel-header>
-                                            <mat-panel-title>
-                                                <i class="fa-solid fa-message"></i> Management/Admin
-                                            </mat-panel-title>
-                                            <mat-panel-description>
-                                            Got an concern? Inquiry? Request? Message?
-                                            </mat-panel-description>
-                                          </mat-expansion-panel-header>
-                                          <p><a routerLink="/contact">Here</a>, you can contact the management of Pebo Kenya Ltd about any concerns/inquiries/requests</p>
-                                        </mat-expansion-panel>
-                                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                                             (closed)="panelOpenState = false">
-                                          <mat-expansion-panel-header>
-                                            <mat-panel-title>
-                                                <i class="fa-solid fa-flag"></i>  Incidents
-                                            </mat-panel-title>
-                                            <mat-panel-description>
-                                            Did something go wrong?
-                                            </mat-panel-description>
-                                          </mat-expansion-panel-header>
-                                          <p><a routerLink="/incident">Here</a>, you can report any station-related incidents. Always try to describe the incident to the best of your ability</p>
-                                        </mat-expansion-panel> 
-                                      </mat-accordion>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <img src="https://res.cloudinary.com/benie/image/upload/v1669953929/undraw_lost_re_xqjt_nj3bmk.svg" height="250px" alt="">
-                                
-                            </div>
-                        </div>
-                        
-                    </mat-tab>
-                    
                     <mat-tab label="Profile details">
+                       
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="row">
@@ -151,8 +62,8 @@
                                             <a disabled mat-list-item >            <img src="https://res.cloudinary.com/benie/image/upload/v1659091140/avatar-3814049_640_lxxhz9.png" height="70" width="70" class="radius" />
                                             </a>
                                             <a disabled mat-list-item ><i class="fa-solid fa-user"></i>&nbsp; {{currentUser.username}} </a>
-                                            <a disabled mat-list-item [routerLink]="'/accounts'"><i class="fa-solid fa-envelope"></i>&nbsp; {{currentUser.email}} </a>
-                                            <a disabled mat-list-item [routerLink]="'/accounts'"><i class="fa-solid fa-gas-pump"></i>&nbsp; {{currentUser.petrol_station}} </a>
+                                            <a disabled mat-list-item><i class="fa-solid fa-envelope"></i>&nbsp; {{currentUser.email}} </a>
+                                            <a disabled mat-list-item><i class="fa-solid fa-gas-pump"></i>&nbsp; {{currentUser.petrol_station}} </a>
                                             
                                             
                                             
@@ -169,6 +80,75 @@
                                 </div>
                             </div>
                         </div>
+                    </mat-tab>
+                    
+                    <mat-tab label="Guide">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="shadow text-center margin-bottom-two bg-light">
+                                    <h6>Feeling lost? <i class="fa-solid fa-person-circle-question"></i></h6>
+                                    <mat-accordion>
+                                        
+                                        
+                                        <mat-expansion-panel (opened)="panelOpenState = true"
+                                                             (closed)="panelOpenState = false">
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <i class="fa-solid fa-list-check"></i> All Logs
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                              Where all logs are
+                                            </mat-panel-description>
+                                          </mat-expansion-panel-header>
+                                          <p><a routerLink="/logs/all">Here,</a> you can view all logs and toggle their details.</p>
+                                        </mat-expansion-panel>
+                                        <mat-expansion-panel (opened)="panelOpenState = true"
+                                                             (closed)="panelOpenState = false">
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <i class="fa-solid fa-calendar-day"></i> Logs Today
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                              Petrol/Diesel/Gas/Mpesa/Card
+                                            </mat-panel-description>
+                                          </mat-expansion-panel-header>
+                                          <p>Here, you can view and add all logs of <strong> today only.</strong> </p>
+                                        </mat-expansion-panel>
+                                        <mat-expansion-panel (opened)="panelOpenState = true"
+                                                             (closed)="panelOpenState = false">
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <i class="fa-regular fa-square-plus"></i> Add Log
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                            Where you record logs
+                                            </mat-panel-description>
+                                          </mat-expansion-panel-header>
+                                          <p>Here, you can record all logs: Petrol, Diesel, or Gas for General/Mpesa/CreditCard & add their received orders.</p>
+                                        </mat-expansion-panel> 
+                                        <mat-expansion-panel (opened)="panelOpenState = true"
+                                                             (closed)="panelOpenState = false">
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <i class="fa-solid fa-message"></i> Management/Incidents
+                                            </mat-panel-title>
+                                            <mat-panel-description>
+                                            Concern/Inquiry/Request/Message?
+                                            </mat-panel-description>
+                                          </mat-expansion-panel-header>
+                                          <p><a routerLink="/user/{{currentUser.username}}/contact/admin">Here</a>, you can contact the management of Pebo Kenya Ltd about any concerns/inquiries/requests. If something goes wrong at work, report an incident <a routerLink="/user/{{currentUser.username}}/report/incident">here</a>.</p>
+                                        </mat-expansion-panel>
+                                       
+                                      </mat-accordion>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <img src="https://res.cloudinary.com/benie/image/upload/v1669953929/undraw_lost_re_xqjt_nj3bmk.svg" height="250px" alt="">
+                                
+                            </div>
+                        </div>
+                        
                         
                     </mat-tab>
                     
@@ -182,7 +162,6 @@
             
     </div>
     
-    <hr>
     
     <div class="container-fluid">
         

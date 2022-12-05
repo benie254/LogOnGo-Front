@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as Notiflix from 'notiflix';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { FuelService } from 'src/app/modules/fuel/services/fuel/fuel.service';
 
@@ -44,8 +45,10 @@ export class AddLogPageComponent implements OnInit {
     }
   }
   getFuelInfo(id){
+    Notiflix.Loading.dots('Loading...')
     this.fuel.getFuelInfo(id).subscribe({
       next: (res) => {
+        Notiflix.Loading.remove();
         this.fuelInfo = res;
         this.fuelType = this.fuelInfo.fuel_type
         this.fuelId = this.fuelInfo.id

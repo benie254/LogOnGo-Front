@@ -7,7 +7,7 @@ import { RequestHandlerService } from 'src/app/helpers/requests/request-handler.
 const apiURL = 'http://127.0.0.1:8000/api/';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class MpesaService {
   apiAllMpesa = apiURL + 'logs/mpesa/all/';

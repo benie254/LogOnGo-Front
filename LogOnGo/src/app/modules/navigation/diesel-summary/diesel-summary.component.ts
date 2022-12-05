@@ -28,8 +28,10 @@ export class DieselSummaryComponent implements OnInit {
     this.getDiesel();
   }
   getDiesel(){
+    Notiflix.Loading.dots('Loading content...')
     this.fuelService.getDieselInfo().subscribe({
       next: (res) => {
+        Notiflix.Loading.remove();
         this.fuel = res;
         this.id = res.id
         if(!this.fuel || this.fuel.length || this.fuel.pp_litre == undefined || this.fuel.pp_litre == null || this.fuel.pp_litre == ''){

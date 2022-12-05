@@ -12,7 +12,7 @@ const apiURL = 'http://127.0.0.1:8000/api/';
 // const apiURL = 'https://logongo-api-production.up.railway.app/api/';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;

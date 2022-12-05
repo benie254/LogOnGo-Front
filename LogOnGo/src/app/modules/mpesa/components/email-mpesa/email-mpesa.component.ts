@@ -54,8 +54,10 @@ export class EmailMpesaComponent implements OnInit {
   }
 
   getMpesaLogDetails(id:number){
+    Notiflix.Loading.dots('Loading...');
     this.mpesa.getMpesaLogDetails(id).subscribe(
       (data) => {
+        Notiflix.Loading.remove();
         this.mpesaDetails = data
         console.warn("mpesa log details",data)
       }

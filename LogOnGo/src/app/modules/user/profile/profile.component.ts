@@ -113,8 +113,10 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserLogs(): void{
+    Notiflix.Loading.dots('Loading...');
     this.log.getUserLogs(this.currentUser.id).subscribe({
       next: (data) => {
+        Notiflix.Loading.remove();
         this.userLogs = data
 
       }
@@ -122,15 +124,19 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserMpesaLogs(id:number): void{
+    Notiflix.Loading.dots('Loading...');
     this.mpesa.getUserMpesaLogs(id).subscribe({
       next: (data) => {
+        Notiflix.Loading.remove();
         this.userMpesa = data
       }
     });
   }
   getUserCardLogs(id: number): void{
+    Notiflix.Loading.dots('Loading...');
     this.card.getUserCreditCardLogs(id).subscribe({
       next: (data) => {
+        Notiflix.Loading.remove();
         this.userCards = data
       }
     });
@@ -160,7 +166,7 @@ export class ProfileComponent implements OnInit {
           "Proceed",
         )
         this.changeConfirmed = true;
-        this.router.navigate(['/auth/change/password/' + this.currentUser.id])
+        this.router.navigate(['/auth/change/password'])
       },
       () => {
         Notiflix.Report.success(
@@ -185,7 +191,7 @@ export class ProfileComponent implements OnInit {
           "Okay",
         )
         this.resetConfirmed = true;
-        this.router.navigate(['/auth/reset/password/request/' + this.currentUser.id]);
+        this.router.navigate(['/auth/reset/password/request']);
       },
       () => {
         Notiflix.Report.success(

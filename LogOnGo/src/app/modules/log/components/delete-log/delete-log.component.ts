@@ -39,7 +39,9 @@ export class DeleteLogComponent implements OnInit {
     this.route.params.subscribe(params => this.getLogDetails(params['id']));
   }
   getLogDetails(id:number){
+    Notiflix.Loading.dots('Loading...');
     this.log.getLogDetails(id).subscribe((data) => {
+      Notiflix.Loading.remove();
       this.logs = data
       console.warn("log details",data)
       // Notiflix.Notify.success('Get success')

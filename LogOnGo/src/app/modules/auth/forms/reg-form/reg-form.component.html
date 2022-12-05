@@ -56,7 +56,8 @@
   
   
     <div class="row">
-      <div class="col col-lg-4">
+      <div class="col-lg-3"></div>
+      <div class="col col-lg-3">
         <mat-form-field appearance="fill" class="rounded full-width" style="margin-top:5%;">
           <mat-label>Email</mat-label>
           <input matInput placeholder="Enter email..." name="email" ngModel #email="ngModel" type="email" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
@@ -70,7 +71,7 @@
           </mat-error>
         </mat-form-field> 
       </div>
-      <div class="col col-lg-4">
+      <div class="col col-lg-3">
         <mat-form-field appearance="fill" class="rounded full-width" style="margin-top:5%;">
           <mat-label><span><mat-icon>local_gas_station</mat-icon></span> Select Petrol Station </mat-label>
           
@@ -85,16 +86,8 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <div class="col col-lg-4">
-        <mat-form-field appearance="fill" class="rounded full-width" style="margin-top:5%;">
-          <mat-label>Employee ID</mat-label>
-          <input matInput placeholder="Enter employee ID..." name="employee_id" ngModel #employee_id="ngModel" type="number" required>
-          <mat-icon matSuffix>assignment_ind</mat-icon>
-          <mat-hint><span class="alert alert-danger rounded">Employees of <strong>{{company}}.</strong></span></mat-hint>
-          <mat-error *ngIf="employee_id.hasError('required') || employee_id.pristine">
-            Employee ID is <strong>required</strong>
-          </mat-error>
-        </mat-form-field> 
+      <div class="col col-lg-3">
+        
       </div>
     </div>
   

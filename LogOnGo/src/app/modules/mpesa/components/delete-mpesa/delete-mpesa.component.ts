@@ -34,14 +34,13 @@ export class DeleteMpesaComponent implements OnInit {
     this.route.params.subscribe(params => this.getLogDetails(params['id']));
   }
   getLogDetails(id:number){
+    Notiflix.Loading.dots('Loading...');
     this.mpesaService.getMpesaLogDetails(id).subscribe(
       {
         next: (res) => {
+          Notiflix.Loading.remove();
           this.mpesa = res;
-        },
-        error: (e) => {
-          console.error(e)
-        } 
+        }
       }
     );
   }

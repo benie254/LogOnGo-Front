@@ -69,8 +69,10 @@ export class CardReportFormComponent implements OnInit {
       });
   }
   getCardDetails(id:number){
+    Notiflix.Loading.dots('Loading...');
     this.cardService.getCreditCardLogDetails(id).subscribe(
       (data) => {
+        Notiflix.Loading.remove();
         this.cardDetails = data
         console.warn("card log details",data)
       },

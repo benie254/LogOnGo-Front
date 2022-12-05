@@ -7,10 +7,10 @@
         <span *ngIf="!noFuel">
             <div class="row">
                 <div class="col">
-                    <i class="fa-solid fa-water"></i> Initial_litres <span><small><button (click)="toggleInitForm()" class="btn btn-sm btn-light btn-fill-info"><i class="fa-solid fa-pen-to-square"></i></button></small></span> <br> <span><h1>{{petrol.tank_init}} <span class="x-small">Lts</span></h1></span>
+                    <i class="fa-solid fa-water"></i> Initial_litres <span><small><button (click)="toggleInitForm()" class="btn btn-sm btn-light btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button></small></span> <br> <span><h1>{{petrol.tank_init}} <span class="x-small">Lts</span></h1></span>
                     <form *ngIf="initOpen" #updatePetrolInitForm="ngForm" (ngSubmit)="updatePetrol(updatePetrolInitForm.value)">
                       <div>
-                        <span (click)="closeInitForm()" style="float:right;" type="button" class="btn btn-sm btn-light btn-fill-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                        <span (click)="closeInitForm()" style="float:right;" type="button" mat-raised-button color="warn"><i class="fa-solid fa-rectangle-xmark"></i></span>
                     </div>
                       <mat-form-field appearance="fill" class="padding-2 full-width">
                           <mat-label>Initial litres in tank</mat-label>
@@ -44,10 +44,10 @@
                   </form>
                 </div>
                 <div class="col">
-                    <i class="fa-solid fa-hand-holding-dollar"></i> Price per litre <span><small><button (click)="togglePPform()" class="btn btn-sm btn-light btn-fill-info"><i class="fa-solid fa-pen-to-square"></i></button></small></span> <br> <span><h1><span class="x-small">Ksh</span> {{petrol.pp_litre}}</h1></span>
+                    <i class="fa-solid fa-hand-holding-dollar"></i> Price per litre <span><small><button (click)="togglePPform()" class="btn btn-sm btn-light btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button></small></span> <br> <span><h1><span class="x-small">Ksh</span> {{petrol.pp_litre}}</h1></span>
                     <form *ngIf="ppOpen" #updatePetrolPriceForm="ngForm" (ngSubmit)="updatePetrol(updatePetrolPriceForm.value)">
                       <div>
-                        <span (click)="closePPform()" style="float:right;" type="button" class="btn btn-sm btn-light btn-fill-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                        <span (click)="closePPform()" style="float:right;" type="button" mat-raised-button color="warn"><i class="fa-solid fa-rectangle-xmark"></i></span>
                     </div>
                       <mat-form-field appearance="fill" class="padding-2 full-width">
                           <mat-label>Price per litre</mat-label>
@@ -83,10 +83,10 @@
             <br>
             <div class="row">
                 <div class="col">
-                    <i class="fa-solid fa-gas-pump"></i> Pumps <span><small><button (click)="togglePumpsForm()" class="btn btn-sm btn-light btn-fill-info"><i class="fa-solid fa-pen-to-square"></i></button></small></span> <br> <span><h1>{{petrol.pumps}}</h1></span>
+                    <i class="fa-solid fa-gas-pump"></i> Pumps <span><small><button (click)="togglePumpsForm()" class="btn btn-sm btn-light btn-outline-info"><i class="fa-solid fa-pen-to-square"></i></button></small></span> <br> <span><h1>{{petrol.pumps}}</h1></span>
                     <form *ngIf="open" #updatePetrolPumpsForm="ngForm" (ngSubmit)="updatePetrol(updatePetrolPumpsForm.value)">
                       <div>
-                        <span (click)="closePumpForm()" style="float:right;" type="button" class="btn btn-sm btn-light btn-fill-danger"><i class="fa-solid fa-rectangle-xmark"></i></span>
+                        <span (click)="closePumpForm()" style="float:right;" type="button" mat-raised-button color="warn"><i class="fa-solid fa-rectangle-xmark"></i></span>
                     </div>
                       <mat-form-field appearance="fill" class="padding-2 full-width">
                           <mat-label>Pumps</mat-label>

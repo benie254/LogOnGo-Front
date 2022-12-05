@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as Notiflix from 'notiflix';
 import { CardService } from '../../services/card/card.service';
 
 @Component({
@@ -22,7 +23,9 @@ export class AllCardLogsComponent implements OnInit {
   }
   
   getAllCards = (): void => {
+    Notiflix.Loading.dots('Loading...')
     this.cardService.getAllCreditCardLogs().subscribe((data) => {
+      Notiflix.Loading.remove();
       this.creditCard = data
       console.warn("all creditCard data",data)
     });

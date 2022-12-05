@@ -31,14 +31,13 @@ export class DeleteCardFormComponent implements OnInit {
     this.route.params.subscribe(params => this.getLogDetails(params['id']));
   }
   getLogDetails(id:number){
+    Notiflix.Loading.dots('Loading...');
     this.cardService.getCreditCardLogDetails(id).subscribe(
       {
         next: (res) => {
+          Notiflix.Loading.remove();
           this.card = res;
-        },
-        error: (e) => {
-          console.error(e)
-        } 
+        }
       }
     );
   }
